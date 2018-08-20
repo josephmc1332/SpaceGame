@@ -10,6 +10,19 @@ namespace SpaceGame
     {
         static void Main(string[] args)
         {
+            var Pages = new Pages();
+
+
+            //Entry Page/ Introduction/ Instructions
+            Pages.FirstPage();
+
+
+            //Options upon 
+            Pages.EarthPage();
+
+
         }
+        
     }
+
 }
