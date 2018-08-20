@@ -18,7 +18,7 @@ namespace SpaceGame
 
 
             //Options upon 
-            Pages.EarthPage();
+           // Pages.EarthPage();
 
 
         }

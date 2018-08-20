@@ -52,14 +52,19 @@ namespace SpaceGame
                 "5. Departure Port");
             try
             {
-                SelectPlanetOptions();
+                SelectEarthOptions();
             }
-            catch (exception)
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid input, try again! Press any key to continue.");
+                Console.ReadLine();
+                EarthPage();
+            }
             // add exception for invalid answer
             
 
         }
-        public void SelectPlanetOptions()
+        public void SelectEarthOptions()
         {
             int response = Convert.ToInt32(Console.ReadLine());
             bool shipYard = response == 1;
@@ -67,16 +72,22 @@ namespace SpaceGame
             bool shop = response == 3;
             bool market = response == 4;
             bool port = response == 5;
-            if (shipYard)
-                ShipYard();
-            if (galacticBank)
-                GalacticBank();
-            if (shop)
-                Shop();
-            if (market)
-                Market();
-            if (port)
-                Port();
+            if (shipYard) ;
+            //  ShipYard();
+            if (galacticBank) ;
+            //   GalacticBank();
+            if (shop) ;
+            //   Shop();
+            if (market) ;
+                            //   Market();
+                            if (port) ;
+                            //   Port();
+                            else
+                            {
+                                Console.WriteLine("invalid entry");
+                                EarthPage();
+                            }
+                                
         }
         #endregion
 
