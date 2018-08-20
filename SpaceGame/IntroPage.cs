@@ -50,9 +50,33 @@ namespace SpaceGame
                 "3. Buy, Sell, Trade \n" +
                 "4. Galactic Market\n" +
                 "5. Departure Port");
+            try
+            {
+                SelectPlanetOptions();
+            }
+            catch (exception)
+            // add exception for invalid answer
+            
 
-
-
+        }
+        public void SelectPlanetOptions()
+        {
+            int response = Convert.ToInt32(Console.ReadLine());
+            bool shipYard = response == 1;
+            bool galacticBank = response == 2;
+            bool shop = response == 3;
+            bool market = response == 4;
+            bool port = response == 5;
+            if (shipYard)
+                ShipYard();
+            if (galacticBank)
+                GalacticBank();
+            if (shop)
+                Shop();
+            if (market)
+                Market();
+            if (port)
+                Port();
         }
         #endregion
 
