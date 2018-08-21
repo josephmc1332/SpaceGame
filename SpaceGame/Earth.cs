@@ -72,10 +72,10 @@ namespace SpaceGame
             if (shop)
                 Shop();
 
-            if (market) ;
-            //   Market();
+            if (market) 
+                 Market();
 
-            if (port) ;
+            if (port) 
             //   Port();
 
             else
@@ -90,7 +90,10 @@ namespace SpaceGame
         {
             Console.Clear();
             // write flavor text for bank
-            Console.WriteLine($"You have {PS.MyCurrentCredit}");
+            Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits in your Galactic Bank Account. The title of Duke of Mercury costs 1,000,000 GC.\n" +
+                $"You need {(1000000 - PS.MyCurrentCredit)} more credits before you can win the king of Venus' approval.\nPress any key to continue...");
+            Console.ReadLine();
+            EarthPage();
         }
         public void ShipYard()
         {
@@ -104,10 +107,16 @@ namespace SpaceGame
             bool Return = response == 3;
             if (ShipStats)
                 ShipCheck();
-                if (BuyShip)
-                    // BuyShip();
-                    if (Return)
-                        EarthPage();
+            if (BuyShip)
+                PurchaseShip();
+            if (Return)
+                EarthPage();
+        }
+        public void PurchaseShip()
+        {
+            Console.WriteLine("There are no ships available for purchase right now, come back later...\nPress any key to continue...");
+            Console.ReadLine();
+            ShipYard();
         }
         public void ShipCheck()
         {
@@ -180,7 +189,6 @@ namespace SpaceGame
             }
             //Buy Gold
             if (Gold)
-
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
@@ -319,6 +327,14 @@ namespace SpaceGame
 
             #endregion
 
+        }
+        public void Market()
+        {
+            Console.WriteLine("The Galactic Stock exchange glitters and flashes, numbers come and go up and down but you worry about the three perenial commodities.\n" +
+                "No Balance Shoes, the zero gravity shoes that changed the way the galaxy moves. \nSpace Gold, it's like the gold everyone knows and loves but shinier and better in every way." +
+                "and Galactic TVs, TVs so thin that you can't even see them unless you are standing in front of them.\n" +
+                $"The display flashes their market prices. \n Earth: No Balance Shoes: {PS.EarthNoBalanceShoes} Space Gold: {PS.EarthSpaceGold} Galactic TVs: {PS.EarhtGalacticTVs} ");
+            Console.ReadLine();
         }
     }
 }

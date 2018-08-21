@@ -29,6 +29,12 @@ namespace SpaceGame
 
             this.MyName = "Trader";
 
+            this.EarthSpaceGold = 100;
+
+            this.EarthNoBalanceShoes = 80;
+
+            this.EarhtGalacticTVs = 120;
+
         }
 
 
@@ -64,10 +70,13 @@ namespace SpaceGame
         /// cargo
         /// </summary>
         public int SpaceGold { get; set; }
+        public int EarthSpaceGold { get; private set; }
 
         public int NoBalanaceShoes { get; set; }
+        public int EarthNoBalanceShoes { get; private set; }
 
         public int GalacticTVs { get; set; }
+        public int EarhtGalacticTVs { get; private set; }
 
 
 
