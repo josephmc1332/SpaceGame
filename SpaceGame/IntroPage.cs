@@ -27,7 +27,7 @@ namespace SpaceGame
             //
             var PersonalStatus = new PersonalStatus();
 
-            PersonalStatus.MyCurrentCredit = 300;
+            //PersonalStatus.MyCurrentCredit = 300;
 
             //add story here
             Console.WriteLine($"Okay, {yourName}. You were engaged to Venusian royalty but the king has forbidden your beloved \nto marry a mere commoner like yourself." +

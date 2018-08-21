@@ -12,6 +12,8 @@ namespace SpaceGame
         #region Earth Page
         PersonalStatus PS = new PersonalStatus();
         public void EarthPage()
+
+        
         {
             //Define Location
            
@@ -129,23 +131,83 @@ namespace SpaceGame
             int gTV = 120;
             Console.Clear();
             Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
-                $"1 NoBalanceShoes 80 GC per Unit\n 2 Space Gold 100 GC per Unit\n 3 Galactic TV 120 GC per Unit");
+                $"1 NoBalanceShoes 80 GC per Unit\n 2 Space Gold 100 GC per Unit\n 3 Galactic TV 120 GC per Unit \n 4 " +
+                $"Return to Planetary Menu");
             int response = Convert.ToInt32(Console.ReadLine());
             bool Shoes = response == 1;
             bool Gold = response == 2;
             bool TV = response == 3;
+            bool Return = response == 4;
+
+            //Buy Shoes
             if (Shoes)
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
                 if ((quantity * noShoes) > PS.MyCurrentCredit)
                 {
-                    Console.WriteLine("You can't afford that!");
+                    Console.WriteLine("You can't afford that! \n" +
+                        "Press any key to return to the Shop..");
+                    Console.ReadLine();
                     Buy();
                 }
                 PS.MyCurrentCredit -= (quantity * noShoes);
+                Console.WriteLine($"you bought {quantity} NoBalance Shoes, your new balance is {PS.MyCurrentCredit} \n " +
+                    $"Press any key to continue..");
+
+                Console.ReadLine();
+                Buy();
+            }
+            //Buy Gold
+            if (Gold)
+
+            {
+                Console.WriteLine("How many?");
+                int quantity = Convert.ToInt32(Console.ReadLine());
+                if ((quantity * sGold) > PS.MyCurrentCredit)
+                {
+                    Console.WriteLine("You can't afford that! \n" +
+                        "Press any key to return to the Shop..");
+                    Console.ReadLine();
+                    Buy();
+                }
+                PS.MyCurrentCredit -= (quantity * sGold);
+                Console.WriteLine($"you bought {quantity} Bars of Space Gold, your new balance is {PS.MyCurrentCredit} \n " +
+                    $"Press any key to continue..");
+                Console.ReadLine();
+                Buy();
+            }
+
+            if (TV)
+            {
+                Console.WriteLine("How many?");
+                int quantity = Convert.ToInt32(Console.ReadLine());
+                if ((quantity * gTV) > PS.MyCurrentCredit)
+                {
+                    Console.WriteLine("You can't afford that! \n" +
+                        "Press any key to return to the Shop..");
+                    Console.ReadLine();
+                    Buy();
+                }
+                PS.MyCurrentCredit -= (quantity * gTV);
+
+                PS.GalacticTVs += quantity;
+
+
+
+                Console.WriteLine($"you bought {quantity} Galactic TV(s), your new balance is {PS.MyCurrentCredit} \n " +
+                    $"You now have {PS.GalacticTVs} Galactic Tvs in your ship. \n Press any key to continue..");
+                Console.ReadLine();
+                Buy();
+            }
+
+            if (Return)
+            {
+                Shop();
             }
         }
+
+        
         
         #endregion
 

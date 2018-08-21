@@ -9,6 +9,26 @@ namespace SpaceGame
     class PersonalStatus
     {
         /// <summary>
+        /// Constructor
+        /// </summary>
+        public PersonalStatus()
+        {
+            this.MyCurrentCredit = 300;
+
+            this.MyTravelTime = 0;
+
+            this.SpaceGold = 0;
+
+            this.NoBalanaceShoes = 0;
+
+            this.GalacticTVs = 0;
+
+        }
+
+
+
+
+        /// <summary>
         /// Personal Info
         /// </summary>
         public int MyCurrentCredit { get; set; }
@@ -18,6 +38,8 @@ namespace SpaceGame
         public int MyTravelTime { get; set; }
 
         public string MyCurrentLocation { get; set; }
+
+       
 
 
 
