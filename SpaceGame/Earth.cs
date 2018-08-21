@@ -8,9 +8,10 @@ namespace SpaceGame
 {
     class Earth
     {
-
-        #region Earth Page
         PersonalStatus PS = new PersonalStatus();
+        IntroPage IP = new IntroPage();
+        #region Earth Page
+
         public void EarthPage()
 
 
@@ -120,7 +121,7 @@ namespace SpaceGame
         }
         public void ShipCheck()
         {
-            Console.WriteLine($"You arrive at your personal hanger, you ship, a {PS.ShipName} the SS {PS.MyName}, stands before you gleaming in the artificail lights of the hanger\n" +
+            Console.WriteLine($"You arrive at your personal hanger, you ship, a {PS.ShipName} the SS {IP.MyName}, stands before you gleaming in the artificail lights of the hanger\n" +
                 $"A {PS.ShipName} like this has {PS.ShipCapacity} slots in its cargo hold and a top speed of Warp Factor {PS.ShipSpeed}\n" +
                 $"Inside the hold you have {PS.NoBalanaceShoes} boxes of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} boxes of Galactic TVs\n" +
                 $"Press any key to continue...");
@@ -324,10 +325,7 @@ namespace SpaceGame
                 Sell();
             }
 
-
-            #endregion
-
-        }
+         }
         public void Market()
         {
             Console.WriteLine("The Galactic Stock exchange glitters and flashes, numbers come and go up and down but you worry about the three perenial commodities.\n" +
@@ -336,5 +334,7 @@ namespace SpaceGame
                 $"The display flashes their market prices. \n Earth: \n\tNo Balance Shoes: {PS.EarthNoBalanceShoes} \n\tSpace Gold: {PS.EarthSpaceGold} \n\tGalactic TVs: {PS.EarhtGalacticTVs} ");
             Console.ReadLine();
         }
+
+        #endregion
     }
 }
