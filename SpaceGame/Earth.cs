@@ -75,7 +75,7 @@ namespace SpaceGame
             if (market) 
                  Market();
 
-            if (port) 
+            //if (port) 
             //   Port();
 
             else
@@ -274,7 +274,7 @@ namespace SpaceGame
                 int quantity = Convert.ToInt32(Console.ReadLine());
                 if (quantity > PS.NoBalanaceShoes)
                 {
-                    Console.WriteLine($"You don't have that many shoes!\n You only have {PS.NoBalanceShoes} pairs of No Balance Shoes. \nPress any key to return to the selling menu...");
+                    Console.WriteLine($"You don't have that many shoes!\n You only have {PS.NoBalanaceShoes} pairs of No Balance Shoes. \nPress any key to return to the selling menu...");
                     Console.ReadLine();
                     Sell();
                 }
@@ -333,7 +333,7 @@ namespace SpaceGame
             Console.WriteLine("The Galactic Stock exchange glitters and flashes, numbers come and go up and down but you worry about the three perenial commodities.\n" +
                 "No Balance Shoes, the zero gravity shoes that changed the way the galaxy moves. \nSpace Gold, it's like the gold everyone knows and loves but shinier and better in every way." +
                 "and Galactic TVs, TVs so thin that you can't even see them unless you are standing in front of them.\n" +
-                $"The display flashes their market prices. \n Earth: No Balance Shoes: {PS.EarthNoBalanceShoes} Space Gold: {PS.EarthSpaceGold} Galactic TVs: {PS.EarhtGalacticTVs} ");
+                $"The display flashes their market prices. \n Earth: \n\tNo Balance Shoes: {PS.EarthNoBalanceShoes} \n\tSpace Gold: {PS.EarthSpaceGold} \n\tGalactic TVs: {PS.EarhtGalacticTVs} ");
             Console.ReadLine();
         }
     }

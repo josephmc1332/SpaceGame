@@ -8,8 +8,10 @@ namespace SpaceGame
 {
     class Program
     {
+
         static void Main(string[] args)
         {
+
             var IntroPage = new IntroPage();
 
 
