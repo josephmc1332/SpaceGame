@@ -13,7 +13,7 @@ namespace SpaceGame
         /// </summary>
         public PersonalStatus()
         {
-            this.MyCurrentCredit = 300;
+            this.MyCurrentCredit = 3000;
 
             this.MyTravelTime = 0;
 
@@ -22,6 +22,12 @@ namespace SpaceGame
             this.NoBalanaceShoes = 0;
 
             this.GalacticTVs = 0;
+
+            this.ShipCapacity = 5;
+
+            this.ShipName = "Camel";
+
+            this.MyName = "Trader";
 
         }
 
