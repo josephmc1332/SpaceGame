@@ -16,26 +16,26 @@ namespace SpaceGame
         public void FirstPage()
         {
             //ask user for name
-            Console.WriteLine("  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n | |             _____________            ||\n" +
+            Console.Write("  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n | |             _____________            ||\n" +
                 " | |            / _    \\    \\ \\           ||\n | |           / /#\\    \\    \\ \\__        ||\n | |          | |##|    |    | |##\\       ||\n" +
                 " | |#####     | |##|    |    | |###\\      ||\n | |######   _|_|##|____|____|_|####\\     ||\n | |#######<| | //\\ | /\\\\ CAMEL      |    ||\n" +
                 " | |#######<|_|||  \\|/ ||____________|    ||\n | |######     ||  /*\\ ||                 ||\n | |#####       \\\\/_|_\\//                 ||\n" +
-                " | |             -------                  ||\n | |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~||\n |_~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n" +
-                "Hello, welcome to Space Game!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-                " What is your name?");
+                " | |             -------                  ||\n | |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~||\n |_~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n\n" +
+                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nHello, welcome to Space Game!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+                " What is your name? ");
 
             //user name
 
             PersonalStatus PS = new PersonalStatus();
-            string MyName = Console.ReadLine();
+            string yourName = Console.ReadLine();
             PS.MyCurrentCredit = 300;
             //clears the text
             Console.Clear();
 
             //add story here
-            Console.WriteLine($"Okay, {MyName}. You were engaged to Venusian royalty but the king of Venus has forbidden your beloved \nto marry a mere commoner like yourself." +
+            Console.WriteLine($"Okay, {yourName}. You were engaged to Venusian royalty but the king of Venus has forbidden your beloved \nto marry a mere commoner like yourself." +
                 $" But there is even worse news! \nYour beloved has other interested parties, and what's worse is they are already nobility. \nBut you are in luck" +
-                $" there is a way to buy into galactic nobility, but it's going to be a lot of work. \nYou've got a {PS.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, so get out there and get to trading {MyName}!\n" +
+                $" there is a way to buy into galactic nobility, but it's going to be a lot of work. \nYou've got a {PS.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, so get out there and get to trading {yourName}!\n" +
                 $"Press any key to contiue...");
 
             Console.ReadLine();
@@ -48,9 +48,11 @@ namespace SpaceGame
             //creating new instance of Earth Class
             var Earth = new Earth();
 
-            Earth.EarthPage();
 
+            
+            
         }
+        
         #endregion
 
 

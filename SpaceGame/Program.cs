@@ -13,16 +13,18 @@ namespace SpaceGame
         {
 
             var IntroPage = new IntroPage();
-
+            var Earth = new Earth();
 
             //Entry Page/ Introduction/ Instructions
+
             IntroPage.FirstPage();
+            Earth.EarthPage();
 
 
             //Options upon 
             // Pages.EarthPage();
 
-            
+
 
 
 

@@ -49,6 +49,18 @@ namespace SpaceGame
 
             this.M63SpaceGold = 60;
 
+            this.EarthXPosition = 0;
+
+            this.EarthYPosition = 0;
+
+            this.AlphaCentariXPosition = 0;
+
+            this.AlphaCentariYPosition = -4.37;
+
+            this.M63XPosition = 6;
+
+            this.M63YPosition = 4;
+
         }
 
 
@@ -61,7 +73,7 @@ namespace SpaceGame
 
         public string MyName { get; set; }
 
-        public int MyTravelTime { get; set; }
+        public double MyTravelTime { get; set; }
 
         public string MyCurrentLocation { get; set; }
 
@@ -101,12 +113,12 @@ namespace SpaceGame
         /// <summary>
         /// planetary positions
         /// </summary>
-        public int EarthXPosition { get; private set; }
-        public int EarthYPosition { get; private set; }
-        public int AlphaCentariXPosition { get; private set; }
-        public int AlphaCentariYPosition { get; private set; }
-        public int M63XPosition { get; private set; }
-        public int M63YPosition { get; private set; }
+        public double EarthXPosition { get; private set; }
+        public double EarthYPosition { get; private set; }
+        public double AlphaCentariXPosition { get; private set; }
+        public double AlphaCentariYPosition { get; private set; }
+        public double M63XPosition { get; private set; }
+        public double M63YPosition { get; private set; }
 
 
 

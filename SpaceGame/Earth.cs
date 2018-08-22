@@ -76,8 +76,8 @@ namespace SpaceGame
             if (market) 
                  Market();
 
-            //if (port) 
-            //   Port();
+            if (port) 
+               EarthPort();
 
             else
             {
@@ -336,7 +336,56 @@ namespace SpaceGame
                 $"\n\tSpace Gold: {PS.M63SpaceGold}\n\tGalactic TVs: {PS.M63GalacticTVs} ");
             Console.ReadLine();
         }
+        public void EarthPort()
+        {
+            double distAlphaCentari = (Math.Sqrt(Math.Pow(PS.EarthXPosition - PS.AlphaCentariXPosition, 2) + Math.Pow(PS.EarthYPosition - PS.AlphaCentariYPosition, 2)));
+            double distM63 = (Math.Sqrt(Math.Pow(PS.EarthXPosition - PS.M63XPosition, 2) + Math.Pow(PS.EarthYPosition - PS.M63YPosition, 2)));
+            double playerWarpSpeed = (Math.Pow(PS.ShipSpeed, 10 / 3) + Math.Pow(10 - PS.ShipSpeed, -11 / 3));
+            Console.Clear();
+            Console.WriteLine($"Where would you like to go? \n\t1 Alpha Centari: {distAlphaCentari} Light years away which will take {distAlphaCentari / playerWarpSpeed} years" +
+                $"\n\t2 M63: {distM63} Light years away which will take {distM63 / playerWarpSpeed} years\n\t3 Return to earth");
+            int response = Convert.ToInt32(Console.ReadLine());
+            bool travelAlpha = response == 1;
+            bool travelM63 = response == 2;
+            bool Return = response == 3;
+            if (travelAlpha)
+            {
+                if ((distAlphaCentari / playerWarpSpeed) + PS.MyTravelTime > 40.0)
+                {
+                    Console.WriteLine("As you travel to Alpha Centari you realize you are too old for this space shiz and decide to retire");
+                    Console.ReadLine();
+                    PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
+                    EndScreen();
+                }
+                PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
+                Console.WriteLine($"The journey takes you {distAlphaCentari / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
+                    $"You arrive on ALpha Centari");
+                Console.ReadLine();
+                AlphaCentariPage();
+            }
+            
+            if (Return)
+            {
+                EarthPage();
+            }
+        }
 
+        #endregion
+
+        public void AlphaCentariPage()
+        {
+            Console.WriteLine("You live on Alpha centari for 15 years. You turn around and go home to earth");
+            Console.ReadLine();
+            PS.MyTravelTime += 15;
+            EarthPage();
+        }
+
+        #region EndPage
+        public void EndScreen()
+        {
+            Console.WriteLine($"Game Over\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nYou had {PS.MyCurrentCredit} Galactic Credits at the end of your journey" +
+                $"\nYou traveled for {PS.MyTravelTime} years total\nYou had a {PS.ShipName} class ship");
+        }
         #endregion
     }
 }
