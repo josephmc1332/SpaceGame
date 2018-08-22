@@ -374,10 +374,50 @@ namespace SpaceGame
 
         public void AlphaCentariPage()
         {
-            Console.WriteLine("You live on Alpha centari for 15 years. You turn around and go home to earth");
-            Console.ReadLine();
-            PS.MyTravelTime += 15;
-            EarthPage();
+            Console.Write("Welcome to Alpha Centari! Centarian birdpeople fly to and fro. \nYou spot a few pairs of No Balances here and there but whats the point when you have wings? \n" +
+                "Stilted building dominate the skyline, your human sensability is assualted by the seemingly \nrandom way the doors are arranged until you see a Centarian fly up to a sixth floor door and" +
+                "enter the building. \nThe air is surprisingly clear from the lack of vehicles in the city center.\n" +
+                "It's not just Centarians though, you see a large amount of humans from your own region of space, \n some are earth humans but " +
+                "you spot a blue Venusian and a orange mercurian amoung them. \n Coming out of the docks you even spot a Pician fellow his telltale" +
+                " glass helmet \nkeeping his gills underwater. \nWhere would you like to go? \n" +
+                "1. Ship Yard \n" +
+                "2. Galactic Bank of Centari IV \n" +
+                "3. Buy, Sell, Trade \n" +
+                "4. Galactic Stock Exchange\n" +
+                "5. Departure Port\n" +
+                "Enter your choice: ");
+            AlphaCentariSelector();
+        }
+        public void AlphaCentariSelector()
+        {
+            
+            int response = Convert.ToInt32(Console.ReadLine());
+            bool shipYard = response == 1;
+            bool galacticBank = response == 2;
+            bool shop = response == 3;
+            bool market = response == 4;
+            bool port = response == 5;
+            
+            if (shipYard)
+                AlphaShipYard();
+
+            if (galacticBank)
+                AlphaBank();
+
+            if (shop)
+                AlphaShop();
+
+            if (market)
+                AlphaMarket();
+
+            if (port)
+                AlphaCentariPort();
+
+            else
+            {
+                Console.WriteLine("invalid entry");
+                AlphaCentariPage();
+            }
         }
 
         #region EndPage
