@@ -391,14 +391,11 @@ namespace SpaceGame
             bool Return = response == 3;
             if (travelAlpha)
             {
+                PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
                 if ((distAlphaCentari / playerWarpSpeed) + PS.MyTravelTime > 40.0)
                 {
-                    Console.WriteLine("As you travel to Alpha Centari you realize you are too old for this space shiz and decide to retire");
-                    Console.ReadLine();
-                    PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
-                    EndScreen();
+                    Retire();
                 }
-                PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
                 Travel();
                 Console.WriteLine($"The journey takes you {distAlphaCentari / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
                     $"You arrive on ALpha Centari");
@@ -407,7 +404,16 @@ namespace SpaceGame
             }
             if (travelM63)
             {
-
+                PS.MyTravelTime += (distM63 / playerWarpSpeed); 
+                if (PS.MyTravelTime > 40.0)
+                {
+                    Retire();
+                }
+                Travel();
+                Console.WriteLine($"The jouney take you {distM63 / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
+                    $"You arrive on M63");
+                Console.ReadLine();
+                M63Page();
             }
             if (Return)
             {
@@ -705,22 +711,32 @@ namespace SpaceGame
             bool Return = response == 3;
             if (travelEarth)
             {
-                if ((distEarth / playerWarpSpeed) + PS.MyTravelTime > 40.0)
-                {
-                    Console.WriteLine("As you travel to Earth you realize you are too old for this space shiz and decide to retire");
-                    Console.ReadLine();
-                    PS.MyTravelTime += (distEarth / playerWarpSpeed);
-                    EndScreen();
-                }
                 PS.MyTravelTime += (distEarth / playerWarpSpeed);
+                if (PS.MyTravelTime > 40.0)
+                {
+                    Retire();
+                }
                 Travel();
                 Console.Clear();
-                Console.WriteLine($"The journey takes you {distEarth / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
+                Console.WriteLine($"The journey takes you {distEarth / playerWarpSpeed} years you have been traveling for {PS.MyTravelTime} years now.\n" +
                     $"You arrive on Earth");
                 Console.ReadLine();
                 EarthPage();
             }
-
+            if (travelM63)
+            {
+                PS.MyTravelTime += (distM63 / playerWarpSpeed);
+                if (PS.MyTravelTime > 40.0)
+                {
+                    Retire();
+                }
+                Travel();
+                Console.Clear();
+                Console.WriteLine($"The journey takes you {distM63 / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
+                    $"You arrive on M63");
+                Console.ReadLine();
+                M63Page();
+            }
             if (Return)
             {
                 AlphaCentariPage();
@@ -855,6 +871,13 @@ namespace SpaceGame
                 "               ###===>\n" +
                 "                       ");
             Console.ReadLine();
+        }
+        public void Retire()
+        {
+            Console.WriteLine("As you prepare to depart, you realize that like LT Murtagh before you \n" +
+                        "you are getting too old for this shiz and decide to retire.");
+            Console.ReadLine();
+            EndScreen();
         }
     }
 }
