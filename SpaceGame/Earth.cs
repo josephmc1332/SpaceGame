@@ -639,6 +639,8 @@ namespace SpaceGame
         {
             Console.WriteLine($"Game Over\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nYou had {PS.MyCurrentCredit} Galactic Credits at the end of your journey" +
                 $"\nYou traveled for {PS.MyTravelTime} years total\nYou had a {PS.ShipName} class ship");
+            Console.ReadLine();
+            Console.WriteLine("Press 'alt+f4' to exit");
         }
         #endregion
     }
