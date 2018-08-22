@@ -12,12 +12,12 @@ namespace SpaceGame
         static void Main(string[] args)
         {
 
-            var IntroPage = new IntroPage();
+            
             var Earth = new Earth();
 
             //Entry Page/ Introduction/ Instructions
 
-            IntroPage.FirstPage();
+            Earth.FirstPage();
             Earth.EarthPage();
 
 
