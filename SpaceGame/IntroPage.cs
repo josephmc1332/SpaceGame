@@ -43,8 +43,7 @@ namespace SpaceGame
             //clear code
             Console.Clear();
 
-            //add instructions here
-            Console.WriteLine();
+           
             //creating new instance of Earth Class
             var Earth = new Earth();
 
