@@ -9,7 +9,6 @@ namespace SpaceGame
     class Earth
     {
         PersonalStatus PS = new PersonalStatus();
-        IntroPage IP = new IntroPage();
         #region Earth Page
 
         public void EarthPage()
@@ -431,6 +430,10 @@ namespace SpaceGame
                 AlphaCentariPage();
             }
         }
+        public void AlphaShipYard()
+        {
+
+        }
         public void AlphaShop()
         {
             Console.Clear();
@@ -644,6 +647,39 @@ namespace SpaceGame
                 $"\n\tSpace Gold: {PS.M63SpaceGold}\n\tGalactic TVs: {PS.M63GalacticTVs} \n" +
                 $"Press enter to return to the Macawalani streets...");
             Console.ReadLine();
+        }
+        public void AlphaCentariPort()
+        {
+            double distEarth = (Math.Sqrt(Math.Pow(PS.EarthXPosition - PS.AlphaCentariXPosition, 2) + Math.Pow(PS.EarthYPosition - PS.AlphaCentariYPosition, 2)));
+            double distM63 = (Math.Sqrt(Math.Pow(PS.AlphaCentariXPosition - PS.M63XPosition, 2) + Math.Pow(PS.AlphaCentariYPosition - PS.M63YPosition, 2)));
+            double playerWarpSpeed = (Math.Pow(PS.ShipSpeed, 10 / 3) + Math.Pow(10 - PS.ShipSpeed, -11 / 3));
+            Console.Clear();
+            Console.WriteLine($"Where would you like to go? \n\t1 Earth: {distEarth} Light years away which will take {distEarth / playerWarpSpeed} years" +
+                $"\n\t2 M63: {distM63} Light years away which will take {distM63 / playerWarpSpeed} years\n\t3 Return to Macawalani, the Capital of Centari IV");
+            int response = Convert.ToInt32(Console.ReadLine());
+            bool travelEarth = response == 1;
+            bool travelM63 = response == 2;
+            bool Return = response == 3;
+            if (travelEarth)
+            {
+                if ((distEarth / playerWarpSpeed) + PS.MyTravelTime > 40.0)
+                {
+                    Console.WriteLine("As you travel to Earth you realize you are too old for this space shiz and decide to retire");
+                    Console.ReadLine();
+                    PS.MyTravelTime += (distEarth / playerWarpSpeed);
+                    EndScreen();
+                }
+                PS.MyTravelTime += (distEarth / playerWarpSpeed);
+                Console.WriteLine($"The journey takes you {distEarth / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
+                    $"You arrive on Earth");
+                Console.ReadLine();
+                EarthPage();
+            }
+
+            if (Return)
+            {
+                AlphaCentariPage();
+            }
         }
         #endregion
         #region EndPage
