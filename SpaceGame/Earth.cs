@@ -29,7 +29,8 @@ namespace SpaceGame
                 "2. Galactic Bank \n" +
                 "3. Buy, Sell, Trade \n" +
                 "4. Galactic Market\n" +
-                "5. Departure Port");
+                "5. Departure Port" +
+                "9. Quit the Game");
 
             //send back to check selected option after invalid input
             try
@@ -61,6 +62,7 @@ namespace SpaceGame
             bool shop = response == 3;
             bool market = response == 4;
             bool port = response == 5;
+            bool quit = response == 9;
 
 
             //point of method access after valid user selection
@@ -78,6 +80,9 @@ namespace SpaceGame
 
             if (port) 
                EarthPort();
+
+            if (quit)
+                EndScreen();
 
             else
             {
@@ -387,6 +392,7 @@ namespace SpaceGame
                 "3. Buy, Sell, Trade \n" +
                 "4. Galactic Stock Exchange\n" +
                 "5. Departure Port\n" +
+                "9. Quit game" +
                 "Enter your choice: ");
             AlphaCentariSelector();
         }
@@ -399,6 +405,7 @@ namespace SpaceGame
             bool shop = response == 3;
             bool market = response == 4;
             bool port = response == 5;
+            bool quit = response == 9;
             
             if (shipYard)
                 AlphaShipYard();
@@ -414,6 +421,9 @@ namespace SpaceGame
 
             if (port)
                 AlphaCentariPort();
+
+            if (quit)
+                EndScreen();
 
             else
             {
@@ -435,6 +445,16 @@ namespace SpaceGame
                 AlphaSell();
             if (Return)
                 AlphaCentariPage();
+        }
+        public void AlphaBank()
+        {
+            Console.Clear();
+            Console.WriteLine($"Welcome to the Galactic Bank of Centari Four!\nBehind the counter is an tall old bird, his specticles are low on his beak and attached to his head by a gold chain.\n" +
+                $"The high ceilings make room for doors on many levels but with no visable landing, of course ground based humans like you have to come in through the 'walkers' door.\n" +
+                $"You have {PS.MyCurrentCredit} Galactic Credits in your Galactic Bank Account. The title of Duke of Mercury costs 1,000,000 GC.\n" +
+                $"You need {(1000000 - PS.MyCurrentCredit)} more credits before you can win the king of Venus' approval.\nPress any key to continue...");
+            Console.ReadLine();
+            EarthPage();
         }
         public void AlphaBuy()
         {
