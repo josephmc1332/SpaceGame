@@ -9,6 +9,43 @@ namespace SpaceGame
     class Earth
     {
         PersonalStatus PS = new PersonalStatus();
+        public void FirstPage()
+        {
+            Console.Write("                  D U K E                  \n" +
+                "                    O F                    \n" +
+                "               M E R C U R Y               \n" +
+                "  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+                " |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n" +
+                " | |             _____________            ||\n" +
+                " | |            / _    \\    \\ \\           ||\n" +
+                " | |           / /#\\    \\    \\ \\__        ||\n" +
+                " | |          | |##|    |    | |##\\       ||\n" +
+                " | |#####     | |##|    |    | |###\\      ||\n" +
+                " | |######   _|_|##|____|____|_|####\\     ||\n" +
+                " | |#######<| | //\\ | /\\\\ CAMEL      |    ||\n" +
+                " | |#######<|_|||  \\|/ ||____________|    ||\n" +
+                " | |######     ||  /*\\ ||                 ||\n" +
+                " | |#####       \\\\/_|_\\//                 ||\n" +
+                " | |             -------                  ||\n" +
+                " | |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~||\n" +
+                " |_~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n\n" +
+                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nHello, welcome to Duke Of Mercury!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+                " What is your name? ");
+
+            //user name
+            PS.MyName = Console.ReadLine();
+            PS.MyCurrentCredit = 300;
+            //clears the text
+            Console.Clear();
+
+            //add story here
+            Console.WriteLine($"Okay, {PS.MyName}. You were engaged to Venusian royalty but the king of Venus has forbidden your beloved \nto marry a mere commoner like yourself." +
+                $" But there is even worse news! \nYour beloved has other interested parties, and what's worse is they are already nobility. \nBut you are in luck" +
+                $" there is a way to buy into galactic nobility, but it's going to be a lot of work. \nYou've got a {PS.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, so get out there and get to trading {PS.MyName}!\n" +
+                $"Press any key to contiue...");
+
+            Console.ReadLine();
+        }
         #region Earth Page
 
         public void EarthPage()
@@ -23,12 +60,12 @@ namespace SpaceGame
             Console.Clear();
 
             //display menu on earth upon arrival
-            Console.WriteLine("Welcome to Earth! Where would you like to go? \n" +
+            Console.WriteLine("Welcome to Earth! \n\nWhere would you like to go? \n" +
                 "1. Ship Yard \n" +
                 "2. Galactic Bank \n" +
                 "3. Buy, Sell, Trade \n" +
                 "4. Galactic Market\n" +
-                "5. Departure Port" +
+                "5. Departure Port\n" +
                 "9. Quit the Game");
 
             //send back to check selected option after invalid input
@@ -362,6 +399,7 @@ namespace SpaceGame
                     EndScreen();
                 }
                 PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
+                Travel();
                 Console.WriteLine($"The journey takes you {distAlphaCentari / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
                     $"You arrive on ALpha Centari");
                 Console.ReadLine();
@@ -375,7 +413,6 @@ namespace SpaceGame
         }
 
         #endregion
-
         #region AlphaCentari
         public void AlphaCentariPage()
         {
@@ -385,13 +422,13 @@ namespace SpaceGame
                 "enter the building. \nThe air is surprisingly clear from the lack of vehicles in the city center.\n" +
                 "It's not just Centarians though, you see a large amount of humans from your own region of space, \n some are earth humans but " +
                 "you spot a blue Venusian and a orange mercurian amoung them. \n Coming out of the docks you even spot a Pician fellow his telltale" +
-                " glass helmet \nkeeping his gills underwater. \nWhere would you like to go? \n" +
+                " glass helmet \nkeeping his gills underwater. \n\nWhere would you like to go? \n" +
                 "1. Ship Yard \n" +
                 "2. Galactic Bank of Centari IV \n" +
                 "3. Buy, Sell, Trade \n" +
                 "4. Galactic Stock Exchange\n" +
                 "5. Departure Port\n" +
-                "9. Quit game" +
+                "9. Quit game\n" +
                 "Enter your choice: ");
             AlphaCentariSelector();
         }
@@ -654,7 +691,10 @@ namespace SpaceGame
             double distM63 = (Math.Sqrt(Math.Pow(PS.AlphaCentariXPosition - PS.M63XPosition, 2) + Math.Pow(PS.AlphaCentariYPosition - PS.M63YPosition, 2)));
             double playerWarpSpeed = (Math.Pow(PS.ShipSpeed, 10 / 3) + Math.Pow(10 - PS.ShipSpeed, -11 / 3));
             Console.Clear();
-            Console.WriteLine($"Where would you like to go? \n\t1 Earth: {distEarth} Light years away which will take {distEarth / playerWarpSpeed} years" +
+            Console.WriteLine($"Wind swirls around you as a ships takes off to some new and exciting destination.\n" +
+                $"Ports like this always make you miss home a little but the dream of the Dukedom of Mercury and the thoughts of your upcoming(hopefully)\n" +
+                $"nuptuals drive you forward." +
+                $"\nWhere would you like to go? \n\t1 Earth: {distEarth} Light years away which will take {distEarth / playerWarpSpeed} years" +
                 $"\n\t2 M63: {distM63} Light years away which will take {distM63 / playerWarpSpeed} years\n\t3 Return to Macawalani, the Capital of Centari IV");
             int response = Convert.ToInt32(Console.ReadLine());
             bool travelEarth = response == 1;
@@ -670,6 +710,8 @@ namespace SpaceGame
                     EndScreen();
                 }
                 PS.MyTravelTime += (distEarth / playerWarpSpeed);
+                Travel();
+                Console.Clear();
                 Console.WriteLine($"The journey takes you {distEarth / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
                     $"You arrive on Earth");
                 Console.ReadLine();
@@ -689,7 +731,38 @@ namespace SpaceGame
                 $"\nYou traveled for {PS.MyTravelTime} years total\nYou had a {PS.ShipName} class ship");
             Console.ReadLine();
             Console.WriteLine("Press 'alt+f4' to exit");
+            Console.ReadLine();
         }
         #endregion
+        public void Travel()
+        {
+            Console.Clear();
+            Console.WriteLine("3...\n2...\n1...\nBlast Off!!");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("" +
+                "                    \n" +
+                " #===>              \n" +
+                "                    ");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("" +
+                "                     \n" +
+                "    ###===>          \n" +
+                "                     \n");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("" +
+                "                      \n" +
+                "         ###===>      \n" +
+                "                      ");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("" +
+                "                      \n" +
+                "               ###===>\n" +
+                "                       ");
+            Console.ReadLine();
+        }
     }
 }
