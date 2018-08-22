@@ -158,9 +158,92 @@ namespace SpaceGame
         }
         public void PurchaseShip()
         {
-            Console.WriteLine("There are no ships available for purchase right now, come back later...\nPress any key to continue...");
-            Console.ReadLine();
-            ShipYard();
+            Console.Clear();
+            //display the users current ship and credits. Ship selections with price
+            Console.WriteLine($"You currently own the {PS.ShipName}, which is a great ship, but it's time to upgrade... " +
+                $"\nwhat ship are you looking to hop in today?" +
+                $"\nyou currently have {PS.MyCurrentCredit} credits" +
+                $"\n1 The Interstellar Connex 600 GCs" +
+                $"\n2 The StarWagon 1200GCs");
+            //convert response to numeric value of type int
+            int shipUpgrade = Convert.ToInt32(Console.ReadLine());
+            //If buying the interstellar
+            if (shipUpgrade == 1 && PS.MyCurrentCredit >= 600)
+            {
+                string myShipUpgrade = "The Interstellar Connex";
+                Console.Clear();
+                Console.WriteLine($"You chose the {myShipUpgrade}! That's a great choice. \n" +
+                   $"It has a capacity of {PS.InterstellarConnexCapacity} slots. This is our biggest ship! " +
+                   $"\nWith a max warp speed of" +
+                   $" {PS.InterstellarConnexSpeed}. ");
+                Console.ReadLine();
+                //ask if user is sure of purchase
+                Console.WriteLine("Would you like to complete this purchase? \nyes or no?");
+                //user response 
+                string userShipAnswer = Console.ReadLine();
+                //execute the purchase
+                if (userShipAnswer == "yes")
+                {
+                    //subtract credit after purchase
+                    PS.MyCurrentCredit = PS.MyCurrentCredit - 600;
+                    //display ship bought and remaining credit
+                    Console.WriteLine($"Congratulations on your new ship purchase! " +
+                        $"You now own the {myShipUpgrade} and have {PS.MyCurrentCredit} remaining");
+                    Console.ReadLine();
+                    ShipYard();
+                }
+                //stop the purchase
+                else
+                {
+                    ShipYard();
+                }
+            }
+            //stop purchase. not enough credits
+            else
+            {
+                Console.WriteLine("You do not have enough credits to complete this purchase!");
+                Console.ReadLine();
+                ShipYard();
+
+            }
+            //if buying the starwagon
+            if (shipUpgrade == 2 && PS.MyCurrentCredit >= 1200)
+            {
+                //initialize ship 
+                string myShipUpgrade = "The StarWagon";
+                Console.Clear();
+                //summary of ship(speed, name, and capacity)
+                Console.WriteLine($"You chose the {myShipUpgrade}! That's a great choice. \n" +
+                    $"It has a capacity of {PS.StarWagonCapacity} slots." +
+                    $"\nWith a max warp speed of" +
+                    $" {PS.StarWagonSpeed}. This is our fastest ship by far!");
+                //press enter
+                Console.ReadLine();
+                //confirm purchase
+                Console.WriteLine("Would you like to complete this purchase? \nyes or no?");
+                string userShipAnswer = Console.ReadLine();
+                //after purchase is confirmed subtract credits
+                if (userShipAnswer == "yes")
+                {
+                    PS.MyCurrentCredit = PS.MyCurrentCredit - 1200;
+                    //display ship purchased and remaining credits
+                    Console.WriteLine($"Congratulations on your new ship purchase! You now own the {myShipUpgrade} and have {PS.MyCurrentCredit} remaining");
+                    Console.ReadLine();
+                    ShipYard();
+                }
+                //stop purchase
+                else
+                {
+                    ShipYard();
+                }
+            }
+            //stop purchase
+            else
+            {
+                Console.WriteLine("You do not have enough credits to complete this purchase!");
+                Console.ReadLine();
+                ShipYard();
+            }
         }
         public void ShipCheck()
         {
