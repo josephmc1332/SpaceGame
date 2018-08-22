@@ -9,6 +9,7 @@ namespace SpaceGame
     class Earth
     {
         PersonalStatus PS = new PersonalStatus();
+
         public void FirstPage()
         {
             Console.Write("                  D U K E                  \n" +
@@ -42,7 +43,7 @@ namespace SpaceGame
             Console.WriteLine($"\n\n\n\nOkay, {PS.MyName}. You were engaged to Venusian royalty but the king of Venus has forbidden your beloved \nto marry a mere commoner like yourself." +
                 $" But there is even worse news! \nYour beloved has other interested parties, and what's worse is they are already nobility. \nBut you are in luck" +
                 $" there is a way to buy into galactic nobility, but it's going to be a lot of work. \nYou've got a {PS.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, so get out there and get to trading {PS.MyName}!\n\n" +
-                $"Press any key to contiue...\n\n\n\n\n\n\n\nPress enter to continue past any screen in this game.");
+                $"Press any key to contiue...\n\n\n\n\n\n\n\nPress enter to continue past this or any screen in this game.");
 
             Console.ReadLine();
         }
@@ -716,7 +717,6 @@ namespace SpaceGame
                     Retire();
                 }
                 Travel();
-                Console.Clear();
                 Console.WriteLine($"The journey takes you {distEarth / playerWarpSpeed} years you have been traveling for {PS.MyTravelTime} years now.\n" +
                     $"You arrive on Earth");
                 Console.ReadLine();
@@ -730,7 +730,6 @@ namespace SpaceGame
                     Retire();
                 }
                 Travel();
-                Console.Clear();
                 Console.WriteLine($"The journey takes you {distM63 / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
                     $"You arrive on M63");
                 Console.ReadLine();
@@ -797,8 +796,8 @@ namespace SpaceGame
             if (galacticBank)
                 M63Bank();
 
-            //if (shop)
-              //  M63Shop();
+            if (shop)
+               M63Shop();
 
             //if (market)
               //  M63Market();
@@ -1042,27 +1041,27 @@ namespace SpaceGame
             Console.ReadLine();
             Console.Clear();
             Console.WriteLine("" +
-                "                    \n" +
-                " #===>              \n" +
-                "                    ");
+                "    *    .     *    \n" +
+                " #===>     *      . \n" +
+                "      *      *     *");
             Console.ReadLine();
             Console.Clear();
             Console.WriteLine("" +
-                "                     \n" +
-                "    ###===>          \n" +
-                "                     \n");
+                "    *  .    .   * .  \n" +
+                "  *  ###===>  .   *  \n" +
+                "    .    . *      *  \n");
             Console.ReadLine();
             Console.Clear();
             Console.WriteLine("" +
-                "                      \n" +
-                "         ###===>      \n" +
-                "                      ");
+                "    *   *     .    *  \n" +
+                "   *  . ###===> .   * \n" +
+                "  *   .    .     *     ");
             Console.ReadLine();
             Console.Clear();
             Console.WriteLine("" +
-                "                      \n" +
-                "               ###===>\n" +
-                "                       ");
+                "          *         . \n" +
+                "     *     .   ###===>\n" +
+                "   *        *   .   .   ");
             Console.ReadLine();
         }
 
