@@ -405,7 +405,10 @@ namespace SpaceGame
                 Console.ReadLine();
                 AlphaCentariPage();
             }
-            
+            if (travelM63)
+            {
+
+            }
             if (Return)
             {
                 EarthPage();
@@ -722,6 +725,95 @@ namespace SpaceGame
             {
                 AlphaCentariPage();
             }
+        }
+        #endregion
+        #region M63
+
+        public void M63Page()
+        {
+            Console.Clear();
+            Console.WriteLine("" +
+                "Welcome to the star system M63, named for Messier star cluster circling a black hole.\n" +
+                "As you walk into the streets the first thing that you notice is that everything is\n" +
+                "clean and bright white. None of the architecture has a scrap of color anywhere, the\n" +
+                "only exception is the flat holographic ads that are projected up on some of the walls\n" +
+                "but even thier colors are muted. The Messinese that you see all wear the same color white\n" +
+                "of the buildings but in stark contrast their skin is as black as the hole their star orbits" +
+                "\n\nWhere would you like to go? \n" +
+                "1. Ship Yard \n" +
+                "2. Galactic Bank \n" +
+                "3. Buy, Sell, Trade \n" +
+                "4. Galactic Market\n" +
+                "5. Departure Port\n" +
+                "9. Quit the Game");
+            try
+            {
+                SelectM63Options();
+            }
+
+            //display if invalid input
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid input, try again! Press any key to continue.");
+                Console.ReadLine();
+
+                //recycle to Welcome to m63 after invalid entry  
+                M63Page();
+            }
+        }
+        public void SelectM63Options()
+        {
+            int response = Convert.ToInt32(Console.ReadLine());
+
+            //evaluate user input by using boolean expressions
+            bool shipYard = response == 1;
+            bool galacticBank = response == 2;
+            bool shop = response == 3;
+            bool market = response == 4;
+            bool port = response == 5;
+            bool quit = response == 9;
+
+
+            //point of method access after valid user selection
+            if (shipYard)
+                M63ShipYard();
+
+            if (galacticBank)
+                M63Bank();
+
+            if (shop)
+                M63Shop();
+
+            if (market)
+                M63Market();
+
+            if (port)
+                M63Port();
+
+            if (quit)
+                EndScreen();
+
+            else
+            {
+                //loops back to the beginning of earth page
+                Console.WriteLine("invalid entry");
+                M63Page();
+            }
+        }
+        public void M63Bank()
+        {
+            Console.Clear();
+            Console.WriteLine($"" +
+                $"Tall white columns frame the door to the Messinese Galactic Bank branch.\n" +
+                $"Men and women dressed in all white are coming and going from the inside.\n" +
+                $"The shining white walls of the bank hum with the electricity from the sheer\n" +
+                $"number of data transfers taking place inside. The interior is more of the \n" +
+                $"same, white walls and white clothes contrasting sharply with the coal black\n" +
+                $"skin of the Messinese" +
+                $" \nYou have {PS.MyCurrentCredit} Galactic Credits in your Galactic Bank Account. The title of Duke of Mercury costs 1,000,000 GC.\n" +
+                $"You need {(1000000 - PS.MyCurrentCredit)} more credits before you can win the king of Venus' approval.\nPress any key to continue...");
+            Console.ReadLine();
+            M63Page();
         }
         #endregion
         #region EndPage
