@@ -121,7 +121,7 @@ namespace SpaceGame
         }
         public void ShipCheck()
         {
-            Console.WriteLine($"You arrive at your personal hanger, you ship, a {PS.ShipName} the SS {IP.MyName}, stands before you gleaming in the artificail lights of the hanger\n" +
+            Console.WriteLine($"You arrive at your personal hanger, you ship, a {PS.ShipName} the SS {PS.MyName}, stands before you gleaming in the artificail lights of the hanger\n" +
                 $"A {PS.ShipName} like this has {PS.ShipCapacity} slots in its cargo hold and a top speed of Warp Factor {PS.ShipSpeed}\n" +
                 $"Inside the hold you have {PS.NoBalanaceShoes} boxes of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} boxes of Galactic TVs\n" +
                 $"Press any key to continue...");
@@ -328,10 +328,12 @@ namespace SpaceGame
          }
         public void Market()
         {
-            Console.WriteLine("The Galactic Stock exchange glitters and flashes, numbers come and go up and down but you worry about the three perenial commodities.\n" +
+            Console.WriteLine("The Galactic Stock exchange glitters and flashes, \nnumbers come and go up and down but you worry about the three perenial commodities.\n" +
                 "No Balance Shoes, the zero gravity shoes that changed the way the galaxy moves. \nSpace Gold, it's like the gold everyone knows and loves but shinier and better in every way." +
-                "and Galactic TVs, TVs so thin that you can't even see them unless you are standing in front of them.\n" +
-                $"The display flashes their market prices. \n Earth: \n\tNo Balance Shoes: {PS.EarthNoBalanceShoes} \n\tSpace Gold: {PS.EarthSpaceGold} \n\tGalactic TVs: {PS.EarhtGalacticTVs} ");
+                "\nAnd Galactic TVs, TVs so thin that you can't even see them unless you are standing in front of them.\n" +
+                $"The display flashes their market prices. \nEarth: \n\tNo Balance Shoes: {PS.EarthNoBalanceShoes} \n\tSpace Gold: {PS.EarthSpaceGold} \n\tGalactic TVs: {PS.EarhtGalacticTVs}" +
+                $"\n \nAlpha Centari:\n\t No Balance Shoe: {PS.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PS.AlphaCentariGold}\n\tGalactic TVs: {PS.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PS.M63NoBalanceShoes}" +
+                $"\n\tSpace Gold: {PS.M63SpaceGold}\n\tGalactic TVs: {PS.M63GalacticTVs} ");
             Console.ReadLine();
         }
 

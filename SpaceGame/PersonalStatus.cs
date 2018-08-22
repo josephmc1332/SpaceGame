@@ -37,6 +37,18 @@ namespace SpaceGame
 
             this.EarhtGalacticTVs = 120;
 
+            this.AlphaCentariGalacticTVs = 100;
+
+            this.AlphaCentariGold = 150;
+
+            this.AlphaCentariNoBalanceShoes = 65;
+
+            this.M63GalacticTVs = 140;
+
+            this.M63NoBalanceShoes = 100;
+
+            this.M63SpaceGold = 60;
+
         }
 
 
@@ -73,19 +85,28 @@ namespace SpaceGame
         /// </summary>
         public int SpaceGold { get; set; }
         public int EarthSpaceGold { get; private set; }
+        public int AlphaCentariGold { get; private set; }
+        public int M63SpaceGold { get; private set; }
 
         public int NoBalanaceShoes { get; set; }
         public int EarthNoBalanceShoes { get; private set; }
+        public int AlphaCentariNoBalanceShoes { get; private set; }
+        public int M63NoBalanceShoes { get; private set; }
 
         public int GalacticTVs { get; set; }
         public int EarhtGalacticTVs { get; private set; }
+        public int AlphaCentariGalacticTVs { get; private set; }
+        public int M63GalacticTVs { get; private set; }
 
-
-
-
-
-
-
+        /// <summary>
+        /// planetary positions
+        /// </summary>
+        public int EarthXPosition { get; private set; }
+        public int EarthYPosition { get; private set; }
+        public int AlphaCentariXPosition { get; private set; }
+        public int AlphaCentariYPosition { get; private set; }
+        public int M63XPosition { get; private set; }
+        public int M63YPosition { get; private set; }
 
 
 
