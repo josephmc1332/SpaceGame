@@ -9,6 +9,7 @@ namespace SpaceGame
     class Earth
     {
         PersonalStatus PS = new PersonalStatus();
+        Random rnd = new Random();
 
         public void FirstPage()
         {
@@ -535,8 +536,8 @@ namespace SpaceGame
             bool port = response == 5;
             bool quit = response == 9;
             
-            if (shipYard)
-                AlphaShipYard();
+            //if (shipYard)
+               // AlphaShipYard();
 
             if (galacticBank)
                 AlphaBank();
@@ -1162,6 +1163,7 @@ namespace SpaceGame
 
         public void Travel()
         {
+            int travelEvent = rnd.Next(1, 11);
             Console.Clear();
             Console.WriteLine("3...\n2...\n1...\nBlast Off!!");
             Console.ReadLine();
@@ -1176,6 +1178,37 @@ namespace SpaceGame
                 "    *  .    .   * .  \n" +
                 "  *  ###===>  .   *  \n" +
                 "    .    . *      *  \n");
+            Console.ReadLine();
+            //random event
+            if (travelEvent > 5)
+            {
+                Console.WriteLine("You found some space gold out there!");
+                if ((PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs + 1 ) > PS.ShipCapacity)
+                {
+                    Console.WriteLine("You dont have enough room for it though. Sad day...");
+                    Console.ReadLine();
+                }
+                if ((PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs + 1) <= PS.ShipCapacity)
+                {
+                    PS.SpaceGold += 1;
+                    Console.WriteLine($"You now have {PS.SpaceGold} space gold");
+                    Console.ReadLine();
+                }
+             }
+            if (travelEvent <= 5)
+            {
+                if (PS.MyCurrentCredit < 10)
+                {
+                    Console.WriteLine("The Pirates killed you because you couldnt pay their 10 GC toll.");
+                    Console.ReadLine();
+                    EndScreen();
+                }
+                else
+                Console.WriteLine("Pirate attack! You lost 10 GC to them");
+                PS.MyCurrentCredit -= 10;
+                Console.WriteLine($"You now have {PS.MyCurrentCredit} GCs");
+                Console.ReadLine();
+            }
             Console.ReadLine();
             Console.Clear();
             Console.WriteLine("" +
