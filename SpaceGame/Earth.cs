@@ -1195,7 +1195,12 @@ namespace SpaceGame
                     Console.ReadLine();
                 }
              }
-            if (travelEvent <= 5)
+            if (travelEvent == 5)
+            {
+                Console.WriteLine($"It's lonely out there in space {PS.MyName}. You are doing great! Keep it up!");
+                Console.ReadLine();
+            }
+            if (travelEvent < 5 && travelEvent > 1)
             {
                 if (PS.MyCurrentCredit < 10)
                 {
@@ -1207,6 +1212,13 @@ namespace SpaceGame
                 Console.WriteLine("Pirate attack! You lost 10 GC to them");
                 PS.MyCurrentCredit -= 10;
                 Console.WriteLine($"You now have {PS.MyCurrentCredit} GCs");
+                Console.ReadLine();
+            }
+            if (travelEvent == 1)
+            {
+                Console.WriteLine($"The galaxies worst pirates attack you but you easily overpower them. \n'Please don't kill us" +
+                    $"{PS.MyName} we will give you 100 GC if you let us go!' You let them off easy this time...");
+                PS.MyCurrentCredit += 100;
                 Console.ReadLine();
             }
             Console.ReadLine();
