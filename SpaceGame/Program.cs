@@ -12,7 +12,11 @@ namespace SpaceGame
         static void Main(string[] args)
         {
 
+
+           
+
             
+
             var Earth = new Earth();
 
             //Entry Page/ Introduction/ Instructions

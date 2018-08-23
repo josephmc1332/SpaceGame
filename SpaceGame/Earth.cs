@@ -885,8 +885,8 @@ namespace SpaceGame
             //if (market)
               //  M63Market();
 
-            //if (port)
-              //  M63Port();
+            if (port)
+                M63Port();
 
             if (quit)
                 EndScreen();
@@ -1102,6 +1102,49 @@ namespace SpaceGame
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.GalacticTVs} Galactic TVs left.\n Press any key to continue...");
                 Console.ReadLine();
                 M63Sell();
+            }
+        }
+        public void M63Port()
+        {
+            double distAlphaCentari = (Math.Sqrt(Math.Pow(PS.M63XPosition - PS.AlphaCentariXPosition, 2) + Math.Pow(PS.M63YPosition - PS.AlphaCentariYPosition, 2)));
+            double distEarth = (Math.Sqrt(Math.Pow(PS.EarthXPosition - PS.M63XPosition, 2) + Math.Pow(PS.EarthYPosition - PS.M63YPosition, 2)));
+            double playerWarpSpeed = (Math.Pow(PS.ShipSpeed, 10 / 3) + Math.Pow(10 - PS.ShipSpeed, -11 / 3));
+            Console.Clear();
+            Console.WriteLine($"Where would you like to go? \n\t1 Alpha Centari: {distAlphaCentari} Light years away which will take {distAlphaCentari / playerWarpSpeed} years" +
+                $"\n\t2 Earth: {distEarth} Light years away which will take {distEarth / playerWarpSpeed} years\n\t3 Return to earth");
+            int response = Convert.ToInt32(Console.ReadLine());
+            bool travelAlpha = response == 1;
+            bool travelEarth = response == 2;
+            bool Return = response == 3;
+            if (travelAlpha)
+            {
+                PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
+                if ((distAlphaCentari / playerWarpSpeed) + PS.MyTravelTime > 40.0)
+                {
+                    Retire();
+                }
+                Travel();
+                Console.WriteLine($"The journey takes you {distAlphaCentari / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
+                    $"You arrive on ALpha Centari");
+                Console.ReadLine();
+                AlphaCentariPage();
+            }
+            if (travelEarth)
+            {
+                PS.MyTravelTime += (distEarth / playerWarpSpeed);
+                if (PS.MyTravelTime > 40.0)
+                {
+                    Retire();
+                }
+                Travel();
+                Console.WriteLine($"The jouney take you {distEarth / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
+                    $"You arrive on Earth");
+                Console.ReadLine();
+                EarthPage();
+            }
+            if (Return)
+            {
+                M63Page();
             }
         }
         #endregion
