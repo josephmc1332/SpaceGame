@@ -50,7 +50,7 @@ namespace SpaceGame
                 $"\t\tYour beloved has other interested parties, and what's worse is they are already nobility. \n" +
                 $"\t\tBut you are in luck there is a way to buy into galactic nobility, but it's going to be a lot of work. \n" +
                 $"\t\tYou've got a {PS.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, \n" +
-                $"\t\tso get out there and get to trading {PS.MyName}!\n\n" +
+                $"\t\tso get out there and get to trading, {PS.MyName}!\n\n" +
                 $"\n\n\n\n\n\n\n\n\t\t\tPress enter to continue past this or any screen in this game.");
 
             Console.ReadLine();
@@ -894,6 +894,7 @@ namespace SpaceGame
         }
         public void AlphaMarket()
         {
+            Console.Clear();
             Console.WriteLine($"The city of Macawalani on Centari IV has the largest stock exchange for a light year in any direction.\n" +
                 $"But unlike the exchanges of earth it's nearly silent in the exchange. The Centarians are famously capatalistic and the \nMacawalani exchange is almost" +
                 $"like a temple. But it takes you hardly any time at all to find the entries of your\nclassic moneymakers..." +
@@ -910,8 +911,10 @@ namespace SpaceGame
             double distM63 = (Math.Sqrt(Math.Pow(PS.AlphaCentariXPosition - PS.M63XPosition, 2) + Math.Pow(PS.AlphaCentariYPosition - PS.M63YPosition, 2)));
             double playerWarpSpeed = (Math.Pow(PS.ShipSpeed, 10 / 3) + Math.Pow(10 - PS.ShipSpeed, -11 / 3));
             Console.Clear();
-            Console.WriteLine($"Wind swirls around you as a ships takes off to some new and exciting destination.\n" +
-                $"Ports like this always make you miss home a little but the dream of the Dukedom of Mercury and the thoughts of your upcoming(hopefully)\n" +
+            Console.WriteLine($"" +
+                $"Wind swirls around you as a ships takes off to some new and exciting destination.\n" +
+                $"Ports like this always make you miss home a little but the dream of the \n" +
+                $"Dukedom of Mercury and the thoughts of your upcoming(hopefully)\n" +
                 $"nuptuals drive you forward." +
                 $"\nWhere would you like to go? \n\t1 Earth: {distEarth} Light years away which will take {distEarth / playerWarpSpeed} years" +
                 $"\n\t2 M63: {distM63} Light years away which will take {distM63 / playerWarpSpeed} years\n\t3 Return to Macawalani, the Capital of Centari IV");
