@@ -13,26 +13,29 @@ namespace SpaceGame
 
         public void FirstPage()
         {
-            Console.Write("                  D U K E                  \n" +
-                "                    O F                    \n" +
-                "               M E R C U R Y               \n" +
-                "  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-                " |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n" +
-                " | |             _____________            ||\n" +
-                " | |            / _    \\    \\ \\           ||\n" +
-                " | |           / /#\\    \\    \\ \\__        ||\n" +
-                " | |          | |##|    |    | |##\\       ||\n" +
-                " | |#####     | |##|    |    | |###\\      ||\n" +
-                " | |######   _|_|##|____|____|_|####\\     ||\n" +
-                " | |#######<| | //\\ | /\\\\ CAMEL      |    ||\n" +
-                " | |#######<|_|||  \\|/ ||____________|    ||\n" +
-                " | |######     ||  /*\\ ||                 ||\n" +
-                " | |#####       \\\\/_|_\\//                 ||\n" +
-                " | |             -------                  ||\n" +
-                " | |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~||\n" +
-                " |_~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n\n" +
-                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nHello, welcome to Duke Of Mercury!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-                " What is your name? ");
+            Console.Write("\n\n\n" +
+                "\t\t\t\t                  D U K E                  \n" +
+                "\t\t\t\t                    O F                    \n" +
+                "\t\t\t\t               M E R C U R Y               \n" +
+                "\t\t\t\t  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+                "\t\t\t\t |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n" +
+                "\t\t\t\t | |   .      .  _____________  .     *   ||\n" +
+                "\t\t\t\t | |     *      / _    \\    \\ \\  .        ||\n" +
+                "\t\t\t\t | |  .        / /#\\    \\    \\ \\__    *   ||\n" +
+                "\t\t\t\t | |    .  *  | |##|    |    | |##\\       ||\n" +
+                "\t\t\t\t | |#####     | |##|    |    | |###\\      ||\n" +
+                "\t\t\t\t | |######   _|_|##|____|____|_|####\\     ||\n" +
+                "\t\t\t\t | |#######<| | //\\ | /\\\\    CAMEL   |    ||\n" +
+                "\t\t\t\t | |#######<|_|||  \\|/ ||____________|    ||\n" +
+                "\t\t\t\t | |######   . ||  /*\\ ||     * .    *    ||\n" +
+                "\t\t\t\t | |#####  .    \\\\/_|_\\//                 ||\n" +
+                "\t\t\t\t | |   *     .   -------     .     *    . ||\n" +
+                "\t\t\t\t | |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~||\n" +
+                "\t\t\t\t |_~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n\n" +
+                "\t\t\t\t  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" +
+                "\n\t\t\t\t    Hello, welcome to Duke Of Mercury!\n" +
+                "\t\t\t\t  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+                "\t\t\t\t\t   What is your name? ");
 
             //user name
             PS.MyName = Console.ReadLine();
@@ -41,10 +44,14 @@ namespace SpaceGame
             Console.Clear();
 
             //add story here
-            Console.WriteLine($"\n\n\n\nOkay, {PS.MyName}. You were engaged to Venusian royalty but the king of Venus has forbidden your beloved \nto marry a mere commoner like yourself." +
-                $" But there is even worse news! \nYour beloved has other interested parties, and what's worse is they are already nobility. \nBut you are in luck" +
-                $" there is a way to buy into galactic nobility, but it's going to be a lot of work. \nYou've got a {PS.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, so get out there and get to trading {PS.MyName}!\n\n" +
-                $"Press any key to contiue...\n\n\n\n\n\n\n\nPress enter to continue past this or any screen in this game.");
+            Console.WriteLine($"\n\n\n\n" +
+                $"\t\tOkay, {PS.MyName}. You were engaged to Venusian royalty but the king of Venus has forbidden your beloved \n" +
+                $"\t\tto marry a mere commoner like yourself. But there is even worse news! \n" +
+                $"\t\tYour beloved has other interested parties, and what's worse is they are already nobility. \n" +
+                $"\t\tBut you are in luck there is a way to buy into galactic nobility, but it's going to be a lot of work. \n" +
+                $"\t\tYou've got a {PS.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, \n" +
+                $"\t\tso get out there and get to trading {PS.MyName}!\n\n" +
+                $"\n\n\n\n\n\n\n\n\t\t\tPress enter to continue past this or any screen in this game.");
 
             Console.ReadLine();
         }
@@ -94,33 +101,26 @@ namespace SpaceGame
         {
             //convert/parse user input string 
             int response = Convert.ToInt32(Console.ReadLine());
-
-            //evaluate user input by using boolean expressions
-            bool shipYard = response == 1;
-            bool galacticBank = response == 2;
-            bool shop = response == 3;
-            bool market = response == 4;
-            bool port = response == 5;
-            bool quit = response == 9;
+            
 
 
             //point of method access after valid user selection
-            if (shipYard)
+            if (response == 1)
                 ShipYard();
 
-            if (galacticBank)
+            if (response == 2)
                 Bank();
 
-            if (shop)
+            if (response == 3)
                 Shop();
 
-            if (market) 
+            if (response == 4) 
                  Market();
 
-            if (port) 
+            if (response == 5) 
                EarthPort();
 
-            if (quit)
+            if (response == 9)
                 EndScreen();
 
             else
@@ -138,6 +138,7 @@ namespace SpaceGame
             Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits in your Galactic Bank Account. The title of Duke of Mercury costs 1,000,000 GC.\n" +
                 $"You need {(1000000 - PS.MyCurrentCredit)} more credits before you can win the king of Venus' approval.\nPress any key to continue...");
             Console.ReadLine();
+            Win();
             EarthPage();
         }
         public void ShipYard()
@@ -147,14 +148,11 @@ namespace SpaceGame
             Console.WriteLine("You walk into the Shipyard, the sound of welders and hammers fills the air. Ship salesman are weaving in and out of" +
                 "the ships pushing their latest ship on travelers all the while dodging the laborers.\nWould you like to:\n 1 Check your ship stats\n 2 Buy a new Ship\n 3 Return to planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
-            bool ShipStats = response == 1;
-            bool BuyShip = response == 2;
-            bool Return = response == 3;
-            if (ShipStats)
+            if (response == 1)
                 ShipCheck();
-            if (BuyShip)
+            if (response == 2)
                 PurchaseShip();
-            if (Return)
+            if (response == 3)
                 EarthPage();
         }
         public void PurchaseShip()
@@ -507,6 +505,7 @@ namespace SpaceGame
         #endregion
 
         #region AlphaCentari
+
         public void AlphaCentariPage()
         {
             Console.Clear();
@@ -587,6 +586,7 @@ namespace SpaceGame
                 $"You have {PS.MyCurrentCredit} Galactic Credits in your Galactic Bank Account. The title of Duke of Mercury costs 1,000,000 GC.\n" +
                 $"You need {(1000000 - PS.MyCurrentCredit)} more credits before you can win the king of Venus' approval.\nPress any key to continue...");
             Console.ReadLine();
+            Bank();
             EarthPage();
         }
         public void AlphaBuy()
@@ -912,6 +912,7 @@ namespace SpaceGame
                 $" \nYou have {PS.MyCurrentCredit} Galactic Credits in your Galactic Bank Account. The title of Duke of Mercury costs 1,000,000 GC.\n" +
                 $"You need {(1000000 - PS.MyCurrentCredit)} more credits before you can win the king of Venus' approval.\nPress any key to continue...");
             Console.ReadLine();
+            Win();
             M63Page();
         }
         public void M63Shop()
@@ -1151,13 +1152,54 @@ namespace SpaceGame
         #endregion
 
         #region EndPage
+
         public void EndScreen()
         {
-            Console.WriteLine($"Game Over\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nYou had {PS.MyCurrentCredit} Galactic Credits at the end of your journey" +
-                $"\nYou traveled for {PS.MyTravelTime} years total\nYou had a {PS.ShipName} class ship");
+            Console.Clear();
+            Console.WriteLine($"\n\n\n\n\n\n" +
+                $"\n\t\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" +
+                $"\n\t\t\t\t              Game Over" +
+                $"\n\t\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" +
+                $"\n\n\t\tYou had {PS.MyCurrentCredit} Galactic Credits at the end of your journey" +
+                $"\n\t\tYou traveled for {PS.MyTravelTime} years total\n\t\tYou had a {PS.ShipName} class ship");
             Console.ReadLine();
             Console.WriteLine("Press 'alt+f4' to exit");
             Console.ReadLine();
+            EndScreen();
+        }
+        public void Retire()
+        {
+            Console.WriteLine("\n\n\n\n" +
+                "\t\tAs you prepare to depart, you realize that like LT Murtagh before you \n" +
+                "\t\tyou are getting too old for this shiz and decide to retire.");
+            Console.ReadLine();
+            EndScreen();
+        }
+        public void Died()
+        {
+            Console.WriteLine($"\n\n\n\n" +
+                $"\t\tYou have died. As is customary in Space you body is launched out into the inky blackness.\n" +
+                $"\t\tThe admiral of the frigrate that performs the rite, with a tear in his eye, salutes 'Goodbye {PS.MyName}\n" +
+                $"\t\tyou were one of the good ones...'");
+            Console.ReadLine();
+            EndScreen();
+        }
+        public void Win()
+        {
+            if (PS.MyCurrentCredit > 1000000)
+            {
+                Console.WriteLine($"\n\n\n\n" +
+                  $"\t\tYou cash in your million credits for favor and influence, \n" +
+                  $"\t\tsoon you are whisked away on a golden chariot inside a golden spaceship. \n" +
+                  $"\t\tIt's not long before you arrive at your beautiful new estate on Mercury. \n" +
+                  $"\t\tThe days here are short and hot but it's all yours. Your new butler leads \n" +
+                  $"\t\tyou inside 'Duke {PS.MyName} these are your new digs, and over here' he says \n" +
+                  $"\t\tindicating a large banquet hall 'is where your big ceremony will be.' \n\n" +
+                  $"\t\tYou marry your beloved and live happily ever after!\n" +
+                  $"\t\tCongratulations! You won the game!");
+                Console.ReadLine();
+                EndScreen();
+            }
         }
         #endregion
 
@@ -1206,7 +1248,7 @@ namespace SpaceGame
                 {
                     Console.WriteLine("The Pirates killed you because you couldnt pay their 10 GC toll.");
                     Console.ReadLine();
-                    EndScreen();
+                    Died();
                 }
                 else
                 Console.WriteLine("Pirate attack! You lost 10 GC to them");
@@ -1236,12 +1278,6 @@ namespace SpaceGame
             Console.ReadLine();
         }
 
-        public void Retire()
-        {
-            Console.WriteLine("As you prepare to depart, you realize that like LT Murtagh before you \n" +
-                        "you are getting too old for this shiz and decide to retire.");
-            Console.ReadLine();
-            EndScreen();
-        }
+        
     }
 }
