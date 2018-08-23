@@ -1009,8 +1009,8 @@ namespace SpaceGame
             if (shop)
                M63Shop();
 
-            //if (market)
-              //  M63Market();
+            if (market)
+              M63Market();
 
             if (port)
                 M63Port();
@@ -1397,13 +1397,21 @@ namespace SpaceGame
             Console.ReadLine();
             M63ShipYard();
         }
-       
-        
-        #endregion
+        public void M63Market()
+        {
+            Console.WriteLine($"Welcome to the Epic Market on M63, where your opportunity for wealth is boundless and the products are of the most elegant varieties. " +
+                $"  \nEarth: \n\tNo Balance Shoes: {PS.EarthNoBalanceShoes} \n\tSpace Gold: {PS.EarthSpaceGold} \n\tGalactic TVs: {PS.EarhtGalacticTVs}" +
+                $"\n \nAlpha Centari:\n\t No Balance Shoe: {PS.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PS.AlphaCentariGold}\n\tGalactic " +
+                $"TVs: {PS.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PS.M63NoBalanceShoes}" +
+                $"\n\tSpace Gold: {PS.M63SpaceGold}\n\tGalactic TVs: {PS.M63GalacticTVs} \n" +
+                $"Press enter to return to the Macawalani streets...");
+            Console.ReadLine();
+        }
+            #endregion
 
-        #region EndPage
+            #region EndPage
 
-        public void EndScreen()
+            public void EndScreen()
         {
             Console.Clear();
             Console.WriteLine($"\n\n\n\n\n\n" +
