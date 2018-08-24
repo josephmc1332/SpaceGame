@@ -263,6 +263,7 @@ namespace SpaceGame
         public void Shop()
         {
             Console.Clear();
+            InventoryDisplay();
             Console.WriteLine("What would you like to do?\n 1 Buy Cargo\n 2 Sell Cargo\n 3 Return to planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             bool purchase = response == 1;
@@ -278,6 +279,7 @@ namespace SpaceGame
         public void Buy()
         {
             Console.Clear();
+            InventoryDisplay();
             Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
                 $"1 NoBalanceShoes 80 GC per Unit\n 2 Space Gold 100 GC per Unit\n 3 Galactic TV 120 GC per Unit \n 4 " +
                 $"Return to Planetary Menu");
@@ -389,6 +391,7 @@ namespace SpaceGame
             int noShoes = 80;
             int gTV = 120;
             Console.Clear();
+            InventoryDisplay();
             Console.WriteLine($"You have {PS.NoBalanaceShoes} pairs of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} sets of Galactic TVs." +
                 $" Which would you like to sell?\n 1 No Balance Shoes\n 2 Space Gold\n 3 Galactic TVs\n 4 or Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
@@ -693,6 +696,7 @@ namespace SpaceGame
         public void AlphaShop()
         {
             Console.Clear();
+            InventoryDisplay();
             Console.WriteLine("What would you like to do?\n 1 Buy Cargo\n 2 Sell Cargo\n 3 Return to Macawalani streets");
             int response = Convert.ToInt32(Console.ReadLine());
             bool purchase = response == 1;
@@ -718,6 +722,7 @@ namespace SpaceGame
         public void AlphaBuy()
         {
             Console.Clear();
+            InventoryDisplay();
             Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
                 $"1 NoBalanceShoes {PS.AlphaCentariNoBalanceShoes} GC per Unit\n 2 Space Gold {PS.AlphaCentariGold} GC per Unit\n 3 Galactic TV {PS.AlphaCentariGalacticTVs} GC per Unit \n 4 " +
                 $"Return to the Shop");
@@ -826,6 +831,7 @@ namespace SpaceGame
         public void AlphaSell()
         {
             Console.Clear();
+            InventoryDisplay();
             Console.WriteLine($"You have {PS.NoBalanaceShoes} pairs of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} sets of Galactic TVs." +
                 $" Which would you like to sell?\n 1 No Balance Shoes\n 2 Space Gold\n 3 Galactic TVs\n 4 or Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
@@ -1047,6 +1053,7 @@ namespace SpaceGame
         public void M63Shop()
         {
             Console.Clear();
+            InventoryDisplay();
             Console.WriteLine("What would you like to do?\n 1 Buy Cargo\n 2 Sell Cargo\n 3 Return to the streets of M63");
             int response = Convert.ToInt32(Console.ReadLine());
             bool purchase = response == 1;
@@ -1062,6 +1069,7 @@ namespace SpaceGame
         public void M63Buy()
         {
             Console.Clear();
+            InventoryDisplay();
             Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
                 $"1 NoBalanceShoes {PS.M63NoBalanceShoes} GC per Unit\n 2 Space Gold {PS.M63SpaceGold} GC per Unit\n 3 Galactic TV {PS.M63GalacticTVs} GC per Unit \n 4 " +
                 $"Return to Planetary Menu");
@@ -1170,6 +1178,7 @@ namespace SpaceGame
         public void M63Sell()
         {
             Console.Clear();
+            InventoryDisplay();
             Console.WriteLine($"You have {PS.NoBalanaceShoes} pairs of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} sets of Galactic TVs." +
                 $" Which would you like to sell?\n 1 No Balance Shoes\n 2 Space Gold\n 3 Galactic TVs\n 4 or Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
@@ -1529,6 +1538,11 @@ namespace SpaceGame
                 "     *     .   ###===>\n" +
                 "   *        *   .   .   ");
             Console.ReadLine();
+        }
+
+        public void InventoryDisplay()
+        {
+            Console.WriteLine($"Space Gold: {PS.SpaceGold} No Balanace Shoes: {PS.NoBalanaceShoes} Galactic TVs: {PS.GalacticTVs} Cargo Space: {PS.ShipCapacity - (PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs)}\n")
         }
 
         
