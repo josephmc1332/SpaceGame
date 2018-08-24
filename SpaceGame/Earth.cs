@@ -1080,8 +1080,8 @@ namespace SpaceGame
             if (shop)
                M63Shop();
 
-            if (market)
-                M63Market();
+            //if (market)
+              //  M63Market();
 
             if (port)
                 M63Port();
@@ -1605,7 +1605,7 @@ namespace SpaceGame
 
         public void InventoryDisplay()
         {
-            Console.WriteLine($"Space Gold: {PS.SpaceGold} No Balanace Shoes: {PS.NoBalanaceShoes} Galactic TVs: {PS.GalacticTVs} Cargo Space: {PS.ShipCapacity - (PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs)}\n")
+            Console.WriteLine($"Space Gold: {PS.SpaceGold} No Balanace Shoes: {PS.NoBalanaceShoes} Galactic TVs: {PS.GalacticTVs} Cargo Space: {PS.ShipCapacity - (PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs)}\n");
         }
 
         
