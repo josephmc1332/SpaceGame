@@ -589,19 +589,24 @@ namespace SpaceGame
         {
             Console.Clear();
             InventoryDisplay();
-            Console.Write("Welcome to Alpha Centari! You stand in the port city of Macawalani. Centarian birdpeople fly to and fro. \nYou spot a few pairs of No Balances here and there but whats the point when you have wings? \n" +
-                "Stilted building dominate the skyline, your human sensability is assualted by the seemingly \nrandom way the doors are arranged until you see a Centarian fly up to a sixth floor door and" +
-                "enter the building. \nThe air is surprisingly clear from the lack of vehicles in the city center.\n" +
-                "It's not just Centarians though, you see a large amount of humans from your own region of space, \n some are earth humans but " +
-                "you spot a blue Venusian and a orange mercurian amoung them. \n Coming out of the docks you even spot a Pician fellow his telltale" +
-                " glass helmet \nkeeping his gills underwater. \n\nWhere would you like to go? \n" +
-                "1. Ship Yard \n" +
-                "2. Galactic Bank of Centari IV \n" +
-                "3. Buy, Sell, Trade \n" +
-                "4. Galactic Stock Exchange\n" +
-                "5. Departure Port\n" +
-                "9. Quit game\n" +
-                "Enter your choice: ");
+            Console.Write("\n\n" +
+                "\tWelcome to Alpha Centari! You stand in the port city of Macawalani. Centarian birdpeople fly to and fro. \n" +
+                "\tYou spot a few pairs of No Balances here and there but whats the point when you have wings? \n" +
+                "\tStilted building dominate the skyline, your human sensability is assualted by the seemingly \n" +
+                "\trandom way the doors are arranged until you see a Centarian fly up to a sixth floor door and\n" +
+                "\tenter the building. The air is surprisingly clear from the lack of vehicles in the city center.\n" +
+                "\tIt's not just Centarians though, you see a large amount of humans from your own region of space, \n" +
+                "\tsome are earth humans but you spot a blue Venusian and a orange mercurian amoung them. \n" +
+                "\tComing out of the docks you even spot a Pician fellow his telltale glass helmet \n" +
+                "\tkeeping his gills underwater. \n\n" +
+                "\t\tWhere would you like to go? \n" +
+                "\t\t 1. Ship Yard \n" +
+                "\t\t 2. Galactic Bank of Centari IV \n" +
+                "\t\t 3. Buy, Sell, Trade \n" +
+                "\t\t 4. Galactic Stock Exchange\n" +
+                "\t\t 5. Departure Port\n\n" +
+                "\t\t 9. Quit game\n" +
+                "\t\t Enter your choice: ");
             AlphaCentariSelector();
         }
         public void AlphaCentariSelector()
@@ -644,8 +649,13 @@ namespace SpaceGame
             Console.Clear();
             InventoryDisplay();
             // write flavor text about shipyard
-            Console.WriteLine("You walk into the Shipyard, the sound of welders and hammers fills the air. Ship salesman are weaving in and out of" +
-                "the ships pushing their latest ship on travelers all the while dodging the laborers.\nWould you like to:\n 1 Check your ship stats\n 2 Buy a new Ship\n 3 Return to planetary hub");
+            Console.WriteLine("\n\n" +
+                "\tYou walk into the Shipyard, the sound of welders and hammers fills the air. Ship salesman are weaving in and out of" +
+                "\tthe ships pushing their latest ship on travelers all the while dodging the laborers.\n" +
+                "\t\tWould you like to:\n" +
+                "\t\t 1 Check your ship stats\n" +
+                "\t\t 2 Buy a new Ship\n" +
+                "\t\t 3 Return to planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             bool ShipStats = response == 1;
             bool BuyShip = response == 2;
