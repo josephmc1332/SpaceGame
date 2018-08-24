@@ -1404,7 +1404,7 @@ namespace SpaceGame
                 $"\n \nAlpha Centari:\n\t No Balance Shoe: {PS.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PS.AlphaCentariGold}\n\tGalactic " +
                 $"TVs: {PS.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PS.M63NoBalanceShoes}" +
                 $"\n\tSpace Gold: {PS.M63SpaceGold}\n\tGalactic TVs: {PS.M63GalacticTVs} \n" +
-                $"Press enter to return to the Macawalani streets...");
+                $"Press enter to return to the Messien streets...");
             Console.ReadLine();
         }
             #endregion
