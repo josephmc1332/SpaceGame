@@ -66,6 +66,17 @@ namespace SpaceGame
 
             PS.MyCurrentLocation = "Earth";
 
+          
+
+           if (PS.MyCurrentLocation == "Earth")
+            {
+                double xAxis = PS.EarthXPosition;
+                double yAxis = PS.EarthYPosition;
+            }
+
+
+
+
             //clear up window
             Console.Clear();
 
@@ -1003,6 +1014,7 @@ namespace SpaceGame
         public void AlphaCentariPort()
         {
             double distEarth = (Math.Sqrt(Math.Pow(PS.EarthXPosition - PS.AlphaCentariXPosition, 2) + Math.Pow(PS.EarthYPosition - PS.AlphaCentariYPosition, 2)));
+            
             double distM63 = (Math.Sqrt(Math.Pow(PS.AlphaCentariXPosition - PS.M63XPosition, 2) + Math.Pow(PS.AlphaCentariYPosition - PS.M63YPosition, 2)));
             double playerWarpSpeed = (Math.Pow(PS.ShipSpeed, 10 / 3) + Math.Pow(10 - PS.ShipSpeed, -11 / 3));
             Console.Clear();

@@ -97,8 +97,10 @@ namespace SpaceGame
 
             this.M63YPosition = 4;
 
-        }
+            
 
+        }
+        public double MyLocation { get; set; }
 
 
 
