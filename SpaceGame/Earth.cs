@@ -557,7 +557,7 @@ namespace SpaceGame
             bool travelM63 = response == 2;
             bool Return = response == 3;
             if (travelAlpha)
-            {
+            {           
                 PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
                 if ((distAlphaCentari / playerWarpSpeed) + PS.MyTravelTime > 40.0)
                 {
