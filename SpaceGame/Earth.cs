@@ -10,6 +10,7 @@ namespace SpaceGame
     {
         PersonalStatus PS = new PersonalStatus();
         Random rnd = new Random();
+        UtilityMethods UM = new UtilityMethods();
 
         public void FirstPage()
         {
@@ -1530,11 +1531,97 @@ namespace SpaceGame
                 $"Press enter to return to the Messien streets...");
             Console.ReadLine();
         }
-            #endregion
+        #endregion
 
-            #region EndPage
+        #region Asgard
 
-            public void EndScreen()
+        public void AsgardPage()
+        {
+            Console.Clear();
+            InventoryDisplay();
+            Console.WriteLine($"" +
+            $"Golden spires and beautiful vistas greet you as soon as you land. The rainbow\n" +
+            $"bifrost is visable in the distance. It's as beautiful as you always imagined it\n" +
+            $"would be. It's just like the legends. Waterfalls and spill off cliffs that lead to\n" +
+            $"nowhere. The grand Mead-hall can be barely seen past some clouds and the distant \n" +
+            $"sound of drunken revelry carries across the open space.\n" +
+            $"Where would you like to go?\n");
+            AsgardSelector();
+        }
+
+        //Selector for the Asgard planet menus
+        public void AsgardSelector()
+        {
+            int response = UM.MainPageOptions();
+
+            if (response == 1)
+                AsgardShipyard();
+
+            if (response == 2)
+                AsgardBank();
+
+            //if (response == 3)
+                //AsgardShop();
+
+            //if (response == 4)
+                //AsgardMarket();
+
+            //if (response == 5)
+                //AsgardPort();
+
+            if (response == 9)
+                EndScreen();
+        }
+
+        public void AsgardShipyard()
+        {
+            Console.Clear();
+            InventoryDisplay();
+            Console.WriteLine($"" +
+            $"You walk into the shipyard of Asgard and are greeted by a man who looks like he" +
+            $"stepped right out of an old Norse myth. He smiles through his huge beard, 'Greetings" +
+            $"{PS.MyName} welcome to my shipyard I am Sven son of Baldur God of ship sales and" +
+            $"maintenance. I see you have a {PS.ShipName} class ship, those are good but I think you" +
+            $"could do better, well anyway what can I do for you?");
+            AsgardShipYardSelector();
+        }
+
+        public void AsgardShipYardSelector()
+        {
+            int response = UM.ShipYardMenu();
+
+            if (response == 1)
+                ShipCheck();
+
+            if (response == 2)
+                PurchaseShip();
+
+            if (response == 3)
+                AsgardPage();
+
+            else
+                AsgardShipyard();
+        }
+
+        public void AsgardBank()
+        {
+            Console.Clear();
+            InventoryDisplay();
+            Console.WriteLine($"" +
+            $"You walk into the bank which is easily one of the most expensive buildings you've ever" +
+            $"been in. It seems everything in Asgard is either a deadly steel blade or made entirely" +
+            $"from space gold. The banker smiles at you, 'Welcome to the Asgardian branch of the Galactic" +
+            $"Bank {PS.MyName} I am the Thrador! Son of Spandar, God of Banking and money exchange!' He" +
+            $"quite boisterous for a banker. He taps away at some glowing runes carved into the gold top" +
+            $"of the counter.");
+            UM.BankDisplay();
+            AsgardPage();
+        }
+        #endregion
+
+        #region EndPage
+
+        public void EndScreen()
         {
             Console.Clear();
             Console.WriteLine($"\n\n\n\n\n\n" +
