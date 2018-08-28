@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Earth.cs" />
     <Compile Include="Fuel.cs" />
+    <Compile Include="GameOver.cs" />
     <Compile Include="PersonalStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

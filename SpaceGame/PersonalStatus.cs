@@ -8,6 +8,8 @@ namespace SpaceGame
 {
     class PersonalStatus
     {
+        Random rnd = new Random();
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -176,6 +178,7 @@ namespace SpaceGame
         public double AlphaCentariYPosition { get; private set; }
         public double M63XPosition { get; private set; }
         public double M63YPosition { get; private set; }
+
 
 
 
