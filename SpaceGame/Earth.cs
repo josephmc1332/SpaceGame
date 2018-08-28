@@ -780,6 +780,9 @@ namespace SpaceGame
         public void AlphaShop()
         {
             Console.Clear();
+            Console.WriteLine("You arrive at the shop on Alpha Centari. The owner, Brahman welcomes you. What's up, mane you know that we have the highest quality " +
+                "\ngold in the universe!");
+            Console.ReadLine();
             InventoryDisplay();
             Console.WriteLine("What would you like to do?\n 1 Buy Cargo\n 2 Sell Cargo\n 3 Return to Macawalani streets");
             int response = Convert.ToInt32(Console.ReadLine());
@@ -1141,6 +1144,9 @@ namespace SpaceGame
         public void M63Shop()
         {
             Console.Clear();
+            Console.WriteLine("You've arrived at the shop on M63. Niko, the owner welcomes you to look around at all the goods." +
+                "/nWe've got the highest quality TV's in the universe!");
+            Console.ReadLine();
             InventoryDisplay();
             Console.WriteLine("What would you like to do?\n 1 Buy Cargo\n 2 Sell Cargo\n 3 Return to the streets of M63");
             int response = Convert.ToInt32(Console.ReadLine());
