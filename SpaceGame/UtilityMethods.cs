@@ -8,6 +8,8 @@ namespace SpaceGame
 {
     class UtilityMethods
     {
+        PersonalStatus PS = new PersonalStatus();
+        GameOver GO = new GameOver();
         // this method will populate the navigation menu and return a number that the selector can use.
         public int MainPageOptions()
         {
@@ -34,12 +36,16 @@ namespace SpaceGame
 
         public void BankDisplay()
         {
-            Console.WriteLine($"You have {PS.MyCurrentCredits} Galactic Credits in your bank account.\n" +
-            $"The title of Duke of Mercury is 1,000,000 Galactic Credits. You need {(1000000 - PS.MyCurrentCredits)} more\n" +
+            Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits in your bank account.\n" +
+            $"The title of Duke of Mercury is 1,000,000 Galactic Credits. You need {(1000000 - PS.MyCurrentCredit)} more\n" +
             $"Galactic Credits before you can win the King of Venus' approval.\n\n" +
             $"Press <enter> to continue...");
             Console.ReadLine();
-            Win();
+            GO.Win();
+        }
+        public void InventoryDisplay()
+        {
+            Console.WriteLine($"Space Gold: {PS.SpaceGold} No Balanace Shoes: {PS.NoBalanaceShoes} Galactic TVs: {PS.GalacticTVs} Galactic Credits: {PS.MyCurrentCredit} Cargo Space: {PS.ShipCapacity - (PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs)}\n");
         }
     }
 }

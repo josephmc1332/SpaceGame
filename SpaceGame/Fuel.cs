@@ -8,7 +8,7 @@ namespace SpaceGame
 {
     class Fuel
     {
-        PersonalStatus PS = new PersonalStatus();
+       /* PersonalStatus PS = new PersonalStatus();
         Earth EA = new Earth();
 
         private int myCurrentFuel;
@@ -71,6 +71,6 @@ namespace SpaceGame
 
         public int Fuel 
 
-
+    */
     }
 }
