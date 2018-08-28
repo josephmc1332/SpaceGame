@@ -9,8 +9,7 @@ namespace SpaceGame
     class GameOver
     {
         #region EndPage
-        Ship ship = new Ship();
-        public void EndScreen(PersonalStatus ps)
+        public void EndScreen(PersonalStatus ps, Ship ship)
         {
             Console.Clear();
             Console.WriteLine($"\n\n\n\n\n\n" +
@@ -24,26 +23,26 @@ namespace SpaceGame
             Console.ReadLine();
             Console.WriteLine("Press 'alt+f4' to exit");
             Console.ReadLine();
-            EndScreen(ps);
+            EndScreen(ps, ship);
         }
-        public void Retire(PersonalStatus ps)
+        public void Retire(PersonalStatus ps, Ship ship)
         {
             Console.WriteLine("\n\n\n\n" +
                 "\t\tAs you prepare to depart, you realize that like LT Murtagh before you \n" +
                 "\t\tyou are getting too old for this shiz and decide to retire.");
             Console.ReadLine();
-            EndScreen(ps);
+            EndScreen(ps, ship);
         }
-        public void Died(PersonalStatus ps)
+        public void Died(PersonalStatus ps, Ship ship)
         {
             Console.WriteLine($"\n\n\n\n" +
                 $"\t\tYou have died. As is customary in Space you body is launched out into the inky blackness.\n" +
                 $"\t\tThe admiral of the frigrate that performs the rite, with a tear in his eye, salutes 'Goodbye {ps.MyName}\n" +
                 $"\t\tyou were one of the good ones...'");
             Console.ReadLine();
-            EndScreen(ps);
+            EndScreen(ps, ship);
         }
-        public void Win(PersonalStatus ps)
+        public void Win(PersonalStatus ps, Ship ship)
         {
             if (ps.MyCurrentCredit > 1000000)
             {
@@ -57,7 +56,7 @@ namespace SpaceGame
                   $"\t\tYou marry your beloved and live happily ever after!\n" +
                   $"\t\tCongratulations! You won the game!");
                 Console.ReadLine();
-                EndScreen(ps);
+                EndScreen(ps, ship);
             }
         }
         #endregion

@@ -143,7 +143,7 @@ namespace SpaceGame
                EarthPort();
 
             if (response == 9)
-                GO.EndScreen(PS);
+                GO.EndScreen(PS, ship);
 
             else
             {
@@ -561,7 +561,7 @@ namespace SpaceGame
                 PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
                 if ((distAlphaCentari / playerWarpSpeed) + PS.MyTravelTime > 40.0)
                 {
-                    GO.Retire(PS);
+                    GO.Retire(PS, ship);
                 }
                 UM.Travel(PS);
                 Console.WriteLine($"The journey takes you {distAlphaCentari / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
@@ -574,7 +574,7 @@ namespace SpaceGame
                 PS.MyTravelTime += (distM63 / playerWarpSpeed); 
                 if (PS.MyTravelTime > 40.0)
                 {
-                    GO.Retire(PS);
+                    GO.Retire(PS, ship);
                 }
                 UM.Travel(PS);
                 Console.WriteLine($"The jouney take you {distM63 / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
@@ -643,7 +643,7 @@ namespace SpaceGame
                 AlphaCentariPort();
 
             if (quit)
-                GO.EndScreen(PS);
+                GO.EndScreen(PS, ship);
 
             else
             {
@@ -1029,7 +1029,7 @@ namespace SpaceGame
                 PS.MyTravelTime += (distEarth / playerWarpSpeed);
                 if (PS.MyTravelTime > 40.0)
                 {
-                    GO.Retire(PS);
+                    GO.Retire(PS, ship);
                 }
                 UM.Travel(PS);
                 Console.WriteLine($"The journey takes you {distEarth / playerWarpSpeed} years you have been traveling for {PS.MyTravelTime} years now.\n" +
@@ -1042,7 +1042,7 @@ namespace SpaceGame
                 PS.MyTravelTime += (distM63 / playerWarpSpeed);
                 if (PS.MyTravelTime > 40.0)
                 {
-                    GO.Retire(PS);
+                    GO.Retire(PS, ship);
                 }
                 UM.Travel(PS);
                 Console.WriteLine($"The journey takes you {distM63 / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
@@ -1122,7 +1122,7 @@ namespace SpaceGame
                 M63Port();
 
             if (quit)
-                GO.EndScreen(PS);
+                GO.EndScreen(PS, ship);
 
             else
             {
@@ -1359,7 +1359,7 @@ namespace SpaceGame
                 PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
                 if ((distAlphaCentari / playerWarpSpeed) + PS.MyTravelTime > 40.0)
                 {
-                    GO.Retire(PS);
+                    GO.Retire(PS, ship);
                 }
                 UM.Travel(PS);
                 Console.WriteLine($"The journey takes you {distAlphaCentari / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
@@ -1372,7 +1372,7 @@ namespace SpaceGame
                 PS.MyTravelTime += (distEarth / playerWarpSpeed);
                 if (PS.MyTravelTime > 40.0)
                 {
-                    GO.Retire(PS);
+                    GO.Retire(PS, ship);
                 }
                 UM.Travel(PS);
                 Console.WriteLine($"The jouney take you {distEarth / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
@@ -1560,7 +1560,7 @@ namespace SpaceGame
                 //AsgardPort();
 
             if (response == 9)
-                GO.EndScreen(PS);
+                GO.EndScreen(PS, ship);
         }
 
         public void AsgardShipyard()

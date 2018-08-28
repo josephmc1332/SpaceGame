@@ -49,6 +49,24 @@ namespace SpaceGame
             this.AsgardGold           = 15;
 
 
+            //cost on Planet X
+            //nearly the same economy of earth, slightly richer in mineral resourses but slightly more expensive in manufactured goods
+            this.PlanetXGold           = 90;
+
+            this.PlanetXNoBalanceShoes = 90;
+
+            this.PlanetXGalacticTVs    = 130;
+            // we will make fuel cheap here
+
+            //cost on Planet joe
+            // The king of planet Joe is building the galaxy's finest spaceport made entirely of gold
+            this.PlanetJoeGold = 300;
+            // People need shoes but they aren't amazed by it or anything
+            this.PlanetJoeNoBalanceShoes = 100;
+            // same as shoes
+            this.PlanetJoeGalacticTVs = 100;
+
+
             //Earth Location
             this.EarthXPosition = 0.0;
 
@@ -68,32 +86,56 @@ namespace SpaceGame
 
 
             //Asgard Location
-            double axpositon = rnd.Next(8, 11);
+            double axpositon     = rnd.Next(8, 11);
             this.AsgardXPosition = axpositon;
 
-            double ayposition = rnd.Next(5, 7);
+            double ayposition    = rnd.Next(5, 7);
             this.AsgardYPosition = ayposition;
+
+
+            //PlanetX position
+            //Planet X is the theroetical planet right outside of the sol system
+            this.PlanetXXPosition = 0;
+
+            this.PlanetXYPosition = -1;
+
+            //Planet Joe position
+            int jxposition = rnd.Next(0, 3);
+            this.PlanetJoeXPosition = jxposition;
+
+            int jyposition = rnd.Next(13, 17);
+            this.PlanetJoeYPosition = jyposition;
+
+            
         }
+
 
         /// <summary>
         /// cargo
         /// </summary>
-        
+
         public int EarthSpaceGold   { get; private set; }
         public int AlphaCentariGold { get; private set; }
         public int M63SpaceGold     { get; private set; }
         public int AsgardGold       { get; private set; }
+        public int PlanetXGold      { get; private set; }
+        public int PlanetJoeGold    { get; private set; }
 
 
         public int EarthNoBalanceShoes          { get; private set; }
         public int AlphaCentariNoBalanceShoes   { get; private set; }
         public int M63NoBalanceShoes            { get; private set; }
-        public int AsgardNoBalanceShoes         { get; set; }
+        public int AsgardNoBalanceShoes         { get; private set; }
+        public int PlanetXNoBalanceShoes        { get; private set; }
+        public int PlanetJoeNoBalanceShoes      { get; private set; }
+
 
         public int EarhtGalacticTVs         { get; private set; }
         public int AlphaCentariGalacticTVs  { get; private set; }
         public int M63GalacticTVs           { get; private set; }
-        public int AsgardGalacticTVs        { get; set; }
+        public int AsgardGalacticTVs        { get; private set; }
+        public int PlanetXGalacticTVs       { get; private set; }
+        public int PlanetJoeGalacticTVs     { get; private set; }
 
         /// <summary>
         /// planetary positions
@@ -106,8 +148,10 @@ namespace SpaceGame
         public double M63YPosition          { get; private set; }
         public double AsgardXPosition       { get; private set; }
         public double AsgardYPosition       { get; private set; }
-
-
+        public double PlanetXXPosition      { get; private set; }
+        public double PlanetXYPosition      { get; private set; }
+        public double PlanetJoeXPosition    { get; private set; }
+        public double PlanetJoeYPosition    { get; private set; }
 
 
 
