@@ -33,7 +33,7 @@ namespace SpaceGame
             int response = Convert.ToInt32(Console.ReadLine());
             return response;
         }
-
+        // general display for all bank screens
         public void BankDisplay(PersonalStatus ps)
         {
             Console.WriteLine($"You have {ps.MyCurrentCredit} Galactic Credits in your bank account.\n" +
@@ -43,12 +43,12 @@ namespace SpaceGame
             Console.ReadLine();
             GO.Win(ps);
         }
-
+        // a player hud
         public void InventoryDisplay(PersonalStatus ps)
         {
             Console.WriteLine($"Space Gold: {ps.SpaceGold} No Balanace Shoes: {ps.NoBalanaceShoes} Galactic TVs: {ps.GalacticTVs} Galactic Credits: {ps.MyCurrentCredit} Cargo Space: {ps.ShipCapacity - (ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs)}\n");
         }
-
+        // travel between the stars can be dangerous
         public void Travel(PersonalStatus PS)
         {
             int travelEvent = rnd.Next(1, 11);

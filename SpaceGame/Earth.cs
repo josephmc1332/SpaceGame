@@ -156,14 +156,7 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS);
-            // write flavor text for bank
-            Console.WriteLine($"\n\n" +
-                $"\tYou have {PS.MyCurrentCredit} Galactic Credits in your Galactic Bank Account.\n" +
-                $"\tThe title of Duke of Mercury costs 1,000,000 GC. You need {(1000000 - PS.MyCurrentCredit)} \n" +
-                $"\tmore credits before you can win the king of Venus' approval.\n\n" +
-                $"\t\tPress any enter to continue...");
-            Console.ReadLine();
-            GO.Win(PS);
+            UM.BankDisplay(PS);
             EarthPage();
         }
         public void ShipYard()
@@ -1146,19 +1139,15 @@ namespace SpaceGame
                 $"Men and women dressed in all white are coming and going from the inside.\n" +
                 $"The shining white walls of the bank hum with the electricity from the sheer\n" +
                 $"number of data transfers taking place inside. The interior is more of the \n" +
-                $"same, white walls and white clothes contrasting sharply with the coal black\n" +
-                $"skin of the Messinese" +
-                $" \nYou have {PS.MyCurrentCredit} Galactic Credits in your Galactic Bank Account. The title of Duke of Mercury costs 1,000,000 GC.\n" +
-                $"You need {(1000000 - PS.MyCurrentCredit)} more credits before you can win the king of Venus' approval.\nPress any key to continue...");
-            Console.ReadLine();
-            GO.Win(PS);
+                $"same, white walls and white clothes contrasting sharply with the coal black\n");
+            UM.BankDisplay(PS);
             M63Page();
         }
         public void M63Shop()
         {
             Console.Clear();
             Console.WriteLine("You've arrived at the shop on M63. Niko, the owner welcomes you to look around at all the goods." +
-                "/nWe've got the highest quality TV's in the universe!");
+                "\nWe've got the highest quality TV's in the universe!");
             Console.ReadLine();
             UM.InventoryDisplay(PS);
             Console.WriteLine("What would you like to do?\n 1 Buy Cargo\n 2 Sell Cargo\n 3 Return to the streets of M63");
