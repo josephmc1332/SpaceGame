@@ -12,7 +12,8 @@ namespace SpaceGame
         PersonalStatus PS = new PersonalStatus();
         Random rnd = new Random();
         UtilityMethods UM = new UtilityMethods();
-
+        Ship ship = new Ship();
+        PlanetInfo PI = new PlanetInfo();
         public void FirstPage()
         {
             Console.Write("\n\n\n" +
@@ -51,7 +52,7 @@ namespace SpaceGame
                 $"\t\tto marry a mere commoner like yourself. But there is even worse news! \n" +
                 $"\t\tYour beloved has other interested parties, and what's worse is they are already nobility. \n" +
                 $"\t\tBut you are in luck there is a way to buy into galactic nobility, but it's going to be a lot of work. \n" +
-                $"\t\tYou've got a {PS.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, \n" +
+                $"\t\tYou've got a {ship.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, \n" +
                 $"\t\tso get out there and get to trading, {PS.MyName}!\n\n" +
                 $"\n\n\n\n\n\n\n\n\t\t\tPress enter to continue past this or any screen in this game.");
 
@@ -72,8 +73,8 @@ namespace SpaceGame
 
            if (PS.MyCurrentLocation == "Earth")
             {
-                double xAxis = PS.EarthXPosition;
-                double yAxis = PS.EarthYPosition;
+                double xAxis = PI.EarthXPosition;
+                double yAxis = PI.EarthYPosition;
             }
 
 
@@ -186,7 +187,7 @@ namespace SpaceGame
             UM.InventoryDisplay(PS);
             //display the users current ship and credits. Ship selections with price
             Console.WriteLine($"\n\n" +
-                $"\tYou currently own the {PS.ShipName}, which is a great ship, but it's time to upgrade... \n" +
+                $"\tYou currently own the {ship.ShipName}, which is a great ship, but it's time to upgrade... \n" +
                 $"\tWhat ship are you looking to hop in today?\n" +
                 $"\tYou currently have {PS.MyCurrentCredit} credits\n" +
                 $"\t  1 The Interstellar Connex 600 GCs\n" +
@@ -199,9 +200,9 @@ namespace SpaceGame
                 string myShipUpgrade = "The Interstellar Connex";
                 Console.Clear();
                 Console.WriteLine($"You chose the {myShipUpgrade}! That's a great choice. \n" +
-                   $"It has a capacity of {PS.InterstellarConnexCapacity} slots. This is our biggest ship! " +
+                   $"It has a capacity of {ship.InterstellarConnexCapacity} slots. This is our biggest ship! " +
                    $"\nWith a max warp speed of" +
-                   $" {PS.InterstellarConnexSpeed}. ");
+                   $" {ship.InterstellarConnexSpeed}. ");
                 Console.ReadLine();
                 //ask if user is sure of purchase
                 Console.WriteLine("Would you like to complete this purchase? \nyes or no?");
@@ -210,14 +211,14 @@ namespace SpaceGame
                 //execute the purchase
                 if (userShipAnswer == "yes")
                 {
-                    PS.ShipSpeed = PS.InterstellarConnexSpeed;
-                    PS.ShipCapacity = PS.InterstellarConnexCapacity;
-                    PS.ShipName = myShipUpgrade;
+                    ship.ShipSpeed = ship.InterstellarConnexSpeed;
+                    ship.ShipCapacity = ship.InterstellarConnexCapacity;
+                    ship.ShipName = myShipUpgrade;
                     //subtract credit after purchase
                     PS.MyCurrentCredit = PS.MyCurrentCredit - 600;
                     //display ship bought and remaining credit
                     Console.WriteLine($"Congratulations on your new ship purchase! " +
-                        $"You now own the {PS.ShipName} and have {PS.MyCurrentCredit} remaining");
+                        $"You now own the {ship.ShipName} and have {PS.MyCurrentCredit} remaining");
                     Console.ReadLine();
                     ShipYard();
                 }
@@ -244,8 +245,8 @@ namespace SpaceGame
                 //summary of ship(speed, name, and capacity)
                 Console.WriteLine($"\n\n" +
                     $"\tYou chose the {myShipUpgrade}! That's a great choice. \n" +
-                    $"\tIt has a capacity of {PS.StarWagonCapacity} slots.\n" +
-                    $"\tWith a max warp speed of {PS.StarWagonSpeed}. This is our fastest ship by far!");
+                    $"\tIt has a capacity of {ship.StarWagonCapacity} slots.\n" +
+                    $"\tWith a max warp speed of {ship.StarWagonSpeed}. This is our fastest ship by far!");
                 //press enter
                 Console.ReadLine();
                 //confirm purchase
@@ -254,13 +255,13 @@ namespace SpaceGame
                 //after purchase is confirmed subtract credits
                 if (userShipAnswer == "yes")
                 {
-                    PS.ShipName = myShipUpgrade;
-                    PS.ShipCapacity = PS.StarWagonCapacity;
-                    PS.ShipSpeed = PS.StarWagonSpeed;
+                    ship.ShipName = myShipUpgrade;
+                    ship.ShipCapacity = ship.StarWagonCapacity;
+                    ship.ShipSpeed = ship.StarWagonSpeed;
                     PS.MyCurrentCredit = PS.MyCurrentCredit - 1200;
                     //display ship purchased and remaining credits
                     Console.Clear();
-                    Console.WriteLine($"Congratulations on your new ship purchase! You now own the {PS.ShipName} " +
+                    Console.WriteLine($"Congratulations on your new ship purchase! You now own the {ship.ShipName} " +
                         $"\nand have {PS.MyCurrentCredit} credits remaining");
                     Console.ReadLine();
                     ShipYard();
@@ -284,10 +285,10 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS);
             Console.WriteLine($"\n\n" +
-                $"\tYou arrive at your personal hanger, you ship, a {PS.ShipName} the SS {PS.MyName}, stands \n" +
+                $"\tYou arrive at your personal hanger, you ship, a {ship.ShipName} the SS {PS.MyName}, stands \n" +
                 $"\tbefore you gleaming in the artificail lights of the hanger. \n" +
-                $"\tA {PS.ShipName} like this has {PS.ShipCapacity} slots in its cargo hold \n" +
-                $"\tand a top speed of Warp Factor {PS.ShipSpeed}\n" +
+                $"\tA {ship.ShipName} like this has {ship.ShipCapacity} slots in its cargo hold \n" +
+                $"\tand a top speed of Warp Factor {ship.ShipSpeed}\n" +
                 $"\tInside the hold you have: \n" +
                 $"\t{PS.NoBalanaceShoes} boxes of No Balance Shoes \n" +
                 $"\t{PS.SpaceGold} bars of Space Gold \n" +
@@ -343,26 +344,26 @@ namespace SpaceGame
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
-                if ((quantity * PS.EarthNoBalanceShoes) > PS.MyCurrentCredit)
+                if ((quantity * PI.EarthNoBalanceShoes) > PS.MyCurrentCredit)
                 {
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
                     Buy();
                 }
-                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > PS.ShipCapacity)
+                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
                     Console.WriteLine($"You don't have room for that! You currently" +
-                        $" have {(PS.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
+                        $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
                     Buy();
                 }
-                PS.MyCurrentCredit -= (quantity * PS.EarthNoBalanceShoes);
+                PS.MyCurrentCredit -= (quantity * PI.EarthNoBalanceShoes);
 
                 PS.NoBalanaceShoes += quantity;
 
-                Console.WriteLine($"you bought {quantity} NoBalance Shoes for {PS.EarthNoBalanceShoes * quantity} GC, your new balance is {PS.MyCurrentCredit} GC \n " +
+                Console.WriteLine($"you bought {quantity} NoBalance Shoes for {PI.EarthNoBalanceShoes * quantity} GC, your new balance is {PS.MyCurrentCredit} GC \n " +
                     $"You now have {PS.NoBalanaceShoes} pairs of No Balanace Shoes in your ship.\n Press any key to continue..");
 
                 Console.ReadLine();
@@ -373,22 +374,22 @@ namespace SpaceGame
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
-                if ((quantity * PS.EarthSpaceGold) > PS.MyCurrentCredit)
+                if ((quantity * PI.EarthSpaceGold) > PS.MyCurrentCredit)
                 {
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
                     Buy();
                 }
-                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > PS.ShipCapacity)
+                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
                     Console.WriteLine($"You don't have room for that! You currently" +
-                        $" have {(PS.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
+                        $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
                     Buy();
                 }
-                PS.MyCurrentCredit -= (quantity * PS.EarthSpaceGold);
+                PS.MyCurrentCredit -= (quantity * PI.EarthSpaceGold);
 
                 PS.SpaceGold += quantity;
 
@@ -402,22 +403,22 @@ namespace SpaceGame
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
-                if ((quantity * PS.EarhtGalacticTVs) > PS.MyCurrentCredit)
+                if ((quantity * PI.EarhtGalacticTVs) > PS.MyCurrentCredit)
                 {
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
                     Buy();
                 }
-                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > PS.ShipCapacity)
+                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
                     Console.WriteLine($"You don't have room for that! You currently" +
-                        $" have {(PS.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
+                        $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
                     Buy();
                 }
-                PS.MyCurrentCredit -= (quantity * PS.EarhtGalacticTVs);
+                PS.MyCurrentCredit -= (quantity * PI.EarhtGalacticTVs);
 
                 PS.GalacticTVs += quantity;
 
@@ -526,24 +527,24 @@ namespace SpaceGame
                 "\tAnd Galactic TVs, TVs so thin that you can't even see them unless you are standing in front of them.\n" +
                 $"\tThe display flashes their market prices. \n\n" +
                 $"\tEarth: \n" +
-                $"\t\tNo Balance Shoes: {PS.EarthNoBalanceShoes} \n" +
-                $"\t\tSpace Gold: {PS.EarthSpaceGold} \n" +
-                $"\t\tGalactic TVs: {PS.EarhtGalacticTVs}\n\n" +
+                $"\t\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n" +
+                $"\t\tSpace Gold: {PI.EarthSpaceGold} \n" +
+                $"\t\tGalactic TVs: {PI.EarhtGalacticTVs}\n\n" +
                 $"\tAlpha Centari:\n" +
-                $"\t\tNo Balance Shoe: {PS.AlphaCentariNoBalanceShoes}\n" +
-                $"\t\tSpace Gold: {PS.AlphaCentariGold}\n" +
-                $"\t\tGalactic TVs: {PS.AlphaCentariGalacticTVs}\n\n" +
+                $"\t\tNo Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.AlphaCentariGold}\n" +
+                $"\t\tGalactic TVs: {PI.AlphaCentariGalacticTVs}\n\n" +
                 $"\tM63:\n" +
-                $"\t\tNo Balance Shoes: {PS.M63NoBalanceShoes}\n" +
-                $"\t\tSpace Gold: {PS.M63SpaceGold}\n" +
-                $"\t\tGalactic TVs: {PS.M63GalacticTVs} ");
+                $"\t\tNo Balance Shoes: {PI.M63NoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.M63SpaceGold}\n" +
+                $"\t\tGalactic TVs: {PI.M63GalacticTVs} ");
             Console.ReadLine();
         }
         public void EarthPort()
         {
-            double distAlphaCentari = (Math.Sqrt(Math.Pow(PS.EarthXPosition - PS.AlphaCentariXPosition, 2) + Math.Pow(PS.EarthYPosition - PS.AlphaCentariYPosition, 2)));
-            double distM63 = (Math.Sqrt(Math.Pow(PS.EarthXPosition - PS.M63XPosition, 2) + Math.Pow(PS.EarthYPosition - PS.M63YPosition, 2)));
-            double playerWarpSpeed = (Math.Pow(PS.ShipSpeed, 10 / 3) + Math.Pow(10 - PS.ShipSpeed, -11 / 3));
+            double distAlphaCentari = (Math.Sqrt(Math.Pow(PI.EarthXPosition - PI.AlphaCentariXPosition, 2) + Math.Pow(PI.EarthYPosition - PI.AlphaCentariYPosition, 2)));
+            double distM63 = (Math.Sqrt(Math.Pow(PI.EarthXPosition - PI.M63XPosition, 2) + Math.Pow(PI.EarthYPosition - PI.M63YPosition, 2)));
+            double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
             UM.InventoryDisplay(PS);
             Console.WriteLine($"\n\n" +
@@ -678,7 +679,7 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS);
             //display the users current ship and credits. Ship selections with price
-            Console.WriteLine($"You currently own the {PS.ShipName}, which is a great ship, but it's time to upgrade... " +
+            Console.WriteLine($"You currently own the {ship.ShipName}, which is a great ship, but it's time to upgrade... " +
                 $"\nwhat ship are you looking to hop in today?" +
                 $"\nyou currently have {PS.MyCurrentCredit} credits" +
                 $"\n1 The Interstellar Connex 600 GCs" +
@@ -691,9 +692,9 @@ namespace SpaceGame
                 string myShipUpgrade = "The Interstellar Connex";
                 Console.Clear();
                 Console.WriteLine($"You chose the {myShipUpgrade}! That's a great choice. \n" +
-                   $"It has a capacity of {PS.InterstellarConnexCapacity} slots. This is our biggest ship! " +
+                   $"It has a capacity of {ship.InterstellarConnexCapacity} slots. This is our biggest ship! " +
                    $"\nWith a max warp speed of" +
-                   $" {PS.InterstellarConnexSpeed}. ");
+                   $" {ship.InterstellarConnexSpeed}. ");
                 Console.ReadLine();
                 //ask if user is sure of purchase
                 Console.WriteLine("Would you like to complete this purchase? \nyes or no?");
@@ -702,14 +703,14 @@ namespace SpaceGame
                 //execute the purchase
                 if (userShipAnswer == "yes")
                 {
-                    PS.ShipSpeed = PS.InterstellarConnexSpeed;
-                    PS.ShipCapacity = PS.InterstellarConnexCapacity;
-                    PS.ShipName = myShipUpgrade;
+                    ship.ShipSpeed = ship.InterstellarConnexSpeed;
+                    ship.ShipCapacity = ship.InterstellarConnexCapacity;
+                    ship.ShipName = myShipUpgrade;
                     //subtract credit after purchase
                     PS.MyCurrentCredit = PS.MyCurrentCredit - 600;
                     //display ship bought and remaining credit
                     Console.WriteLine($"Congratulations on your new ship purchase! " +
-                        $"You now own the {PS.ShipName} and have {PS.MyCurrentCredit} remaining");
+                        $"You now own the {ship.ShipName} and have {PS.MyCurrentCredit} remaining");
                     Console.ReadLine();
                     AlphaYard();
                 }
@@ -735,9 +736,9 @@ namespace SpaceGame
                 Console.Clear();
                 //summary of ship(speed, name, and capacity)
                 Console.WriteLine($"You chose the {myShipUpgrade}! That's a great choice. \n" +
-                    $"It has a capacity of {PS.StarWagonCapacity} slots." +
+                    $"It has a capacity of {ship.StarWagonCapacity} slots." +
                     $"\nWith a max warp speed of" +
-                    $" {PS.StarWagonSpeed}. This is our fastest ship by far!");
+                    $" {ship.StarWagonSpeed}. This is our fastest ship by far!");
                 //press enter
                 Console.ReadLine();
                 //confirm purchase
@@ -746,12 +747,12 @@ namespace SpaceGame
                 //after purchase is confirmed subtract credits
                 if (userShipAnswer == "yes")
                 {
-                    PS.ShipName = myShipUpgrade;
-                    PS.ShipCapacity = PS.StarWagonCapacity;
-                    PS.ShipSpeed = PS.StarWagonSpeed;
+                    ship.ShipName = myShipUpgrade;
+                    ship.ShipCapacity = ship.StarWagonCapacity;
+                    ship.ShipSpeed = ship.StarWagonSpeed;
                     PS.MyCurrentCredit = PS.MyCurrentCredit - 1200;
                     //display ship purchased and remaining credits
-                    Console.WriteLine($"Congratulations on your new ship purchase! You now own the {PS.ShipName} " +
+                    Console.WriteLine($"Congratulations on your new ship purchase! You now own the {ship.ShipName} " +
                         $"\nand have {PS.MyCurrentCredit} credits remaining");
                     Console.ReadLine();
                     AlphaYard();
@@ -774,8 +775,8 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS);
-            Console.WriteLine($"You arrive at your personal hanger, you ship, a {PS.ShipName} the SS {PS.MyName}, stands before you gleaming in the artificail lights of the hanger\n" +
-                $"A {PS.ShipName} like this has {PS.ShipCapacity} slots in its cargo hold and a top speed of Warp Factor {PS.ShipSpeed}\n" +
+            Console.WriteLine($"You arrive at your personal hanger, you ship, a {ship.ShipName} the SS {PS.MyName}, stands before you gleaming in the artificail lights of the hanger\n" +
+                $"A {ship.ShipName} like this has {ship.ShipCapacity} slots in its cargo hold and a top speed of Warp Factor {ship.ShipSpeed}\n" +
                 $"Inside the hold you have {PS.NoBalanaceShoes} boxes of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} boxes of Galactic TVs\n" +
                 $"Press any key to continue...");
             Console.ReadLine();
@@ -817,7 +818,7 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS);
             Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
-                $"1 NoBalanceShoes {PS.AlphaCentariNoBalanceShoes} GC per Unit\n 2 Space Gold {PS.AlphaCentariGold} GC per Unit\n 3 Galactic TV {PS.AlphaCentariGalacticTVs} GC per Unit \n 4 " +
+                $"1 NoBalanceShoes {PI.AlphaCentariNoBalanceShoes} GC per Unit\n 2 Space Gold {PI.AlphaCentariGold} GC per Unit\n 3 Galactic TV {PI.AlphaCentariGalacticTVs} GC per Unit \n 4 " +
                 $"Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
             bool Shoes = response == 1;
@@ -830,26 +831,26 @@ namespace SpaceGame
             {
                 Console.Write("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
-                if ((quantity * PS.AlphaCentariNoBalanceShoes) > PS.MyCurrentCredit)
+                if ((quantity * PI.AlphaCentariNoBalanceShoes) > PS.MyCurrentCredit)
                 {
                     Console.Write("You can't afford that! \n" +
                         "Press enter to return to the Shop..");
                     Console.ReadLine();
                     AlphaBuy();
                 }
-                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > PS.ShipCapacity)
+                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
                     Console.Write($"You don't have room for that! You currently" +
-                        $" have {(PS.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
+                        $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press enter to continue...");
                     Console.ReadLine();
                     AlphaBuy();
                 }
-                PS.MyCurrentCredit -= (quantity * PS.AlphaCentariNoBalanceShoes);
+                PS.MyCurrentCredit -= (quantity * PI.AlphaCentariNoBalanceShoes);
 
                 PS.NoBalanaceShoes += quantity;
 
-                Console.WriteLine($"you bought {quantity} NoBalance Shoes for {quantity * PS.AlphaCentariNoBalanceShoes} GC, your new balance is {PS.MyCurrentCredit} GC \n " +
+                Console.WriteLine($"you bought {quantity} NoBalance Shoes for {quantity * PI.AlphaCentariNoBalanceShoes} GC, your new balance is {PS.MyCurrentCredit} GC \n " +
                     $"You now have {PS.NoBalanaceShoes} pairs of No Balanace Shoes in your ship.\n Press any key to continue..");
 
                 Console.ReadLine();
@@ -860,26 +861,26 @@ namespace SpaceGame
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
-                if ((quantity * PS.AlphaCentariGold) > PS.MyCurrentCredit)
+                if ((quantity * PI.AlphaCentariGold) > PS.MyCurrentCredit)
                 {
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
                     AlphaBuy();
                 }
-                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > PS.ShipCapacity)
+                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
                     Console.WriteLine($"You don't have room for that! You currently" +
-                        $" have {(PS.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
+                        $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
                     AlphaBuy();
                 }
-                PS.MyCurrentCredit -= (quantity * PS.AlphaCentariGold);
+                PS.MyCurrentCredit -= (quantity * PI.AlphaCentariGold);
 
                 PS.SpaceGold += quantity;
 
-                Console.WriteLine($"you bought {quantity} Bars of Space Gold for {quantity * PS.AlphaCentariGold} GC, your new balance is {PS.MyCurrentCredit} GC \n " +
+                Console.WriteLine($"you bought {quantity} Bars of Space Gold for {quantity * PI.AlphaCentariGold} GC, your new balance is {PS.MyCurrentCredit} GC \n " +
                     $" You have {PS.SpaceGold} bars of Space Gold in your spaceship.\n Press any key to continue..");
                 Console.ReadLine();
                 AlphaBuy();
@@ -889,28 +890,28 @@ namespace SpaceGame
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
-                if ((quantity * PS.AlphaCentariGalacticTVs) > PS.MyCurrentCredit)
+                if ((quantity * PI.AlphaCentariGalacticTVs) > PS.MyCurrentCredit)
                 {
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
                     AlphaBuy();
                 }
-                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > PS.ShipCapacity)
+                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
                     Console.WriteLine($"You don't have room for that! You currently" +
-                        $" have {(PS.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
+                        $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
                     AlphaBuy();
                 }
-                PS.MyCurrentCredit -= (quantity * PS.AlphaCentariGalacticTVs);
+                PS.MyCurrentCredit -= (quantity * PI.AlphaCentariGalacticTVs);
 
                 PS.GalacticTVs += quantity;
 
 
 
-                Console.WriteLine($"you bought {quantity} Galactic TV(s) for {quantity * PS.AlphaCentariGalacticTVs} GC, your new balance is {PS.MyCurrentCredit} GC \n " +
+                Console.WriteLine($"you bought {quantity} Galactic TV(s) for {quantity * PI.AlphaCentariGalacticTVs} GC, your new balance is {PS.MyCurrentCredit} GC \n " +
                     $"You now have {PS.GalacticTVs} Galactic Tvs in your ship. \n Press any key to continue..");
                 Console.ReadLine();
                 AlphaBuy();
@@ -945,8 +946,8 @@ namespace SpaceGame
                     AlphaSell();
                 }
                 PS.NoBalanaceShoes -= quantity;
-                PS.MyCurrentCredit += (quantity * PS.AlphaCentariNoBalanceShoes);
-                Console.WriteLine($"Thank you for the No Balance Shoes, you can jump so high when gravity doesn't affect your feet!\nYou sold {quantity} No Balance Shoes for {(quantity * PS.AlphaCentariNoBalanceShoes)} Galactic Credits.\n" +
+                PS.MyCurrentCredit += (quantity * PI.AlphaCentariNoBalanceShoes);
+                Console.WriteLine($"Thank you for the No Balance Shoes, you can jump so high when gravity doesn't affect your feet!\nYou sold {quantity} No Balance Shoes for {(quantity * PI.AlphaCentariNoBalanceShoes)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.NoBalanaceShoes} No Balanace Shoes.\n Press any key to continue...");
                 Console.ReadLine();
                 AlphaSell();
@@ -962,8 +963,8 @@ namespace SpaceGame
                     AlphaSell();
                 }
                 PS.SpaceGold -= quantity;
-                PS.MyCurrentCredit += (quantity * PS.AlphaCentariGold);
-                Console.WriteLine($"Thanks for the Space Gold, Space Gold is so much more shiny than boring old regular gold!\nYou sold {quantity} bars of Space Gold for {(quantity * PS.AlphaCentariGold)} Galactic Credits.\n" +
+                PS.MyCurrentCredit += (quantity * PI.AlphaCentariGold);
+                Console.WriteLine($"Thanks for the Space Gold, Space Gold is so much more shiny than boring old regular gold!\nYou sold {quantity} bars of Space Gold for {(quantity * PI.AlphaCentariGold)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.SpaceGold} bars of Space Gold left.\n Press any key to continue...");
                 Console.ReadLine();
                 AlphaSell();
@@ -979,8 +980,8 @@ namespace SpaceGame
                     AlphaSell();
                 }
                 PS.GalacticTVs -= quantity;
-                PS.MyCurrentCredit += (quantity * PS.AlphaCentariGalacticTVs);
-                Console.WriteLine($"Thank you for the Galactic TVs I can't believe how thin they are!\nYou sold {quantity} Galactic TVs for {(quantity * PS.AlphaCentariGalacticTVs)} Galactic Credits.\n" +
+                PS.MyCurrentCredit += (quantity * PI.AlphaCentariGalacticTVs);
+                Console.WriteLine($"Thank you for the Galactic TVs I can't believe how thin they are!\nYou sold {quantity} Galactic TVs for {(quantity * PI.AlphaCentariGalacticTVs)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.GalacticTVs} Galactic TVs left.\n Press any key to continue...");
                 Console.ReadLine();
                 AlphaSell();
@@ -998,19 +999,19 @@ namespace SpaceGame
             Console.WriteLine($"The city of Macawalani on Centari IV has the largest stock exchange for a light year in any direction.\n" +
                 $"But unlike the exchanges of earth it's nearly silent in the exchange. The Centarians are famously capatalistic and the \nMacawalani exchange is almost" +
                 $"like a temple. But it takes you hardly any time at all to find the entries of your\nclassic moneymakers..." +
-                $"  \nEarth: \n\tNo Balance Shoes: {PS.EarthNoBalanceShoes} \n\tSpace Gold: {PS.EarthSpaceGold} \n\tGalactic TVs: {PS.EarhtGalacticTVs}" +
-                $"\n \nAlpha Centari:\n\t No Balance Shoe: {PS.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PS.AlphaCentariGold}\n\tGalactic " +
-                $"TVs: {PS.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PS.M63NoBalanceShoes}" +
-                $"\n\tSpace Gold: {PS.M63SpaceGold}\n\tGalactic TVs: {PS.M63GalacticTVs} \n" +
+                $"  \nEarth: \n\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n\tSpace Gold: {PI.EarthSpaceGold} \n\tGalactic TVs: {PI.EarhtGalacticTVs}" +
+                $"\n \nAlpha Centari:\n\t No Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PI.AlphaCentariGold}\n\tGalactic " +
+                $"TVs: {PI.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PI.M63NoBalanceShoes}" +
+                $"\n\tSpace Gold: {PI.M63SpaceGold}\n\tGalactic TVs: {PI.M63GalacticTVs} \n" +
                 $"Press enter to return to the Macawalani streets...");
             Console.ReadLine();
         }
         public void AlphaCentariPort()
         {
-            double distEarth = (Math.Sqrt(Math.Pow(PS.EarthXPosition - PS.AlphaCentariXPosition, 2) + Math.Pow(PS.EarthYPosition - PS.AlphaCentariYPosition, 2)));
+            double distEarth = (Math.Sqrt(Math.Pow(PI.EarthXPosition - PI.AlphaCentariXPosition, 2) + Math.Pow(PI.EarthYPosition - PI.AlphaCentariYPosition, 2)));
             
-            double distM63 = (Math.Sqrt(Math.Pow(PS.AlphaCentariXPosition - PS.M63XPosition, 2) + Math.Pow(PS.AlphaCentariYPosition - PS.M63YPosition, 2)));
-            double playerWarpSpeed = (Math.Pow(PS.ShipSpeed, 10 / 3) + Math.Pow(10 - PS.ShipSpeed, -11 / 3));
+            double distM63 = (Math.Sqrt(Math.Pow(PI.AlphaCentariXPosition - PI.M63XPosition, 2) + Math.Pow(PI.AlphaCentariYPosition - PI.M63YPosition, 2)));
+            double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
             Console.WriteLine($"" +
                 $"Wind swirls around you as a ships takes off to some new and exciting destination.\n" +
@@ -1167,7 +1168,7 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS);
             Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
-                $"1 NoBalanceShoes {PS.M63NoBalanceShoes} GC per Unit\n 2 Space Gold {PS.M63SpaceGold} GC per Unit\n 3 Galactic TV {PS.M63GalacticTVs} GC per Unit \n 4 " +
+                $"1 NoBalanceShoes {PI.M63NoBalanceShoes} GC per Unit\n 2 Space Gold {PI.M63SpaceGold} GC per Unit\n 3 Galactic TV {PI.M63GalacticTVs} GC per Unit \n 4 " +
                 $"Return to Planetary Menu");
             int response = Convert.ToInt32(Console.ReadLine());
             bool Shoes = response == 1;
@@ -1180,26 +1181,26 @@ namespace SpaceGame
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
-                if ((quantity * PS.M63NoBalanceShoes) > PS.MyCurrentCredit)
+                if ((quantity * PI.M63NoBalanceShoes) > PS.MyCurrentCredit)
                 {
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
                     M63Buy();
                 }
-                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > PS.ShipCapacity)
+                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
                     Console.WriteLine($"You don't have room for that! You currently" +
-                        $" have {(PS.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
+                        $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
                     M63Buy();
                 }
-                PS.MyCurrentCredit -= (quantity * PS.M63NoBalanceShoes);
+                PS.MyCurrentCredit -= (quantity * PI.M63NoBalanceShoes);
 
                 PS.NoBalanaceShoes += quantity;
 
-                Console.WriteLine($"you bought {quantity} NoBalance Shoes for {PS.M63NoBalanceShoes * quantity} GC, your new balance is {PS.MyCurrentCredit} GC \n " +
+                Console.WriteLine($"you bought {quantity} NoBalance Shoes for {PI.M63NoBalanceShoes * quantity} GC, your new balance is {PS.MyCurrentCredit} GC \n " +
                     $"You now have {PS.NoBalanaceShoes} pairs of No Balanace Shoes in your ship.\n Press any key to continue..");
 
                 Console.ReadLine();
@@ -1210,22 +1211,22 @@ namespace SpaceGame
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
-                if ((quantity * PS.M63SpaceGold) > PS.MyCurrentCredit)
+                if ((quantity * PI.M63SpaceGold) > PS.MyCurrentCredit)
                 {
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
                     M63Buy();
                 }
-                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > PS.ShipCapacity)
+                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
                     Console.WriteLine($"You don't have room for that! You currently" +
-                        $" have {(PS.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
+                        $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
                     M63Buy();
                 }
-                PS.MyCurrentCredit -= (quantity * PS.M63SpaceGold);
+                PS.MyCurrentCredit -= (quantity * PI.M63SpaceGold);
 
                 PS.SpaceGold += quantity;
 
@@ -1239,22 +1240,22 @@ namespace SpaceGame
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
-                if ((quantity * PS.M63GalacticTVs) > PS.MyCurrentCredit)
+                if ((quantity * PI.M63GalacticTVs) > PS.MyCurrentCredit)
                 {
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
                     M63Buy();
                 }
-                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > PS.ShipCapacity)
+                if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
                     Console.WriteLine($"You don't have room for that! You currently" +
-                        $" have {(PS.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
+                        $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
                     M63Buy();
                 }
-                PS.MyCurrentCredit -= (quantity * PS.M63GalacticTVs);
+                PS.MyCurrentCredit -= (quantity * PI.M63GalacticTVs);
 
                 PS.GalacticTVs += quantity;
 
@@ -1295,8 +1296,8 @@ namespace SpaceGame
                     M63Sell();
                 }
                 PS.NoBalanaceShoes -= quantity;
-                PS.MyCurrentCredit += (quantity * PS.M63NoBalanceShoes);
-                Console.WriteLine($"Thank you for the No Balance Shoes, you can jump so high when gravity doesn't affect your feet!\nYou sold {quantity} No Balance Shoes for {(quantity * PS.M63NoBalanceShoes)} Galactic Credits.\n" +
+                PS.MyCurrentCredit += (quantity * PI.M63NoBalanceShoes);
+                Console.WriteLine($"Thank you for the No Balance Shoes, you can jump so high when gravity doesn't affect your feet!\nYou sold {quantity} No Balance Shoes for {(quantity * PI.M63NoBalanceShoes)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.NoBalanaceShoes} No Balanace Shoes.\n Press any key to continue...");
                 Console.ReadLine();
                 M63Sell();
@@ -1316,8 +1317,8 @@ namespace SpaceGame
                     M63Sell();
                 }
                 PS.SpaceGold -= quantity;
-                PS.MyCurrentCredit += (quantity * PS.M63SpaceGold);
-                Console.WriteLine($"Thanks for the Space Gold, Space Gold is so much more shiny than boring old regular gold!\nYou sold {quantity} bars of Space Gold for {(quantity * PS.M63SpaceGold)} Galactic Credits.\n" +
+                PS.MyCurrentCredit += (quantity * PI.M63SpaceGold);
+                Console.WriteLine($"Thanks for the Space Gold, Space Gold is so much more shiny than boring old regular gold!\nYou sold {quantity} bars of Space Gold for {(quantity * PI.M63SpaceGold)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.SpaceGold} bars of Space Gold left.\n Press any key to continue...");
                 Console.ReadLine();
                 M63Sell();
@@ -1333,8 +1334,8 @@ namespace SpaceGame
                     M63Sell();
                 }
                 PS.GalacticTVs -= quantity;
-                PS.MyCurrentCredit += (quantity * PS.M63GalacticTVs);
-                Console.WriteLine($"Thank you for the Galactic TVs I can't believe how thin they are!\nYou sold {quantity} Galactic TVs for {(quantity * PS.M63GalacticTVs)} Galactic Credits.\n" +
+                PS.MyCurrentCredit += (quantity * PI.M63GalacticTVs);
+                Console.WriteLine($"Thank you for the Galactic TVs I can't believe how thin they are!\nYou sold {quantity} Galactic TVs for {(quantity * PI.M63GalacticTVs)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.GalacticTVs} Galactic TVs left.\n Press any key to continue...");
                 Console.ReadLine();
                 M63Sell();
@@ -1342,9 +1343,9 @@ namespace SpaceGame
         }
         public void M63Port()
         {
-            double distAlphaCentari = (Math.Sqrt(Math.Pow(PS.M63XPosition - PS.AlphaCentariXPosition, 2) + Math.Pow(PS.M63YPosition - PS.AlphaCentariYPosition, 2)));
-            double distEarth = (Math.Sqrt(Math.Pow(PS.EarthXPosition - PS.M63XPosition, 2) + Math.Pow(PS.EarthYPosition - PS.M63YPosition, 2)));
-            double playerWarpSpeed = (Math.Pow(PS.ShipSpeed, 10 / 3) + Math.Pow(10 - PS.ShipSpeed, -11 / 3));
+            double distAlphaCentari = (Math.Sqrt(Math.Pow(PI.M63XPosition - PI.AlphaCentariXPosition, 2) + Math.Pow(PI.M63YPosition - PI.AlphaCentariYPosition, 2)));
+            double distEarth = (Math.Sqrt(Math.Pow(PI.EarthXPosition - PI.M63XPosition, 2) + Math.Pow(PI.EarthYPosition - PI.M63YPosition, 2)));
+            double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
             UM.InventoryDisplay(PS);
             Console.WriteLine($"Where would you like to go? \n\t1 Alpha Centari: {distAlphaCentari} Light years away which will take {distAlphaCentari / playerWarpSpeed} years" +
@@ -1407,7 +1408,7 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS);
             //display the users current ship and credits. Ship selections with price
-            Console.WriteLine($"You currently own the {PS.ShipName}, which is a great ship, but it's time to upgrade... " +
+            Console.WriteLine($"You currently own the {ship.ShipName}, which is a great ship, but it's time to upgrade... " +
                 $"\nwhat ship are you looking to hop in today?" +
                 $"\nyou currently have {PS.MyCurrentCredit} credits" +
                 $"\n1 The Interstellar Connex 600 GCs" +
@@ -1420,9 +1421,9 @@ namespace SpaceGame
                 string myShipUpgrade = "The Interstellar Connex";
                 Console.Clear();
                 Console.WriteLine($"You chose the {myShipUpgrade}! That's a great choice. \n" +
-                   $"It has a capacity of {PS.InterstellarConnexCapacity} slots. This is our biggest ship! " +
+                   $"It has a capacity of {ship.InterstellarConnexCapacity} slots. This is our biggest ship! " +
                    $"\nWith a max warp speed of" +
-                   $" {PS.InterstellarConnexSpeed}. ");
+                   $" {ship.InterstellarConnexSpeed}. ");
                 Console.ReadLine();
                 //ask if user is sure of purchase
                 Console.WriteLine("Would you like to complete this purchase? \nyes or no?");
@@ -1431,14 +1432,14 @@ namespace SpaceGame
                 //execute the purchase
                 if (userShipAnswer == "yes")
                 {
-                    PS.ShipSpeed = PS.InterstellarConnexSpeed;
-                    PS.ShipCapacity = PS.InterstellarConnexCapacity;
-                    PS.ShipName = myShipUpgrade;
+                    ship.ShipSpeed = ship.InterstellarConnexSpeed;
+                    ship.ShipCapacity = ship.InterstellarConnexCapacity;
+                    ship.ShipName = myShipUpgrade;
                     //subtract credit after purchase
                     PS.MyCurrentCredit = PS.MyCurrentCredit - 600;
                     //display ship bought and remaining credit
                     Console.WriteLine($"Congratulations on your new ship purchase! " +
-                        $"You now own the {PS.ShipName} and have {PS.MyCurrentCredit} remaining");
+                        $"You now own the {ship.ShipName} and have {PS.MyCurrentCredit} remaining");
                     Console.ReadLine();
                     M63ShipYard();
                 }
@@ -1464,9 +1465,9 @@ namespace SpaceGame
                 Console.Clear();
                 //summary of ship(speed, name, and capacity)
                 Console.WriteLine($"You chose the {myShipUpgrade}! That's a great choice. \n" +
-                    $"It has a capacity of {PS.StarWagonCapacity} slots." +
+                    $"It has a capacity of {ship.StarWagonCapacity} slots." +
                     $"\nWith a max warp speed of" +
-                    $" {PS.StarWagonSpeed}. This is our fastest ship by far!");
+                    $" {ship.StarWagonSpeed}. This is our fastest ship by far!");
                 //press enter
                 Console.ReadLine();
                 //confirm purchase
@@ -1475,12 +1476,12 @@ namespace SpaceGame
                 //after purchase is confirmed subtract credits
                 if (userShipAnswer == "yes")
                 {
-                    PS.ShipName = myShipUpgrade;
-                    PS.ShipCapacity = PS.StarWagonCapacity;
-                    PS.ShipSpeed = PS.StarWagonSpeed;
+                    ship.ShipName = myShipUpgrade;
+                    ship.ShipCapacity = ship.StarWagonCapacity;
+                    ship.ShipSpeed = ship.StarWagonSpeed;
                     PS.MyCurrentCredit = PS.MyCurrentCredit - 1200;
                     //display ship purchased and remaining credits
-                    Console.WriteLine($"Congratulations on your new ship purchase! You now own the {PS.ShipName} " +
+                    Console.WriteLine($"Congratulations on your new ship purchase! You now own the {ship.ShipName} " +
                         $"\nand have {PS.MyCurrentCredit} credits remaining");
                     Console.ReadLine();
                     M63ShipYard();
@@ -1503,8 +1504,8 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS);
-            Console.WriteLine($"You arrive at your personal hanger, you ship, a {PS.ShipName} the SS {PS.MyName}, stands before you gleaming in the artificail lights of the hanger\n" +
-                $"A {PS.ShipName} like this has {PS.ShipCapacity} slots in its cargo hold and a top speed of Warp Factor {PS.ShipSpeed}\n" +
+            Console.WriteLine($"You arrive at your personal hanger, you ship, a {ship.ShipName} the SS {PS.MyName}, stands before you gleaming in the artificail lights of the hanger\n" +
+                $"A {ship.ShipName} like this has {ship.ShipCapacity} slots in its cargo hold and a top speed of Warp Factor {ship.ShipSpeed}\n" +
                 $"Inside the hold you have {PS.NoBalanaceShoes} boxes of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} boxes of Galactic TVs\n" +
                 $"Press any key to continue...");
             Console.ReadLine();
@@ -1513,10 +1514,10 @@ namespace SpaceGame
         public void M63Market()
         {
             Console.WriteLine($"Welcome to the Epic Market on M63, where your opportunity for wealth is boundless and the products are of the most elegant varieties. " +
-                $"  \nEarth: \n\tNo Balance Shoes: {PS.EarthNoBalanceShoes} \n\tSpace Gold: {PS.EarthSpaceGold} \n\tGalactic TVs: {PS.EarhtGalacticTVs}" +
-                $"\n \nAlpha Centari:\n\t No Balance Shoe: {PS.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PS.AlphaCentariGold}\n\tGalactic " +
-                $"TVs: {PS.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PS.M63NoBalanceShoes}" +
-                $"\n\tSpace Gold: {PS.M63SpaceGold}\n\tGalactic TVs: {PS.M63GalacticTVs} \n" +
+                $"  \nEarth: \n\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n\tSpace Gold: {PI.EarthSpaceGold} \n\tGalactic TVs: {PI.EarhtGalacticTVs}" +
+                $"\n \nAlpha Centari:\n\t No Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PI.AlphaCentariGold}\n\tGalactic " +
+                $"TVs: {PI.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PI.M63NoBalanceShoes}" +
+                $"\n\tSpace Gold: {PI.M63SpaceGold}\n\tGalactic TVs: {PI.M63GalacticTVs} \n" +
                 $"Press enter to return to the Messien streets...");
             Console.ReadLine();
         }
@@ -1570,7 +1571,7 @@ namespace SpaceGame
             $"You walk into the shipyard of Asgard and are greeted by a man who looks like he" +
             $"stepped right out of an old Norse myth. He smiles through his huge beard, 'Greetings" +
             $"{PS.MyName} welcome to my shipyard I am Sven son of Baldur God of ship sales and" +
-            $"maintenance. I see you have a {PS.ShipName} class ship, those are good but I think you" +
+            $"maintenance. I see you have a {ship.ShipName} class ship, those are good but I think you" +
             $"could do better, well anyway what can I do for you?");
             AsgardShipYardSelector();
         }

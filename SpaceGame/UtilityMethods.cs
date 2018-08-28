@@ -10,6 +10,8 @@ namespace SpaceGame
     {
         Random rnd = new Random();
         GameOver GO = new GameOver();
+        Ship ship = new Ship();
+        PersonalStatus ps = new PersonalStatus();
         // this method will populate the navigation menu and return a number that the selector can use.
         public int MainPageOptions()
         {
@@ -46,10 +48,11 @@ namespace SpaceGame
         // a player hud
         public void InventoryDisplay(PersonalStatus ps)
         {
-            Console.WriteLine($"Space Gold: {ps.SpaceGold} No Balanace Shoes: {ps.NoBalanaceShoes} Galactic TVs: {ps.GalacticTVs} Galactic Credits: {ps.MyCurrentCredit} Cargo Space: {ps.ShipCapacity - (ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs)}\n");
+            Console.WriteLine($"Space Gold: {ps.SpaceGold} No Balanace Shoes: {ps.NoBalanaceShoes} Galactic TVs: {ps.GalacticTVs} " +
+                $"Galactic Credits: {ps.MyCurrentCredit} Cargo Space: {ship.ShipCapacity - (ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs)}\n");
         }
         // travel between the stars can be dangerous
-        public void Travel(PersonalStatus PS)
+        public void Travel(PersonalStatus ps)
         {
             int travelEvent = rnd.Next(1, 11);
             Console.Clear();
@@ -71,43 +74,43 @@ namespace SpaceGame
             if (travelEvent > 5)
             {
                 Console.WriteLine("You found some space gold out there!");
-                if ((PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs + 1) > PS.ShipCapacity)
+                if ((ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs + 1) > ship.ShipCapacity)
                 {
                     Console.WriteLine("You dont have enough room for it though. Sad day...");
                     Console.ReadLine();
                 }
-                if ((PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs + 1) <= PS.ShipCapacity)
+                if ((ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs + 1) <= ship.ShipCapacity)
                 {
-                    PS.SpaceGold += 1;
-                    Console.WriteLine($"You now have {PS.SpaceGold} space gold");
+                    ps.SpaceGold += 1;
+                    Console.WriteLine($"You now have {ps.SpaceGold} space gold");
                     Console.ReadLine();
                 }
             }
             if (travelEvent == 5)
             {
-                Console.WriteLine($"It's lonely out there in space {PS.MyName}. You are doing great! Keep it up!");
+                Console.WriteLine($"It's lonely out there in space {ps.MyName}. You are doing great! Keep it up!");
                 Console.ReadLine();
             }
             if (travelEvent < 5 && travelEvent > 1)
             {
-                if (PS.MyCurrentCredit < 10)
+                if (ps.MyCurrentCredit < 10)
                 {
                     Console.WriteLine("The Pirates killed you because you couldnt pay their 10 GC toll.");
                     Console.ReadLine();
-                    GO.Died(PS);
+                    GO.Died(ps);
                 }
                 else
                     Console.WriteLine("Pirate attack! You lost 10 GC to them");
-                PS.MyCurrentCredit -= 10;
-                Console.WriteLine($"You now have {PS.MyCurrentCredit} GCs");
+                ps.MyCurrentCredit -= 10;
+                Console.WriteLine($"You now have {ps.MyCurrentCredit} GCs");
                 Console.ReadLine();
             }
             if (travelEvent == 1)
             {
                 Console.WriteLine($"The galaxies worst pirates attack you but you easily overpower them. \n" +
-                    $"'Please don't kill us {PS.MyName}, we will give you 100 GC if you let us go!' \n" +
+                    $"'Please don't kill us {ps.MyName}, we will give you 100 GC if you let us go!' \n" +
                     $"You let them off easy this time...");
-                PS.MyCurrentCredit += 100;
+                ps.MyCurrentCredit += 100;
                 Console.ReadLine();
             }
             Console.ReadLine();
