@@ -569,7 +569,7 @@ namespace SpaceGame
                 {
                     GO.Retire(PS);
                 }
-                Travel();
+                UM.Travel(PS);
                 Console.WriteLine($"The journey takes you {distAlphaCentari / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
                     $"You arrive on ALpha Centari");
                 Console.ReadLine();
@@ -582,7 +582,7 @@ namespace SpaceGame
                 {
                     GO.Retire(PS);
                 }
-                Travel();
+                UM.Travel(PS);
                 Console.WriteLine($"The jouney take you {distM63 / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
                     $"You arrive on M63");
                 Console.ReadLine();
@@ -1037,7 +1037,7 @@ namespace SpaceGame
                 {
                     GO.Retire(PS);
                 }
-                Travel();
+                UM.Travel(PS);
                 Console.WriteLine($"The journey takes you {distEarth / playerWarpSpeed} years you have been traveling for {PS.MyTravelTime} years now.\n" +
                     $"You arrive on Earth");
                 Console.ReadLine();
@@ -1050,7 +1050,7 @@ namespace SpaceGame
                 {
                     GO.Retire(PS);
                 }
-                Travel();
+                UM.Travel(PS);
                 Console.WriteLine($"The journey takes you {distM63 / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
                     $"You arrive on M63");
                 Console.ReadLine();
@@ -1371,7 +1371,7 @@ namespace SpaceGame
                 {
                     GO.Retire(PS);
                 }
-                Travel();
+                UM.Travel(PS);
                 Console.WriteLine($"The journey takes you {distAlphaCentari / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
                     $"You arrive on ALpha Centari");
                 Console.ReadLine();
@@ -1384,7 +1384,7 @@ namespace SpaceGame
                 {
                     GO.Retire(PS);
                 }
-                Travel();
+                UM.Travel(PS);
                 Console.WriteLine($"The jouney take you {distEarth / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
                     $"You arrive on Earth");
                 Console.ReadLine();
@@ -1621,81 +1621,7 @@ namespace SpaceGame
 
 
 
-        public void Travel()
-        {
-            int travelEvent = rnd.Next(1, 11);
-            Console.Clear();
-            Console.WriteLine("3...\n2...\n1...\nBlast Off!!");
-            Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine("" +
-                "    *    .     *    \n" +
-                " #===>     *      . \n" +
-                "      *      *     *");
-            Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine("" +
-                "    *  .    .   * .  \n" +
-                "  *  ###===>  .   *  \n" +
-                "    .    . *      *  \n");
-            Console.ReadLine();
-            //random event
-            if (travelEvent > 5)
-            {
-                Console.WriteLine("You found some space gold out there!");
-                if ((PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs + 1 ) > PS.ShipCapacity)
-                {
-                    Console.WriteLine("You dont have enough room for it though. Sad day...");
-                    Console.ReadLine();
-                }
-                if ((PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs + 1) <= PS.ShipCapacity)
-                {
-                    PS.SpaceGold += 1;
-                    Console.WriteLine($"You now have {PS.SpaceGold} space gold");
-                    Console.ReadLine();
-                }
-             }
-            if (travelEvent == 5)
-            {
-                Console.WriteLine($"It's lonely out there in space {PS.MyName}. You are doing great! Keep it up!");
-                Console.ReadLine();
-            }
-            if (travelEvent < 5 && travelEvent > 1)
-            {
-                if (PS.MyCurrentCredit < 10)
-                {
-                    Console.WriteLine("The Pirates killed you because you couldnt pay their 10 GC toll.");
-                    Console.ReadLine();
-                    GO.Died(PS);
-                }
-                else
-                Console.WriteLine("Pirate attack! You lost 10 GC to them");
-                PS.MyCurrentCredit -= 10;
-                Console.WriteLine($"You now have {PS.MyCurrentCredit} GCs");
-                Console.ReadLine();
-            }
-            if (travelEvent == 1)
-            {
-                Console.WriteLine($"The galaxies worst pirates attack you but you easily overpower them. \n" +
-                    $"'Please don't kill us {PS.MyName}, we will give you 100 GC if you let us go!' \n" +
-                    $"You let them off easy this time...");
-                PS.MyCurrentCredit += 100;
-                Console.ReadLine();
-            }
-            Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine("" +
-                "    *   *     .    *  \n" +
-                "   *  . ###===> .   * \n" +
-                "  *   .    .     *     ");
-            Console.ReadLine();
-            Console.Clear();
-            Console.WriteLine("" +
-                "          *         . \n" +
-                "     *     .   ###===>\n" +
-                "   *        *   .   .   ");
-            Console.ReadLine();
-        }
+
 
 
 

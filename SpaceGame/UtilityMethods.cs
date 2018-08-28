@@ -8,6 +8,7 @@ namespace SpaceGame
 {
     class UtilityMethods
     {
+        Random rnd = new Random();
         GameOver GO = new GameOver();
         // this method will populate the navigation menu and return a number that the selector can use.
         public int MainPageOptions()
@@ -42,9 +43,86 @@ namespace SpaceGame
             Console.ReadLine();
             GO.Win(ps);
         }
+
         public void InventoryDisplay(PersonalStatus ps)
         {
             Console.WriteLine($"Space Gold: {ps.SpaceGold} No Balanace Shoes: {ps.NoBalanaceShoes} Galactic TVs: {ps.GalacticTVs} Galactic Credits: {ps.MyCurrentCredit} Cargo Space: {ps.ShipCapacity - (ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs)}\n");
+        }
+
+        public void Travel(PersonalStatus PS)
+        {
+            int travelEvent = rnd.Next(1, 11);
+            Console.Clear();
+            Console.WriteLine("3...\n2...\n1...\nBlast Off!!");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("" +
+                "    *    .     *    \n" +
+                " #===>     *      . \n" +
+                "      *      *     *");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("" +
+                "    *  .    .   * .  \n" +
+                "  *  ###===>  .   *  \n" +
+                "    .    . *      *  \n");
+            Console.ReadLine();
+            //random event
+            if (travelEvent > 5)
+            {
+                Console.WriteLine("You found some space gold out there!");
+                if ((PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs + 1) > PS.ShipCapacity)
+                {
+                    Console.WriteLine("You dont have enough room for it though. Sad day...");
+                    Console.ReadLine();
+                }
+                if ((PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs + 1) <= PS.ShipCapacity)
+                {
+                    PS.SpaceGold += 1;
+                    Console.WriteLine($"You now have {PS.SpaceGold} space gold");
+                    Console.ReadLine();
+                }
+            }
+            if (travelEvent == 5)
+            {
+                Console.WriteLine($"It's lonely out there in space {PS.MyName}. You are doing great! Keep it up!");
+                Console.ReadLine();
+            }
+            if (travelEvent < 5 && travelEvent > 1)
+            {
+                if (PS.MyCurrentCredit < 10)
+                {
+                    Console.WriteLine("The Pirates killed you because you couldnt pay their 10 GC toll.");
+                    Console.ReadLine();
+                    GO.Died(PS);
+                }
+                else
+                    Console.WriteLine("Pirate attack! You lost 10 GC to them");
+                PS.MyCurrentCredit -= 10;
+                Console.WriteLine($"You now have {PS.MyCurrentCredit} GCs");
+                Console.ReadLine();
+            }
+            if (travelEvent == 1)
+            {
+                Console.WriteLine($"The galaxies worst pirates attack you but you easily overpower them. \n" +
+                    $"'Please don't kill us {PS.MyName}, we will give you 100 GC if you let us go!' \n" +
+                    $"You let them off easy this time...");
+                PS.MyCurrentCredit += 100;
+                Console.ReadLine();
+            }
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("" +
+                "    *   *     .    *  \n" +
+                "   *  . ###===> .   * \n" +
+                "  *   .    .     *     ");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("" +
+                "          *         . \n" +
+                "     *     .   ###===>\n" +
+                "   *        *   .   .   ");
+            Console.ReadLine();
         }
     }
 }
