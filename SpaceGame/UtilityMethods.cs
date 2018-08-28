@@ -127,5 +127,15 @@ namespace SpaceGame
                 "   *        *   .   .   ");
             Console.ReadLine();
         }
+        public int ShopSelector()
+        {
+	        Console.WriteLine($"" +
+            $"Would you like to:\n" +
+            $" 1 Buy\n" +
+            $" 2 Sell\n" +
+            $" 3 Return to planetary menu");
+            int response = Convert.ToInt32(Console.ReadLine());
+            return response;
+        }
     }
 }

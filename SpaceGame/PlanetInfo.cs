@@ -38,6 +38,14 @@ namespace SpaceGame
 
             this.M63SpaceGold = 60;
 
+            
+            //cost on Asgard
+            this.AsgardGalacticTVs = 170;
+
+            this.AsgardNoBalanceShoes = 150;
+
+            this.AsgardGold = 15;
+
 
             //Earth Location
             this.EarthXPosition = 0;
@@ -64,15 +72,18 @@ namespace SpaceGame
         public int EarthSpaceGold { get; private set; }
         public int AlphaCentariGold { get; private set; }
         public int M63SpaceGold { get; private set; }
+        public int AsgardGold { get; private set; }
 
-        
+
         public int EarthNoBalanceShoes { get; private set; }
         public int AlphaCentariNoBalanceShoes { get; private set; }
         public int M63NoBalanceShoes { get; private set; }
+        public int AsgardNoBalanceShoes { get; set; }
 
         public int EarhtGalacticTVs { get; private set; }
         public int AlphaCentariGalacticTVs { get; private set; }
         public int M63GalacticTVs { get; private set; }
+        public int AsgardGalacticTVs { get; set; }
 
         /// <summary>
         /// planetary positions
@@ -84,6 +95,7 @@ namespace SpaceGame
         public double M63XPosition { get; private set; }
         public double M63YPosition { get; private set; }
 
+        
 
 
 

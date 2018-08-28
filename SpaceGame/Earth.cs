@@ -1550,8 +1550,8 @@ namespace SpaceGame
             if (response == 2)
                 AsgardBank();
 
-            //if (response == 3)
-                //AsgardShop();
+            if (response == 3)
+                AsgardShop();
 
             //if (response == 4)
                 //AsgardMarket();
@@ -1607,6 +1607,223 @@ namespace SpaceGame
             UM.BankDisplay(PS);
             AsgardPage();
         }
+        public void AsgardShop()
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS);
+            Console.WriteLine($"" +
+            $"The shop is more of the same, boisterous bearded men and impossibly tall women crowd the\n" +
+            $"marketplace. The vendor you've chosen as your dealer for the items you want is 'Ruslagg God\n" +
+            $"merchandise and profit!' it seems everyone on this planet is a God... But his prices seem fair\n" +
+            $"good, especially the Space Gold.\n");
+            AsgardShopSelector();
+        }
+
+        public void AsgardShopSelector()
+        {
+            int response = UM.ShopSelector();
+
+            if (response == 1)
+                AsgardBuy();
+
+            if (response == 2)
+                AsgardSell();
+
+            if (response == 3)
+                AsgardPage();
+        }
+
+        public void AsgardBuy()
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS);
+            Console.WriteLine($"" +
+            $"You have {PS.MyCurrentCredit} Galactic Credits What would you like to buy?\n" +
+            $" 1 No Balance Shoes for {PI.AsgardNoBalanceShoes} GC\n" +
+            $" 2 Space Gold for {PI.AsgardGold} GC\n" +
+            $" 3 Galactic TVs for {PI.AsgardGalacticTVs} GC\n" +
+            $" 4 Return to the Asgardian Shop");
+            int response = Convert.ToInt32(Console.ReadLine());
+            if (response == 1)
+                BuyAsgardShoes();
+            if (response == 2)
+                BuyAsgardGold();
+            if (response == 3)
+                BuyAsgardTV();
+            if (response == 4)
+                AsgardShop();
+        }
+
+        public void BuyAsgardShoes()
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS);
+            Console.WriteLine($"How many No Balance Shoes would you like to buy for {PI.AsgardNoBalanceShoes} GC?");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if ((quantity + PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs) > ship.ShipCapacity)
+            {
+                Console.WriteLine($"You don't have enough room for that many shoes, you can only" +
+                    $" buy {(ship.ShipCapacity - (PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs))}\n" +
+                $"Press <enter> to return...");
+                Console.ReadLine();
+                BuyAsgardShoes();
+            }
+            if ((quantity * PI.AsgardNoBalanceShoes) > PS.MyCurrentCredit)
+    
+            {
+                Console.WriteLine($"You can't afford that many shoes\n" +
+                $"Press <enter> to return...");
+                Console.ReadLine();
+                BuyAsgardShoes();
+            }
+            PS.MyCurrentCredit -= (quantity * PI.AsgardNoBalanceShoes);
+            PS.NoBalanaceShoes += quantity;
+            Console.WriteLine($"You have bought {quantity} No Balance Shoes for {(quantity * PI.AsgardNoBalanceShoes)} GC.\n" +
+            $"You now have {PS.MyCurrentCredit} GC and {PS.NoBalanaceShoes} shoes.");
+            Console.ReadLine();
+            AsgardBuy();
+
+        }
+        public void BuyAsgardGold()
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS);
+            Console.WriteLine($"How much Space Gold would you like to buy for {PI.AsgardGold} GC?");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if ((quantity + PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs) > ship.ShipCapacity)
+            {
+                Console.WriteLine($"You don't have enough room for that much Space Gold, you can" +
+                    $" only buy {(ship.ShipCapacity - (PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs))}\n" +
+                $"Press <enter> to return...");
+                Console.ReadLine();
+                BuyAsgardGold();
+            }
+            if ((quantity * PI.AsgardGold) > PS.MyCurrentCredit)
+    
+            {
+                Console.WriteLine($"You can't afford that much Space Gold\n" +
+                $"Press <enter> to return...");
+                Console.ReadLine();
+                BuyAsgardGold();
+            }
+            PS.MyCurrentCredit -= (quantity * PI.AsgardGold);
+            PS.SpaceGold += quantity;
+            Console.WriteLine($"You have bought {quantity} Space Gold for {(quantity * PI.AsgardGold)} GC.\n" +
+            $"You now have {PS.MyCurrentCredit} GC and {PS.SpaceGold} bars of Space Gold.");
+            Console.ReadLine();
+            AsgardBuy();
+        }
+        public void BuyAsgardTV()
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS);
+            Console.WriteLine($"How many Galactic TVs would you like to buy for {PI.AsgardGalacticTVs} GC?");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if ((quantity + PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs) > ship.ShipCapacity)
+            {
+                Console.WriteLine($"You don't have enough room for that many Galactic TVs, you can only" +
+                    $" buy {(ship.ShipCapacity - (PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs))}\n" +
+                    $"Press <enter> to return...");
+                Console.ReadLine();
+                BuyAsgardTV();
+            }
+            if ((quantity * PI.AsgardGalacticTVs) > PS.MyCurrentCredit)
+            {    
+            
+                Console.WriteLine($"You can't afford that many Galactic TVs\n" +
+                $"Press <enter> to return...");
+                Console.ReadLine();
+                BuyAsgardTV();
+            }
+            PS.MyCurrentCredit -= (quantity * PI.AsgardGalacticTVs);
+            PS.GalacticTVs += quantity;
+            Console.WriteLine($"You have bought {quantity} Galactic TVs for {(quantity * PI.AsgardGalacticTVs)} GC.\n" +
+    
+            $"You now have {PS.MyCurrentCredit} GC and {PS.GalacticTVs} Galactic TVs.");
+            Console.ReadLine();
+            AsgardBuy();
+        }
+
+        public void AsgardSell()
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS);
+            Console.WriteLine($"" +
+            $"You have {PS.NoBalanaceShoes} Shoes, {PS.SpaceGold} bars of Space Gold and {PS.GalacticTVs} Galactic TVs\n" +
+            $"What would you like to sell?\n" +
+            $" 1 No Balance Shoes\n" +
+            $" 2 Space Gold\n" +
+            $" 3 Galactic TVs\n" +
+            $" 4 Return to the Asgardian Shop");
+            int response = Convert.ToInt32(Console.ReadLine());
+            if (response == 1)
+                SellAsgardShoes();
+            if (response == 2)
+                SellAsgardGold();
+            if (response == 3)
+                SellAsgardTV();
+            if (response == 4)
+                AsgardShop();
+        }
+
+        public void SellAsgardShoes()
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS);
+            Console.WriteLine($"How many shoes do you want to sell?");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if (quantity > PS.NoBalanaceShoes)
+            {
+                Console.WriteLine($"You don't have that many shoes to sell. You have {PS.NoBalanaceShoes} shoes in your cargo hold.");
+                Console.ReadLine();
+                SellAsgardShoes();
+            }
+            PS.NoBalanaceShoes -= quantity;
+            PS.MyCurrentCredit += (quantity * PI.AsgardNoBalanceShoes);
+            Console.WriteLine($"'Thank you for these No Balance Shoes these things are AMAZING. Look at me zipping around like\n" +
+            $"a bird in the air, I am the God of Flying without wings!' \n" +
+            $"You sold {quantity} No Balance Shoes for {quantity * PI.AsgardNoBalanceShoes} GC.");
+            Console.ReadLine();
+            AsgardSell();
+        }
+        public void SellAsgardGold()
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS);
+            Console.WriteLine($"How much Space Gold do you want to sell?");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if (quantity > PS.SpaceGold)
+            {
+                Console.WriteLine($"You don't have that much Space Gold to sell. You have {PS.SpaceGold} shoes in your cargo hold.");
+                Console.ReadLine();
+                SellAsgardGold();
+            }
+            PS.SpaceGold -= quantity;
+            PS.MyCurrentCredit += (quantity * PI.AsgardGold);
+            Console.WriteLine($"'Thanks for the Space Gold, I guess. I have plenty already though...' \n" +
+            $"You sold {quantity} Space Gold for {quantity * PI.AsgardGold} GC.");
+            Console.ReadLine();
+            AsgardSell();
+        }
+        public void SellAsgardTV()
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS);
+            Console.WriteLine($"How many Galactic TVs do you want to sell?");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if (quantity > PS.GalacticTVs)
+            {
+                Console.WriteLine($"You don't have that many Galactic TVs to sell. You have {PS.GalacticTVs} shoes in your cargo hold.");
+                Console.ReadLine();
+                SellAsgardTV();
+            }
+            PS.GalacticTVs -= quantity;
+            PS.MyCurrentCredit += (quantity * PI.AsgardGalacticTVs);
+            Console.WriteLine($"'Thanks for the Galactic TVs I usually just watch the Valkyries fly by to pass the time.' \n" +
+            $"You sold {quantity} Galactic TVs for {quantity * PI.AsgardGalacticTVs} GC.");
+            Console.ReadLine();
+            AsgardSell();
+        }
         #endregion
 
 
@@ -1615,6 +1832,6 @@ namespace SpaceGame
 
 
 
-        
+
     }
 }
