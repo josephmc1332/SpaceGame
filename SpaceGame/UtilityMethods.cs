@@ -11,17 +11,16 @@ namespace SpaceGame
         Random rnd = new Random();
         GameOver GO = new GameOver();
         Ship ship = new Ship();
-        PersonalStatus ps = new PersonalStatus();
         // this method will populate the navigation menu and return a number that the selector can use.
         public int MainPageOptions()
         {
             Console.WriteLine("" +
-            " 1 Shipyard\n" +
-            " 2 Galactic Bank\n" +
-            " 3 Buy, Sell, Trade\n" +
-            " 4 Market\n" +
-            " 5 Departure Port\n\n" +
-            " 9 Quit game");
+            "\t\t 1 Shipyard\n" +
+            "\t\t 2 Galactic Bank\n" +
+            "\t\t 3 Buy, Sell, Trade\n" +
+            "\t\t 4 Market\n" +
+            "\t\t 5 Departure Port\n\n" +
+            "\t\t 9 Quit game");
             int response = Convert.ToInt32(Console.ReadLine());
             return response;
         }
@@ -29,21 +28,22 @@ namespace SpaceGame
         public int ShipYardMenu()
         {
             Console.WriteLine("What would you like to do:\n" +
-            " 1 Check your ship stats\n" +
-            " 2 Buy a new ship\n" +
-            " 3 Return to planetary menu");
+            "\t\t 1 Check your ship stats\n" +
+            "\t\t 2 Buy a new ship\n" +
+            "\t\t 3 Return to planetary menu");
             int response = Convert.ToInt32(Console.ReadLine());
             return response;
         }
         // general display for all bank screens
         public void BankDisplay(PersonalStatus ps)
         {
-            Console.WriteLine($"You have {ps.MyCurrentCredit} Galactic Credits in your bank account.\n" +
-            $"The title of Duke of Mercury is 1,000,000 Galactic Credits. You need {(1000000 - ps.MyCurrentCredit)} more\n" +
-            $"Galactic Credits before you can win the King of Venus' approval.\n\n" +
-            $"Press <enter> to continue...");
+            Console.WriteLine($"" +
+            $"\tYou have {ps.MyCurrentCredit} Galactic Credits in your bank account.\n" +
+            $"\tThe title of Duke of Mercury is 1,000,000 Galactic Credits. You need {(1000000 - ps.MyCurrentCredit)} more\n" +
+            $"\tGalactic Credits before you can win the King of Venus' approval.\n\n" +
+            $"\t  Press <enter> to continue...");
             Console.ReadLine();
-            GO.Win(ps);
+            GO.Win(ps, ship);
         }
         // a player hud
         public void InventoryDisplay(PersonalStatus ps)
@@ -97,7 +97,7 @@ namespace SpaceGame
                 {
                     Console.WriteLine("The Pirates killed you because you couldnt pay their 10 GC toll.");
                     Console.ReadLine();
-                    GO.Died(ps);
+                    GO.Died(ps, ship);
                 }
                 else
                     Console.WriteLine("Pirate attack! You lost 10 GC to them");
@@ -126,6 +126,16 @@ namespace SpaceGame
                 "     *     .   ###===>\n" +
                 "   *        *   .   .   ");
             Console.ReadLine();
+        }
+        public int ShopSelector()
+        {
+	        Console.WriteLine($"\n" +
+            $"\t\tWould you like to:\n" +
+            $"\t\t 1 Buy\n" +
+            $"\t\t 2 Sell\n" +
+            $"\t\t 3 Return to planetary menu");
+            int response = Convert.ToInt32(Console.ReadLine());
+            return response;
         }
     }
 }
