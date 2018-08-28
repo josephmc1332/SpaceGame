@@ -21,18 +21,12 @@ namespace SpaceGame
             //user current travel time
             this.MyTravelTime = 0;
 
-
-
-
             //current quantity values
             this.SpaceGold = 0;
 
             this.NoBalanaceShoes = 0;
 
             this.GalacticTVs = 0;
-
-
-
 
             //user info
             this.MyName = "Trader";
@@ -49,21 +43,16 @@ namespace SpaceGame
         /// <summary>
         /// goods
         /// </summary>
-        public int SpaceGold { get; set; }
-
-        public int NoBalanaceShoes { get; set; }
-
-        public int GalacticTVs { get; set; }
+        public int SpaceGold        { get; set; }
+        public int NoBalanaceShoes  { get; set; }
+        public int GalacticTVs      { get; set; }
 
         /// <summary>
         /// Personal Info
         /// </summary>
-        public int MyCurrentCredit { get; set; }
-
-        public string MyName { get; set; }
-
-        public double MyTravelTime { get; set; }
-
+        public int MyCurrentCredit      { get; set; }
+        public string MyName            { get; set; }
+        public double MyTravelTime      { get; set; }
         public string MyCurrentLocation { get; set; }
 
       
