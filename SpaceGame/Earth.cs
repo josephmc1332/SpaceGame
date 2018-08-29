@@ -8,6 +8,7 @@ namespace SpaceGame
 {
     class Earth
     {
+        ShipYard SY = new ShipYard();
         GameOver GO = new GameOver();
         PersonalStatus PS = new PersonalStatus();
         UtilityMethods UM = new UtilityMethods();
@@ -174,9 +175,9 @@ namespace SpaceGame
                 "\t\t  3 Return to planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
-                ShipCheck();
+                SY.ShipCheck(PS, ship, UM);
             if (response == 2)
-                PurchaseShip();
+                SY.PurchaseShip(PS, ship, UM);
             if (response == 3)
                 LandingPagePicker();
         }
@@ -542,17 +543,18 @@ namespace SpaceGame
             UM.InventoryDisplay(PS);
             // write flavor text about shipyard
             Console.WriteLine("\n\n" +
-                "\tYou walk into the Shipyard, the sound of welders and hammers fills the air. Ship salesman are weaving in and out of" +
-                "\tthe ships pushing their latest ship on travelers all the while dodging the laborers.\n" +
+                "\tYou walk into the Shipyard, the sound of welders and hammers fills the air. Ship\n" +
+                "\tsalesman are weaving in and out of the ships pushing their latest ship on travelers\n" +
+                "\tall the while dodging the laborers.\n" +
                 "\t\tWould you like to:\n" +
                 "\t\t 1 Check your ship stats\n" +
                 "\t\t 2 Buy a new Ship\n" +
                 "\t\t 3 Return to planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
-                ShipCheck();
+                SY.ShipCheck(PS, ship, UM);
             if (response == 2)
-                PurchaseShip();
+                SY.PurchaseShip(PS, ship, UM);
             if (response == 3)
                 LandingPagePicker();
         }
@@ -1172,9 +1174,9 @@ namespace SpaceGame
                 " 3 Return to planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
-                ShipCheck();
+                SY.ShipCheck(PS, ship, UM);
             if (response == 2)
-                PurchaseShip();
+                SY.PurchaseShip(PS, ship, UM);
             if (response == 3)
                 LandingPagePicker();
         }
@@ -1247,9 +1249,9 @@ namespace SpaceGame
             $"\t\t3 Return to the Planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
-                ShipCheck();
+                SY.ShipCheck(PS, ship, UM);
             if (response == 2)
-                PurchaseShip();
+                SY.PurchaseShip(PS, ship, UM);
             if (response == 3)
                 LandingPagePicker();
         }
@@ -1489,122 +1491,7 @@ namespace SpaceGame
         }
         #endregion
 
-        public void PurchaseShip()
-        {
-            Console.Clear();
-            UM.InventoryDisplay(PS);
-            //display the users current ship and credits. Ship selections with price
-            Console.WriteLine($"\n\n" +
-                $"\tYou currently own the {ship.ShipName}, which is a great ship, but it's time to upgrade... \n" +
-                $"\tWhat ship are you looking to hop in today?\n" +
-                $"\tYou currently have {PS.MyCurrentCredit} credits\n" +
-                $"\t  1 The Interstellar Connex 600 GCs\n" +
-                $"\t  2 The StarWagon 1200GCs");
-            //convert response to numeric value of type int
-            int shipUpgrade = Convert.ToInt32(Console.ReadLine());
-            //If buying the interstellar
-            if (shipUpgrade == 1 && PS.MyCurrentCredit >= 600)
-            {
-                string myShipUpgrade = "The Interstellar Connex";
-                Console.Clear();
-                Console.WriteLine($"You chose the {myShipUpgrade}! That's a great choice. \n" +
-                   $"It has a capacity of {ship.InterstellarConnexCapacity} slots. This is our biggest ship! " +
-                   $"\nWith a max warp speed of" +
-                   $" {ship.InterstellarConnexSpeed}. ");
-                Console.ReadLine();
-                //ask if user is sure of purchase
-                Console.WriteLine("Would you like to complete this purchase? \nyes or no?");
-                //user response 
-                string userShipAnswer = Console.ReadLine();
-                //execute the purchase
-                if (userShipAnswer == "yes")
-                {
-                    ship.ShipSpeed = ship.InterstellarConnexSpeed;
-                    ship.ShipCapacity = ship.InterstellarConnexCapacity;
-                    ship.ShipName = myShipUpgrade;
-                    //subtract credit after purchase
-                    PS.MyCurrentCredit = PS.MyCurrentCredit - 600;
-                    //display ship bought and remaining credit
-                    Console.WriteLine($"Congratulations on your new ship purchase! " +
-                        $"You now own the {ship.ShipName} and have {PS.MyCurrentCredit} remaining");
-                    Console.ReadLine();
-                    ShipYardPicker();
-                }
-                //stop the purchase
-                else
-                {
-                    ShipYardPicker();
-                }
-            }
-            //stop purchase. not enough credits
-            else
-            {
-                Console.WriteLine("You do not have enough credits to complete this purchase!");
-                Console.ReadLine();
-                ShipYardPicker();
 
-            }
-            //if buying the starwagon
-            if (shipUpgrade == 2 && PS.MyCurrentCredit >= 1200)
-            {
-                //initialize ship 
-                string myShipUpgrade = "The StarWagon";
-                Console.Clear();
-                //summary of ship(speed, name, and capacity)
-                Console.WriteLine($"\n\n" +
-                    $"\tYou chose the {myShipUpgrade}! That's a great choice. \n" +
-                    $"\tIt has a capacity of {ship.StarWagonCapacity} slots.\n" +
-                    $"\tWith a max warp speed of {ship.StarWagonSpeed}. This is our fastest ship by far!");
-                //press enter
-                Console.ReadLine();
-                //confirm purchase
-                Console.WriteLine("\n\nWould you like to complete this purchase? \nyes or no?");
-                string userShipAnswer = Console.ReadLine();
-                //after purchase is confirmed subtract credits
-                if (userShipAnswer == "yes")
-                {
-                    ship.ShipName = myShipUpgrade;
-                    ship.ShipCapacity = ship.StarWagonCapacity;
-                    ship.ShipSpeed = ship.StarWagonSpeed;
-                    PS.MyCurrentCredit = PS.MyCurrentCredit - 1200;
-                    //display ship purchased and remaining credits
-                    Console.Clear();
-                    Console.WriteLine($"Congratulations on your new ship purchase! You now own the {ship.ShipName} " +
-                        $"\nand have {PS.MyCurrentCredit} credits remaining");
-                    Console.ReadLine();
-                    ShipYardPicker();
-                }
-                //stop purchase
-                else
-                {
-                    ShipYardPicker();
-                }
-            }
-            //stop purchase
-            else
-            {
-                Console.WriteLine("You do not have enough credits to complete this purchase!");
-                Console.ReadLine();
-                ShipYardPicker();
-            }
-        }
-        public void ShipCheck()
-        {
-            Console.Clear();
-            UM.InventoryDisplay(PS);
-            Console.WriteLine($"\n\n" +
-                $"\tYou arrive at your personal hanger, you ship, a {ship.ShipName} the SS {PS.MyName}, stands \n" +
-                $"\tbefore you gleaming in the artificail lights of the hanger. \n" +
-                $"\tA {ship.ShipName} like this has {ship.ShipCapacity} slots in its cargo hold \n" +
-                $"\tand a top speed of Warp Factor {ship.ShipSpeed}\n" +
-                $"\tInside the hold you have: \n" +
-                $"\t{PS.NoBalanaceShoes} boxes of No Balance Shoes \n" +
-                $"\t{PS.SpaceGold} bars of Space Gold \n" +
-                $"\t{PS.GalacticTVs} boxes of Galactic TVs\n\n" +
-                $"\t\tPress enter to continue...");
-            Console.ReadLine();
-            ShipYardPicker();
-        }
         public void LandingPagePicker()
         {
             if (PS.MyCurrentLocation == "Earth")
