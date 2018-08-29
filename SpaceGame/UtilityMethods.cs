@@ -151,5 +151,20 @@ namespace SpaceGame
             double dist = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
             return dist;
         }
+        public string FuelCheck(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety, Ship ship, PersonalStatus PS, Fuel fuel)
+        {
+            double distTraveled = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
+            string fuelCheck = "OK";
+            if (fuel.MyCurrentFuel < (distTraveled))
+            {
+                Console.WriteLine($"" +
+                    $"You don't have enough fuel for that trip, you only have {fuel.MyCurrentFuel} amount of fuel\n" +
+                    $"you would need {(int)(distTraveled) - fuel.MyCurrentFuel} more fuel to make that trip.");
+                Console.ReadLine();
+                string failedCheck = "TooFar";
+                return failedCheck;
+            }
+            return fuelCheck;
+        }
     }
 }

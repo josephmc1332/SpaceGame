@@ -341,7 +341,11 @@ namespace SpaceGame
                 $"\tM63:\n" +
                 $"\t\tNo Balance Shoes: {PI.M63NoBalanceShoes}\n" +
                 $"\t\tSpace Gold: {PI.M63SpaceGold}\n" +
-                $"\t\tGalactic TVs: {PI.M63GalacticTVs} ");
+                $"\t\tGalactic TVs: {PI.M63GalacticTVs} \n" +
+                $"\tAsgard:\n" +
+                $"\t\tNo Balance Shoes: {PI.AsgardNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.AsgardGold}\n" +
+                $"\t\tGalactic TVs: {PI.AsgardGalacticTVs}");
             Console.ReadLine();
         }
         public void EarthPort()
@@ -358,21 +362,42 @@ namespace SpaceGame
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
             {
-                UM.PlanetTravel(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
-                UM.Travel(PS);
-                AlphaCentariPage();
+                if (UM.FuelCheck(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
+                {
+                    UM.PlanetTravel(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
+                    UM.Travel(PS);
+                    AlphaCentariPage();
+                }
+                if (UM.FuelCheck(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
+                {
+                    return;
+                }
             }
             if (response == 2)
             {
-                UM.PlanetTravel(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel);
-                UM.Travel(PS);
-                M63Page();
+                if (UM.FuelCheck(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
+                {
+                    UM.PlanetTravel(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel);
+                    UM.Travel(PS);
+                    M63Page();
+                }
+                if (UM.FuelCheck(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
+                {
+                    return;
+                }
             }
             if (response == 3)
             {
-                UM.PlanetTravel(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel);
-                UM.Travel(PS);
-                Asgard.AsgardPage(UM, PS, ship, fuel, GO, SY, PI, Shop);
+                if (UM.FuelCheck(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
+                {
+                    UM.PlanetTravel(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel);
+                    UM.Travel(PS);
+                    Asgard.AsgardPage(UM, PS, ship, fuel, GO, SY, PI, Shop);
+                }
+                if (UM.FuelCheck(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
+                {
+                    return;
+                }
             }
             if (response == 4)
             {

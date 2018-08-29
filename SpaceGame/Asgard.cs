@@ -75,13 +75,13 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"" +
-            $"You walk into the bank which is easily one of the most expensive buildings you've ever" +
-            $"been in. It seems everything in Asgard is either a deadly steel blade or made entirely" +
-            $"from space gold. The banker smiles at you, 'Welcome to the Asgardian branch of the Galactic" +
-            $"Bank {PS.MyName} I am the Thrador! Son of Spandar, God of Banking and money exchange!' He" +
-            $"quite boisterous for a banker. He taps away at some glowing runes carved into the gold top" +
-            $"of the counter.");
+            Console.WriteLine($"\n\n" +
+            $"\tYou walk into the bank which is easily one of the most expensive buildings you've ever" +
+            $"\tbeen in. It seems everything in Asgard is either a deadly steel blade or made entirely" +
+            $"\tfrom space gold. The banker smiles at you, 'Welcome to the Asgardian branch of the Galactic" +
+            $"\tBank {PS.MyName} I am the Thrador! Son of Spandar, God of Banking and money exchange!' He" +
+            $"\tquite boisterous for a banker. He taps away at some glowing runes carved into the gold top" +
+            $"\tof the counter.");
             UM.BankDisplay(PS);
             return;
         }
@@ -89,11 +89,11 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"" +
-            $"The shop is more of the same, boisterous bearded men and impossibly tall women crowd the\n" +
-            $"marketplace. The vendor you've chosen as your dealer for the items you want is 'Ruslagg God\n" +
-            $"merchandise and profit!' it seems everyone on this planet is a God... But his prices seem fair\n" +
-            $"good, especially the Space Gold.\n");
+            Console.WriteLine($"\n\n" +
+            $"\tThe shop is more of the same, boisterous bearded men and impossibly tall women crowd the\n" +
+            $"\tmarketplace. The vendor you've chosen as your dealer for the items you want is 'Ruslagg God\n" +
+            $"\tmerchandise and profit!' it seems everyone on this planet is a God... But his prices seem fair\n" +
+            $"\tgood, especially the Space Gold.\n");
             AsgardShopSelector(UM, fuel, PS, ship, PI, Shop);
         }
 
@@ -118,12 +118,12 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"" +
-            $"You have {PS.MyCurrentCredit} Galactic Credits What would you like to buy?\n" +
-            $" 1 No Balance Shoes for {PI.AsgardNoBalanceShoes} GC\n" +
-            $" 2 Space Gold for {PI.AsgardGold} GC\n" +
-            $" 3 Galactic TVs for {PI.AsgardGalacticTVs} GC\n" +
-            $" 4 Return to the Asgardian Shop");
+            Console.WriteLine($"\n\n" +
+            $"\t\tYou have {PS.MyCurrentCredit} Galactic Credits What would you like to buy?\n" +
+            $"\t\t 1 No Balance Shoes for {PI.AsgardNoBalanceShoes} GC\n" +
+            $"\t\t 2 Space Gold for {PI.AsgardGold} GC\n" +
+            $"\t\t 3 Galactic TVs for {PI.AsgardGalacticTVs} GC\n" +
+            $"\t\t 4 Return to the Asgardian Shop");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
                 Shop.BuyShoes(PI.AsgardNoBalanceShoes, PS, UM, ship, fuel);
@@ -139,13 +139,13 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"" +
-            $"You have {PS.NoBalanaceShoes} Shoes, {PS.SpaceGold} bars of Space Gold and {PS.GalacticTVs} Galactic TVs\n" +
-            $"What would you like to sell?\n" +
-            $" 1 No Balance Shoes\n" +
-            $" 2 Space Gold\n" +
-            $" 3 Galactic TVs\n" +
-            $" 4 Return to the Asgardian Shop");
+            Console.WriteLine($"\n\n" +
+            $"\t\tYou have {PS.NoBalanaceShoes} Shoes, {PS.SpaceGold} bars of Space Gold and {PS.GalacticTVs} Galactic TVs\n" +
+            $"\t\tWhat would you like to sell?\n" +
+            $"\t\t 1 No Balance Shoes\n" +
+            $"\t\t 2 Space Gold\n" +
+            $"\t\t 3 Galactic TVs\n" +
+            $"\t\t 4 Return to the Asgardian Shop");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
                 SellAsgardShoes(UM, PS, ship, fuel, PI);
@@ -161,11 +161,13 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"How many shoes do you want to sell?");
+            Console.WriteLine($"\n\n" +
+                $"\t\tHow many shoes do you want to sell?");
             int quantity = Convert.ToInt32(Console.ReadLine());
             if (quantity > PS.NoBalanaceShoes)
             {
-                Console.WriteLine($"You don't have that many shoes to sell. You have {PS.NoBalanaceShoes} shoes in your cargo hold.");
+                Console.WriteLine($"" +
+                    $"\t\tYou don't have that many shoes to sell. You have {PS.NoBalanaceShoes} shoes in your cargo hold.");
                 Console.ReadLine();
                 SellAsgardShoes(UM, PS, ship, fuel, PI);
             }
