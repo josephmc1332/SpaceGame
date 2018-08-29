@@ -8,69 +8,81 @@ namespace SpaceGame
 {
     class Fuel
     {
-       /* PersonalStatus PS = new PersonalStatus();
+        PersonalStatus PS = new PersonalStatus();
         Earth EA = new Earth();
 
-        private int myCurrentFuel;
-
-        private int myRateOfUse;
-
-        private int fuelCost;
+        private int myCurrentFuel = 0;
 
 
+        /// <summary>
+        /// restricts over 100 fuel and less than 0 fuel
+        /// </summary>
+        public int MyCurrentFuel { get; set; }
 
 
-        public int MyCurrentFuel
+        public Fuel()
         {
-            get { return myCurrentFuel; }
-            set
-            {
-                if (value > 100)
-                {
-                    Console.WriteLine("You do not have room for that amount of fuel");
-
-                }
-                if (value <= 0 )
-                {
-                    Console.WriteLine("You have ran out of fuel, You Lose.");
-                }
-                else
-                {
-                    value = myCurrentFuel;
-
-                }
-
-            }
+            MyCurrentFuel = 0;
         }
 
-        public int MyRateOfUse
+
+
+        public int BuyFuel(PersonalStatus ps)
         {
-            get { return myRateOfUse; }
-            set { }
-        }
-
-        public int FuelAlpha(int rate)
-        {
-            //alpha to earth
-            if ( = 1)
-            {
-                double distEarth = (Math.Sqrt(Math.Pow(PS.EarthXPosition - PS.AlphaCentariXPosition, 2) + Math.Pow(PS.EarthYPosition - PS.AlphaCentariYPosition, 2)));
-                //1 fuel per 1 light year
-                int distanceEarthInt = Convert.ToInt32(distEarth);
-                distanceEarthInt -= MyCurrentFuel;
-            }
-
-
-
-            //alpha to m36
-            double distM63 = (Math.Sqrt(Math.Pow(PS.AlphaCentariXPosition - PS.M63XPosition, 2) + Math.Pow(PS.AlphaCentariYPosition - PS.M63YPosition, 2)));
-            int distanceM63Int = Convert.ToInt32(distM63);
-            distanceM63Int -= MyCurrentFuel;
+            Console.WriteLine($"Your current fuel level is: {MyCurrentFuel} How much fuel would you like to buy?");
+            int response = Convert.ToInt32(Console.ReadLine());
+            if (response )
+            MyCurrentFuel += response;
             return MyCurrentFuel;
         }
 
-        public int Fuel 
 
-    */
+        public int fuelCost = 5;
+
+        public int FuelCost
+        {
+            get
+            {
+                return fuelCost;
+            }
+            set
+            {
+                if (value != 5)
+                {
+                    throw new Exception("You can't change the value of fuel");
+                }
+
+            }
+        }
+
+
+
+
+
+
+
+
+        //Reduce current fuel per planet travel
+        public int ReduceFull(PersonalStatus ps, PlanetInfo pi)
+        {
+           
+            double xAxisPlanet1 = 0.0;
+            double yAxisPlanet1 = 0.0;
+
+            double xAxisPlanet2 = 0.0;
+            double yAxisPlanet2 = 0.0;
+
+
+
+               myCurrentFuel -= Convert.ToInt32(Math.Sqrt(Math.Pow(xAxisPlanet1 - xAxisPlanet2, 2) + Math.Pow(yAxisPlanet1 - yAxisPlanet2, 2)));
+
+                return myCurrentFuel;
+
+            
+        }
+
+
+
+
     }
 }

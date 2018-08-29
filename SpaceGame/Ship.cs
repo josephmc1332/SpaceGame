@@ -8,14 +8,14 @@ namespace SpaceGame
 {
     class Ship
     {
-        /// <summary>
-        /// Camel
-        /// </summary>
+        
         public string ShipName { get; set; }
 
         public int ShipSpeed { get; set; }
 
         public int ShipCapacity { get; set; }
+
+        public int ShipFuelMax { get; set; }
 
 
         /// <summary>
@@ -27,6 +27,7 @@ namespace SpaceGame
 
         public int InterstellarConnexCost { get; set; }
 
+        public int InterstellarFuelMax { get; set; }
 
         /// <summary>
         /// StarWagon Specs
@@ -36,6 +37,8 @@ namespace SpaceGame
         public int StarWagonCapacity { get; set; }
 
         public int StarWagonCost { get; set; }
+
+        public int StarWagonFuelMax { get; set; }
 
         /// <summary>
         /// constructor
@@ -49,6 +52,8 @@ namespace SpaceGame
 
             this.ShipSpeed = 5;
 
+            this.ShipFuelMax = 10;
+
 
             //Interstellar connex ship
             this.InterstellarConnexCapacity = 10;
@@ -57,12 +62,16 @@ namespace SpaceGame
 
             this.InterstellarConnexCost = 600;
 
+            this.InterstellarFuelMax = 30;
+
             //StarWagon Ship
             this.StarWagonCapacity = 6;
 
             this.StarWagonSpeed = 8;
 
             this.StarWagonCost = 1200;
+
+            this.StarWagonFuelMax = 50;
 
         }
 

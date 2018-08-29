@@ -30,11 +30,7 @@ namespace SpaceGame
 
             //user info
             this.MyName = "Trader";
-
-
-            
-
-            
+      
 
         }
         public double MyLocation { get; set; }
@@ -54,10 +50,6 @@ namespace SpaceGame
         public string MyName            { get; set; }
         public double MyTravelTime      { get; set; }
         public string MyCurrentLocation { get; set; }
-
-      
-        
-
 
 
 

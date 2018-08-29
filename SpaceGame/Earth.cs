@@ -14,6 +14,7 @@ namespace SpaceGame
         UtilityMethods UM = new UtilityMethods();
         Ship ship = new Ship();
         PlanetInfo PI = new PlanetInfo();
+        Fuel fuel;
         public void FirstPage()
         {
             Console.Write("\n\n\n" +
@@ -84,7 +85,7 @@ namespace SpaceGame
             Console.Clear();
 
             //display menu on earth upon arrival
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine("\n\n" +
                 "\t'Welcome to Earth!' earth ambassador Will Smith says dressed in his now \n" +
                 "\ticonic US Air Force pilots uniform'Home planet of us Humans.' He smiles \n" +
@@ -156,14 +157,14 @@ namespace SpaceGame
         public void Bank()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             UM.BankDisplay(PS);
             EarthPage();
         }
         public void ShipYard()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             // write flavor text about shipyard
             Console.WriteLine("\n\n" +
                 "\tYou walk into the Shipyard, the sound of welders and hammers fills the air. Ship salesman \n" +
