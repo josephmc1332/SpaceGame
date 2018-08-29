@@ -86,10 +86,10 @@ namespace SpaceGame
 
 
             //Asgard Location
-            double axpositon     = rnd.Next(8, 11);
+            double axpositon     = rnd.Next(8, 13);
             this.AsgardXPosition = axpositon;
 
-            double ayposition    = rnd.Next(5, 7);
+            double ayposition    = rnd.Next(5, 9);
             this.AsgardYPosition = ayposition;
 
 
@@ -100,7 +100,7 @@ namespace SpaceGame
             this.PlanetXYPosition = -1;
 
             //Planet Joe position
-            int jxposition = rnd.Next(0, 3);
+            int jxposition = rnd.Next(-1, 4);
             this.PlanetJoeXPosition = jxposition;
 
             int jyposition = rnd.Next(13, 17);

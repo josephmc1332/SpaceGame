@@ -14,7 +14,7 @@ namespace SpaceGame
         UtilityMethods UM = new UtilityMethods();
         Ship ship = new Ship();
         PlanetInfo PI = new PlanetInfo();
-        Fuel fuel;
+        Fuel fuel = new Fuel();
         public void FirstPage()
         {
             Console.Write("\n\n\n" +
@@ -176,9 +176,9 @@ namespace SpaceGame
                 "\t\t  3 Return to planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
-                SY.ShipCheck(PS, ship, UM);
+                SY.ShipCheck(PS, ship, UM, fuel);
             if (response == 2)
-                SY.PurchaseShip(PS, ship, UM);
+                SY.PurchaseShip(PS, ship, UM, fuel);
             if (response == 3)
                 LandingPagePicker();
         }
@@ -193,20 +193,15 @@ namespace SpaceGame
                 "\tis made from light enhanced fabric that shines even in the dark. He smiles at you his dirty \n" +
                 "\tblond scruff offsetting his brigthly whitened teeth. 'I've got all the Space Gold and TVs a \n" +
                 "\ttrader like you could ever want, and have you seen these new zero grav shoes? They are all \n" +
-                "\tthe rage out on the larger planets.\n\n" +
-                "\t\tWhat would you like to do?\n" +
-                "\t\t  1 Buy Cargo\n" +
-                "\t\t  2 Sell Cargo\n" +
-                "\t\t  3 Return to planetary hub");
-            int response = Convert.ToInt32(Console.ReadLine());
-            bool purchase = response == 1;
-            bool offload = response == 2;
-            bool Return = response == 3;
-            if (purchase)
+                "\tthe rage out on the larger planets.\n\n");
+            int response = UM.ShopSelector();
+            if (response == 1)
                 Buy();
-            if (offload)
+            if (response == 2)
                 Sell();
-            if (Return)
+            if (response == 3)
+                fuel.BuyFuel(PS, ship);
+            if (response == 4)
                 EarthPage();
         }
         public void Buy()
@@ -220,13 +215,8 @@ namespace SpaceGame
                 $"\t 3 Galactic TV 120 GC per Unit \n" +
                 $"\t 4 Return to Planetary Menu");
             int response = Convert.ToInt32(Console.ReadLine());
-            bool Shoes = response == 1;
-            bool Gold = response == 2;
-            bool TV = response == 3;
-            bool Return = response == 4;
-
             //Buy Shoes
-            if (Shoes)
+            if (response == 1)
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
@@ -256,7 +246,7 @@ namespace SpaceGame
                 Buy();
             }
             //Buy Gold
-            if (Gold)
+            if (response == 2)
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
@@ -285,7 +275,7 @@ namespace SpaceGame
                 Buy();
             }
 
-            if (TV)
+            if (response ==3)
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
@@ -317,7 +307,7 @@ namespace SpaceGame
                 Buy();
             }
 
-            if (Return)
+            if (response == 4)
             {
                 Shop();
             }
@@ -428,49 +418,30 @@ namespace SpaceGame
         }
         public void EarthPort()
         {
-            double distAlphaCentari = (Math.Sqrt(Math.Pow(PI.EarthXPosition - PI.AlphaCentariXPosition, 2) + Math.Pow(PI.EarthYPosition - PI.AlphaCentariYPosition, 2)));
-            double distM63 = (Math.Sqrt(Math.Pow(PI.EarthXPosition - PI.M63XPosition, 2) + Math.Pow(PI.EarthYPosition - PI.M63YPosition, 2)));
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
                 $"\tWhere would you like to go? \n" +
-                $"\t\t1 Alpha Centari: {distAlphaCentari} Light years away which will take {distAlphaCentari / playerWarpSpeed} years\n" +
-                $"\t\t2 M63: {distM63} Light years away which will take {distM63 / playerWarpSpeed} years\n" +
+                $"\t\t1 Alpha Centari: {UM.PlanetDistance(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition) / playerWarpSpeed} years\n" +
+                $"\t\t2 M63: {UM.PlanetDistance(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition) / playerWarpSpeed} years\n" +
                 $"\t\t3 Return to earth");
             int response = Convert.ToInt32(Console.ReadLine());
-            bool travelAlpha = response == 1;
-            bool travelM63 = response == 2;
-            bool Return = response == 3;
-            if (travelAlpha)
-            {           
-                PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
-                if ((distAlphaCentari / playerWarpSpeed) + PS.MyTravelTime > 40.0)
-                {
-                    GO.Retire(PS, ship);
-                }
+            if (response == 1)
+            {
+                UM.PlanetTravel(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
                 UM.Travel(PS);
-                Console.WriteLine($"The journey takes you {distAlphaCentari / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
-                    $"You arrive on ALpha Centari");
-                Console.ReadLine();
                 AlphaCentariPage();
             }
-            if (travelM63)
+            if (response == 2)
             {
-                PS.MyTravelTime += (distM63 / playerWarpSpeed); 
-                if (PS.MyTravelTime > 40.0)
-                {
-                    GO.Retire(PS, ship);
-                }
+                UM.PlanetTravel(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel);
                 UM.Travel(PS);
-                Console.WriteLine($"The jouney take you {distM63 / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
-                    $"You arrive on M63");
-                Console.ReadLine();
                 M63Page();
             }
-            if (Return)
+            if (response == 3)
             {
-                EarthPage();
+                return;
             }
         }
 
@@ -553,9 +524,9 @@ namespace SpaceGame
                 "\t\t 3 Return to planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
-                SY.ShipCheck(PS, ship, UM);
+                SY.ShipCheck(PS, ship, UM, fuel);
             if (response == 2)
-                SY.PurchaseShip(PS, ship, UM);
+                SY.PurchaseShip(PS, ship, UM, fuel);
             if (response == 3)
                 LandingPagePicker();
         }
@@ -572,11 +543,13 @@ namespace SpaceGame
             bool purchase = response == 1;
             bool offload = response == 2;
             bool Return = response == 3;
-            if (purchase)
+            if (response == 1)
                 AlphaBuy();
-            if (offload)
+            if (response == 2)
                 AlphaSell();
-            if (Return)
+            if (response == 3)
+                fuel.BuyFuel(PS, ship);
+            if (response == 4)
                 AlphaCentariPage();
         }
         public void AlphaBank()
@@ -784,9 +757,7 @@ namespace SpaceGame
         }
         public void AlphaCentariPort()
         {
-            double distEarth = (Math.Sqrt(Math.Pow(PI.EarthXPosition - PI.AlphaCentariXPosition, 2) + Math.Pow(PI.EarthYPosition - PI.AlphaCentariYPosition, 2)));
             
-            double distM63 = (Math.Sqrt(Math.Pow(PI.AlphaCentariXPosition - PI.M63XPosition, 2) + Math.Pow(PI.AlphaCentariYPosition - PI.M63YPosition, 2)));
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
             Console.WriteLine($"" +
@@ -794,41 +765,24 @@ namespace SpaceGame
                 $"Ports like this always make you miss home a little but the dream of the \n" +
                 $"Dukedom of Mercury and the thoughts of your upcoming(hopefully)\n" +
                 $"nuptuals drive you forward." +
-                $"\nWhere would you like to go? \n\t1 Earth: {distEarth} Light years away which will take {distEarth / playerWarpSpeed} years" +
-                $"\n\t2 M63: {distM63} Light years away which will take {distM63 / playerWarpSpeed} years\n\t3 Return to Macawalani, the Capital of Centari IV");
+                $"\nWhere would you like to go? \n\t1 Earth: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.EarthXPosition,PI.AlphaCentariYPosition, PI.EarthYPosition)} Light years away which will take {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition) / playerWarpSpeed} years" +
+                $"\n\t2 M63: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition) / playerWarpSpeed} years\n\t3 Return to Macawalani, the Capital of Centari IV");
             int response = Convert.ToInt32(Console.ReadLine());
-            bool travelEarth = response == 1;
-            bool travelM63 = response == 2;
-            bool Return = response == 3;
-            if (travelEarth)
+            if (response == 1)
             {
-                PS.MyTravelTime += (distEarth / playerWarpSpeed);
-                if (PS.MyTravelTime > 40.0)
-                {
-                    GO.Retire(PS, ship);
-                }
+                UM.PlanetTravel(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel);
                 UM.Travel(PS);
-                Console.WriteLine($"The journey takes you {distEarth / playerWarpSpeed} years you have been traveling for {PS.MyTravelTime} years now.\n" +
-                    $"You arrive on Earth");
-                Console.ReadLine();
                 EarthPage();
             }
-            if (travelM63)
+            if (response == 2)
             {
-                PS.MyTravelTime += (distM63 / playerWarpSpeed);
-                if (PS.MyTravelTime > 40.0)
-                {
-                    GO.Retire(PS, ship);
-                }
+                UM.PlanetTravel(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition, ship, PS, fuel);
                 UM.Travel(PS);
-                Console.WriteLine($"The journey takes you {distM63 / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
-                    $"You arrive on M63");
-                Console.ReadLine();
                 M63Page();
             }
-            if (Return)
+            if (response == 3)
             {
-                AlphaCentariPage();
+                return;
             }
         }
         #endregion
@@ -933,11 +887,13 @@ namespace SpaceGame
             bool purchase = response == 1;
             bool offload = response == 2;
             bool Return = response == 3;
-            if (purchase)
+            if (response == 1)
                 M63Buy();
-            if (offload)
+            if (response == 2)
                 M63Sell();
-            if (Return)
+            if (response == 3)
+                fuel.BuyFuel(PS, ship);
+            if (response == 4)
                 M63Page();
         }
         public void M63Buy()
@@ -1175,9 +1131,9 @@ namespace SpaceGame
                 " 3 Return to planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
-                SY.ShipCheck(PS, ship, UM);
+                SY.ShipCheck(PS, ship, UM, fuel);
             if (response == 2)
-                SY.PurchaseShip(PS, ship, UM);
+                SY.PurchaseShip(PS, ship, UM, fuel);
             if (response == 3)
                 LandingPagePicker();
         }
@@ -1250,9 +1206,9 @@ namespace SpaceGame
             $"\t\t3 Return to the Planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
-                SY.ShipCheck(PS, ship, UM);
+                SY.ShipCheck(PS, ship, UM, fuel);
             if (response == 2)
-                SY.PurchaseShip(PS, ship, UM);
+                SY.PurchaseShip(PS, ship, UM, fuel);
             if (response == 3)
                 LandingPagePicker();
         }
@@ -1296,6 +1252,9 @@ namespace SpaceGame
                 AsgardSell();
 
             if (response == 3)
+                fuel.BuyFuel(PS, ship);
+
+            if (response == 4)
                 AsgardPage();
         }
 

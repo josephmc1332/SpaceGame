@@ -9,9 +9,9 @@ namespace SpaceGame
     class Fuel
     {
         PersonalStatus PS = new PersonalStatus();
-        Earth EA = new Earth();
+       
 
-        private int myCurrentFuel = 0;
+        
 
 
         /// <summary>
@@ -86,12 +86,13 @@ namespace SpaceGame
 
 
 
-               myCurrentFuel -= Convert.ToInt32(Math.Sqrt(Math.Pow(xAxisPlanet1 - xAxisPlanet2, 2) + Math.Pow(yAxisPlanet1 - yAxisPlanet2, 2)));
+               MyCurrentFuel -= Convert.ToInt32(Math.Sqrt(Math.Pow(xAxisPlanet1 - xAxisPlanet2, 2) + Math.Pow(yAxisPlanet1 - yAxisPlanet2, 2)));
 
-                return myCurrentFuel;
+                return MyCurrentFuel;
 
             
         }
+        
 
 
 

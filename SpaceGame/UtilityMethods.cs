@@ -49,7 +49,7 @@ namespace SpaceGame
         public void InventoryDisplay(PersonalStatus ps, Ship ship, Fuel fuel)
         {
             Console.WriteLine($"Space Gold: {ps.SpaceGold} No Balanace Shoes: {ps.NoBalanaceShoes} Galactic TVs: {ps.GalacticTVs} " +
-                $"Galactic Credits: {ps.MyCurrentCredit} Current Ship: {ship.ShipName} Current Fuel: {fuel.MyCurrentFuel} Cargo Space: {ship.ShipCapacity - (ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs)}\n");
+                $"Galactic Credits: {ps.MyCurrentCredit} \nCurrent Ship: {ship.ShipName} Current Fuel: {fuel.MyCurrentFuel} Cargo Space: {ship.ShipCapacity - (ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs)}\n");
         }
         // travel between the stars can be dangerous
         public void Travel(PersonalStatus ps)
@@ -137,6 +137,19 @@ namespace SpaceGame
             $"\t\t 3 Return to planetary menu");
             int response = Convert.ToInt32(Console.ReadLine());
             return response;
+        }
+        public void PlanetTravel(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety, Ship ship, PersonalStatus PS, Fuel fuel)
+        {
+            double distTraveled = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
+            double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
+            double time = playerWarpSpeed / distTraveled;
+            PS.MyTravelTime += time;
+            fuel.MyCurrentFuel -= (int)(distTraveled);
+        }
+        public double PlanetDistance(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety)
+        {
+            double dist = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
+            return dist;
         }
     }
 }
