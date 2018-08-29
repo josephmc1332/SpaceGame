@@ -186,7 +186,7 @@ namespace SpaceGame
         public void Shop()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine("\n\n" +
                 "\t'Welcome to my little shop!' The man behind the counter says. His Earth flag bandana, a \n" +
                 "\tmodified version of Old Glory with the stars replaced with a picture of the planet earth, \n" +
@@ -212,7 +212,7 @@ namespace SpaceGame
         public void Buy()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
                 $"\tYou have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n" +
                 $"\t 1 NoBalanceShoes 80 GC per Unit\n" +
@@ -328,7 +328,7 @@ namespace SpaceGame
             int noShoes = 80;
             int gTV = 120;
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
                 $"\tYou have {PS.NoBalanaceShoes} pairs of No Balance Shoes, \n" +
                 $"\t{PS.SpaceGold} bars of Space Gold \n" +
@@ -405,7 +405,7 @@ namespace SpaceGame
         public void Market()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine("\n\n" +
                 "\tThe Galactic Stock exchange glitters and flashes, and down but you worry about the three perenial commodities.\n" +
                 "\tNo Balance Shoes, the zero gravity shoes that changed the way the galaxy moves. \n" +
@@ -432,7 +432,7 @@ namespace SpaceGame
             double distM63 = (Math.Sqrt(Math.Pow(PI.EarthXPosition - PI.M63XPosition, 2) + Math.Pow(PI.EarthYPosition - PI.M63YPosition, 2)));
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
                 $"\tWhere would you like to go? \n" +
                 $"\t\t1 Alpha Centari: {distAlphaCentari} Light years away which will take {distAlphaCentari / playerWarpSpeed} years\n" +
@@ -482,7 +482,7 @@ namespace SpaceGame
         {
             PS.MyCurrentLocation = "AlphaCentari";
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS,ship, fuel);
             Console.Write("\n\n" +
                 "\tWelcome to Alpha Centari! You stand in the port city of Macawalani. Centarian birdpeople fly to and fro. \n" +
                 "\tYou spot a few pairs of No Balances here and there but whats the point when you have wings? \n" +
@@ -541,7 +541,7 @@ namespace SpaceGame
         public void AlphaYard()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             // write flavor text about shipyard
             Console.WriteLine("\n\n" +
                 "\tYou walk into the Shipyard, the sound of welders and hammers fills the air. Ship\n" +
@@ -566,7 +566,7 @@ namespace SpaceGame
             Console.WriteLine("You arrive at the shop on Alpha Centari. The owner, Brahman welcomes you. What's up, mane you know that we have the highest quality " +
                 "\ngold in the universe!");
             Console.ReadLine();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine("What would you like to do?\n 1 Buy Cargo\n 2 Sell Cargo\n 3 Return to Macawalani streets");
             int response = Convert.ToInt32(Console.ReadLine());
             bool purchase = response == 1;
@@ -582,7 +582,7 @@ namespace SpaceGame
         public void AlphaBank()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"Welcome to the Galactic Bank of Centari Four!\nBehind the counter is an tall old bird, his specticles are low on his beak and attached to his head by a gold chain.\n" +
                 $"The high ceilings make room for doors on many levels but with no visable landing, of course ground based humans like you have to come in through the 'walkers' door.\n");
             UM.BankDisplay(PS);
@@ -592,7 +592,7 @@ namespace SpaceGame
         public void AlphaBuy()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
                 $"1 NoBalanceShoes {PI.AlphaCentariNoBalanceShoes} GC per Unit\n 2 Space Gold {PI.AlphaCentariGold} GC per Unit\n 3 Galactic TV {PI.AlphaCentariGalacticTVs} GC per Unit \n 4 " +
                 $"Return to the Shop");
@@ -701,7 +701,7 @@ namespace SpaceGame
         public void AlphaSell()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"You have {PS.NoBalanaceShoes} pairs of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} sets of Galactic TVs." +
                 $" Which would you like to sell?\n 1 No Balance Shoes\n 2 Space Gold\n 3 Galactic TVs\n 4 or Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
@@ -771,7 +771,7 @@ namespace SpaceGame
         public void AlphaMarket()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"The city of Macawalani on Centari IV has the largest stock exchange for a light year in any direction.\n" +
                 $"But unlike the exchanges of earth it's nearly silent in the exchange. The Centarians are famously capatalistic and the \nMacawalani exchange is almost" +
                 $"like a temple. But it takes you hardly any time at all to find the entries of your\nclassic moneymakers..." +
@@ -839,7 +839,7 @@ namespace SpaceGame
         {
             PS.MyCurrentLocation = "M63";
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine("" +
                 "Welcome to the star system M63, named for Messier star cluster circling a black hole.\n" +
                 "As you walk into the streets the first thing that you notice is that everything is\n" +
@@ -911,7 +911,7 @@ namespace SpaceGame
         public void M63Bank()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"" +
                 $"Tall white columns frame the door to the Messinese Galactic Bank branch.\n" +
                 $"Men and women dressed in all white are coming and going from the inside.\n" +
@@ -927,7 +927,7 @@ namespace SpaceGame
             Console.WriteLine("You've arrived at the shop on M63. Niko, the owner welcomes you to look around at all the goods." +
                 "\nWe've got the highest quality TV's in the universe!");
             Console.ReadLine();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine("What would you like to do?\n 1 Buy Cargo\n 2 Sell Cargo\n 3 Return to the streets of M63");
             int response = Convert.ToInt32(Console.ReadLine());
             bool purchase = response == 1;
@@ -943,7 +943,7 @@ namespace SpaceGame
         public void M63Buy()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
                 $"1 NoBalanceShoes {PI.M63NoBalanceShoes} GC per Unit\n 2 Space Gold {PI.M63SpaceGold} GC per Unit\n 3 Galactic TV {PI.M63GalacticTVs} GC per Unit \n 4 " +
                 $"Return to Planetary Menu");
@@ -1052,7 +1052,7 @@ namespace SpaceGame
         public void M63Sell()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"You have {PS.NoBalanaceShoes} pairs of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} sets of Galactic TVs." +
                 $" Which would you like to sell?\n 1 No Balance Shoes\n 2 Space Gold\n 3 Galactic TVs\n 4 or Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
@@ -1124,7 +1124,7 @@ namespace SpaceGame
             double distEarth = (Math.Sqrt(Math.Pow(PI.EarthXPosition - PI.M63XPosition, 2) + Math.Pow(PI.EarthYPosition - PI.M63YPosition, 2)));
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"Where would you like to go? \n\t1 Alpha Centari: {distAlphaCentari} Light years away which will take {distAlphaCentari / playerWarpSpeed} years" +
                 $"\n\t2 Earth: {distEarth} Light years away which will take {distEarth / playerWarpSpeed} years\n\t3 Return to earth");
             int response = Convert.ToInt32(Console.ReadLine());
@@ -1165,7 +1165,7 @@ namespace SpaceGame
         public void M63ShipYard()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             // write flavor text about shipyard
             Console.WriteLine("You walk into the Shipyard, the sound of welders and hammers fills the air. Ship salesman are weaving in and out of" +
                 "the ships pushing their latest ship on travelers all the while dodging the laborers.\n" +
@@ -1200,7 +1200,7 @@ namespace SpaceGame
         {
             PS.MyCurrentLocation = "Asgard";
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"" +
             $"Golden spires and beautiful vistas greet you as soon as you land. The rainbow\n" +
             $"bifrost is visable in the distance. It's as beautiful as you always imagined it\n" +
@@ -1237,7 +1237,7 @@ namespace SpaceGame
         public void AsgardShipyard()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
             $"\tYou walk into the shipyard of Asgard and are greeted by a man who looks like he\n" +
             $"\tstepped right out of an old Norse myth. He smiles through his huge beard, 'Greetings\n" +
@@ -1262,7 +1262,7 @@ namespace SpaceGame
         public void AsgardBank()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"" +
             $"You walk into the bank which is easily one of the most expensive buildings you've ever" +
             $"been in. It seems everything in Asgard is either a deadly steel blade or made entirely" +
@@ -1276,7 +1276,7 @@ namespace SpaceGame
         public void AsgardShop()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"" +
             $"The shop is more of the same, boisterous bearded men and impossibly tall women crowd the\n" +
             $"marketplace. The vendor you've chosen as your dealer for the items you want is 'Ruslagg God\n" +
@@ -1302,7 +1302,7 @@ namespace SpaceGame
         public void AsgardBuy()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"" +
             $"You have {PS.MyCurrentCredit} Galactic Credits What would you like to buy?\n" +
             $" 1 No Balance Shoes for {PI.AsgardNoBalanceShoes} GC\n" +
@@ -1323,7 +1323,7 @@ namespace SpaceGame
         public void BuyAsgardShoes()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS,ship, fuel);
             Console.WriteLine($"How many No Balance Shoes would you like to buy for {PI.AsgardNoBalanceShoes} GC?");
             int quantity = Convert.ToInt32(Console.ReadLine());
             if ((quantity + PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs) > ship.ShipCapacity)
@@ -1353,7 +1353,7 @@ namespace SpaceGame
         public void BuyAsgardGold()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"How much Space Gold would you like to buy for {PI.AsgardGold} GC?");
             int quantity = Convert.ToInt32(Console.ReadLine());
             if ((quantity + PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs) > ship.ShipCapacity)
@@ -1382,7 +1382,7 @@ namespace SpaceGame
         public void BuyAsgardTV()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS,ship, fuel);
             Console.WriteLine($"How many Galactic TVs would you like to buy for {PI.AsgardGalacticTVs} GC?");
             int quantity = Convert.ToInt32(Console.ReadLine());
             if ((quantity + PS.SpaceGold + PS.NoBalanaceShoes + PS.GalacticTVs) > ship.ShipCapacity)
@@ -1413,7 +1413,7 @@ namespace SpaceGame
         public void AsgardSell()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"" +
             $"You have {PS.NoBalanaceShoes} Shoes, {PS.SpaceGold} bars of Space Gold and {PS.GalacticTVs} Galactic TVs\n" +
             $"What would you like to sell?\n" +
@@ -1435,7 +1435,7 @@ namespace SpaceGame
         public void SellAsgardShoes()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS,ship, fuel);
             Console.WriteLine($"How many shoes do you want to sell?");
             int quantity = Convert.ToInt32(Console.ReadLine());
             if (quantity > PS.NoBalanaceShoes)
@@ -1455,7 +1455,7 @@ namespace SpaceGame
         public void SellAsgardGold()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"How much Space Gold do you want to sell?");
             int quantity = Convert.ToInt32(Console.ReadLine());
             if (quantity > PS.SpaceGold)
@@ -1474,7 +1474,7 @@ namespace SpaceGame
         public void SellAsgardTV()
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"How many Galactic TVs do you want to sell?");
             int quantity = Convert.ToInt32(Console.ReadLine());
             if (quantity > PS.GalacticTVs)
