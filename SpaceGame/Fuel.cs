@@ -27,13 +27,25 @@ namespace SpaceGame
 
 
 
-        public int BuyFuel(PersonalStatus ps)
+        public void BuyFuel(PersonalStatus ps, Ship ship)
         {
             Console.WriteLine($"Your current fuel level is: {MyCurrentFuel} How much fuel would you like to buy?");
             int response = Convert.ToInt32(Console.ReadLine());
-            if (response )
-            MyCurrentFuel += response;
-            return MyCurrentFuel;
+            if (response + MyCurrentFuel > ship.ShipFuelMax)
+            {
+                Console.WriteLine($"You dont have the capacity for that, You are ready have {MyCurrentFuel} and only a max of {ship.ShipFuelMax}");
+                Console.ReadLine();
+                BuyFuel(ps, ship);
+            }
+            if (response + MyCurrentFuel <= ship.ShipFuelMax)
+            {
+                MyCurrentFuel += response;
+                Console.WriteLine($"You now have {MyCurrentFuel} amount of fuel.");
+                return;
+            }
+            else
+                return;
+                
         }
 
 

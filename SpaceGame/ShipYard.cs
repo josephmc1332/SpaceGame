@@ -8,10 +8,10 @@ namespace SpaceGame
 {
     class ShipYard
     {
-        public void PurchaseShip(PersonalStatus PS, Ship ship, UtilityMethods UM)
+        public void PurchaseShip(PersonalStatus PS, Ship ship, UtilityMethods UM, Fuel fuel)
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             //display the users current ship and credits. Ship selections with price
             Console.WriteLine($"\n\n" +
                 $"\tYou currently own the {ship.ShipName}, which is a great ship, but it's time to upgrade... \n" +
@@ -107,10 +107,10 @@ namespace SpaceGame
                 return;
             }
         }
-        public void ShipCheck(PersonalStatus PS, Ship ship, UtilityMethods UM)
+        public void ShipCheck(PersonalStatus PS, Ship ship, UtilityMethods UM, Fuel fuel)
         {
             Console.Clear();
-            UM.InventoryDisplay(PS);
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
                 $"\tYou arrive at your personal hanger, you ship, a {ship.ShipName} the SS {PS.MyName}, stands \n" +
                 $"\tbefore you gleaming in the artificail lights of the hanger. \n" +

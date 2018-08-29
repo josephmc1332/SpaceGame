@@ -8,7 +8,9 @@ namespace SpaceGame
 {
     class Ship
     {
-        
+        /// <summary>
+        /// Current ship specs
+        /// </summary>
         public string ShipName { get; set; }
 
         public int ShipSpeed { get; set; }
@@ -17,6 +19,19 @@ namespace SpaceGame
 
         public int ShipFuelMax { get; set; }
 
+        
+
+
+        /// <summary>
+        /// Camel specs
+        /// </summary>
+        public int CamelSpeed { get; set; }
+
+        public int CamelCapacity { get; set; }
+
+        public int CamelCost { get; set; }
+
+        public int CamelFuelMax { get; set; }
 
         /// <summary>
         /// InterstellarConnex Specs
@@ -45,7 +60,7 @@ namespace SpaceGame
         /// </summary>
         public Ship()
         {
-            //Camel ship
+            //current ship
             this.ShipCapacity = 5;
 
             this.ShipName = "Camel";
@@ -54,6 +69,18 @@ namespace SpaceGame
 
             this.ShipFuelMax = 10;
 
+           
+
+
+
+            //Camel
+            this.CamelCapacity = 5;
+
+            this.CamelSpeed = 5;
+
+            this.CamelCost = 0;
+
+            this.CamelFuelMax = 10;
 
             //Interstellar connex ship
             this.InterstellarConnexCapacity = 10;
