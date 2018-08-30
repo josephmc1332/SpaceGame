@@ -75,7 +75,7 @@ namespace SpaceGame
         public void InventoryDisplay(PersonalStatus ps, Ship ship, Fuel fuel)
         {
             Console.WriteLine($"Space Gold: {ps.SpaceGold} No Balanace Shoes: {ps.NoBalanaceShoes} Galactic TVs: {ps.GalacticTVs} " +
-                $"Galactic Credits: {ps.MyCurrentCredit} \nCurrent Ship: {ship.ShipName} Current Fuel: {fuel.MyCurrentFuel} Cargo Space: {ship.ShipCapacity - (ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs)}\n");
+                $"Galactic Credits: {ps.Cash()} \nCurrent Ship: {ship.ShipName} Current Fuel: {fuel.MyCurrentFuel} Cargo Space: {ship.ShipCapacity - (ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs)}\n");
         }
 
         // travel between the stars can be dangerous

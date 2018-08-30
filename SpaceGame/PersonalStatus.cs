@@ -30,7 +30,7 @@ namespace SpaceGame
 
             //user info
             this.MyName = "Trader";
-      
+
 
         }
         public double MyLocation { get; set; }
@@ -39,21 +39,32 @@ namespace SpaceGame
         /// <summary>
         /// goods
         /// </summary>
-        public int SpaceGold        { get; set; }
-        public int NoBalanaceShoes  { get; set; }
-        public int GalacticTVs      { get; set; }
+        public int SpaceGold { get; set; }
+        public int NoBalanaceShoes { get; set; }
+        public int GalacticTVs { get; set; }
 
         /// <summary>
         /// Personal Info
         /// </summary>
-        public int MyCurrentCredit      { get; set; }
-        public string MyName            { get; set; }
-        public double MyTravelTime      { get; set; }
+        public int MyCurrentCredit { get; set; }
+        public string MyName { get; set; }
+        public double MyTravelTime { get; set; }
         public string MyCurrentLocation { get; set; }
 
+        public void SpendMoney(int costOfItem)
+        {
+            MyCurrentCredit -= costOfItem;
+        }
 
+        public void EarnMoney(int profit)
+        {
+            MyCurrentCredit += profit;
+        }
 
-
+        public int Cash()
+        {
+            return MyCurrentCredit;
+        }
 
 
 
