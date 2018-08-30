@@ -8,9 +8,9 @@ namespace SpaceGame
 {
     class Asgard
     {
-        Earth Earth;
+        
 
-        public void AsgardPage(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, GameOver GO, ShipYard SY, PlanetInfo PI, Shop Shop)
+        public void AsgardPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
         {
             PS.MyCurrentLocation = "Asgard";
             Console.Clear();
@@ -265,7 +265,7 @@ namespace SpaceGame
                     UM.PlanetTravel(PI.AsgardXPosition, PI.AlphaCentariXPosition, PI.AsgardYPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
                     UM.Travel(PS);
                     PS.MyCurrentLocation = "AlphaCentari";
-                    Earth.LandingPagePicker();
+                    LP.LandingPagePicker();
                 }
                 if (UM.FuelCheck(PI.AsgardXPosition, PI.AlphaCentariXPosition, PI.AsgardYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -280,7 +280,7 @@ namespace SpaceGame
                     UM.PlanetTravel(PI.AsgardXPosition, PI.M63XPosition, PI.AsgardYPosition, PI.M63YPosition, ship, PS, fuel);
                     UM.Travel(PS);
                     PS.MyCurrentLocation = "M63";
-                    Earth.LandingPagePicker();
+                    LP.LandingPagePicker();
                 }
                 if (UM.FuelCheck(PI.AsgardXPosition, PI.M63XPosition, PI.AsgardYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -295,7 +295,7 @@ namespace SpaceGame
                     UM.PlanetTravel(PI.AsgardXPosition, PI.EarthXPosition, PI.AsgardYPosition, PI.EarthYPosition, ship, PS, fuel);
                     UM.Travel(PS);
                     PS.MyCurrentLocation = "Earth";
-                    Earth.LandingPagePicker();
+                    LP.LandingPagePicker();
                 }
                 if (UM.FuelCheck(PI.AsgardXPosition, PI.EarthXPosition, PI.AsgardYPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
                 {

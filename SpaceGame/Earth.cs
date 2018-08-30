@@ -8,76 +8,10 @@ namespace SpaceGame
 {
     class Earth
     {
-        Shop Shop = new Shop();
-        ShipYard SY = new ShipYard();
-        GameOver GO = new GameOver();
-        PersonalStatus PS = new PersonalStatus();
-        UtilityMethods UM = new UtilityMethods();
-        Ship ship = new Ship();
-        PlanetInfo PI = new PlanetInfo();
-        Fuel fuel = new Fuel();
-        Asgard Asgard = new Asgard();
-
-        public void FirstPage()
-        {
-            Console.Write("\n\n\n" +
-                "\t\t\t\t                  D U K E                  \n" +
-                "\t\t\t\t                    O F                    \n" +
-                "\t\t\t\t               M E R C U R Y               \n" +
-                "\t\t\t\t  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-                "\t\t\t\t |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n" +
-                "\t\t\t\t | |   .      .  _____________  .     *   ||\n" +
-                "\t\t\t\t | |     *      / _    \\    \\ \\  .        ||\n" +
-                "\t\t\t\t | |  .        / /#\\    \\    \\ \\__    *   ||\n" +
-                "\t\t\t\t | |    .  *  | |##|    |    | |##\\       ||\n" +
-                "\t\t\t\t | |#####     | |##|    |    | |###\\      ||\n" +
-                "\t\t\t\t | |######   _|_|##|____|____|_|####\\     ||\n" +
-                "\t\t\t\t | |#######<| | //\\ | /\\\\    CAMEL   |    ||\n" +
-                "\t\t\t\t | |#######<|_|||  \\|/ ||____________|    ||\n" +
-                "\t\t\t\t | |######   . ||  /*\\ ||     * .    *    ||\n" +
-                "\t\t\t\t | |#####  .    \\\\/_|_\\//                 ||\n" +
-                "\t\t\t\t | |   *     .   -------     .     *    . ||\n" +
-                "\t\t\t\t | |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~||\n" +
-                "\t\t\t\t |_~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n\n" +
-                "\t\t\t\t  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" +
-                "\n\t\t\t\t    Hello, welcome to Duke Of Mercury!\n" +
-                "\t\t\t\t  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-                "\t\t\t\t\t   What is your name? ");
-
-            //user name
-            PS.MyName = Console.ReadLine();
-            PS.MyCurrentCredit = 300;
-            //clears the text
-            Console.Clear();
-
-            //add story here
-            Console.WriteLine($"\n\n\n\n" +
-                $"\t\tOkay, {PS.MyName}. You were engaged to Venusian royalty but the king of Venus has forbidden your beloved \n" +
-                $"\t\tto marry a mere commoner like yourself. But there is even worse news! \n" +
-                $"\t\tYour beloved has other interested parties, and what's worse is they are already nobility. \n" +
-                $"\t\tBut you are in luck there is a way to buy into galactic nobility, but it's going to be a lot of work. \n" +
-                $"\t\tYou've got a {ship.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, \n" +
-                $"\t\tso get out there and get to trading, {PS.MyName}!\n\n" +
-                $"\n\n\n\n\n\n\n\n\t\t\tPress enter to continue past this or any screen in this game.");
-
-            Console.ReadLine();
-        }
-
-        public void LandingPagePicker()
-        {
-            if (PS.MyCurrentLocation == "Earth")
-                EarthPage();
-            if (PS.MyCurrentLocation == "AlphaCentari")
-                AlphaCentariPage();
-            if (PS.MyCurrentLocation == "M63")
-                M63Page();
-            if (PS.MyCurrentLocation == "Asgard")
-                Asgard.AsgardPage(UM, PS, ship, fuel, GO, SY, PI, Shop);
-        }
-
+        
         #region Earth Page
 
-        public void EarthPage()
+        public void EarthPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
 
 
         {
@@ -108,7 +42,7 @@ namespace SpaceGame
             //send back to check selected option after invalid input
             try
             {
-                SelectEarthOptions();
+                SelectEarthOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
             }
 
             //display if invalid input
@@ -118,13 +52,13 @@ namespace SpaceGame
                 Console.ReadLine();
 
                 //recycle to Welcome to Earth after invalid entry  
-                EarthPage();
+                EarthPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
             }
 
 
 
         }
-        public void SelectEarthOptions()
+        public void SelectEarthOptions(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
         {
             //convert/parse user input string 
             int response = Convert.ToInt32(Console.ReadLine());
@@ -152,18 +86,18 @@ namespace SpaceGame
             {
                 //loops back to the beginning of earth page
                 Console.WriteLine("invalid entry");
-                EarthPage();
+                EarthPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
             }
 
         }
-        public void Bank()
+        public void Bank(PersonalStatus PS, UtilityMethods UM, Ship ship, Fuel fuel)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             UM.BankDisplay(PS);
             return;
         }
-        public void ShipYard()
+        public void ShipYard(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, ShipYard SY)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -185,7 +119,7 @@ namespace SpaceGame
                 return;
         }
        
-        public void EarthShop()
+        public void EarthShop(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -206,7 +140,7 @@ namespace SpaceGame
             if (response == 4)
                 return;
         }
-        public void Buy()
+        public void Buy(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -238,7 +172,7 @@ namespace SpaceGame
                 return;
             }
         }
-        public void Sell()
+        public void Sell(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -320,7 +254,7 @@ namespace SpaceGame
             }
 
         }
-        public void Market()
+        public void Market(PersonalStatus PS, UtilityMethods UM, Ship ship, Fuel fuel, PlanetInfo PI)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -348,7 +282,7 @@ namespace SpaceGame
                 $"\t\tGalactic TVs: {PI.AsgardGalacticTVs}");
             Console.ReadLine();
         }
-        public void EarthPort()
+        public void EarthPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI)
         {
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
@@ -401,7 +335,8 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    Asgard.AsgardPage(UM, PS, ship, fuel, GO, SY, PI, Shop);
+                    PS.MyCurrentLocation = "Asgard";
+                    LP.LandingPagePicker();
                 }
                 if (UM.FuelCheck(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -419,7 +354,7 @@ namespace SpaceGame
 
         #region AlphaCentari
 
-        public void AlphaCentariPage()
+        public void AlphaCentariPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
         {
             PS.MyCurrentLocation = "AlphaCentari";
             Console.Clear();
@@ -444,7 +379,7 @@ namespace SpaceGame
                 "\t\t Enter your choice: ");
             AlphaCentariSelector();
         }
-        public void AlphaCentariSelector()
+        public void AlphaCentariSelector(GameOver GO, PersonalStatus PS, Ship ship)
         {
             
             int response = Convert.ToInt32(Console.ReadLine());
@@ -473,7 +408,7 @@ namespace SpaceGame
                 AlphaCentariPage();
             }
         }
-        public void AlphaYard()
+        public void AlphaYard(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, ShipYard SY, LandingPage LP)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -492,10 +427,10 @@ namespace SpaceGame
             if (response == 2)
                 SY.PurchaseShip(PS, ship, UM, fuel);
             if (response == 3)
-                LandingPagePicker();
+                LP.LandingPagePicker();
         }
 
-        public void AlphaShop()
+        public void AlphaShop(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -512,7 +447,7 @@ namespace SpaceGame
             if (response == 4)
                 AlphaCentariPage();
         }
-        public void AlphaBank()
+        public void AlphaBank(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -522,7 +457,7 @@ namespace SpaceGame
             Console.ReadLine();
             AlphaCentariPage();
         }
-        public void AlphaBuy()
+        public void AlphaBuy(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -551,7 +486,7 @@ namespace SpaceGame
                 AlphaShop();
             }
         }
-        public void AlphaSell()
+        public void AlphaSell(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -572,14 +507,14 @@ namespace SpaceGame
                 {
                     Console.WriteLine($"You don't have that many shoes!\n You only have {PS.NoBalanaceShoes} pairs of No Balance Shoes. \nPress any key to return to the selling menu...");
                     Console.ReadLine();
-                    AlphaSell();
+                    return;
                 }
                 PS.NoBalanaceShoes -= quantity;
                 PS.MyCurrentCredit += (quantity * PI.AlphaCentariNoBalanceShoes);
                 Console.WriteLine($"Thank you for the No Balance Shoes, you can jump so high when gravity doesn't affect your feet!\nYou sold {quantity} No Balance Shoes for {(quantity * PI.AlphaCentariNoBalanceShoes)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.NoBalanaceShoes} No Balanace Shoes.\n Press any key to continue...");
                 Console.ReadLine();
-                AlphaSell();
+                return;
             } 
             if (Gold)
             {
@@ -589,14 +524,14 @@ namespace SpaceGame
                 {
                     Console.WriteLine($"You don't have that much Space Gold!\nYou only have {PS.SpaceGold} bars of Space Gold. \nPress any key to return to the selling menu...");
                     Console.ReadLine();
-                    AlphaSell();
+                    return;
                 }
                 PS.SpaceGold -= quantity;
                 PS.MyCurrentCredit += (quantity * PI.AlphaCentariGold);
                 Console.WriteLine($"Thanks for the Space Gold, Space Gold is so much more shiny than boring old regular gold!\nYou sold {quantity} bars of Space Gold for {(quantity * PI.AlphaCentariGold)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.SpaceGold} bars of Space Gold left.\n Press any key to continue...");
                 Console.ReadLine();
-                AlphaSell();
+                return;
             }
             if (TV)
             {
@@ -606,22 +541,22 @@ namespace SpaceGame
                 {
                     Console.WriteLine($"You don't have that many Galactic TVs, you only have {PS.GalacticTVs}.\n Press any key to return to the selling menu...");
                     Console.ReadLine();
-                    AlphaSell();
+                    return;
                 }
                 PS.GalacticTVs -= quantity;
                 PS.MyCurrentCredit += (quantity * PI.AlphaCentariGalacticTVs);
                 Console.WriteLine($"Thank you for the Galactic TVs I can't believe how thin they are!\nYou sold {quantity} Galactic TVs for {(quantity * PI.AlphaCentariGalacticTVs)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.GalacticTVs} Galactic TVs left.\n Press any key to continue...");
                 Console.ReadLine();
-                AlphaSell();
+                return;
             }
             if (Return)
             {
-                AlphaShop();
+                return;
             }
 
         }
-        public void AlphaMarket()
+        public void AlphaMarket(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -635,7 +570,7 @@ namespace SpaceGame
                 $"Press enter to return to the Macawalani streets...");
             Console.ReadLine();
         }
-        public void AlphaCentariPort()
+        public void AlphaCentariPort(Ship ship, PlanetInfo PI, PersonalStatus PS, Fuel fuel, UtilityMethods UM, LandingPage LP, ShipYard SY, GameOver GO, Shop Shop, Asgard Asgard, Earth Earth)
         {
             
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
@@ -665,7 +600,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    EarthPage();
+                    EarthPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
                 }
                 if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -693,7 +628,8 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    Asgard.AsgardPage(UM, PS, ship, fuel, GO, SY, PI, Shop);
+                    PS.MyCurrentLocation = "Asgard";
+                    LP.LandingPagePicker();
                 }
                 if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -710,7 +646,7 @@ namespace SpaceGame
 
         #region M63
 
-        public void M63Page()
+        public void M63Page(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
         {
             PS.MyCurrentLocation = "M63";
             Console.Clear();
@@ -744,7 +680,7 @@ namespace SpaceGame
                 M63Page();
             }
         }
-        public void SelectM63Options()
+        public void SelectM63Options(GameOver GO, PersonalStatus PS, Ship ship, LandingPage LP, ShipYard SY, UtilityMethods UM, PlanetInfo PI, Shop Shop, Fuel fuel, Asgard Asgard, Earth Earth)
         {
             int response = Convert.ToInt32(Console.ReadLine());
 
@@ -758,32 +694,33 @@ namespace SpaceGame
 
 
             //point of method access after valid user selection
-            if (shipYard)
-            M63ShipYard();
+            if (response == 1)
+                M63ShipYard();
 
-            if (galacticBank)
+            if (response == 2)
                 M63Bank();
 
-            if (shop)
-               M63Shop();
+            if (response == 3)
+                M63Shop(UM, PS, ship, fuel, PI);
 
-            if (market)
-              M63Market();
+            if (response == 4)
+                M63Market(PI, PS, UM, ship, fuel);
 
-            if (port)
-                M63Port();
+            if (response == 5)
+                M63Port(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
 
-            if (quit)
+            if (response == 9)
                 GO.EndScreen(PS, ship);
 
             else
             {
                 //loops back to the beginning of earth page
                 Console.WriteLine("invalid entry");
-                M63Page();
+                return;
             }
         }
-        public void M63Bank()
+
+        public void M63Bank(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -794,9 +731,10 @@ namespace SpaceGame
                 $"number of data transfers taking place inside. The interior is more of the \n" +
                 $"same, white walls and white clothes contrasting sharply with the coal black\n");
             UM.BankDisplay(PS);
-            M63Page();
+            return;
         }
-        public void M63Shop()
+
+        public void M63Shop(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -804,15 +742,16 @@ namespace SpaceGame
                 "\nWe've got the highest quality TV's in the universe!");
             int response = UM.ShopSelector();
             if (response == 1)
-                M63Buy();
+                M63Buy(UM, PS, ship, fuel, PI);
             if (response == 2)
-                M63Sell();
+                M63Sell(UM, PS, ship, fuel, PI);
             if (response == 3)
                 fuel.BuyFuel(PS, ship);
             if (response == 4)
-                M63Page();
+                return;
         }
-        public void M63Buy()
+
+        public void M63Buy(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -820,13 +759,9 @@ namespace SpaceGame
                 $"1 NoBalanceShoes {PI.M63NoBalanceShoes} GC per Unit\n 2 Space Gold {PI.M63SpaceGold} GC per Unit\n 3 Galactic TV {PI.M63GalacticTVs} GC per Unit \n 4 " +
                 $"Return to Planetary Menu");
             int response = Convert.ToInt32(Console.ReadLine());
-            bool Shoes = response == 1;
-            bool Gold = response == 2;
-            bool TV = response == 3;
-            bool Return = response == 4;
-
+            
             //Buy Shoes
-            if (Shoes)
+            if (response == 1)
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
@@ -835,7 +770,7 @@ namespace SpaceGame
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
-                    M63Buy();
+                    return;
                 }
                 if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
@@ -843,7 +778,7 @@ namespace SpaceGame
                         $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
-                    M63Buy();
+                    return;
                 }
                 PS.MyCurrentCredit -= (quantity * PI.M63NoBalanceShoes);
 
@@ -853,10 +788,10 @@ namespace SpaceGame
                     $"You now have {PS.NoBalanaceShoes} pairs of No Balanace Shoes in your ship.\n Press any key to continue..");
 
                 Console.ReadLine();
-                M63Buy();
+                return;
             }
             //Buy Gold
-            if (Gold)
+            if (response == 2)
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
@@ -865,7 +800,7 @@ namespace SpaceGame
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
-                    M63Buy();
+                    return;
                 }
                 if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
@@ -873,7 +808,7 @@ namespace SpaceGame
                         $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
-                    M63Buy();
+                    return;
                 }
                 PS.MyCurrentCredit -= (quantity * PI.M63SpaceGold);
 
@@ -882,10 +817,10 @@ namespace SpaceGame
                 Console.WriteLine($"you bought {quantity} Bars of Space Gold, your new balance is {PS.MyCurrentCredit} \n " +
                     $" You have {PS.SpaceGold} bars of Space Gold in your spaceship.\n Press any key to continue..");
                 Console.ReadLine();
-                M63Buy();
+                return;
             }
 
-            if (TV)
+            if (response ==3)
             {
                 Console.WriteLine("How many?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
@@ -894,7 +829,7 @@ namespace SpaceGame
                     Console.WriteLine("You can't afford that! \n" +
                         "Press any key to return to the Shop..");
                     Console.ReadLine();
-                    M63Buy();
+                    return;
                 }
                 if ((quantity + PS.GalacticTVs + PS.SpaceGold + PS.NoBalanaceShoes) > ship.ShipCapacity)
                 {
@@ -902,7 +837,7 @@ namespace SpaceGame
                         $" have {(ship.ShipCapacity - (PS.SpaceGold + PS.GalacticTVs + PS.NoBalanaceShoes))} space left in your cargo hold\n" +
                         $"Press any key to continue...");
                     Console.ReadLine();
-                    M63Buy();
+                    return;
                 }
                 PS.MyCurrentCredit -= (quantity * PI.M63GalacticTVs);
 
@@ -913,15 +848,16 @@ namespace SpaceGame
                 Console.WriteLine($"you bought {quantity} Galactic TV(s), your new balance is {PS.MyCurrentCredit} \n " +
                     $"You now have {PS.GalacticTVs} Galactic Tvs in your ship. \n Press any key to continue..");
                 Console.ReadLine();
-                M63Buy();
+                return;
             }
 
-            if (Return)
+            if (response == 4)
             {
-                M63Shop();
+                return;
             }
         }
-        public void M63Sell()
+
+        public void M63Sell(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -929,12 +865,7 @@ namespace SpaceGame
                 $" Which would you like to sell?\n 1 No Balance Shoes\n 2 Space Gold\n 3 Galactic TVs\n 4 or Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
 
-            bool Shoes = response == 1;
-            bool Gold = response == 2;
-            bool TV = response == 3;
-            bool Return = response == 4;
-
-            if (Shoes)
+            if (response == 1)
             {
                 Console.WriteLine("How many No Balance Shoes would you like to offload?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
@@ -942,20 +873,16 @@ namespace SpaceGame
                 {
                     Console.WriteLine($"You don't have that many shoes!\n You only have {PS.NoBalanaceShoes} pairs of No Balance Shoes. \nPress any key to return to the selling menu...");
                     Console.ReadLine();
-                    M63Sell();
+                    return;
                 }
                 PS.NoBalanaceShoes -= quantity;
                 PS.MyCurrentCredit += (quantity * PI.M63NoBalanceShoes);
                 Console.WriteLine($"Thank you for the No Balance Shoes, you can jump so high when gravity doesn't affect your feet!\nYou sold {quantity} No Balance Shoes for {(quantity * PI.M63NoBalanceShoes)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.NoBalanaceShoes} No Balanace Shoes.\n Press any key to continue...");
                 Console.ReadLine();
-                M63Sell();
+                return;
             }
-            if (Return)
-            {
-                M63Shop();
-            }
-            if (Gold)
+            if (response == 2)
             {
                 Console.WriteLine("How much Space Gold do you want sell?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
@@ -963,16 +890,16 @@ namespace SpaceGame
                 {
                     Console.WriteLine($"You don't have that much Space Gold!\nYou only have {PS.SpaceGold} bars of Space Gold. \nPress any key to return to the selling menu...");
                     Console.ReadLine();
-                    M63Sell();
+                    return;
                 }
                 PS.SpaceGold -= quantity;
                 PS.MyCurrentCredit += (quantity * PI.M63SpaceGold);
                 Console.WriteLine($"Thanks for the Space Gold, Space Gold is so much more shiny than boring old regular gold!\nYou sold {quantity} bars of Space Gold for {(quantity * PI.M63SpaceGold)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.SpaceGold} bars of Space Gold left.\n Press any key to continue...");
                 Console.ReadLine();
-                M63Sell();
+                return;
             }
-            if (TV)
+            if (response == 3)
             {
                 Console.WriteLine("How many TVs do you want to sell?");
                 int quantity = Convert.ToInt32(Console.ReadLine());
@@ -980,17 +907,22 @@ namespace SpaceGame
                 {
                     Console.WriteLine($"You don't have that many Galactic TVs, you only have {PS.GalacticTVs}.\n Press any key to return to the selling menu...");
                     Console.ReadLine();
-                    M63Sell();
+                    return;
                 }
                 PS.GalacticTVs -= quantity;
                 PS.MyCurrentCredit += (quantity * PI.M63GalacticTVs);
                 Console.WriteLine($"Thank you for the Galactic TVs I can't believe how thin they are!\nYou sold {quantity} Galactic TVs for {(quantity * PI.M63GalacticTVs)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.GalacticTVs} Galactic TVs left.\n Press any key to continue...");
                 Console.ReadLine();
-                M63Sell();
+                return;
+            }
+            if (response == 4)
+            {
+                return;
             }
         }
-        public void M63Port()
+
+        public void M63Port(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
         {
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
@@ -1011,7 +943,8 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.M63XPosition, PI.EarthXPosition, PI.M63YPosition, PI.EarthYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    EarthPage();
+                    PS.MyCurrentLocation = "Earth";
+                    LP.LandingPagePicker();
                 }
                 if (UM.FuelCheck(PI.M63XPosition, PI.EarthXPosition, PI.M63YPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -1025,7 +958,8 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.M63XPosition, PI.AlphaCentariXPosition, PI.M63YPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    AlphaCentariPage();
+                    PS.MyCurrentLocation = "AlphaCentari";
+                    LP.LandingPagePicker();
                 }
                 if (UM.FuelCheck(PI.M63XPosition, PI.AlphaCentariXPosition, PI.M63YPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -1039,7 +973,8 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.M63XPosition, PI.AsgardXPosition, PI.M63YPosition, PI.AsgardYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    Asgard.AsgardPage(UM, PS, ship, fuel, GO, SY, PI, Shop);
+                    PS.MyCurrentLocation = "Asgard";
+                    LP.LandingPagePicker();
                 }
                 if (UM.FuelCheck(PI.M63XPosition, PI.AsgardXPosition, PI.M63YPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -1052,7 +987,8 @@ namespace SpaceGame
                 return;
             }
         }
-        public void M63ShipYard()
+
+        public void M63ShipYard(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, ShipYard SY, LandingPage LP)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -1069,11 +1005,13 @@ namespace SpaceGame
             if (response == 2)
                 SY.PurchaseShip(PS, ship, UM, fuel);
             if (response == 3)
-                LandingPagePicker();
+                LP.LandingPagePicker();
         }
 
-            public void M63Market()
+        public void M63Market(PlanetInfo PI, PersonalStatus PS, UtilityMethods UM, Ship ship, Fuel fuel)
         {
+            Console.Clear();
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"" +
                 $"Welcome to the Epic Market on M63, where your opportunity for wealth is boundless and the products are of the most elegant varieties. " +
                 $"  \nEarth: \n\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n\tSpace Gold: {PI.EarthSpaceGold} \n\tGalactic TVs: {PI.EarthGalacticTVs}" +
@@ -1085,11 +1023,7 @@ namespace SpaceGame
         }
         #endregion
 
-        #region Asgard
-
         
-        #endregion
-
 
         
        
