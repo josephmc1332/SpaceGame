@@ -29,18 +29,26 @@ namespace SpaceGame
 
         public void BuyFuel(PersonalStatus ps, Ship ship)
         {
-            Console.WriteLine($"Your current fuel level is: {MyCurrentFuel} How much fuel would you like to buy?");
+            Console.WriteLine($"Your current fuel level is: {MyCurrentFuel}, fuel costs 5 GC per unit. How much fuel would you like to buy?");
             int response = Convert.ToInt32(Console.ReadLine());
+            if (response * 5 > PS.MyCurrentCredit)
+            {
+                Console.WriteLine($"You can't afford that much fuel. You can only afford {PS.MyCurrentCredit / 5}");
+                Console.ReadLine();
+                BuyFuel(ps, ship);
+            }
             if (response + MyCurrentFuel > ship.ShipFuelMax)
             {
                 Console.WriteLine($"You dont have the capacity for that, You are ready have {MyCurrentFuel} and only a max of {ship.ShipFuelMax}");
                 Console.ReadLine();
                 BuyFuel(ps, ship);
             }
-            if (response + MyCurrentFuel <= ship.ShipFuelMax)
+            if (response + MyCurrentFuel <= ship.ShipFuelMax && response * 5 <= PS.MyCurrentCredit)
             {
                 MyCurrentFuel += response;
-                Console.WriteLine($"You now have {MyCurrentFuel} amount of fuel.");
+                PS.MyCurrentCredit -= (response * 5);
+                Console.WriteLine($"You now have {MyCurrentFuel} amount of fuel.\n" +
+                    $"It cost {response * 5} you now have {PS.MyCurrentCredit}");
                 return;
             }
             else
@@ -67,36 +75,6 @@ namespace SpaceGame
 
             }
         }
-
-
-
-
-
-
-
-
-        //Reduce current fuel per planet travel
-        public int ReduceFull(PersonalStatus ps, PlanetInfo pi)
-        {
-           
-            double xAxisPlanet1 = 0.0;
-            double yAxisPlanet1 = 0.0;
-
-            double xAxisPlanet2 = 0.0;
-            double yAxisPlanet2 = 0.0;
-
-
-
-               MyCurrentFuel -= Convert.ToInt32(Math.Sqrt(Math.Pow(xAxisPlanet1 - xAxisPlanet2, 2) + Math.Pow(yAxisPlanet1 - yAxisPlanet2, 2)));
-
-                return MyCurrentFuel;
-
-            
-        }
-        
-
-
-
 
     }
 }
