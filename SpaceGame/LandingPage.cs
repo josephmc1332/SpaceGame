@@ -83,6 +83,7 @@ namespace SpaceGame
                 Earth.M63Page(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
             if (PS.MyCurrentLocation == "Asgard")
                 Asgard.AsgardPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
+            LandingPagePicker();
         }
 
     }

@@ -22,11 +22,11 @@ namespace SpaceGame
             $"nowhere. The grand Mead-hall can be barely seen past some clouds and the distant \n" +
             $"sound of drunken revelry carries across the open space.\n" +
             $"Where would you like to go?\n");
-            AsgardSelector(UM, PS, ship, fuel, GO, SY, PI, Shop);
+            AsgardSelector(UM, PS, ship, fuel, GO, SY, PI, Shop, LP);
         }
 
         //Selector for the Asgard planet menus
-        public void AsgardSelector(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, GameOver GO, ShipYard SY, PlanetInfo PI, Shop Shop)
+        public void AsgardSelector(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, GameOver GO, ShipYard SY, PlanetInfo PI, Shop Shop, LandingPage LP)
         {
             int response = UM.MainPageOptions();
 
@@ -43,7 +43,7 @@ namespace SpaceGame
                 AsgardMarket(UM, PS, ship, fuel, PI);
 
             if (response == 5)
-                AsgardPort(PS, UM, PI, fuel, ship);
+                AsgardPort(PS, UM, PI, fuel, ship, LP);
 
             if (response == 9)
                 GO.EndScreen(PS, ship);
@@ -239,7 +239,7 @@ namespace SpaceGame
             return;
         }
 
-        public void AsgardPort(PersonalStatus PS, UtilityMethods UM, PlanetInfo PI, Fuel fuel, Ship ship)
+        public void AsgardPort(PersonalStatus PS, UtilityMethods UM, PlanetInfo PI, Fuel fuel, Ship ship, LandingPage LP)
         {
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
