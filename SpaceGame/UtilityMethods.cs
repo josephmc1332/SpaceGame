@@ -171,5 +171,25 @@ namespace SpaceGame
                     $"you would need {(int)(distTraveled) - fuel.MyCurrentFuel} more fuel to make that trip.");
             Console.ReadLine();
         }
+        public void MarketDisplay(PlanetInfo PI)
+        {
+            Console.WriteLine($"\tEarth: \n" +
+                $"\t\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n" +
+                $"\t\tSpace Gold: {PI.EarthSpaceGold} \n" +
+                $"\t\tGalactic TVs: {PI.EarthGalacticTVs}\n\n" +
+                $"\tAlpha Centari:\n" +
+                $"\t\tNo Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.AlphaCentariGold}\n" +
+                $"\t\tGalactic TVs: {PI.AlphaCentariGalacticTVs}\n\n" +
+                $"\tM63:\n" +
+                $"\t\tNo Balance Shoes: {PI.M63NoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.M63SpaceGold}\n" +
+                $"\t\tGalactic TVs: {PI.M63GalacticTVs} \n" +
+                $"\tAsgard:\n" +
+                $"\t\tNo Balance Shoes: {PI.AsgardNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.AsgardGold}\n" +
+                $"\t\tGalactic TVs: {PI.AsgardGalacticTVs}");
+            Console.ReadLine();
+        }
     }
 }

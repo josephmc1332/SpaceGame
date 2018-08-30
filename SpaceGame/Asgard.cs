@@ -217,5 +217,21 @@ namespace SpaceGame
             Console.ReadLine();
             return;
         }
+        public void AsgardMarket(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS, ship, fuel);
+            Console.WriteLine($"" +
+                $"Interestingly there are no screens here. You have been to so many of these stock exchanges and the\n" +
+                $" one thing that they all have in common is screens, screens everywhere but here on Asgard there is\n" +
+                $"instead a man standing on marble block shouting words and numbers quickly and loudly, but he doesn't\n" +
+                $"seem to be saying anything about your glorious three. You turn to one of the Asgardians near you and\n" +
+                $"ask them what the deal is. They reply 'Jodiamnur, the God of Stock Quotes, doesn't bother with pidly\n" +
+                $"static stocks like ...space gold... pft, we post those prices on the wall.' Sure enough when you look\n" +
+                $"over at the indicated wall you see a man finishing chiseling the wall and when he leaves you see the\n" +
+                $"following:");
+            UM.MarketDisplay(PI);
+            return;
+        }
     }
 }
