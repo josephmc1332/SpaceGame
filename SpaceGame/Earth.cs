@@ -11,7 +11,8 @@ namespace SpaceGame
         
         #region Earth Page
 
-        public void EarthPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
+        public void EarthPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS,
+            UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
 
 
         {
@@ -119,7 +120,7 @@ namespace SpaceGame
                 return;
         }
        
-        public void EarthShop(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
+        public void EarthShop(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -132,9 +133,9 @@ namespace SpaceGame
                 "\tthe rage out on the larger planets.\n\n");
             int response = UM.ShopSelector();
             if (response == 1)
-                Buy();
+                Buy(UM, PS, ship, fuel, PI, Shop);
             if (response == 2)
-                Sell();
+                Sell(UM, PS, ship, fuel, PI);
             if (response == 3)
                 fuel.BuyFuel(PS, ship);
             if (response == 4)
@@ -172,7 +173,7 @@ namespace SpaceGame
                 return;
             }
         }
-        public void Sell(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
+        public void Sell(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
