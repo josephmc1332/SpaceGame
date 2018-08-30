@@ -18,6 +18,8 @@ namespace SpaceGame
         Fuel fuel = new Fuel();
         Asgard Asgard = new Asgard();
         Earth Earth = new Earth();
+        M63 M63 = new M63();
+        AlphaCentari AlphaCentari = new AlphaCentari();
         LandingPage LP;
 
         // quick list of all the class declerations
@@ -78,9 +80,9 @@ namespace SpaceGame
             if (PS.MyCurrentLocation == "Earth")
                 Earth.EarthPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
             if (PS.MyCurrentLocation == "AlphaCentari")
-                Earth.AlphaCentariPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
+                AlphaCentari.AlphaCentariPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
             if (PS.MyCurrentLocation == "M63")
-                Earth.M63Page(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
+                M63.M63Page(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
             if (PS.MyCurrentLocation == "Asgard")
                 Asgard.AsgardPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
             LandingPagePicker();
