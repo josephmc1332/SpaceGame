@@ -59,26 +59,26 @@ namespace SpaceGame
 
 
         }
-        public void SelectEarthOptions(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
+        public void SelectEarthOptions(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
         {
             //convert/parse user input string 
             int response = Convert.ToInt32(Console.ReadLine());
             
             //point of method access after valid user selection
             if (response == 1)
-                ShipYard();
+                ShipYard(UM, PS, ship, fuel, SY);
 
             if (response == 2)
-                Bank();
+                Bank(PS, UM, ship, fuel);
 
             if (response == 3)
-                EarthShop();
+                EarthShop(UM, PS, ship, fuel, PI, shop);
 
             if (response == 4) 
-                 Market();
+                 Market(PS, UM, ship, fuel, PI);
 
             if (response == 5) 
-               EarthPort();
+               EarthPort(ship, UM, PS, fuel, PI, LP, shop, SY, GO, asgard, earth);
 
             if (response == 9)
                 GO.EndScreen(PS, ship);
@@ -87,7 +87,7 @@ namespace SpaceGame
             {
                 //loops back to the beginning of earth page
                 Console.WriteLine("invalid entry");
-                EarthPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
+                EarthPage(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
             }
 
         }
@@ -283,7 +283,8 @@ namespace SpaceGame
                 $"\t\tGalactic TVs: {PI.AsgardGalacticTVs}");
             Console.ReadLine();
         }
-        public void EarthPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI)
+        public void EarthPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI,
+            LandingPage LP, Shop shop, ShipYard SY, GameOver GO, Asgard asgard, Earth earth )
         {
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
@@ -308,7 +309,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    AlphaCentariPage();
+                    AlphaCentariPage(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth);
                 }
                 if (UM.FuelCheck(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -322,7 +323,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    M63Page();
+                    M63Page(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth);
                 }
                 if (UM.FuelCheck(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -355,7 +356,7 @@ namespace SpaceGame
 
         #region AlphaCentari
 
-        public void AlphaCentariPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
+        public void AlphaCentariPage(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
         {
             PS.MyCurrentLocation = "AlphaCentari";
             Console.Clear();
