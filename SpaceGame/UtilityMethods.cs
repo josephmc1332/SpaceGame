@@ -152,6 +152,8 @@ namespace SpaceGame
             double time = playerWarpSpeed / distTraveled;
             PS.MyTravelTime += time;
             fuel.MyCurrentFuel -= (int)(distTraveled);
+            if (PS.MyTravelTime > 40.0)
+                GO.Retire(PS, ship);
         }
 
         public double PlanetDistance(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety)
