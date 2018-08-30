@@ -15,13 +15,13 @@ namespace SpaceGame
             PS.MyCurrentLocation = "Asgard";
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"" +
-            $"Golden spires and beautiful vistas greet you as soon as you land. The rainbow\n" +
-            $"bifrost is visable in the distance. It's as beautiful as you always imagined it\n" +
-            $"would be. It's just like the legends. Waterfalls and spill off cliffs that lead to\n" +
-            $"nowhere. The grand Mead-hall can be barely seen past some clouds and the distant \n" +
-            $"sound of drunken revelry carries across the open space.\n" +
-            $"Where would you like to go?\n");
+            Console.WriteLine($"\n\n" +
+            $"\tGolden spires and beautiful vistas greet you as soon as you land. The rainbow\n" +
+            $"\tbifrost is visable in the distance. It's as beautiful as you always imagined it\n" +
+            $"\twould be. It's just like the legends. Waterfalls and spill off cliffs that lead to\n" +
+            $"\tnowhere. The grand Mead-hall can be barely seen past some clouds and the distant \n" +
+            $"\tsound of drunken revelry carries across the open space.\n" +
+            $"\t\tWhere would you like to go?\n");
             AsgardSelector(UM, PS, ship, fuel, GO, SY, PI, Shop, LP);
         }
 
@@ -102,7 +102,7 @@ namespace SpaceGame
                 AsgardBuy(UM, PS, ship, fuel, PI, Shop);
 
             if (response == 2)
-                AsgardSell(UM, PS, ship, fuel, PI);
+                AsgardSell(UM, PS, ship, fuel, PI, Shop);
 
             if (response == 3)
                 fuel.BuyFuel(PS, ship);
@@ -158,15 +158,15 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"" +
-                $"Interestingly there are no screens here. You have been to so many of these stock exchanges and the\n" +
-                $" one thing that they all have in common is screens, screens everywhere but here on Asgard there is\n" +
-                $"instead a man standing on marble block shouting words and numbers quickly and loudly, but he doesn't\n" +
-                $"seem to be saying anything about your glorious three. You turn to one of the Asgardians near you and\n" +
-                $"ask them what the deal is. They reply 'Jodiamnur, the God of Stock Quotes, doesn't bother with pidly\n" +
-                $"static stocks like ...space gold... pft, we post those prices on the wall.' Sure enough when you look\n" +
-                $"over at the indicated wall you see a man finishing chiseling the wall and when he leaves you see the\n" +
-                $"following:");
+            Console.WriteLine($"\n\n" +
+                $"\tInterestingly there are no screens here. You have been to so many of these stock exchanges and the\n" +
+                $"\tone thing that they all have in common is screens, screens everywhere but here on Asgard there is\n" +
+                $"\tinstead a man standing on marble block shouting words and numbers quickly and loudly, but he doesn't\n" +
+                $"\tseem to be saying anything about your glorious three. You turn to one of the Asgardians near you and\n" +
+                $"\task them what the deal is. They reply 'Jodiamnur, the God of Stock Quotes, doesn't bother with pidly\n" +
+                $"\tstatic stocks like ...space gold... pft, we post those prices on the wall.' Sure enough when you look\n" +
+                $"\tover at the indicated wall you see a man finishing chiseling the wall and when he leaves you see the\n" +
+                $"\tfollowing:");
             UM.MarketDisplay(PI);
             return;
         }
