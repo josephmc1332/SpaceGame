@@ -157,14 +157,19 @@ namespace SpaceGame
             string fuelCheck = "OK";
             if (fuel.MyCurrentFuel < (distTraveled))
             {
-                Console.WriteLine($"" +
-                    $"You don't have enough fuel for that trip, you only have {fuel.MyCurrentFuel} amount of fuel\n" +
-                    $"you would need {(int)(distTraveled) - fuel.MyCurrentFuel} more fuel to make that trip.");
-                Console.ReadLine();
+                
                 string failedCheck = "TooFar";
                 return failedCheck;
             }
             return fuelCheck;
+        }
+        public void TooFar(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety, Fuel fuel)
+        {
+            double distTraveled = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
+            Console.WriteLine($"" +
+                    $"You don't have enough fuel for that trip, you only have {fuel.MyCurrentFuel} amount of fuel\n" +
+                    $"you would need {(int)(distTraveled) - fuel.MyCurrentFuel} more fuel to make that trip.");
+            Console.ReadLine();
         }
     }
 }

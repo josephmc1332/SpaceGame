@@ -103,7 +103,7 @@ namespace SpaceGame
                 "\t\t  3. Buy, Sell, Trade \n" +
                 "\t\t  4. Galactic Market\n" +
                 "\t\t  5. Departure Port\n\n" +
-                "\t\t9. Quit the Game");
+                "\t\t  9. Quit the Game");
 
             //send back to check selected option after invalid input
             try
@@ -230,7 +230,7 @@ namespace SpaceGame
 
             if (response ==3)
             {
-                Shop.BuyTV(PI.EarhtGalacticTVs, PS, UM, ship, fuel);
+                Shop.BuyTV(PI.EarthGalacticTVs, PS, UM, ship, fuel);
             }
 
             if (response == 4)
@@ -306,9 +306,9 @@ namespace SpaceGame
                     return;
                 }
                 PS.GalacticTVs -= quantity;
-                PS.MyCurrentCredit += (quantity * PI.EarhtGalacticTVs);
+                PS.MyCurrentCredit += (quantity * PI.EarthGalacticTVs);
                 Console.WriteLine($"Thank you for the Galactic TVs I can't believe how thin they are!\n" +
-                    $"You sold {quantity} Galactic TVs for {(quantity * PI.EarhtGalacticTVs)} Galactic Credits.\n" +
+                    $"You sold {quantity} Galactic TVs for {(quantity * PI.EarthGalacticTVs)} Galactic Credits.\n" +
                     $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.GalacticTVs} Galactic TVs left.\n" +
                     $"Press any key to continue...");
                 Console.ReadLine();
@@ -333,7 +333,7 @@ namespace SpaceGame
                 $"\tEarth: \n" +
                 $"\t\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n" +
                 $"\t\tSpace Gold: {PI.EarthSpaceGold} \n" +
-                $"\t\tGalactic TVs: {PI.EarhtGalacticTVs}\n\n" +
+                $"\t\tGalactic TVs: {PI.EarthGalacticTVs}\n\n" +
                 $"\tAlpha Centari:\n" +
                 $"\t\tNo Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n" +
                 $"\t\tSpace Gold: {PI.AlphaCentariGold}\n" +
@@ -354,13 +354,20 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
-                $"\tWhere would you like to go? \n" +
-                $"\t\t1 Alpha Centari: {UM.PlanetDistance(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition) / playerWarpSpeed} years\n" +
-                $"\t\t2 M63: {UM.PlanetDistance(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition) / playerWarpSpeed} years\n" +
-                $"\t\t3 Asgard: {UM.PlanetDistance(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition) / playerWarpSpeed} years\n" +
-                $"\t\t4 Return to earth");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
+                $"\tWhere would you like to go? \n");
+            if (UM.FuelCheck(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
+                Console.WriteLine($"" +
+                    $"\t\t<centari> Alpha Centari: {UM.PlanetDistance(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition) / playerWarpSpeed} years\n");
+            if (UM.FuelCheck(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
+                Console.WriteLine($"" +
+                    $"\t\t<m63> M63: {UM.PlanetDistance(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition) / playerWarpSpeed} years\n");
+            if (UM.FuelCheck(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
+                Console.WriteLine($"" +
+                    $"\t\t<asgard> Asgard: {UM.PlanetDistance(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition) / playerWarpSpeed} years\n");
+            Console.WriteLine($"" +
+                $"\t\t<return> Return to earth");
+            string response = Console.ReadLine();
+            if (response == "centari")
             {
                 if (UM.FuelCheck(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
                 {
@@ -370,10 +377,11 @@ namespace SpaceGame
                 }
                 if (UM.FuelCheck(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
                 {
+                    UM.TooFar(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, fuel);
                     return;
                 }
             }
-            if (response == 2)
+            if (response == "m63")
             {
                 if (UM.FuelCheck(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
                 {
@@ -383,10 +391,11 @@ namespace SpaceGame
                 }
                 if (UM.FuelCheck(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
                 {
+                    UM.TooFar(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, fuel);
                     return;
                 }
             }
-            if (response == 3)
+            if (response == "asgard")
             {
                 if (UM.FuelCheck(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
                 {
@@ -396,10 +405,11 @@ namespace SpaceGame
                 }
                 if (UM.FuelCheck(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
                 {
+                    UM.TooFar(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, fuel);
                     return;
                 }
             }
-            if (response == 4)
+            if (response == "return")
             {
                 return;
             }
@@ -438,29 +448,23 @@ namespace SpaceGame
         {
             
             int response = Convert.ToInt32(Console.ReadLine());
-            bool shipYard = response == 1;
-            bool galacticBank = response == 2;
-            bool shop = response == 3;
-            bool market = response == 4;
-            bool port = response == 5;
-            bool quit = response == 9;
-            
-            if (shipYard)
+          
+            if (response == 1)
                AlphaYard();
 
-            if (galacticBank)
+            if (response == 2)
                 AlphaBank();
 
-            if (shop)
+            if (response == 3)
                 AlphaShop();
 
-            if (market)
+            if (response == 4)
                 AlphaMarket();
 
-            if (port)
+            if (response == 5)
                 AlphaCentariPort();
 
-            if (quit)
+            if (response == 9)
                 GO.EndScreen(PS, ship);
 
             else
@@ -626,7 +630,7 @@ namespace SpaceGame
             Console.WriteLine($"The city of Macawalani on Centari IV has the largest stock exchange for a light year in any direction.\n" +
                 $"But unlike the exchanges of earth it's nearly silent in the exchange. The Centarians are famously capatalistic and the \nMacawalani exchange is almost" +
                 $"like a temple. But it takes you hardly any time at all to find the entries of your\nclassic moneymakers..." +
-                $"  \nEarth: \n\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n\tSpace Gold: {PI.EarthSpaceGold} \n\tGalactic TVs: {PI.EarhtGalacticTVs}" +
+                $"  \nEarth: \n\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n\tSpace Gold: {PI.EarthSpaceGold} \n\tGalactic TVs: {PI.EarthGalacticTVs}" +
                 $"\n \nAlpha Centari:\n\t No Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PI.AlphaCentariGold}\n\tGalactic " +
                 $"TVs: {PI.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PI.M63NoBalanceShoes}" +
                 $"\n\tSpace Gold: {PI.M63SpaceGold}\n\tGalactic TVs: {PI.M63GalacticTVs} \n" +
@@ -642,23 +646,64 @@ namespace SpaceGame
                 $"Wind swirls around you as a ships takes off to some new and exciting destination.\n" +
                 $"Ports like this always make you miss home a little but the dream of the \n" +
                 $"Dukedom of Mercury and the thoughts of your upcoming(hopefully)\n" +
-                $"nuptuals drive you forward." +
-                $"\nWhere would you like to go? \n\t1 Earth: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.EarthXPosition,PI.AlphaCentariYPosition, PI.EarthYPosition)} Light years away which will take {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition) / playerWarpSpeed} years" +
-                $"\n\t2 M63: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition) / playerWarpSpeed} years\n\t3 Return to Macawalani, the Capital of Centari IV");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
+                $"nuptuals drive you forward.");
+                 Console.WriteLine($"\n\n" +
+                $"\tWhere would you like to go? \n");
+            if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
+                Console.WriteLine($"" +
+                    $"\t\t<earth> Earth: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition) / playerWarpSpeed} years\n");
+            if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
+                Console.WriteLine($"" +
+                    $"\t\t<m63> M63: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition) / playerWarpSpeed} years\n");
+            if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
+                Console.WriteLine($"" +
+                    $"\t\t<asgard> Asgard: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition) / playerWarpSpeed} years\n");
+            Console.WriteLine($"" +
+                $"\t\t<return> Return to Alpha Centari");
+            string response = Console.ReadLine();
+            if (response == "earth")
             {
-                UM.PlanetTravel(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel);
-                UM.Travel(PS);
-                EarthPage();
+                if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
+                {
+                    UM.PlanetTravel(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel);
+                    UM.Travel(PS);
+                    EarthPage();
+                }
+                if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
+                {
+                    UM.TooFar(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, fuel);
+                    return;
+                }
             }
-            if (response == 2)
+            if (response == "M63")
             {
-                UM.PlanetTravel(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition, ship, PS, fuel);
-                UM.Travel(PS);
-                M63Page();
+                if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
+                {
+                    UM.PlanetTravel(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition, ship, PS, fuel);
+                    UM.Travel(PS);
+                    M63Page();
+                }
+                if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
+                {
+                    UM.TooFar(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition, fuel);
+                    return;
+                }
             }
-            if (response == 3)
+            if (response == "asgard")
+            {
+                if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
+                {
+                    UM.PlanetTravel(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, ship, PS, fuel);
+                    UM.Travel(PS);
+                    Asgard.AsgardPage(UM, PS, ship, fuel, GO, SY, PI, Shop);
+                }
+                if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
+                {
+                    UM.TooFar(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, fuel);
+                    return;
+                }
+            }
+            if (response == "return")
             {
                 return;
             }
@@ -1019,7 +1064,7 @@ namespace SpaceGame
             public void M63Market()
         {
             Console.WriteLine($"Welcome to the Epic Market on M63, where your opportunity for wealth is boundless and the products are of the most elegant varieties. " +
-                $"  \nEarth: \n\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n\tSpace Gold: {PI.EarthSpaceGold} \n\tGalactic TVs: {PI.EarhtGalacticTVs}" +
+                $"  \nEarth: \n\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n\tSpace Gold: {PI.EarthSpaceGold} \n\tGalactic TVs: {PI.EarthGalacticTVs}" +
                 $"\n \nAlpha Centari:\n\t No Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PI.AlphaCentariGold}\n\tGalactic " +
                 $"TVs: {PI.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PI.M63NoBalanceShoes}" +
                 $"\n\tSpace Gold: {PI.M63SpaceGold}\n\tGalactic TVs: {PI.M63GalacticTVs} \n" +
