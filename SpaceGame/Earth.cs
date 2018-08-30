@@ -502,9 +502,7 @@ namespace SpaceGame
             Console.WriteLine("\n\n" +
                 "\t\tYou arrive at the shop on Alpha Centari. The owner, Brahman welcomes you. 'What's up, \n" +
                 "\t\tmane you know that we have the highest quality gold in the universe!'");
-            Console.ReadLine();
-            Console.WriteLine("\nWhat would you like to do?\n 1 Buy Cargo\n 2 Sell Cargo\n 3 Buy Rocket fuel\n 4 Return to Macawalani streets");
-            int response = Convert.ToInt32(Console.ReadLine());
+            int response = UM.ShopSelector();
             if (response == 1)
                 AlphaBuy();
             if (response == 2)
@@ -717,20 +715,20 @@ namespace SpaceGame
             PS.MyCurrentLocation = "M63";
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine("" +
-                "Welcome to the star system M63, named for Messier star cluster circling a black hole.\n" +
-                "As you walk into the streets the first thing that you notice is that everything is\n" +
-                "clean and bright white. None of the architecture has a scrap of color anywhere, the\n" +
-                "only exception is the flat holographic ads that are projected up on some of the walls\n" +
-                "but even thier colors are muted. The Messinese that you see all wear the same color white\n" +
-                "of the buildings but in stark contrast their skin is as black as the hole their star orbits" +
-                "\n\nWhere would you like to go? \n" +
-                "1. Ship Yard \n" +
-                "2. Galactic Bank \n" +
-                "3. Buy, Sell, Trade \n" +
-                "4. Galactic Market\n" +
-                "5. Departure Port\n" +
-                "9. Quit the Game");
+            Console.WriteLine("\n\n" +
+                "\tWelcome to the star system M63, named for Messier star cluster circling a black hole.\n" +
+                "\tAs you walk into the streets the first thing that you notice is that everything is\n" +
+                "\tclean and bright white. None of the architecture has a scrap of color anywhere, the\n" +
+                "\tonly exception is the flat holographic ads that are projected up on some of the walls\n" +
+                "\tbut even thier colors are muted. The Messinese that you see all wear the same color white\n" +
+                "\tof the buildings but in stark contrast their skin is as black as the hole their star orbits" +
+                "\n\n\t\tWhere would you like to go? \n" +
+                "\t\t1. Ship Yard \n" +
+                "\t\t2. Galactic Bank \n" +
+                "\t\t3. Buy, Sell, Trade \n" +
+                "\t\t4. Galactic Market\n" +
+                "\t\t5. Departure Port\n\n" +
+                "\t\t9. Quit the Game");
             try
             {
                 SelectM63Options();
@@ -801,15 +799,10 @@ namespace SpaceGame
         public void M63Shop()
         {
             Console.Clear();
+            UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine("You've arrived at the shop on M63. Niko, the owner welcomes you to look around at all the goods." +
                 "\nWe've got the highest quality TV's in the universe!");
-            Console.ReadLine();
-            UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine("What would you like to do?\n 1 Buy Cargo\n 2 Sell Cargo\n 3 Return to the streets of M63");
-            int response = Convert.ToInt32(Console.ReadLine());
-            bool purchase = response == 1;
-            bool offload = response == 2;
-            bool Return = response == 3;
+            int response = UM.ShopSelector();
             if (response == 1)
                 M63Buy();
             if (response == 2)
@@ -999,46 +992,64 @@ namespace SpaceGame
         }
         public void M63Port()
         {
-            double distAlphaCentari = (Math.Sqrt(Math.Pow(PI.M63XPosition - PI.AlphaCentariXPosition, 2) + Math.Pow(PI.M63YPosition - PI.AlphaCentariYPosition, 2)));
-            double distEarth = (Math.Sqrt(Math.Pow(PI.EarthXPosition - PI.M63XPosition, 2) + Math.Pow(PI.EarthYPosition - PI.M63YPosition, 2)));
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"Where would you like to go? \n\t1 Alpha Centari: {distAlphaCentari} Light years away which will take {distAlphaCentari / playerWarpSpeed} years" +
-                $"\n\t2 Earth: {distEarth} Light years away which will take {distEarth / playerWarpSpeed} years\n\t3 Return to earth");
-            int response = Convert.ToInt32(Console.ReadLine());
-            bool travelAlpha = response == 1;
-            bool travelEarth = response == 2;
-            bool Return = response == 3;
-            if (travelAlpha)
+            Console.WriteLine($"Where would you like to go?");
+            if (UM.FuelCheck(PI.M63XPosition, PI.EarthXPosition, PI.M63YPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
+            Console.WriteLine($"\t<earth> Earth: {UM.PlanetDistance(PI.M63XPosition, PI.EarthXPosition,PI.M63YPosition, PI.EarthYPosition)} Light years away which will take {UM.PlanetDistance(PI.M63XPosition,PI.EarthXPosition,PI.M63YPosition,PI.EarthYPosition) / playerWarpSpeed} years\n");
+            if (UM.FuelCheck(PI.M63XPosition,PI.AlphaCentariXPosition,PI.M63YPosition,PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
+            Console.WriteLine($"\t<centari> Alpha Centari: {UM.PlanetDistance(PI.M63XPosition,PI.AlphaCentariXPosition,PI.M63YPosition,PI.AlphaCentariYPosition)} Light years away which will take {UM.PlanetDistance(PI.M63XPosition, PI.AlphaCentariXPosition, PI.M63YPosition, PI.AlphaCentariYPosition) / playerWarpSpeed} years\n");
+            if (UM.FuelCheck(PI.M63XPosition, PI.AsgardXPosition, PI.M63YPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
+                Console.WriteLine($"\t<asgard> Asgard: {UM.PlanetDistance(PI.M63XPosition, PI.AsgardXPosition, PI.M63YPosition, PI.AsgardYPosition)} Light years away which will take {UM.PlanetDistance(PI.M63XPosition, PI.AsgardXPosition, PI.M63YPosition, PI.AsgardYPosition) / playerWarpSpeed} year");
+            Console.WriteLine($"\t<return> Return to earth");
+            string response = Console.ReadLine();
+            
+            if (response == "earth")
             {
-                PS.MyTravelTime += (distAlphaCentari / playerWarpSpeed);
-                if ((distAlphaCentari / playerWarpSpeed) + PS.MyTravelTime > 40.0)
+                if (UM.FuelCheck(PI.M63XPosition, PI.EarthXPosition, PI.M63YPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
                 {
-                    GO.Retire(PS, ship);
+                    UM.PlanetTravel(PI.M63XPosition, PI.EarthXPosition, PI.M63YPosition, PI.EarthYPosition, ship, PS, fuel);
+                    UM.Travel(PS);
+                    EarthPage();
                 }
-                UM.Travel(PS);
-                Console.WriteLine($"The journey takes you {distAlphaCentari / playerWarpSpeed} you have been traveling for {PS.MyTravelTime} years now.\n" +
-                    $"You arrive on ALpha Centari");
-                Console.ReadLine();
-                AlphaCentariPage();
-            }
-            if (travelEarth)
-            {
-                PS.MyTravelTime += (distEarth / playerWarpSpeed);
-                if (PS.MyTravelTime > 40.0)
+                if (UM.FuelCheck(PI.M63XPosition, PI.EarthXPosition, PI.M63YPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
                 {
-                    GO.Retire(PS, ship);
+                    UM.TooFar(PI.M63XPosition, PI.EarthXPosition, PI.M63YPosition, PI.EarthYPosition, fuel);
+                    return;
                 }
-                UM.Travel(PS);
-                Console.WriteLine($"The jouney take you {distEarth / playerWarpSpeed} years, you have been traveling for {PS.MyTravelTime} years total.\n" +
-                    $"You arrive on Earth");
-                Console.ReadLine();
-                EarthPage();
             }
-            if (Return)
+            if (response == "centari")
             {
-                M63Page();
+                if (UM.FuelCheck(PI.M63XPosition, PI.AlphaCentariXPosition, PI.M63YPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
+                {
+                    UM.PlanetTravel(PI.M63XPosition, PI.AlphaCentariXPosition, PI.M63YPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
+                    UM.Travel(PS);
+                    AlphaCentariPage();
+                }
+                if (UM.FuelCheck(PI.M63XPosition, PI.AlphaCentariXPosition, PI.M63YPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
+                {
+                    UM.TooFar(PI.M63XPosition, PI.AlphaCentariXPosition, PI.M63YPosition, PI.AlphaCentariYPosition, fuel);
+                    return;
+                }
+            }
+            if (response == "asgard")
+            {
+                if (UM.FuelCheck(PI.M63XPosition, PI.AsgardXPosition, PI.M63YPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
+                {
+                    UM.PlanetTravel(PI.M63XPosition, PI.AsgardXPosition, PI.M63YPosition, PI.AsgardYPosition, ship, PS, fuel);
+                    UM.Travel(PS);
+                    Asgard.AsgardPage(UM, PS, ship, fuel, GO, SY, PI, Shop);
+                }
+                if (UM.FuelCheck(PI.M63XPosition, PI.AsgardXPosition, PI.M63YPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
+                {
+                    UM.TooFar(PI.M63XPosition, PI.AsgardXPosition, PI.M63YPosition, PI.AsgardYPosition, fuel);
+                    return;
+                }
+            }
+            if (response == "return")
+            {
+                return;
             }
         }
         public void M63ShipYard()
@@ -1063,7 +1074,8 @@ namespace SpaceGame
 
             public void M63Market()
         {
-            Console.WriteLine($"Welcome to the Epic Market on M63, where your opportunity for wealth is boundless and the products are of the most elegant varieties. " +
+            Console.WriteLine($"" +
+                $"Welcome to the Epic Market on M63, where your opportunity for wealth is boundless and the products are of the most elegant varieties. " +
                 $"  \nEarth: \n\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n\tSpace Gold: {PI.EarthSpaceGold} \n\tGalactic TVs: {PI.EarthGalacticTVs}" +
                 $"\n \nAlpha Centari:\n\t No Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PI.AlphaCentariGold}\n\tGalactic " +
                 $"TVs: {PI.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PI.M63NoBalanceShoes}" +

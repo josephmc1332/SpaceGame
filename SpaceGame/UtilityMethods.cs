@@ -134,7 +134,7 @@ namespace SpaceGame
             $"\t\t 1 Buy\n" +
             $"\t\t 2 Sell\n" +
             $"\t\t 3 Buy Fuel\n" +
-            $"\t\t 3 Return to planetary menu");
+            $"\t\t 4 Return to planetary menu");
             int response = Convert.ToInt32(Console.ReadLine());
             return response;
         }
