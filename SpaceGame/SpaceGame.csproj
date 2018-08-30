@@ -50,6 +50,7 @@
     <Compile Include="LandingPage.cs" />
     <Compile Include="PersonalStatus.cs" />
     <Compile Include="PlanetInfo.cs" />
+    <Compile Include="PlanetX.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ship.cs" />
