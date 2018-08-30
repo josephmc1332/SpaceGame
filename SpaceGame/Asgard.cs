@@ -96,11 +96,6 @@ namespace SpaceGame
             $"\tmarketplace. The vendor you've chosen as your dealer for the items you want is 'Ruslagg God\n" +
             $"\tmerchandise and profit!' it seems everyone on this planet is a God... But his prices seem fair\n" +
             $"\tgood, especially the Space Gold.\n");
-            AsgardShopSelector(UM, fuel, PS, ship, PI, Shop);
-        }
-
-        public void AsgardShopSelector(UtilityMethods UM, Fuel fuel, PersonalStatus PS, Ship ship, PlanetInfo PI, Shop Shop)
-        {
             int response = UM.ShopSelector();
 
             if (response == 1)
@@ -137,7 +132,7 @@ namespace SpaceGame
                 return;
         }
 
-        public void AsgardSell(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
+        public void AsgardSell(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -150,78 +145,15 @@ namespace SpaceGame
             $"\t\t 4 Return to the Asgardian Shop");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
-                SellAsgardShoes(UM, PS, ship, fuel, PI);
+                Shop.SellShoes(PI.AsgardNoBalanceShoes, PS, UM, ship, fuel);
             if (response == 2)
-                SellAsgardGold(UM, PS, ship, fuel, PI);
+                Shop.SellGold(PI.AsgardGold, PS, UM, ship, fuel);
             if (response == 3)
-                SellAsgardTV(UM, PS, ship, fuel, PI);
+                Shop.SellTV(PI.AsgardGalacticTVs, PS, UM, ship, fuel);
             if (response == 4)
                 return;
         }
-        // move to shop class
-        public void SellAsgardShoes(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
-        {
-            Console.Clear();
-            UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"\n\n" +
-                $"\t\tHow many shoes do you want to sell?");
-            int quantity = Convert.ToInt32(Console.ReadLine());
-            if (quantity > PS.NoBalanaceShoes)
-            {
-                Console.WriteLine($"" +
-                    $"\t\tYou don't have that many shoes to sell. You have {PS.NoBalanaceShoes} shoes in your cargo hold.");
-                Console.ReadLine();
-                SellAsgardShoes(UM, PS, ship, fuel, PI);
-            }
-            PS.NoBalanaceShoes -= quantity;
-            PS.MyCurrentCredit += (quantity * PI.AsgardNoBalanceShoes);
-            Console.WriteLine($"'Thank you for these No Balance Shoes these things are AMAZING. Look at me zipping around like\n" +
-            $"a bird in the air, I am the God of Flying without wings!' \n" +
-            $"You sold {quantity} No Balance Shoes for {quantity * PI.AsgardNoBalanceShoes} GC.");
-            Console.ReadLine();
-            return;
-        }
-        // move to shop class
-        public void SellAsgardGold(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
-        {
-            Console.Clear();
-            UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"How much Space Gold do you want to sell?");
-            int quantity = Convert.ToInt32(Console.ReadLine());
-            if (quantity > PS.SpaceGold)
-            {
-                Console.WriteLine($"You don't have that much Space Gold to sell. You have {PS.SpaceGold} shoes in your cargo hold.");
-                Console.ReadLine();
-                SellAsgardGold(UM, PS, ship, fuel, PI);
-            }
-            PS.SpaceGold -= quantity;
-            PS.MyCurrentCredit += (quantity * PI.AsgardGold);
-            Console.WriteLine($"'Thanks for the Space Gold, I guess. I have plenty already though...' \n" +
-            $"You sold {quantity} Space Gold for {quantity * PI.AsgardGold} GC.");
-            Console.ReadLine();
-            return;
-        }
-        // move to shop class
-        public void SellAsgardTV(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
-        {
-            Console.Clear();
-            UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"How many Galactic TVs do you want to sell?");
-            int quantity = Convert.ToInt32(Console.ReadLine());
-            if (quantity > PS.GalacticTVs)
-            {
-                Console.WriteLine($"You don't have that many Galactic TVs to sell. You have {PS.GalacticTVs} shoes in your cargo hold.");
-                Console.ReadLine();
-                SellAsgardTV(UM, PS, ship, fuel, PI);
-            }
-            PS.GalacticTVs -= quantity;
-            PS.MyCurrentCredit += (quantity * PI.AsgardGalacticTVs);
-            Console.WriteLine($"'Thanks for the Galactic TVs I usually just watch the Valkyries fly by to pass the time.' \n" +
-            $"You sold {quantity} Galactic TVs for {quantity * PI.AsgardGalacticTVs} GC.");
-            Console.ReadLine();
-            return;
-        }
-
+       
         public void AsgardMarket(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
         {
             Console.Clear();

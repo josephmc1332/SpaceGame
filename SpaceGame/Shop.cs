@@ -111,5 +111,68 @@ namespace SpaceGame
             return;
 
         }
+
+        public void SellShoes(int currentPlanetShoes, PersonalStatus PS, UtilityMethods UM, Ship ship, Fuel fuel)
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS, ship, fuel);
+            Console.WriteLine($"\n\n" +
+                $"\t\tHow many shoes do you want to sell?");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if (quantity > PS.NoBalanaceShoes)
+            {
+                Console.WriteLine($"" +
+                    $"\t\tYou don't have that many shoes to sell. You have {PS.NoBalanaceShoes} shoes in your cargo hold.");
+                Console.ReadLine();
+                return;
+            }
+            PS.NoBalanaceShoes -= quantity;
+            PS.MyCurrentCredit += (quantity * currentPlanetShoes);
+            Console.WriteLine($"'Thank you for these No Balance Shoes these things are AMAZING. Look at me zipping around like\n" +
+            $"a bird in the air, I am the God of Flying without wings!' \n" +
+            $"You sold {quantity} No Balance Shoes for {quantity * currentPlanetShoes} GC.");
+            Console.ReadLine();
+            return;
+        }
+
+        public void SellGold(int currentPlanetGold, PersonalStatus PS, UtilityMethods UM, Ship ship, Fuel fuel)
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS, ship, fuel);
+            Console.WriteLine($"How much Space Gold do you want to sell?");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if (quantity > PS.SpaceGold)
+            {
+                Console.WriteLine($"You don't have that much Space Gold to sell. You have {PS.SpaceGold} shoes in your cargo hold.");
+                Console.ReadLine();
+                return;
+            }
+            PS.SpaceGold -= quantity;
+            PS.MyCurrentCredit += (quantity * currentPlanetGold);
+            Console.WriteLine($"'Thanks for the Space Gold, I guess. I have plenty already though...' \n" +
+            $"You sold {quantity} Space Gold for {quantity * currentPlanetGold} GC.");
+            Console.ReadLine();
+            return;
+        }
+
+        public void SellTV( int currrentPlanetTV, PersonalStatus PS, UtilityMethods UM, Ship ship, Fuel fuel)
+        {
+            Console.Clear();
+            UM.InventoryDisplay(PS, ship, fuel);
+            Console.WriteLine($"How many Galactic TVs do you want to sell?");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            if (quantity > PS.GalacticTVs)
+            {
+                Console.WriteLine($"You don't have that many Galactic TVs to sell. You have {PS.GalacticTVs} shoes in your cargo hold.");
+                Console.ReadLine();
+                return;
+            }
+            PS.GalacticTVs -= quantity;
+            PS.MyCurrentCredit += (quantity * currrentPlanetTV);
+            Console.WriteLine($"'Thanks for the Galactic TVs I usually just watch the Valkyries fly by to pass the time.' \n" +
+            $"You sold {quantity} Galactic TVs for {quantity * currrentPlanetTV} GC.");
+            Console.ReadLine();
+            return;
+        }
     }
 }

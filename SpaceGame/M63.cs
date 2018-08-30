@@ -387,6 +387,5 @@ namespace SpaceGame
             Console.ReadLine();
         }
         #endregion
-
     }
 }

@@ -8,7 +8,6 @@ namespace SpaceGame
 {
     class Earth
     {
-        
         #region Earth Page
 
         public void EarthPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
@@ -341,21 +340,5 @@ namespace SpaceGame
         }
 
         #endregion
-
-       
-
-        
-        
-
-        
-       
-
-
-
-        
-
-
-
-
     }
 }

@@ -48,6 +48,28 @@ namespace SpaceGame
             Console.ReadLine();
             GO.Win(ps, ship);
         }
+        
+        // single place for all the market displays
+        public void MarketDisplay(PlanetInfo PI)
+        {
+            Console.WriteLine($"\tEarth: \n" +
+                $"\t\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n" +
+                $"\t\tSpace Gold: {PI.EarthSpaceGold} \n" +
+                $"\t\tGalactic TVs: {PI.EarthGalacticTVs}\n\n" +
+                $"\tAlpha Centari:\n" +
+                $"\t\tNo Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.AlphaCentariGold}\n" +
+                $"\t\tGalactic TVs: {PI.AlphaCentariGalacticTVs}\n\n" +
+                $"\tM63:\n" +
+                $"\t\tNo Balance Shoes: {PI.M63NoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.M63SpaceGold}\n" +
+                $"\t\tGalactic TVs: {PI.M63GalacticTVs} \n" +
+                $"\tAsgard:\n" +
+                $"\t\tNo Balance Shoes: {PI.AsgardNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.AsgardGold}\n" +
+                $"\t\tGalactic TVs: {PI.AsgardGalacticTVs}");
+            Console.ReadLine();
+        }
 
         // a player hud
         public void InventoryDisplay(PersonalStatus ps, Ship ship, Fuel fuel)
@@ -184,25 +206,6 @@ namespace SpaceGame
             Console.ReadLine();
         }
 
-        public void MarketDisplay(PlanetInfo PI)
-        {
-            Console.WriteLine($"\tEarth: \n" +
-                $"\t\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n" +
-                $"\t\tSpace Gold: {PI.EarthSpaceGold} \n" +
-                $"\t\tGalactic TVs: {PI.EarthGalacticTVs}\n\n" +
-                $"\tAlpha Centari:\n" +
-                $"\t\tNo Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n" +
-                $"\t\tSpace Gold: {PI.AlphaCentariGold}\n" +
-                $"\t\tGalactic TVs: {PI.AlphaCentariGalacticTVs}\n\n" +
-                $"\tM63:\n" +
-                $"\t\tNo Balance Shoes: {PI.M63NoBalanceShoes}\n" +
-                $"\t\tSpace Gold: {PI.M63SpaceGold}\n" +
-                $"\t\tGalactic TVs: {PI.M63GalacticTVs} \n" +
-                $"\tAsgard:\n" +
-                $"\t\tNo Balance Shoes: {PI.AsgardNoBalanceShoes}\n" +
-                $"\t\tSpace Gold: {PI.AsgardGold}\n" +
-                $"\t\tGalactic TVs: {PI.AsgardGalacticTVs}");
-            Console.ReadLine();
-        }
+        
     }
 }
