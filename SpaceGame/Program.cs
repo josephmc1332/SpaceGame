@@ -17,12 +17,12 @@ namespace SpaceGame
 
             
 
-            var Earth = new Earth();
+            var LandingPage = new LandingPage();
 
             //Entry Page/ Introduction/ Instructions
 
-            Earth.FirstPage();
-            Earth.EarthPage();
+            LandingPage.FirstPage();
+            LandingPage.LandingPagePicker();
 
 
             //Options upon 

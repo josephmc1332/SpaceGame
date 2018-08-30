@@ -11,6 +11,7 @@ namespace SpaceGame
         Random rnd = new Random();
         GameOver GO = new GameOver();
         Ship ship = new Ship();
+
         // this method will populate the navigation menu and return a number that the selector can use.
         public int MainPageOptions()
         {
@@ -24,6 +25,7 @@ namespace SpaceGame
             int response = Convert.ToInt32(Console.ReadLine());
             return response;
         }
+
         // this method will stream line all the shipyard menus
         public int ShipYardMenu()
         {
@@ -34,6 +36,7 @@ namespace SpaceGame
             int response = Convert.ToInt32(Console.ReadLine());
             return response;
         }
+
         // general display for all bank screens
         public void BankDisplay(PersonalStatus ps)
         {
@@ -45,12 +48,14 @@ namespace SpaceGame
             Console.ReadLine();
             GO.Win(ps, ship);
         }
+
         // a player hud
         public void InventoryDisplay(PersonalStatus ps, Ship ship, Fuel fuel)
         {
             Console.WriteLine($"Space Gold: {ps.SpaceGold} No Balanace Shoes: {ps.NoBalanaceShoes} Galactic TVs: {ps.GalacticTVs} " +
                 $"Galactic Credits: {ps.MyCurrentCredit} \nCurrent Ship: {ship.ShipName} Current Fuel: {fuel.MyCurrentFuel} Cargo Space: {ship.ShipCapacity - (ps.SpaceGold + ps.NoBalanaceShoes + ps.GalacticTVs)}\n");
         }
+
         // travel between the stars can be dangerous
         public void Travel(PersonalStatus ps)
         {
@@ -127,6 +132,7 @@ namespace SpaceGame
                 "   *        *   .   .   ");
             Console.ReadLine();
         }
+
         public int ShopSelector()
         {
 	        Console.WriteLine($"\n" +
@@ -134,10 +140,11 @@ namespace SpaceGame
             $"\t\t 1 Buy\n" +
             $"\t\t 2 Sell\n" +
             $"\t\t 3 Buy Fuel\n" +
-            $"\t\t 3 Return to planetary menu");
+            $"\t\t 4 Return to planetary menu");
             int response = Convert.ToInt32(Console.ReadLine());
             return response;
         }
+
         public void PlanetTravel(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety, Ship ship, PersonalStatus PS, Fuel fuel)
         {
             double distTraveled = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
@@ -146,25 +153,54 @@ namespace SpaceGame
             PS.MyTravelTime += time;
             fuel.MyCurrentFuel -= (int)(distTraveled);
         }
+
         public double PlanetDistance(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety)
         {
             double dist = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
             return dist;
         }
+
         public string FuelCheck(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety, Ship ship, PersonalStatus PS, Fuel fuel)
         {
             double distTraveled = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
             string fuelCheck = "OK";
             if (fuel.MyCurrentFuel < (distTraveled))
             {
-                Console.WriteLine($"" +
-                    $"You don't have enough fuel for that trip, you only have {fuel.MyCurrentFuel} amount of fuel\n" +
-                    $"you would need {(int)(distTraveled) - fuel.MyCurrentFuel} more fuel to make that trip.");
-                Console.ReadLine();
+                
                 string failedCheck = "TooFar";
                 return failedCheck;
             }
             return fuelCheck;
+        }
+
+        public void TooFar(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety, Fuel fuel)
+        {
+            double distTraveled = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
+            Console.WriteLine($"" +
+                    $"You don't have enough fuel for that trip, you only have {fuel.MyCurrentFuel} amount of fuel\n" +
+                    $"you would need {(int)(distTraveled) - fuel.MyCurrentFuel} more fuel to make that trip.");
+            Console.ReadLine();
+        }
+
+        public void MarketDisplay(PlanetInfo PI)
+        {
+            Console.WriteLine($"\tEarth: \n" +
+                $"\t\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n" +
+                $"\t\tSpace Gold: {PI.EarthSpaceGold} \n" +
+                $"\t\tGalactic TVs: {PI.EarthGalacticTVs}\n\n" +
+                $"\tAlpha Centari:\n" +
+                $"\t\tNo Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.AlphaCentariGold}\n" +
+                $"\t\tGalactic TVs: {PI.AlphaCentariGalacticTVs}\n\n" +
+                $"\tM63:\n" +
+                $"\t\tNo Balance Shoes: {PI.M63NoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.M63SpaceGold}\n" +
+                $"\t\tGalactic TVs: {PI.M63GalacticTVs} \n" +
+                $"\tAsgard:\n" +
+                $"\t\tNo Balance Shoes: {PI.AsgardNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.AsgardGold}\n" +
+                $"\t\tGalactic TVs: {PI.AsgardGalacticTVs}");
+            Console.ReadLine();
         }
     }
 }

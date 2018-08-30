@@ -20,7 +20,7 @@ namespace SpaceGame
 
             this.EarthNoBalanceShoes = 80;
 
-            this.EarhtGalacticTVs    = 120;
+            this.EarthGalacticTVs    = 120;
 
 
 
@@ -130,7 +130,7 @@ namespace SpaceGame
         public int PlanetJoeNoBalanceShoes      { get; private set; }
 
 
-        public int EarhtGalacticTVs         { get; private set; }
+        public int EarthGalacticTVs         { get; private set; }
         public int AlphaCentariGalacticTVs  { get; private set; }
         public int M63GalacticTVs           { get; private set; }
         public int AsgardGalacticTVs        { get; private set; }

@@ -16,10 +16,11 @@ namespace SpaceGame
                 $"\n\t\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" +
                 $"\n\t\t\t\t              Game Over" +
                 $"\n\t\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" +
-                $"\n\n\t\tYou had {ps.MyCurrentCredit} Galactic Credits at theR end of your journey" +
-                $"\n\t\tYou traveled for {ps.MyTravelTime} years total\n\t\tYou had a {ship.ShipName} class ship\n\n\n" +
-                $"\t\t\t\t              Thank you for playing\n\n\n" +
-                $"\t\t\t\t\t Copyright 2018 The Space Game Company");
+                $"\n\n\t\t\tYou had {ps.MyCurrentCredit} Galactic Credits at theR end of your journey" +
+                $"\n\t\t\tYou traveled for {ps.MyTravelTime} years total" +
+                $"\n\t\t\tYou had a {ship.ShipName} class ship\n\n\n" +
+                $"\t\t\t              Thank you for playing\n\n\n" +
+                $"\t\t\t\t Copyright 2018 The Space Game Company");
             Console.ReadLine();
             Console.WriteLine("Press 'alt+f4' to exit");
             Console.ReadLine();
