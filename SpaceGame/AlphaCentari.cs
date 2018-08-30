@@ -110,11 +110,11 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"" +
-                $"Welcome to the Galactic Bank of Centari Four! Behind the counter is an tall old bird, his \n" +
-                $"specticles are low on his beak and attached to his head by a gold chain.\n" +
-                $"The high ceilings make room for doors on many levels but with no visable landing, \n" +
-                $"of course ground based humans like you have to come in through the 'walkers' door.\n");
+            Console.WriteLine($"\n\n" +
+                $"\tWelcome to the Galactic Bank of Centari Four! Behind the counter is an tall old bird, his \n" +
+                $"\tspecticles are low on his beak and attached to his head by a gold chain.\n" +
+                $"\tThe high ceilings make room for doors on many levels but with no visable landing, \n" +
+                $"\tof course ground based humans like you have to come in through the 'walkers' door.\n");
             UM.BankDisplay(PS);
             Console.ReadLine();
             return;
@@ -124,11 +124,12 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
-                $"1 NoBalanceShoes {PI.AlphaCentariNoBalanceShoes} GC per Unit\n" +
-                $"2 Space Gold {PI.AlphaCentariGold} GC per Unit\n" +
-                $"3 Galactic TV {PI.AlphaCentariGalacticTVs} GC per Unit \n" +
-                $"4 Return to the Shop");
+            Console.WriteLine($"\n\n" +
+                $"\tYou have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
+                $"\t\t1 NoBalanceShoes {PI.AlphaCentariNoBalanceShoes} GC per Unit\n" +
+                $"\t\t2 Space Gold {PI.AlphaCentariGold} GC per Unit\n" +
+                $"\t\t3 Galactic TV {PI.AlphaCentariGalacticTVs} GC per Unit \n" +
+                $"\t\t4 Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
             //Buy Shoes
             if (response == 1)
@@ -156,8 +157,13 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"You have {PS.NoBalanaceShoes} pairs of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} sets of Galactic TVs." +
-                $" Which would you like to sell?\n 1 No Balance Shoes\n 2 Space Gold\n 3 Galactic TVs\n 4 or Return to the Shop");
+            Console.WriteLine($"\n\n" +
+                $"\tYou have {PS.NoBalanaceShoes} pairs of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} sets of Galactic TVs.\n" +
+                $"\t\tWhich would you like to sell?\n" +
+                $"\t\t 1 No Balance Shoes\n" +
+                $"\t\t 2 Space Gold\n" +
+                $"\t\t 3 Galactic TVs\n" +
+                $"\t\t 4 or Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
 
             bool Shoes = response == 1;
@@ -227,11 +233,11 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"" +
-                $"The city of Macawalani on Centari IV has the largest stock exchange for a light year in any direction.\n" +
-                $"But unlike the exchanges of earth it's nearly silent in the exchange. The Centarians are famously capatalistic and the \n" +
-                $"Macawalani exchange is almost like a temple. But it takes you hardly any time at all to find the entries of your\n" +
-                $"classic moneymakers...\n");
+            Console.WriteLine($"\n\n" +
+                $"\tThe city of Macawalani on Centari IV has the largest stock exchange for a light year in any direction.\n" +
+                $"\tBut unlike the exchanges of earth it's nearly silent in the exchange. The Centarians are famously capatalistic and the \n" +
+                $"\tMacawalani exchange is almost like a temple. But it takes you hardly any time at all to find the entries of your\n" +
+                $"\tclassic moneymakers...\n");
             UM.MarketDisplay(PI);
         }
 
@@ -240,11 +246,11 @@ namespace SpaceGame
 
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
-            Console.WriteLine($"" +
-                $"Wind swirls around you as a ships takes off to some new and exciting destination.\n" +
-                $"Ports like this always make you miss home a little but the dream of the \n" +
-                $"Dukedom of Mercury and the thoughts of your upcoming(hopefully)\n" +
-                $"nuptuals drive you forward.");
+            Console.WriteLine($"\n\n" +
+                $"\tWind swirls around you as a ships takes off to some new and exciting destination.\n" +
+                $"\tPorts like this always make you miss home a little but the dream of the \n" +
+                $"\tDukedom of Mercury and the thoughts of your upcoming(hopefully)\n" +
+                $"\tnuptuals drive you forward.");
             Console.WriteLine($"\n\n" +
            $"\tWhere would you like to go? \n");
             if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")

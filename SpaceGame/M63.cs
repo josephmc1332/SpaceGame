@@ -49,14 +49,6 @@ namespace SpaceGame
         {
             int response = Convert.ToInt32(Console.ReadLine());
 
-            //evaluate user input by using boolean expressions
-            bool shipYard = response == 1;
-            bool galacticBank = response == 2;
-            bool shop = response == 3;
-            bool market = response == 4;
-            bool port = response == 5;
-            bool quit = response == 9;
-
 
             //point of method access after valid user selection
             if (response == 1)
@@ -89,12 +81,12 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"" +
-                $"Tall white columns frame the door to the Messinese Galactic Bank branch.\n" +
-                $"Men and women dressed in all white are coming and going from the inside.\n" +
-                $"The shining white walls of the bank hum with the electricity from the sheer\n" +
-                $"number of data transfers taking place inside. The interior is more of the \n" +
-                $"same, white walls and white clothes contrasting sharply with the coal black\n");
+            Console.WriteLine($"\n\n" +
+                $"\tTall white columns frame the door to the Messinese Galactic Bank branch.\n" +
+                $"\tMen and women dressed in all white are coming and going from the inside.\n" +
+                $"\tThe shining white walls of the bank hum with the electricity from the sheer\n" +
+                $"\tnumber of data transfers taking place inside. The interior is more of the \n" +
+                $"\tsame, white walls and white clothes contrasting sharply with the coal black\n");
             UM.BankDisplay(PS);
             return;
         }
@@ -103,8 +95,9 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine("You've arrived at the shop on M63. Niko, the owner welcomes you to look around at all the goods." +
-                "\nWe've got the highest quality TV's in the universe!");
+            Console.WriteLine("\n\n" +
+                "\tYou've arrived at the shop on M63. Niko, the owner welcomes you to look around at all the goods." +
+                "\n\tWe've got the highest quality TV's in the universe!");
             int response = UM.ShopSelector();
             if (response == 1)
                 M63Buy(UM, PS, ship, fuel, PI);
@@ -120,9 +113,12 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"You have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
-                $"1 NoBalanceShoes {PI.M63NoBalanceShoes} GC per Unit\n 2 Space Gold {PI.M63SpaceGold} GC per Unit\n 3 Galactic TV {PI.M63GalacticTVs} GC per Unit \n 4 " +
-                $"Return to Planetary Menu");
+            Console.WriteLine($"\n\n" +
+                $"\tYou have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n" +
+                $"\t 1 NoBalanceShoes {PI.M63NoBalanceShoes} GC per Unit\n" +
+                $"\t 2 Space Gold {PI.M63SpaceGold} GC per Unit\n" +
+                $"\t 3 Galactic TV {PI.M63GalacticTVs} GC per Unit \n" +
+                $"\t 4 Return to Planetary Menu");
             int response = Convert.ToInt32(Console.ReadLine());
 
             //Buy Shoes
@@ -226,8 +222,13 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"You have {PS.NoBalanaceShoes} pairs of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} sets of Galactic TVs." +
-                $" Which would you like to sell?\n 1 No Balance Shoes\n 2 Space Gold\n 3 Galactic TVs\n 4 or Return to the Shop");
+            Console.WriteLine($"\n\n" +
+                $"\tYou have {PS.NoBalanaceShoes} pairs of No Balance Shoes, {PS.SpaceGold} bars of Space Gold & {PS.GalacticTVs} sets of Galactic TVs.\n" +
+                $"\tWhich would you like to sell?\n" +
+                $"\t 1 No Balance Shoes\n" +
+                $"\t 2 Space Gold\n" +
+                $"\t 3 Galactic TVs\n" +
+                $"\t 4 or Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
 
             if (response == 1)
@@ -292,7 +293,8 @@ namespace SpaceGame
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"Where would you like to go?");
+            Console.WriteLine($"\n\n" +
+                $"\tWhere would you like to go?");
             if (UM.FuelCheck(PI.M63XPosition, PI.EarthXPosition, PI.M63YPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
                 Console.WriteLine($"\t<earth> Earth: {UM.PlanetDistance(PI.M63XPosition, PI.EarthXPosition, PI.M63YPosition, PI.EarthYPosition)} Light years away which will take {UM.PlanetDistance(PI.M63XPosition, PI.EarthXPosition, PI.M63YPosition, PI.EarthYPosition) / playerWarpSpeed} years\n");
             if (UM.FuelCheck(PI.M63XPosition, PI.AlphaCentariXPosition, PI.M63YPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
@@ -358,12 +360,13 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             // write flavor text about shipyard
-            Console.WriteLine("You walk into the Shipyard, the sound of welders and hammers fills the air. Ship salesman are weaving in and out of" +
-                "the ships pushing their latest ship on travelers all the while dodging the laborers.\n" +
-                "Would you like to:\n" +
-                " 1 Check your ship stats\n" +
-                " 2 Buy a new Ship\n" +
-                " 3 Return to planetary hub");
+            Console.WriteLine("\n\n" +
+                "\tYou walk into the Shipyard, the sound of welders and hammers fills the air. Ship salesman are\n" +
+                "\tweaving in and out of the ships pushing their latest ship on travelers all the while dodging the laborers.\n" +
+                "\t\tWould you like to:\n" +
+                "\t\t 1 Check your ship stats\n" +
+                "\t\t 2 Buy a new Ship\n" +
+                "\t\t 3 Return to planetary hub");
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
                 SY.ShipCheck(PS, ship, UM, fuel);
@@ -377,14 +380,10 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"" +
-                $"Welcome to the Epic Market on M63, where your opportunity for wealth is boundless and the products are of the most elegant varieties. " +
-                $"  \nEarth: \n\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n\tSpace Gold: {PI.EarthSpaceGold} \n\tGalactic TVs: {PI.EarthGalacticTVs}" +
-                $"\n \nAlpha Centari:\n\t No Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n\tSpace Gold: {PI.AlphaCentariGold}\n\tGalactic " +
-                $"TVs: {PI.AlphaCentariGalacticTVs}\n \nM63:\n\t No Balance Shoes: {PI.M63NoBalanceShoes}" +
-                $"\n\tSpace Gold: {PI.M63SpaceGold}\n\tGalactic TVs: {PI.M63GalacticTVs} \n" +
-                $"Press enter to return to the Messien streets...");
-            Console.ReadLine();
+            Console.WriteLine($"\n\n" +
+                $"\tWelcome to the Epic Market on M63, where your opportunity for wealth is boundless and the \n" +
+                $"\tproducts are of the most elegant varieties.");
+            UM.MarketDisplay(PI);
         }
         #endregion
     }
