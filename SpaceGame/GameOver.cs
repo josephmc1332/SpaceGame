@@ -17,7 +17,7 @@ namespace SpaceGame
                 $"\n\t\t\t\t              Game Over" +
                 $"\n\t\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" +
                 $"\n\n\t\t\tYou had {ps.Cash()} Galactic Credits at theR end of your journey" +
-                $"\n\t\t\tYou traveled for {ps.MyTravelTime} years total" +
+                $"\n\t\t\tYou traveled for {ps.TravelAge()} years total" +
                 $"\n\t\t\tYou had a {ship.ShipName} class ship\n\n\n" +
                 $"\t\t\t              Thank you for playing\n\n\n" +
                 $"\t\t\t\t Copyright 2018 The Space Game Company");
@@ -38,7 +38,7 @@ namespace SpaceGame
         {
             Console.WriteLine($"\n\n\n\n" +
                 $"\t\tYou have died. As is customary in Space you body is launched out into the inky blackness.\n" +
-                $"\t\tThe admiral of the frigrate that performs the rite, with a tear in his eye, salutes 'Goodbye {ps.MyName}\n" +
+                $"\t\tThe admiral of the frigrate that performs the rite, with a tear in his eye, salutes 'Goodbye {ps.NameCall()}\n" +
                 $"\t\tyou were one of the good ones...'");
             Console.ReadLine();
             EndScreen(ps, ship);
@@ -52,7 +52,7 @@ namespace SpaceGame
                   $"\t\tsoon you are whisked away on a golden chariot inside a golden spaceship. \n" +
                   $"\t\tIt's not long before you arrive at your beautiful new estate on Mercury. \n" +
                   $"\t\tThe days here are short and hot but it's all yours. Your new butler leads \n" +
-                  $"\t\tyou inside 'Duke {ps.MyName} these are your new digs, and over here' he says \n" +
+                  $"\t\tyou inside 'Duke {ps.NameCall()} these are your new digs, and over here' he says \n" +
                   $"\t\tindicating a large banquet hall 'is where your big ceremony will be.' \n\n" +
                   $"\t\tYou marry your beloved and live happily ever after!\n" +
                   $"\t\tCongratulations! You won the game!");

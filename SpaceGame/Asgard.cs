@@ -12,7 +12,7 @@ namespace SpaceGame
 
         public void AsgardPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63)
         {
-            PS.MyCurrentLocation = "Asgard";
+            PS.LocationChanger("Asgard");
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
@@ -56,7 +56,7 @@ namespace SpaceGame
             Console.WriteLine($"\n\n" +
             $"\tYou walk into the shipyard of Asgard and are greeted by a man who looks like he\n" +
             $"\tstepped right out of an old Norse myth. He smiles through his huge beard, 'Greetings\n" +
-            $"\t{PS.MyName} welcome to my shipyard I am Sven son of Baldur God of ship sales and\n" +
+            $"\t{PS.NameCall()} welcome to my shipyard I am Sven son of Baldur God of ship sales and\n" +
             $"\tmaintenance. I see you have a {ship.ShipName} class ship, those are good but I think you\n" +
             $"\tcould do better, well anyway what can I do for you?\n" +
             $"\t\tWhat do you want to do?\n" +
@@ -80,7 +80,7 @@ namespace SpaceGame
             $"\tYou walk into the bank which is easily one of the most expensive buildings you've ever" +
             $"\tbeen in. It seems everything in Asgard is either a deadly steel blade or made entirely" +
             $"\tfrom space gold. The banker smiles at you, 'Welcome to the Asgardian branch of the Galactic" +
-            $"\tBank {PS.MyName} I am the Thrador! Son of Spandar, God of Banking and money exchange!' He" +
+            $"\tBank {PS.NameCall()} I am the Thrador! Son of Spandar, God of Banking and money exchange!' He" +
             $"\tquite boisterous for a banker. He taps away at some glowing runes carved into the gold top" +
             $"\tof the counter.");
             UM.BankDisplay(PS);
@@ -196,7 +196,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.AsgardXPosition, PI.AlphaCentariXPosition, PI.AsgardYPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    PS.MyCurrentLocation = "AlphaCentari";
+                    PS.LocationChanger("AlphaCentari");
                     LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
                 }
                 if (UM.FuelCheck(PI.AsgardXPosition, PI.AlphaCentariXPosition, PI.AsgardYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
@@ -211,7 +211,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.AsgardXPosition, PI.M63XPosition, PI.AsgardYPosition, PI.M63YPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    PS.MyCurrentLocation = "M63";
+                    PS.LocationChanger("M63");
                     LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
                 }
                 if (UM.FuelCheck(PI.AsgardXPosition, PI.M63XPosition, PI.AsgardYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
@@ -226,7 +226,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.AsgardXPosition, PI.EarthXPosition, PI.AsgardYPosition, PI.EarthYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    PS.MyCurrentLocation = "Earth";
+                    PS.LocationChanger("Earth");
                     LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
                 }
                 if (UM.FuelCheck(PI.AsgardXPosition, PI.EarthXPosition, PI.AsgardYPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")

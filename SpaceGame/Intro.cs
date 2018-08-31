@@ -53,21 +53,20 @@ namespace SpaceGame
 
             //Setting the starting stats
 
-            PS.MyName = Console.ReadLine();
-
-             PS.MyCurrentLocation = "Earth";
+            PS.WhatsMyName(Console.ReadLine());
+            PS.LocationChanger("Earth");
 
             //clears the text
             Console.Clear();
 
             //add story here
             Console.WriteLine($"\n\n\n\n" +
-                $"\t\tOkay, {PS.MyName}. You were engaged to Venusian royalty but the king of Venus has forbidden your beloved \n" +
+                $"\t\tOkay, {PS.NameCall()}. You were engaged to Venusian royalty but the king of Venus has forbidden your beloved \n" +
                 $"\t\tto marry a mere commoner like yourself. But there is even worse news! \n" +
                 $"\t\tYour beloved has other interested parties, and what's worse is they are already nobility. \n" +
                 $"\t\tBut you are in luck there is a way to buy into galactic nobility, but it's going to be a lot of work. \n" +
                 $"\t\tYou've got a {ship.ShipName} class ship and {PS.Cash()} Galactic Credits, \n" +
-                $"\t\tso get out there and get to trading, {PS.MyName}!\n\n" +
+                $"\t\tso get out there and get to trading, {PS.NameCall()}!\n\n" +
                 $"\n\n\n\n\n\n\n\n\t\t\tPress enter to continue past this or any screen in this game.");
 
             Console.ReadLine();

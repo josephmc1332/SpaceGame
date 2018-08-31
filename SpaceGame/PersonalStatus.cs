@@ -47,29 +47,55 @@ namespace SpaceGame
         /// Personal Info
         /// </summary>
         private int MyCurrentCredit { get; set; }
-        public string MyName { get; set; }
-        public double MyTravelTime { get; set; }
-        public string MyCurrentLocation { get; set; }
+        private string MyName { get; set; }
+        private double MyTravelTime { get; set; }
+        private string MyCurrentLocation { get; set; }
 
 
         // Money manupulation methods
-
+        #region money manipulation
         public void SpendMoney(int costOfItem)
         {
             MyCurrentCredit -= costOfItem;
         }
-
         public void EarnMoney(int profit)
         {
             MyCurrentCredit += profit;
         }
-
         public int Cash()
         {
             return MyCurrentCredit;
         }
+        #endregion
 
+        #region time Manipulation
+        public double TravelAge()
+        {
+            return MyTravelTime;
+        }
+        public void AddTime(double timePassed)
+        {
+            MyTravelTime += timePassed;
+        }
+        #endregion
 
+        public string NameCall()
+        {
+            return MyName;
+        }
+        public void WhatsMyName(string name)
+        {
+            MyName = name;
+        }
+
+        public void LocationChanger(string planet)
+        {
+            MyCurrentLocation = planet;
+        }
+        public string LocationCheck()
+        {
+            return MyCurrentLocation;
+        }
 
 
 
