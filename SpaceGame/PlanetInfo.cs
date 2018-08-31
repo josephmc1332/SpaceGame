@@ -66,6 +66,15 @@ namespace SpaceGame
             // same as shoes
             this.PlanetJoeGalacticTVs = 100;
 
+            ///titan
+            this.TitanGalacticTVs = 80;
+
+            this.TitanGold = 100;
+
+            this.TitanNoBalanceShoes = 200;
+
+
+
 
             //Earth Location
             this.EarthXPosition = 0.0;
@@ -100,11 +109,18 @@ namespace SpaceGame
             this.PlanetXYPosition = -1;
 
             //Planet Joe position
-            int jxposition = rnd.Next(-1, 4);
+            double jxposition = rnd.Next(-1, 4);
             this.PlanetJoeXPosition = jxposition;
 
-            int jyposition = rnd.Next(13, 17);
+            double jyposition = rnd.Next(13, 17);
             this.PlanetJoeYPosition = jyposition;
+
+            //Titan Position
+            double txposition = rnd.Next(2, 6);
+            this.TitanXPosition = txposition;
+
+            double typosition = rnd.Next(6, 12);
+            this.TitanYPosition = typosition;
 
             
         }
@@ -120,7 +136,7 @@ namespace SpaceGame
         public int AsgardGold       { get; private set; }
         public int PlanetXGold      { get; private set; }
         public int PlanetJoeGold    { get; private set; }
-
+        public int TitanGold        { get; private set; }
 
         public int EarthNoBalanceShoes          { get; private set; }
         public int AlphaCentariNoBalanceShoes   { get; private set; }
@@ -128,7 +144,7 @@ namespace SpaceGame
         public int AsgardNoBalanceShoes         { get; private set; }
         public int PlanetXNoBalanceShoes        { get; private set; }
         public int PlanetJoeNoBalanceShoes      { get; private set; }
-
+        public int TitanNoBalanceShoes          { get; private set; }
 
         public int EarthGalacticTVs         { get; private set; }
         public int AlphaCentariGalacticTVs  { get; private set; }
@@ -136,6 +152,7 @@ namespace SpaceGame
         public int AsgardGalacticTVs        { get; private set; }
         public int PlanetXGalacticTVs       { get; private set; }
         public int PlanetJoeGalacticTVs     { get; private set; }
+        public int TitanGalacticTVs         { get; private set; }
 
         /// <summary>
         /// planetary positions
@@ -152,6 +169,8 @@ namespace SpaceGame
         public double PlanetXYPosition      { get; private set; }
         public double PlanetJoeXPosition    { get; private set; }
         public double PlanetJoeYPosition    { get; private set; }
+        public double TitanXPosition        { get; private set; }
+        public double TitanYPosition        { get; private set; }
 
 
 
