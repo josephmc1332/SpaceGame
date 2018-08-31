@@ -31,9 +31,9 @@ namespace SpaceGame
         {
             Console.WriteLine($"Your current fuel level is: {MyCurrentFuel}, fuel costs 5 GC per unit. How much fuel would you like to buy?");
             int response = Convert.ToInt32(Console.ReadLine());
-            if (response * 5 > PS.MyCurrentCredit)
+            if (response * 5 > PS.Cash())
             {
-                Console.WriteLine($"You can't afford that much fuel. You can only afford {PS.MyCurrentCredit / 5}");
+                Console.WriteLine($"You can't afford that much fuel. You can only afford {PS.Cash() / 5}");
                 Console.ReadLine();
                 BuyFuel(PS, ship);
             }
@@ -43,12 +43,12 @@ namespace SpaceGame
                 Console.ReadLine();
                 BuyFuel(PS, ship);
             }
-            if (response + MyCurrentFuel <= ship.ShipFuelMax && response * 5 <= PS.MyCurrentCredit)
+            if (response + MyCurrentFuel <= ship.ShipFuelMax && response * 5 <= PS.Cash())
             {
                 MyCurrentFuel += response;
-                PS.MyCurrentCredit -= (response * 5);
+                PS.SpendMoney(response * 5);
                 Console.WriteLine($"You now have {MyCurrentFuel} amount of fuel.\n" +
-                    $"It cost {response * 5} you now have {PS.MyCurrentCredit}");
+                    $"It cost {response * 5} you now have {PS.Cash()}");
                 return;
             }
             else

@@ -46,10 +46,13 @@ namespace SpaceGame
         /// <summary>
         /// Personal Info
         /// </summary>
-        public int MyCurrentCredit { get; set; }
+        private int MyCurrentCredit { get; set; }
         public string MyName { get; set; }
         public double MyTravelTime { get; set; }
         public string MyCurrentLocation { get; set; }
+
+
+        // Money manupulation methods
 
         public void SpendMoney(int costOfItem)
         {

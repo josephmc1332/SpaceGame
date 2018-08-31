@@ -99,7 +99,7 @@ namespace SpaceGame
             if (response == 1)
                 AlphaBuy(UM, PS, ship, fuel, PI, Shop);
             if (response == 2)
-                AlphaSell(UM, PS, ship, fuel, PI);
+                AlphaSell(UM, PS, ship, fuel, PI, Shop);
             if (response == 3)
                 fuel.BuyFuel(PS, ship);
             if (response == 4)
@@ -125,7 +125,7 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
-                $"\tYou have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n " +
+                $"\tYou have {PS.Cash()} Galactic Credits, what good would you like to buy?\n " +
                 $"\t\t1 NoBalanceShoes {PI.AlphaCentariNoBalanceShoes} GC per Unit\n" +
                 $"\t\t2 Space Gold {PI.AlphaCentariGold} GC per Unit\n" +
                 $"\t\t3 Galactic TV {PI.AlphaCentariGalacticTVs} GC per Unit \n" +
@@ -153,7 +153,7 @@ namespace SpaceGame
             }
         }
 
-        public void AlphaSell(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)
+        public void AlphaSell(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop shop)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
@@ -166,63 +166,19 @@ namespace SpaceGame
                 $"\t\t 4 or Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
 
-            bool Shoes = response == 1;
-            bool Gold = response == 2;
-            bool TV = response == 3;
-            bool Return = response == 4;
-
-            if (Shoes)
+            if (response == 1)
             {
-                Console.WriteLine("How many No Balance Shoes would you like to offload?");
-                int quantity = Convert.ToInt32(Console.ReadLine());
-                if (quantity > PS.NoBalanaceShoes)
-                {
-                    Console.WriteLine($"You don't have that many shoes!\n You only have {PS.NoBalanaceShoes} pairs of No Balance Shoes. \nPress any key to return to the selling menu...");
-                    Console.ReadLine();
-                    return;
-                }
-                PS.NoBalanaceShoes -= quantity;
-                PS.MyCurrentCredit += (quantity * PI.AlphaCentariNoBalanceShoes);
-                Console.WriteLine($"Thank you for the No Balance Shoes, you can jump so high when gravity doesn't affect your feet!\nYou sold {quantity} No Balance Shoes for {(quantity * PI.AlphaCentariNoBalanceShoes)} Galactic Credits.\n" +
-                    $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.NoBalanaceShoes} No Balanace Shoes.\n Press any key to continue...");
-                Console.ReadLine();
-                return;
+                shop.SellShoes(PI.AlphaCentariNoBalanceShoes, PS, UM, ship, fuel);
             }
-            if (Gold)
+            if (response == 2)
             {
-                Console.WriteLine("How much Space Gold do you want sell?");
-                int quantity = Convert.ToInt32(Console.ReadLine());
-                if (quantity > PS.SpaceGold)
-                {
-                    Console.WriteLine($"You don't have that much Space Gold!\nYou only have {PS.SpaceGold} bars of Space Gold. \nPress any key to return to the selling menu...");
-                    Console.ReadLine();
-                    return;
-                }
-                PS.SpaceGold -= quantity;
-                PS.MyCurrentCredit += (quantity * PI.AlphaCentariGold);
-                Console.WriteLine($"Thanks for the Space Gold, Space Gold is so much more shiny than boring old regular gold!\nYou sold {quantity} bars of Space Gold for {(quantity * PI.AlphaCentariGold)} Galactic Credits.\n" +
-                    $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.SpaceGold} bars of Space Gold left.\n Press any key to continue...");
-                Console.ReadLine();
-                return;
+                shop.SellGold(PI.AlphaCentariGold, PS, UM, ship, fuel);
             }
-            if (TV)
+            if (response == 3)
             {
-                Console.WriteLine("How many TVs do you want to sell?");
-                int quantity = Convert.ToInt32(Console.ReadLine());
-                if (quantity > PS.GalacticTVs)
-                {
-                    Console.WriteLine($"You don't have that many Galactic TVs, you only have {PS.GalacticTVs}.\n Press any key to return to the selling menu...");
-                    Console.ReadLine();
-                    return;
-                }
-                PS.GalacticTVs -= quantity;
-                PS.MyCurrentCredit += (quantity * PI.AlphaCentariGalacticTVs);
-                Console.WriteLine($"Thank you for the Galactic TVs I can't believe how thin they are!\nYou sold {quantity} Galactic TVs for {(quantity * PI.AlphaCentariGalacticTVs)} Galactic Credits.\n" +
-                    $"You now have {PS.MyCurrentCredit} Galactic Credits and {PS.GalacticTVs} Galactic TVs left.\n Press any key to continue...");
-                Console.ReadLine();
-                return;
+                shop.SellTV(PI.AlphaCentariGalacticTVs, PS, UM, ship, fuel);
             }
-            if (Return)
+            if (response == 4)
             {
                 return;
             }

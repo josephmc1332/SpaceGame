@@ -23,7 +23,7 @@ namespace SpaceGame
                 Console.ReadLine();
                 return;
             }
-            if ((quantity * currentPlanetShoes) > PS.MyCurrentCredit)
+            if ((quantity * currentPlanetShoes) > PS.Cash())
 
             {
                 Console.WriteLine($"" +
@@ -32,11 +32,11 @@ namespace SpaceGame
                 Console.ReadLine();
                 return;
             }
-            PS.MyCurrentCredit -= (quantity * currentPlanetShoes);
+            PS.SpendMoney(quantity * currentPlanetShoes);
             PS.NoBalanaceShoes += quantity;
             Console.WriteLine($"" +
                 $"You have bought {quantity} No Balance Shoes for {(quantity * currentPlanetShoes)} GC.\n" +
-                $"You now have {PS.MyCurrentCredit} GC and {PS.NoBalanaceShoes} shoes.");
+                $"You now have {PS.Cash()} GC and {PS.NoBalanaceShoes} shoes.");
             Console.ReadLine();
             return;
 
@@ -58,7 +58,7 @@ namespace SpaceGame
                 Console.ReadLine();
                 return;
             }
-            if ((quantity * currentPlanetGold) > PS.MyCurrentCredit)
+            if ((quantity * currentPlanetGold) > PS.Cash())
 
             {
                 Console.WriteLine($"" +
@@ -67,11 +67,11 @@ namespace SpaceGame
                 Console.ReadLine();
                 return;
             }
-            PS.MyCurrentCredit -= (quantity * currentPlanetGold);
+            PS.SpendMoney(quantity * currentPlanetGold);
             PS.SpaceGold += quantity;
             Console.WriteLine($"" +
                 $"You have bought {quantity} bars of Space Gold for {(quantity * currentPlanetGold)} GC.\n" +
-                $"You now have {PS.MyCurrentCredit} GC and {PS.SpaceGold} bars of Space Gold.");
+                $"You now have {PS.Cash()} GC and {PS.SpaceGold} bars of Space Gold.");
             Console.ReadLine();
             return;
 
@@ -93,7 +93,7 @@ namespace SpaceGame
                 Console.ReadLine();
                 return;
             }
-            if ((quantity * currentPlanetTV) > PS.MyCurrentCredit)
+            if ((quantity * currentPlanetTV) > PS.Cash())
 
             {
                 Console.WriteLine($"" +
@@ -102,11 +102,11 @@ namespace SpaceGame
                 Console.ReadLine();
                 return;
             }
-            PS.MyCurrentCredit -= (quantity * currentPlanetTV);
+            PS.SpendMoney(quantity * currentPlanetTV);
             PS.GalacticTVs += quantity;
             Console.WriteLine($"" +
                 $"You have bought {quantity} bars of Space Gold for {(quantity * currentPlanetTV)} GC.\n" +
-                $"You now have {PS.MyCurrentCredit} GC and {PS.GalacticTVs} Galactic TVs.");
+                $"You now have {PS.Cash()} GC and {PS.GalacticTVs} Galactic TVs.");
             Console.ReadLine();
             return;
 
@@ -127,7 +127,7 @@ namespace SpaceGame
                 return;
             }
             PS.NoBalanaceShoes -= quantity;
-            PS.MyCurrentCredit += (quantity * currentPlanetShoes);
+            PS.EarnMoney(quantity * currentPlanetShoes);
             Console.WriteLine($"'Thank you for these No Balance Shoes these things are AMAZING. Look at me zipping around like\n" +
             $"a bird in the air, I am the God of Flying without wings!' \n" +
             $"You sold {quantity} No Balance Shoes for {quantity * currentPlanetShoes} GC.");
@@ -148,7 +148,7 @@ namespace SpaceGame
                 return;
             }
             PS.SpaceGold -= quantity;
-            PS.MyCurrentCredit += (quantity * currentPlanetGold);
+            PS.EarnMoney(quantity * currentPlanetGold);
             Console.WriteLine($"'Thanks for the Space Gold, I guess. I have plenty already though...' \n" +
             $"You sold {quantity} Space Gold for {quantity * currentPlanetGold} GC.");
             Console.ReadLine();
@@ -168,7 +168,7 @@ namespace SpaceGame
                 return;
             }
             PS.GalacticTVs -= quantity;
-            PS.MyCurrentCredit += (quantity * currrentPlanetTV);
+            PS.EarnMoney(quantity * currrentPlanetTV);
             Console.WriteLine($"'Thanks for the Galactic TVs I usually just watch the Valkyries fly by to pass the time.' \n" +
             $"You sold {quantity} Galactic TVs for {quantity * currrentPlanetTV} GC.");
             Console.ReadLine();

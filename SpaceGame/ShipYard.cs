@@ -16,13 +16,13 @@ namespace SpaceGame
             Console.WriteLine($"\n\n" +
                 $"\tYou currently own the {ship.ShipName}, which is a great ship, but it's time to upgrade... \n" +
                 $"\tWhat ship are you looking to hop in today?\n" +
-                $"\tYou currently have {PS.MyCurrentCredit} credits\n" +
+                $"\tYou currently have {PS.Cash()} credits\n" +
                 $"\t  1 The Interstellar Connex 600 GCs\n" +
                 $"\t  2 The StarWagon 1200GCs");
             //convert response to numeric value of type int
             int shipUpgrade = Convert.ToInt32(Console.ReadLine());
             //If buying the interstellar
-            if (shipUpgrade == 1 && PS.MyCurrentCredit >= 600)
+            if (shipUpgrade == 1 && PS.Cash() >= 600)
             {
                 string myShipUpgrade = "The Interstellar Connex";
                 Console.Clear();
@@ -42,10 +42,10 @@ namespace SpaceGame
                     ship.ShipCapacity = ship.InterstellarConnexCapacity;
                     ship.ShipName = myShipUpgrade;
                     //subtract credit after purchase
-                    PS.MyCurrentCredit = PS.MyCurrentCredit - 600;
+                    PS.SpendMoney(600);
                     //display ship bought and remaining credit
                     Console.WriteLine($"Congratulations on your new ship purchase! " +
-                        $"You now own the {ship.ShipName} and have {PS.MyCurrentCredit} remaining");
+                        $"You now own the {ship.ShipName} and have {PS.Cash()} remaining");
                     Console.ReadLine();
                     return;
                 }
@@ -56,7 +56,7 @@ namespace SpaceGame
                 }
             }
             //stop purchase. not enough credits
-            if (shipUpgrade == 1 && PS.MyCurrentCredit < 600)
+            if (shipUpgrade == 1 && PS.Cash() < 600)
             {
                 Console.WriteLine("You do not have enough credits to complete this purchase!");
                 Console.ReadLine();
@@ -64,7 +64,7 @@ namespace SpaceGame
 
             }
             //if buying the starwagon
-            if (shipUpgrade == 2 && PS.MyCurrentCredit >= 1200)
+            if (shipUpgrade == 2 && PS.Cash() >= 1200)
             {
                 //initialize ship 
                 string myShipUpgrade = "The StarWagon";
@@ -85,11 +85,11 @@ namespace SpaceGame
                     ship.ShipName = myShipUpgrade;
                     ship.ShipCapacity = ship.StarWagonCapacity;
                     ship.ShipSpeed = ship.StarWagonSpeed;
-                    PS.MyCurrentCredit = PS.MyCurrentCredit - 1200;
+                    PS.SpendMoney(1200);
                     //display ship purchased and remaining credits
                     Console.Clear();
                     Console.WriteLine($"Congratulations on your new ship purchase! You now own the {ship.ShipName} " +
-                        $"\nand have {PS.MyCurrentCredit} credits remaining");
+                        $"\nand have {PS.Cash()} credits remaining");
                     Console.ReadLine();
                     return;
                 }
@@ -100,7 +100,7 @@ namespace SpaceGame
                 }
             }
             //stop purchase
-            if (shipUpgrade == 2 && PS.MyCurrentCredit < 1200)
+            if (shipUpgrade == 2 && PS.Cash() < 1200)
             {
                 Console.WriteLine("You do not have enough credits to complete this purchase!");
                 Console.ReadLine();

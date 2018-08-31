@@ -55,9 +55,7 @@ namespace SpaceGame
 
             PS.MyName = Console.ReadLine();
 
-            PS.MyCurrentCredit = 300;
-
-            PS.MyCurrentLocation = "Earth";
+             PS.MyCurrentLocation = "Earth";
 
             //clears the text
             Console.Clear();
@@ -68,7 +66,7 @@ namespace SpaceGame
                 $"\t\tto marry a mere commoner like yourself. But there is even worse news! \n" +
                 $"\t\tYour beloved has other interested parties, and what's worse is they are already nobility. \n" +
                 $"\t\tBut you are in luck there is a way to buy into galactic nobility, but it's going to be a lot of work. \n" +
-                $"\t\tYou've got a {ship.ShipName} class ship and {PS.MyCurrentCredit} Galactic Credits, \n" +
+                $"\t\tYou've got a {ship.ShipName} class ship and {PS.Cash()} Galactic Credits, \n" +
                 $"\t\tso get out there and get to trading, {PS.MyName}!\n\n" +
                 $"\n\n\n\n\n\n\n\n\t\t\tPress enter to continue past this or any screen in this game.");
 

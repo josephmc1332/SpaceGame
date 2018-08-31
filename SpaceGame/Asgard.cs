@@ -116,7 +116,7 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
-            $"\t\tYou have {PS.MyCurrentCredit} Galactic Credits What would you like to buy?\n" +
+            $"\t\tYou have {PS.Cash()} Galactic Credits What would you like to buy?\n" +
             $"\t\t 1 No Balance Shoes for {PI.AsgardNoBalanceShoes} GC\n" +
             $"\t\t 2 Space Gold for {PI.AsgardGold} GC\n" +
             $"\t\t 3 Galactic TVs for {PI.AsgardGalacticTVs} GC\n" +

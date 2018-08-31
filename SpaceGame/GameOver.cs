@@ -16,7 +16,7 @@ namespace SpaceGame
                 $"\n\t\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" +
                 $"\n\t\t\t\t              Game Over" +
                 $"\n\t\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" +
-                $"\n\n\t\t\tYou had {ps.MyCurrentCredit} Galactic Credits at theR end of your journey" +
+                $"\n\n\t\t\tYou had {ps.Cash()} Galactic Credits at theR end of your journey" +
                 $"\n\t\t\tYou traveled for {ps.MyTravelTime} years total" +
                 $"\n\t\t\tYou had a {ship.ShipName} class ship\n\n\n" +
                 $"\t\t\t              Thank you for playing\n\n\n" +
@@ -45,7 +45,7 @@ namespace SpaceGame
         }
         public void Win(PersonalStatus ps, Ship ship)
         {
-            if (ps.MyCurrentCredit > 1000000)
+            if (ps.Cash() > 1000000)
             {
                 Console.WriteLine($"\n\n\n\n" +
                   $"\t\tYou cash in your million credits for favor and influence, \n" +

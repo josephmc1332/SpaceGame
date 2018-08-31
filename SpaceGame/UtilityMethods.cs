@@ -41,8 +41,8 @@ namespace SpaceGame
         public void BankDisplay(PersonalStatus ps)
         {
             Console.WriteLine($"" +
-            $"\tYou have {ps.MyCurrentCredit} Galactic Credits in your bank account.\n" +
-            $"\tThe title of Duke of Mercury is 1,000,000 Galactic Credits. You need {(1000000 - ps.MyCurrentCredit)} more\n" +
+            $"\tYou have {ps.Cash()} Galactic Credits in your bank account.\n" +
+            $"\tThe title of Duke of Mercury is 1,000,000 Galactic Credits. You need {(1000000 - ps.Cash())} more\n" +
             $"\tGalactic Credits before you can win the King of Venus' approval.\n\n" +
             $"\t  Press <enter> to continue...");
             Console.ReadLine();
@@ -124,7 +124,7 @@ namespace SpaceGame
             }
             if (travelEvent < 5 && travelEvent > 1)
             {
-                if (ps.MyCurrentCredit < 10)
+                if (ps.Cash() < 10)
                 {
                     Console.WriteLine("The Pirates killed you because you couldnt pay their 10 GC toll.");
                     Console.ReadLine();
@@ -132,8 +132,8 @@ namespace SpaceGame
                 }
                 else
                     Console.WriteLine("Pirate attack! You lost 10 GC to them");
-                ps.MyCurrentCredit -= 10;
-                Console.WriteLine($"You now have {ps.MyCurrentCredit} GCs");
+                ps.SpendMoney(10);
+                Console.WriteLine($"You now have {ps.Cash()} GCs");
                 Console.ReadLine();
             }
             if (travelEvent == 1)
@@ -141,7 +141,7 @@ namespace SpaceGame
                 Console.WriteLine($"The galaxies worst pirates attack you but you easily overpower them. \n" +
                     $"'Please don't kill us {ps.MyName}, we will give you 100 GC if you let us go!' \n" +
                     $"You let them off easy this time...");
-                ps.MyCurrentCredit += 100;
+                ps.EarnMoney(100);
                 Console.ReadLine();
             }
             Console.ReadLine();
