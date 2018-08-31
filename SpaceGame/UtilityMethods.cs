@@ -211,14 +211,14 @@ namespace SpaceGame
         }
 
         public void PortTravel(double currentX, double destinationX, double currentY, double destinationY, string destination, UtilityMethods UM, PersonalStatus PS, Fuel fuel, Ship ship, PlanetInfo PI, Shop shop, ShipYard SY, LandingPage LP,
-            Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX)
+            Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX, Titan Titan)
         {
             if (UM.FuelCheck(currentX, destinationX, currentY, destinationY, ship, PS, fuel) == "OK")
             {
                 UM.PlanetTravel(currentX, destinationX, currentY, destinationY, ship, PS, fuel);
                 UM.Travel(PS);
                 PS.LocationChanger(destination);
-                LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
+                LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan);
             }
             if (UM.FuelCheck(currentX, destinationX, currentY, destinationY, ship, PS, fuel) == "TooFar")
             {
