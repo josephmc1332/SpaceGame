@@ -18,7 +18,9 @@ namespace SpaceGame
 
             //display menu on earth upon arrival
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine("Welecome to Titan, --------------------" +
+            Console.WriteLine("Welecome to Titan, the oldest planet in the universe. This planet has survived every disaster in history and still stands tall as" +
+                "\none of the universal leaders. We excel in importing and exporting the most desirable goods in the universe. Our world leader is Dwayne Johnson, " +
+                "\nso you could say we are all pretty yoked due to his anabolic policy." +
                "\n1. ShipYard" +
                "\n2. Galactic Bank" +
                "\n3. Buy, Sell, Trade" +

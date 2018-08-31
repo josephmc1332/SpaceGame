@@ -218,9 +218,28 @@ namespace SpaceGame
             if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
                 Console.WriteLine($"" +
                     $"\t\t<asgard> Asgard: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition) / playerWarpSpeed} years\n");
+            if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.TitanXPosition, PI.AlphaCentariYPosition, PI.TitanYPosition, ship, PS, fuel) == "OK")
+                Console.WriteLine($"" +
+                    $"\t\t<titan> Titan: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.TitanXPosition, PI.AlphaCentariYPosition, PI.TitanYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.TitanXPosition, PI.EarthYPosition, PI.TitanYPosition) / playerWarpSpeed} years\n");
             Console.WriteLine($"" +
                 $"\t\t<return> Return to Alpha Centari");
             string response = Console.ReadLine();
+            if (response == "titan")
+            {
+                if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.TitanXPosition, PI.AlphaCentariYPosition, PI.TitanYPosition, ship, PS, fuel) == "OK")
+                {
+                    UM.PlanetTravel(PI.AlphaCentariXPosition, PI.TitanXPosition, PI.AlphaCentariYPosition, PI.TitanYPosition, ship, PS, fuel);
+                    UM.Travel(PS);
+                    PS.LocationChanger("Titan");
+                    LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
+                }
+                if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.TitanXPosition, PI.AlphaCentariYPosition, PI.TitanYPosition, ship, PS, fuel) == "TooFar")
+                {
+                    UM.TooFar(PI.AlphaCentariXPosition, PI.TitanXPosition, PI.AlphaCentariYPosition, PI.TitanYPosition, fuel);
+                    return;
+                }
+            }
+
             if (response == "earth")
             {
                 if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
