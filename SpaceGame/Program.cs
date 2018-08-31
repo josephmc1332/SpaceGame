@@ -13,16 +13,16 @@ namespace SpaceGame
         {
 
 
-           
 
-            
+
+
 
             var LandingPage = new LandingPage();
-
+            var Intro = new Intro();
             //Entry Page/ Introduction/ Instructions
 
-            LandingPage.FirstPage();
-            LandingPage.LandingPagePicker();
+            Intro.FirstPage();
+            
 
 
             //Options upon 
