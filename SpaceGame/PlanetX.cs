@@ -212,23 +212,9 @@ namespace SpaceGame
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            
-            Console.WriteLine($"\n\n" +
-                $"\tWhere would you like to go? \n");
-            if (UM.FuelCheck(PI.PlanetXXPosition, PI.AlphaCentariXPosition, PI.PlanetXYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<centari> Alpha Centari: {UM.PlanetDistance(PI.PlanetXXPosition, PI.AlphaCentariXPosition, PI.PlanetXYPosition, PI.AlphaCentariYPosition)} Light years away which will take {UM.PlanetDistance(PI.PlanetXXPosition, PI.AlphaCentariXPosition, PI.PlanetXYPosition, PI.AlphaCentariYPosition) / playerWarpSpeed} years\n");
-            if (UM.FuelCheck(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<m63> M63: {UM.PlanetDistance(PI.PlanetXXPosition, PI.M63XPosition, PI.PlanetXYPosition, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(PI.PlanetXXPosition, PI.M63XPosition, PI.PlanetXYPosition, PI.M63YPosition) / playerWarpSpeed} years\n");
-            if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<earth> Earth: {UM.PlanetDistance(PI.PlanetXXPosition, PI.EarthXPosition, PI.PlanetXYPosition, PI.EarthYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.PlanetXYPosition, PI.EarthYPosition, PI.PlanetXYPosition) / playerWarpSpeed} years\n");
-            if (UM.FuelCheck(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<asgard> Asgard: {UM.PlanetDistance(PI.PlanetXXPosition, PI.AsgardXPosition, PI.PlanetXYPosition, PI.AsgardYPosition)} Light years away which will take {UM.PlanetDistance(PI.PlanetXXPosition, PI.AsgardXPosition, PI.PlanetXYPosition, PI.AsgardYPosition) / playerWarpSpeed} years\n");
-            Console.WriteLine($"" +
-                $"\t\t<return> Return to earth");
+
+            UM.PortMenu(PI.PlanetXXPosition, PI.PlanetXYPosition, UM, PS, ship, fuel, PI);
+
             string response = Console.ReadLine();
             if (response == "centari")
             {

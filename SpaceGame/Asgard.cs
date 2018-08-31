@@ -176,19 +176,9 @@ namespace SpaceGame
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"\n\n" +
-                $"\tWhere would you like to go? \n");
-            if (UM.FuelCheck(PI.AsgardXPosition, PI.AlphaCentariXPosition, PI.AsgardYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<centari> Alpha Centari: {UM.PlanetDistance(PI.AsgardXPosition, PI.AlphaCentariXPosition, PI.AsgardYPosition, PI.AlphaCentariYPosition)} Light years away which will take {UM.PlanetDistance(PI.AsgardXPosition, PI.AlphaCentariXPosition, PI.AsgardYPosition, PI.AlphaCentariYPosition) / playerWarpSpeed} years\n");
-            if (UM.FuelCheck(PI.AsgardXPosition, PI.M63XPosition, PI.AsgardYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<m63> M63: {UM.PlanetDistance(PI.AsgardXPosition, PI.M63XPosition, PI.AsgardYPosition, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(PI.AsgardXPosition, PI.M63XPosition, PI.AsgardYPosition, PI.M63YPosition) / playerWarpSpeed} years\n");
-            if (UM.FuelCheck(PI.AsgardXPosition, PI.EarthXPosition, PI.AsgardYPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<asgard> Earth: {UM.PlanetDistance(PI.AsgardXPosition, PI.EarthXPosition, PI.AsgardYPosition, PI.EarthYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition) / playerWarpSpeed} years\n");
-            Console.WriteLine($"" +
-                $"\t\t<return> Return to earth");
+
+            UM.PortMenu(PI.AsgardXPosition, PI.AsgardYPosition, UM, PS, ship, fuel, PI);
+
             string response = Console.ReadLine();
             if (response == "centari")
             {

@@ -208,85 +208,25 @@ namespace SpaceGame
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine($"\n\n" +
-                $"\tWhere would you like to go? \n");
-            if (UM.FuelCheck(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<centari> Alpha Centari: {UM.PlanetDistance(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition)} Light years away which will take {UM.PlanetDistance(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanXPosition, PI.AlphaCentariYPosition) / playerWarpSpeed} years\n");
-            if (UM.FuelCheck(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<m63> M63: {UM.PlanetDistance(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition) / playerWarpSpeed} years\n");
-            if (UM.FuelCheck(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<asgard> Asgard: {UM.PlanetDistance(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition)} Light years away which will take {UM.PlanetDistance(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition) / playerWarpSpeed} years\n");
-            if (UM.FuelCheck(PI.TitanXPosition, PI.EarthXPosition, PI.TitanXPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
-                Console.WriteLine($"" +
-                    $"\t\t<earth> Earth: {UM.PlanetDistance(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.TitanXPosition, PI.EarthYPosition, PI.TitanYPosition) / playerWarpSpeed} years\n");
 
+            UM.PortMenu(PI.TitanXPosition, PI.TitanYPosition, UM, PS, ship, fuel, PI);
 
-
-            Console.WriteLine($"" +
-                $"\t\t<return> Return to Titan");
             string response = Console.ReadLine();
             if (response == "earth")
             {
-                if (UM.FuelCheck(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
-                {
-                    UM.PlanetTravel(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, ship, PS, fuel);
-                    UM.Travel(PS);
-                    PS.LocationChanger("Earth");
-                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
-                }
-                if (UM.FuelCheck(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
-                {
-                    UM.TooFar(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, fuel);
-                    return;
-                }
+                UM.PortTravel(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, "Earth", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX);
             }
             if (response == "centari")
             {
-                if (UM.FuelCheck(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
-                {
-                    UM.PlanetTravel(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
-                    UM.Travel(PS);
-                    PS.LocationChanger("AlphaCentari");
-                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
-                }
-                if (UM.FuelCheck(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
-                {
-                    UM.TooFar(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, fuel);
-                    return;
-                }
+                UM.PortTravel(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, "AlphaCentari", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX);
             }
             if (response == "m63")
             {
-                if (UM.FuelCheck(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
-                {
-                    UM.PlanetTravel(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, ship, PS, fuel);
-                    UM.Travel(PS);
-                    PS.LocationChanger("M63");
-                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
-                }
-                if (UM.FuelCheck(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
-                {
-                    UM.TooFar(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, fuel);
-                    return;
-                }
+                UM.PortTravel(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, "M63", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX);
             }
             if (response == "asgard")
             {
-                if (UM.FuelCheck(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
-                {
-                    UM.PlanetTravel(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, ship, PS, fuel);
-                    UM.Travel(PS);
-                    PS.LocationChanger("Asgard");
-                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
-                }
-                if (UM.FuelCheck(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
-                {
-                    UM.TooFar(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, fuel);
-                    return;
-                }
+                UM.PortTravel(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX);
             }
             if (response == "return")
             {

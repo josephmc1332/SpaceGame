@@ -207,23 +207,9 @@ namespace SpaceGame
                 $"\tPorts like this always make you miss home a little but the dream of the \n" +
                 $"\tDukedom of Mercury and the thoughts of your upcoming(hopefully)\n" +
                 $"\tnuptuals drive you forward.");
-            Console.WriteLine($"\n\n" +
-           $"\tWhere would you like to go? \n");
-            if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
 
-                Console.WriteLine($"" +
-                    $"\t\t<earth> Earth: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition) / playerWarpSpeed} years\n");
-            if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
+            UM.PortMenu(PI.AlphaCentariXPosition, PI.AlphaCentariYPosition, UM, PS, ship, fuel, PI);
 
-                Console.WriteLine($"" +
-                    $"\t\t<m63> M63: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition) / playerWarpSpeed} years\n");
-            if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
-
-                Console.WriteLine($"" +
-                    $"\t\t<asgard> Asgard: {UM.PlanetDistance(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition)} Light years away which will take {UM.PlanetDistance(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition) / playerWarpSpeed} years\n");
-
-            Console.WriteLine($"" +
-                $"\t\t<return> Return to Alpha Centari");
             string response = Console.ReadLine();
             if (response == "earth")
             {
