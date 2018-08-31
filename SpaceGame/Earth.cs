@@ -11,7 +11,7 @@ namespace SpaceGame
         #region Earth Page
 
         public void EarthPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS,
-            UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63)
+            UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX)
 
 
         {
@@ -37,12 +37,12 @@ namespace SpaceGame
                 "\t\t  9. Quit the Game");
 
             //send back to check selected option after invalid input
-            SelectEarthOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
+            SelectEarthOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
 
 
 
         }
-        public void SelectEarthOptions(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63)
+        public void SelectEarthOptions(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX)
         {
             //convert/parse user input string 
             int response = Convert.ToInt32(Console.ReadLine());
@@ -61,7 +61,7 @@ namespace SpaceGame
                  Market(PS, UM, ship, fuel, PI);
 
             if (response == 5) 
-               EarthPort(ship, UM, PS, fuel, PI, LP, shop, Asgard, M63, Earth, AlphaCentari, SY, GO);
+               EarthPort(ship, UM, PS, fuel, PI, LP, shop, Asgard, M63, Earth, AlphaCentari, SY, GO, PlanetX);
 
             if (response == 9)
                 GO.EndScreen(PS, ship);
@@ -206,7 +206,7 @@ namespace SpaceGame
                 UM.MarketDisplay(PI);
         }
 
-        public void EarthPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI, LandingPage LP, Shop shop, Asgard Asgard, M63 M63, Earth Earth, AlphaCentari AlphaCentari, ShipYard SY, GameOver GO)
+        public void EarthPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI, LandingPage LP, Shop shop, Asgard Asgard, M63 M63, Earth Earth, AlphaCentari AlphaCentari, ShipYard SY, GameOver GO, PlanetX PlanetX)
         {
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
@@ -231,35 +231,24 @@ namespace SpaceGame
             string response = Console.ReadLine();
             if (response == "titan" || response == "Titan")
             {
-                if (UM.FuelCheck(PI.EarthXPosition, PI.TitanXPosition, PI.EarthYPosition, PI.TitanYPosition, ship, PS, fuel) == "OK")
-                {
-                    UM.PlanetTravel(PI.EarthXPosition, PI.TitanXPosition, PI.EarthYPosition, PI.TitanYPosition, ship, PS, fuel);
-                    UM.Travel(PS);
-                    PS.LocationChanger("Titan");
-                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
-                }
-                if (UM.FuelCheck(PI.EarthXPosition, PI.TitanXPosition, PI.EarthYPosition, PI.TitanYPosition, ship, PS, fuel) == "TooFar")
-                {
-                    UM.TooFar(PI.EarthXPosition, PI.TitanXPosition, PI.EarthYPosition, PI.TitanYPosition, fuel);
-                    return;
-                }
+                UM.PortTravel(PI.EarthXPosition, PI.TitanXPosition, PI.EarthYPosition, PI.TitanYPosition, "Titan", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX);
             }
 
             if (response == "centari")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, "AlphaCentari", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63);
+                UM.PortTravel(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, "AlphaCentari", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX);
             }
             if (response == "m63")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, "M63", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63);
+                UM.PortTravel(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, "M63", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX);
             }
             if (response == "asgard")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63);
+                UM.PortTravel(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX);
             }
             if (response == "x")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.PlanetXXPosition, PI.EarthYPosition, PI.PlanetXYPosition, "Planet X", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63);
+                UM.PortTravel(PI.EarthXPosition, PI.PlanetXXPosition, PI.EarthYPosition, PI.PlanetXYPosition, "Planet X", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX);
             }
             if (response == "return")
             {
