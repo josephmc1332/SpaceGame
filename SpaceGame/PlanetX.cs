@@ -11,7 +11,7 @@ namespace SpaceGame
         //PersonalStatus PS = new PersonalStatus();
 
         public void PlanetXPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS,
-            UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth)
+            UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63)
         {
             PS.MyCurrentLocation = "Planet X";
 
@@ -34,7 +34,7 @@ namespace SpaceGame
             //send back to check selected option after invalid input
             try
             {
-                SelectPlanetXOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
+                SelectPlanetXOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
             }
 
             //display if invalid input
@@ -44,12 +44,12 @@ namespace SpaceGame
                 Console.ReadLine();
 
                 //recycle to Welcome to planet x after invalid entry  
-                PlanetXPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth);
+                PlanetXPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
             }
 
         }
 
-        public void SelectPlanetXOptions(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard asgard, Earth earth)
+        public void SelectPlanetXOptions(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard asgard, Earth earth, AlphaCentari AlphaCentari, M63 M63)
         {
             //convert/parse user input string 
             int response = Convert.ToInt32(Console.ReadLine());
@@ -68,7 +68,7 @@ namespace SpaceGame
                 Market(PS, UM, ship, fuel, PI);
 
             if (response == 5)
-                PlanetXPort(ship, UM, PS, fuel, PI, earth, LP, shop, SY, GO, asgard);
+                PlanetXPort(ship, UM, PS, fuel, PI, earth, LP, shop, SY, GO, asgard, AlphaCentari, M63);
 
             if (response == 9)
                 GO.EndScreen(PS, ship);
@@ -77,7 +77,7 @@ namespace SpaceGame
             {
                 //loops back to the beginning of planet x page page
                 Console.WriteLine("invalid entry");
-                PlanetXPage(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth);
+                PlanetXPage(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, AlphaCentari, M63);
             }
         }
 
@@ -246,36 +246,17 @@ namespace SpaceGame
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine("The Ruberian Market is full of galactic TVs displaying the trends of the universe. " +
-                "\nYou push your" +
-                "way through the crowd of people watching and betting on the current battle " +
-                "\nto get a good view of the current universe market prices..." +               
-                $"\tEarth: \n" +
-                $"\t\tNo Balance Shoes: {PI.EarthNoBalanceShoes} \n" +
-                $"\t\tSpace Gold: {PI.EarthSpaceGold} \n" +
-                $"\t\tGalactic TVs: {PI.EarthGalacticTVs}\n\n" +
-                $"\tAlpha Centari:\n" +
-                $"\t\tNo Balance Shoe: {PI.AlphaCentariNoBalanceShoes}\n" +
-                $"\t\tSpace Gold: {PI.AlphaCentariGold}\n" +
-                $"\t\tGalactic TVs: {PI.AlphaCentariGalacticTVs}\n\n" +
-                $"\tM63:\n" +
-                $"\t\tNo Balance Shoes: {PI.M63NoBalanceShoes}\n" +
-                $"\t\tSpace Gold: {PI.M63SpaceGold}\n" +
-                $"\t\tGalactic TVs: {PI.M63GalacticTVs} \n" +
-                $"\tAsgard:\n" +
-                $"\t\tNo Balance Shoes: {PI.AsgardNoBalanceShoes}\n" +
-                $"\t\tSpace Gold: {PI.AsgardGold}\n" +
-                $"\t\tGalactic TVs: {PI.AsgardGalacticTVs} \n" +
-                $"\t\tPlanet X: \n" +
-                $"\t\tNo Balance Shoes: {PI.PlanetXNoBalanceShoes}\n" +
-                $"\t\tSpace Gold: {PI.PlanetXGold}\n" +
-                $"\t\tGalactic TVs {PI.PlanetXGalacticTVs}");
+            Console.WriteLine("\n\n" +
+                "\tThe Ruberian Market is full of galactic TVs displaying the trends of the universe. " +
+                "\n\tYou push your way through the crowd of people watching and betting on the current battle " +
+                "\n\tto get a good view of the current universe market prices... ");
+            UM.MarketDisplay(PI);
 
             Console.ReadLine();
         }
         ///NOT DONE NEED TO FIT IN PLANET X
         public void PlanetXPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI, Earth earth, LandingPage LP, Shop shop, ShipYard SY, GameOver GO,
-            Asgard asgard)
+            Asgard asgard, AlphaCentari AlphaCentari, M63 M63)
         {
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
@@ -304,59 +285,58 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.PlanetXXPosition, PI.AlphaCentariXPosition, PI.PlanetXYPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    earth.AlphaCentariPage(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth);
+                    PS.MyCurrentLocation = "AlphaCentari";
+                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, AlphaCentari, M63);
                 }
-                if (UM.FuelCheck(PI.PlanetXXPosition, PI.AlphaCentariXPosition, PI.PlanetXYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
+                if (response == "m63")
                 {
-                    UM.TooFar(PI.PlanetXXPosition, PI.AlphaCentariXPosition, PI.PlanetXYPosition, PI.AlphaCentariYPosition, fuel);
-                    return;
+                    if (UM.FuelCheck(PI.PlanetXXPosition, PI.M63XPosition, PI.PlanetXYPosition, PI.M63YPosition, ship, PS, fuel) == "OK")
+                    {
+                        UM.PlanetTravel(PI.PlanetXXPosition, PI.M63XPosition, PI.PlanetXYPosition, PI.M63YPosition, ship, PS, fuel);
+                        UM.Travel(PS);
+                        PS.MyCurrentLocation = "M63";
+                        LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, AlphaCentari, M63);
+                    }
+                    if (UM.FuelCheck(PI.PlanetXXPosition, PI.M63XPosition, PI.PlanetXYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
+                    {
+                        UM.TooFar(PI.PlanetXXPosition, PI.M63XPosition, PI.PlanetXYPosition, PI.M63YPosition, fuel);
+                        return;
+                    }
                 }
-            }
-            if (response == "m63")
-            {
-                if (UM.FuelCheck(PI.PlanetXXPosition, PI.M63XPosition, PI.PlanetXYPosition\, PI.M63YPosition, ship, PS, fuel) == "OK")
+                if (response == "asgard")
                 {
-                    UM.PlanetTravel(PI.PlanetXXPosition, PI.M63XPosition, PI.PlanetXYPosition, PI.M63YPosition, ship, PS, fuel);
-                    UM.Travel(PS);
-                    earth.M63Page(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth);
+                    if (UM.FuelCheck(PI.PlanetXXPosition, PI.AsgardXPosition, PI.PlanetXYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
+                    {
+                        UM.PlanetTravel(PI.PlanetXXPosition, PI.AsgardXPosition, PI.PlanetXYPosition, PI.AsgardYPosition, ship, PS, fuel);
+                        UM.Travel(PS);
+                        PS.MyCurrentLocation = "Asgard";
+                        LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, AlphaCentari, M63);
+                    }
+                    if (UM.FuelCheck(PI.PlanetXXPosition, PI.AsgardXPosition, PI.PlanetXYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
+                    {
+                        UM.TooFar(PI.PlanetXYPosition, PI.AsgardXPosition, PI.PlanetXYPosition, PI.AsgardYPosition, fuel);
+                        return;
+                    }
                 }
-                if (UM.FuelCheck(PI.PlanetXXPosition, PI.M63XPosition, PI.PlanetXYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
+                if (response == "earth")
                 {
-                    UM.TooFar(PI.PlanetXXPosition, PI.M63XPosition, PI.PlanetXYPosition, PI.M63YPosition, fuel);
-                    return;
+                    if (UM.FuelCheck(PI.PlanetXXPosition, PI.EarthXPosition, PI.PlanetXYPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
+                    {
+                        UM.PlanetTravel(PI.PlanetXXPosition, PI.EarthXPosition, PI.PlanetXYPosition, PI.EarthYPosition, ship, PS, fuel);
+                        UM.Travel(PS);
+                        PS.MyCurrentLocation = "Earth";
+                        LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, AlphaCentari, M63);
+                    }
+                    if (UM.FuelCheck(PI.PlanetXXPosition, PI.EarthXPosition, PI.PlanetXYPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
+                    {
+                        UM.TooFar(PI.PlanetXXPosition, PI.EarthXPosition, PI.PlanetXYPosition, PI.EarthYPosition, fuel);
+                        return;
+                    }
+                    if (response == "return")
+                    {
+                        return;
+                    }
                 }
-            }
-            if (response == "asgard")
-            {
-                if (UM.FuelCheck(PI.PlanetXXPosition, PI.AsgardXPosition, PI.PlanetXYPosition, PI.AsgardYPosition, ship, PS, fuel) == "OK")
-                {
-                    UM.PlanetTravel(PI.PlanetXXPosition, PI.AsgardXPosition, PI.PlanetXYPosition, PI.AsgardYPosition, ship, PS, fuel);
-                    UM.Travel(PS);
-                    PS.MyCurrentLocation = "Asgard";
-                    LP.LandingPagePicker();
-                }
-                if (UM.FuelCheck(PI.PlanetXXPosition, PI.AsgardXPosition, PI.PlanetXYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
-                {
-                    UM.TooFar(PI.PlanetXYPosition, PI.AsgardXPosition, PI.PlanetXYPosition, PI.AsgardYPosition, fuel);
-                    return;
-                }
-            }
-            if (response == "earth")
-            {
-                if (UM.FuelCheck(PI.PlanetXXPosition, PI.EarthXPosition, PI.PlanetXYPosition, PI.EarthYPosition, ship, PS, fuel) == "OK")
-                {
-                    UM.PlanetTravel(PI.PlanetXXPosition, PI.EarthXPosition, PI.PlanetXYPosition, PI.EarthYPosition, ship, PS, fuel);
-                    UM.Travel(PS);
-                    EarthPage(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth);
-                }
-                if (UM.FuelCheck(PI.PlanetXXPosition, PI.EarthXPosition, PI.PlanetXYPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
-                {
-                    UM.TooFar(PI.PlanetXXPosition, PI.EarthXPosition, PI.PlanetXYPosition, PI.EarthYPosition, fuel);
-                    return;
-                }
-                if (response == "return")
-            {
-                return;
             }
         }
     }

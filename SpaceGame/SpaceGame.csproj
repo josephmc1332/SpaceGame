@@ -48,6 +48,7 @@
     <Compile Include="Earth.cs" />
     <Compile Include="Fuel.cs" />
     <Compile Include="GameOver.cs" />
+    <Compile Include="Intro.cs" />
     <Compile Include="LandingPage.cs" />
     <Compile Include="M63.cs" />
     <Compile Include="PersonalStatus.cs" />
