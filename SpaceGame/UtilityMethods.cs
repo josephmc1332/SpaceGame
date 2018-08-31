@@ -119,7 +119,7 @@ namespace SpaceGame
             }
             if (travelEvent == 5)
             {
-                Console.WriteLine($"It's lonely out there in space {ps.MyName}. You are doing great! Keep it up!");
+                Console.WriteLine($"It's lonely out there in space {ps.NameCall()}. You are doing great! Keep it up!");
                 Console.ReadLine();
             }
             if (travelEvent < 5 && travelEvent > 1)
@@ -139,7 +139,7 @@ namespace SpaceGame
             if (travelEvent == 1)
             {
                 Console.WriteLine($"The galaxies worst pirates attack you but you easily overpower them. \n" +
-                    $"'Please don't kill us {ps.MyName}, we will give you 100 GC if you let us go!' \n" +
+                    $"'Please don't kill us {ps.NameCall()}, we will give you 100 GC if you let us go!' \n" +
                     $"You let them off easy this time...");
                 ps.EarnMoney(100);
                 Console.ReadLine();
@@ -176,9 +176,9 @@ namespace SpaceGame
             double distTraveled = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             double time = playerWarpSpeed / distTraveled;
-            PS.MyTravelTime += time;
+            PS.AddTime(time);
             fuel.MyCurrentFuel -= (int)(distTraveled);
-            if (PS.MyTravelTime > 40.0)
+            if (PS.TravelAge() > 40.0)
                 GO.Retire(PS, ship);
         }
 

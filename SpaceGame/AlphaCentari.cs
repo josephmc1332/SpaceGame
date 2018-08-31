@@ -12,7 +12,7 @@ namespace SpaceGame
 
         public void AlphaCentariPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63)
         {
-            PS.MyCurrentLocation = "AlphaCentari";
+            PS.LocationChanger("AlphaCentari");
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             Console.Write("\n\n" +
@@ -227,7 +227,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    PS.MyCurrentLocation = "Earth";
+                    PS.LocationChanger("Earth");
                     LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
                 }
                 if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
@@ -242,7 +242,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    PS.MyCurrentLocation = "M63";
+                    PS.LocationChanger("M63");
                     LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
                 }
                 if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.M63XPosition, PI.AlphaCentariYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
@@ -257,7 +257,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    PS.MyCurrentLocation = "Asgard";
+                    PS.LocationChanger("Asgard");
                     LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
                 }
                 if (UM.FuelCheck(PI.AlphaCentariXPosition, PI.AsgardXPosition, PI.AlphaCentariYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")

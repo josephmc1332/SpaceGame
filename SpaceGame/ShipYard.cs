@@ -112,7 +112,7 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
-                $"\tYou arrive at your personal hanger, you ship, a {ship.ShipName} the SS {PS.MyName}, stands \n" +
+                $"\tYou arrive at your personal hanger, you ship, a {ship.ShipName} the SS {PS.NameCall()}, stands \n" +
                 $"\tbefore you gleaming in the artificail lights of the hanger. \n" +
                 $"\tA {ship.ShipName} like this has {ship.ShipCapacity} slots in its cargo hold \n" +
                 $"\tand a top speed of Warp Factor {ship.ShipSpeed}\n" +
