@@ -131,7 +131,7 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
-                $"\tYou have {PS.MyCurrentCredit} Galactic Credits, what good would you like to buy?\n" +
+                $"\tYou have {PS.Cash()} Galactic Credits, what good would you like to buy?\n" +
                 $"\t 1 NoBalanceShoes 80 GC per Unit\n" +
                 $"\t 2 Space Gold 100 GC per Unit\n" +
                 $"\t 3 Galactic TV 120 GC per Unit \n" +
