@@ -11,7 +11,7 @@ namespace SpaceGame
         public void TitanPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS,
            UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard asgard, Earth earth, AlphaCentari alpha, M63 m63)
         {
-            PS.MyCurrentLocation = "Planet X";
+            PS.LocationChanger("Titan");
 
 
 
@@ -232,7 +232,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    PS.MyCurrentLocation = "Earth";
+                    PS.LocationChanger("Earth");
                     LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
                 }
                 if (UM.FuelCheck(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
@@ -247,7 +247,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    PS.MyCurrentLocation = "AlphaCentari";
+                    PS.LocationChanger("AlphaCentari");
                     LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
                 }
                 if (UM.FuelCheck(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
@@ -262,7 +262,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    PS.MyCurrentLocation = "M63";
+                    PS.LocationChanger("M63");
                     LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
                 }
                 if (UM.FuelCheck(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
@@ -277,7 +277,7 @@ namespace SpaceGame
                 {
                     UM.PlanetTravel(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, ship, PS, fuel);
                     UM.Travel(PS);
-                    PS.MyCurrentLocation = "Asgard";
+                    PS.LocationChanger("Asgard");
                     LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
                 }
                 if (UM.FuelCheck(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
