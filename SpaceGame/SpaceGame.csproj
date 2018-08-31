@@ -58,6 +58,7 @@
     <Compile Include="Ship.cs" />
     <Compile Include="ShipYard.cs" />
     <Compile Include="Shop.cs" />
+    <Compile Include="Titan.cs" />
     <Compile Include="UtilityMethods.cs" />
   </ItemGroup>
   <ItemGroup>
