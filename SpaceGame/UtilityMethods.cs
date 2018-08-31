@@ -227,6 +227,49 @@ namespace SpaceGame
             }
         }
 
+        public string PortMenu(double currentX, double currentY, UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI )
+        {
+            
+            double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
+            Console.WriteLine($"\n\n" +
+                $"\tWhere would you like to go? \n");
+
+            if (UM.FuelCheck(currentX, PI.AlphaCentariXPosition, currentY, PI.AlphaCentariYPosition, ship, PS, fuel) == "OK")
+
+                Console.WriteLine($"" +
+                    $"\t\t<centari> Alpha Centari : {UM.PlanetDistance(currentX, PI.AlphaCentariXPosition, currentY, PI.AlphaCentariYPosition)} Light years away which will take {UM.PlanetDistance(currentX, PI.AlphaCentariXPosition, currentY, PI.AlphaCentariYPosition) / playerWarpSpeed} years\n");
+
+            if (UM.FuelCheck(currentX, PI.AsgardXPosition, currentY, PI.AsgardYPosition, ship, PS, fuel) == "OK")
+
+                Console.WriteLine($"" +
+                    $"\t\t<asgard> Asgard : {UM.PlanetDistance(currentX, PI.AsgardXPosition, currentY, PI.AsgardYPosition)} Light years away which will take {UM.PlanetDistance(currentX, PI.AsgardXPosition, currentY, PI.AsgardYPosition) / playerWarpSpeed} years\n");
+
+            if (UM.FuelCheck(currentX, PI.EarthXPosition, currentY, PI.EarthYPosition, ship, PS, fuel) == "OK")
+
+                Console.WriteLine($"" +
+                    $"\t\t<earth> Earth : {UM.PlanetDistance(currentX, PI.EarthXPosition, currentY, PI.EarthYPosition)} Light years away which will take {UM.PlanetDistance(currentX, PI.EarthXPosition, currentY, PI.EarthYPosition) / playerWarpSpeed} years\n");
+
+            if (UM.FuelCheck(currentX, PI.M63XPosition, currentY, PI.M63YPosition, ship, PS, fuel) == "OK")
+
+                Console.WriteLine($"" +
+                    $"\t\t<m63> M63 : {UM.PlanetDistance(currentX, PI.M63XPosition, currentY, PI.M63YPosition)} Light years away which will take {UM.PlanetDistance(currentX, PI.M63XPosition,currentY, PI.M63YPosition) / playerWarpSpeed} years\n");
+
+            if (UM.FuelCheck(currentX, PI.PlanetXXPosition, currentY, PI.PlanetXYPosition, ship, PS, fuel) == "OK")
+
+                Console.WriteLine($"" +
+                    $"\t\t<x> Planet X : {UM.PlanetDistance(currentX, PI.PlanetXXPosition, currentY, PI.PlanetXYPosition)} Light years away which will take {UM.PlanetDistance(currentX, PI.PlanetXXPosition, currentY, PI.PlanetXYPosition) / playerWarpSpeed} years\n");
+
+            if (UM.FuelCheck(currentX, PI.TitanXPosition, currentY, PI.TitanYPosition, ship, PS, fuel) == "OK")
+
+                Console.WriteLine($"" +
+                    $"\t\t<titan> Titan : {UM.PlanetDistance(currentX, PI.TitanXPosition, currentY, PI.TitanYPosition)} Light years away which will take {UM.PlanetDistance(currentX, PI.TitanXPosition, currentY, PI.TitanYPosition) / playerWarpSpeed} years\n");
+
+            Console.WriteLine($"" +
+                $"\t\t<return> Return to earth");
+            string response = Console.ReadLine();
+            return response;
+        }
+
         
     }
 }

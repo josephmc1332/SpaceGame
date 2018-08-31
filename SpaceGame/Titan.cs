@@ -9,7 +9,7 @@ namespace SpaceGame
     class Titan
     {
         public void TitanPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS,
-           UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard asgard, Earth earth, AlphaCentari alpha, M63 m63)
+           UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard asgard, Earth earth, AlphaCentari alpha, M63 m63, PlanetX PlanetX)
         {
             PS.LocationChanger("Titan");
 
@@ -32,7 +32,7 @@ namespace SpaceGame
             //send back to check selected option after invalid input
             try
             {
-                SelectTitanOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63);
+                SelectTitanOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63, PlanetX);
             }
 
             //display if invalid input
@@ -42,12 +42,12 @@ namespace SpaceGame
                 Console.ReadLine();
 
                 //recycle to Welcome to planet x after invalid entry  
-                TitanPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63);
+                TitanPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63, PlanetX);
             }
 
         }
 
-        public void SelectTitanOptions(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard asgard, Earth earth, AlphaCentari alpha, M63 m63)
+        public void SelectTitanOptions(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard asgard, Earth earth, AlphaCentari alpha, M63 m63, PlanetX PlanetX)
         {
             //convert/parse user input string 
             int response = Convert.ToInt32(Console.ReadLine());
@@ -66,7 +66,7 @@ namespace SpaceGame
                 Market(PS, UM, ship, fuel, PI);
 
             if (response == 5)
-                TitanPort(ship, UM, PS, fuel, PI, LP, shop, asgard, m63, earth, alpha, SY, GO);
+                TitanPort(ship, UM, PS, fuel, PI, LP, shop, asgard, m63, earth, alpha, SY, GO, PlanetX);
 
             if (response == 9)
                 GO.EndScreen(PS, ship);
@@ -75,7 +75,7 @@ namespace SpaceGame
             {
                 //loops back to the beginning of planet x page page
                 Console.WriteLine("invalid entry");
-                TitanPage(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63);
+                TitanPage(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63, PlanetX);
             }
         }
 
@@ -203,7 +203,7 @@ namespace SpaceGame
             Console.ReadLine();
         }
 
-        public void TitanPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI, LandingPage LP, Shop shop, Asgard Asgard, M63 M63, Earth Earth, AlphaCentari AlphaCentari, ShipYard SY, GameOver GO)
+        public void TitanPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI, LandingPage LP, Shop shop, Asgard Asgard, M63 M63, Earth Earth, AlphaCentari AlphaCentari, ShipYard SY, GameOver GO, PlanetX PlanetX)
         {
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
@@ -235,7 +235,7 @@ namespace SpaceGame
                     UM.PlanetTravel(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, ship, PS, fuel);
                     UM.Travel(PS);
                     PS.LocationChanger("Earth");
-                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
+                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
                 }
                 if (UM.FuelCheck(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -250,7 +250,7 @@ namespace SpaceGame
                     UM.PlanetTravel(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, ship, PS, fuel);
                     UM.Travel(PS);
                     PS.LocationChanger("AlphaCentari");
-                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
+                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
                 }
                 if (UM.FuelCheck(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -265,7 +265,7 @@ namespace SpaceGame
                     UM.PlanetTravel(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, ship, PS, fuel);
                     UM.Travel(PS);
                     PS.LocationChanger("M63");
-                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
+                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
                 }
                 if (UM.FuelCheck(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, ship, PS, fuel) == "TooFar")
                 {
@@ -280,7 +280,7 @@ namespace SpaceGame
                     UM.PlanetTravel(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, ship, PS, fuel);
                     UM.Travel(PS);
                     PS.LocationChanger("Asgard");
-                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
+                    LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
                 }
                 if (UM.FuelCheck(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, ship, PS, fuel) == "TooFar")
                 {

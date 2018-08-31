@@ -21,7 +21,7 @@ namespace SpaceGame
         M63 M63 = new M63();
         AlphaCentari AlphaCentari = new AlphaCentari();
         LandingPage LP = new LandingPage();
-
+        PlanetX PlanetX = new PlanetX();
         // quick list of all the class declerations
         // LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63 
         //LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63
@@ -71,7 +71,7 @@ namespace SpaceGame
 
             Console.ReadLine();
 
-            LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63);
+            LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX);
         }
     }
 }
