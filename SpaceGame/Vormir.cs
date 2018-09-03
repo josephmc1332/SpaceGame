@@ -110,7 +110,8 @@ namespace SpaceGame
                 "\tlegendary NoBalance shoes. What would you like to do?" +
                 "\t\t1. Buy\n" +
                 "\t\t2. Sell\n" +
-                "\t\t3. Get Fuel");
+                "\t\t3. Get Fuel\n" +
+                "\t\t4. Return");
                
             int response = UM.ShopSelector();
             if (response == 1)
@@ -233,8 +234,14 @@ namespace SpaceGame
             {
                 UM.PortTravel(PI.VormirXPosition, PI.PlanetXXPosition, PI.VormirYPosition, PI.PlanetXYPosition, "Planet X", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
             }
-            if 
-
+            if (response == "earth")
+            {
+                UM.PortTravel(PI.VormirXPosition, PI.EarthXPosition, PI.VormirYPosition, PI.EarthYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+            }
+            if (response == "joe")
+            {
+                UM.PortTravel(PI.VormirXPosition, PI.PlanetJoeXPosition, PI.VormirYPosition, PI.PlanetJoeYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+            }
             if (response == "return")
             {
                 return;
