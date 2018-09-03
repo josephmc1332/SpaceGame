@@ -203,6 +203,22 @@ namespace SpaceGame
             {
                 UM.PortTravel(PI.M63XPosition, PI.AsgardXPosition, PI.M63YPosition, PI.AsgardYPosition, "Asgard", UM, PS, fuel, ship, PI, Shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
             }
+            if (response == "x")
+            {
+                UM.PortTravel(PI.M63XPosition, PI.PlanetXXPosition, PI.M63YPosition, PI.PlanetXYPosition, "Planet X", UM, PS, fuel, ship, PI, Shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+            }
+            if (response == "titan")
+            {
+                UM.PortTravel(PI.M63XPosition, PI.TitanXPosition, PI.M63YPosition, PI.TitanYPosition, "Titan", UM, PS, fuel, ship, PI, Shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+            }
+            if (response == "joe")
+            {
+                UM.PortTravel(PI.M63XPosition, PI.PlanetJoeXPosition, PI.M63YPosition, PI.PlanetJoeYPosition, "Planet Joe", UM, PS, fuel, ship, PI, Shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+            }
+            if (response == "Vormir")
+            {
+                UM.PortTravel(PI.M63XPosition, PI.VormirXPosition, PI.M63YPosition, PI.VormirYPosition, "Vormir", UM, PS, fuel, ship, PI, Shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+            }
             if (response == "return")
             {
                 return;

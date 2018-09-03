@@ -222,7 +222,7 @@ namespace SpaceGame
                 UM.PlanetTravel(currentX, destinationX, currentY, destinationY, ship, PS, fuel);
                 UM.Travel(PS);
                 PS.LocationChanger(destination);
-                LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan);
+                LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
             }
             if (UM.FuelCheck(currentX, destinationX, currentY, destinationY, ship, PS, fuel) == "TooFar")
             {
