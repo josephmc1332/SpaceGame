@@ -96,7 +96,7 @@ namespace SpaceGame
             //Buy Shoes
             if (response == 1)
             {
-                Shop.BuyShoes(PI.PiciumNoBalanceShoes, PS, UM, ship, fuel);
+                Shop.BuyShoes(PI.PiciumNoBalanaceShoes, PS, UM, ship, fuel);
             }
             //Buy Gold
             if (response == 2)
@@ -106,7 +106,7 @@ namespace SpaceGame
 
             if (response == 3)
             {
-                Shop.BuyTV(PI.PiciumTVs, PS, UM, ship, fuel);
+                Shop.BuyTV(PI.PiciumGalacticTVs, PS, UM, ship, fuel);
             }
 
             if (response == 4)
@@ -130,7 +130,7 @@ namespace SpaceGame
             int response = Convert.ToInt32(Console.ReadLine());
             if (response == 1)
             {
-                Shop.SellShoes(PI.PiciumNoBalanceShoes, PS, UM, ship, fuel);
+                Shop.SellShoes(PI.PiciumNoBalanaceShoes, PS, UM, ship, fuel);
             }
 
             if (response == 2)
@@ -139,7 +139,7 @@ namespace SpaceGame
             }
             if (response == 3)
             {
-                Shop.SellTV(PI.PiciumTVs, PS, UM, ship, fuel);
+                Shop.SellTV(PI.PiciumGalacticTVs, PS, UM, ship, fuel);
             }
             if (response == 4)
             {

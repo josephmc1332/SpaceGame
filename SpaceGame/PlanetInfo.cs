@@ -73,6 +73,17 @@ namespace SpaceGame
 
             this.TitanNoBalanceShoes = 200;
 
+            //Picium
+            int pshoe = rnd.Next(300, 475);
+            int ptv = rnd.Next(400, 500);
+            int pgold = rnd.Next(300, 700);
+
+            this.PiciumNoBalanaceShoes = pshoe;
+
+            this.PiciumGold = pgold;
+
+            this.PiciumGalacticTVs = ptv;
+
 
 
 
@@ -122,6 +133,12 @@ namespace SpaceGame
             double typosition = rnd.Next(6, 12);
             this.TitanYPosition = typosition;
 
+            double pxposition = rnd.Next(15, 25);
+            this.PiciumXPosition = pxposition;
+
+            double pyposition = rnd.Next(-7, 3);
+            this.PiciumYPosition = pyposition;
+
             
         }
 
@@ -137,6 +154,7 @@ namespace SpaceGame
         public int PlanetXGold      { get; private set; }
         public int PlanetJoeGold    { get; private set; }
         public int TitanGold        { get; private set; }
+        public int PiciumGold       { get; private set; }
 
         public int EarthNoBalanceShoes          { get; private set; }
         public int AlphaCentariNoBalanceShoes   { get; private set; }
@@ -145,6 +163,7 @@ namespace SpaceGame
         public int PlanetXNoBalanceShoes        { get; private set; }
         public int PlanetJoeNoBalanceShoes      { get; private set; }
         public int TitanNoBalanceShoes          { get; private set; }
+        public int PiciumNoBalanaceShoes        { get; private set; }
 
         public int EarthGalacticTVs         { get; private set; }
         public int AlphaCentariGalacticTVs  { get; private set; }
@@ -153,6 +172,7 @@ namespace SpaceGame
         public int PlanetXGalacticTVs       { get; private set; }
         public int PlanetJoeGalacticTVs     { get; private set; }
         public int TitanGalacticTVs         { get; private set; }
+        public int PiciumGalacticTVs        { get; private set; }
 
         /// <summary>
         /// planetary positions
@@ -171,6 +191,8 @@ namespace SpaceGame
         public double PlanetJoeYPosition    { get; private set; }
         public double TitanXPosition        { get; private set; }
         public double TitanYPosition        { get; private set; }
+        public double PiciumXPosition       { get; private set; }
+        public double PiciumYPosition       { get; private set; }
 
 
 

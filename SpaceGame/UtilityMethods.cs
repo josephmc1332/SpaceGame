@@ -71,7 +71,11 @@ namespace SpaceGame
                 $"\tPlanet X:\n" +
                 $"\t\tNo Balance Shoes: {PI.PlanetJoeNoBalanceShoes}\n" +
                 $"\t\tSpace Gold: {PI.PlanetXGold}\n" +
-                $"\t\tGalactic TVs: {PI.PlanetXGalacticTVs}");
+                $"\t\tGalactic TVs: {PI.PlanetXGalacticTVs}\n" +
+                $"\tPicium:\n" +
+                $"\t\tNo Balance Shoes: {PI.PiciumNoBalanaceShoes}\n" +
+                $"\t\tSpace Gold: {PI.PiciumGold}\n" +
+                $"\t\tGalactic TVs: {PI.PiciumGalacticTVs}");
             Console.ReadLine();
         }
 
