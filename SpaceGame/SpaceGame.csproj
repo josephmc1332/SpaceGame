@@ -53,6 +53,7 @@
     <Compile Include="M63.cs" />
     <Compile Include="PersonalStatus.cs" />
     <Compile Include="PlanetInfo.cs" />
+    <Compile Include="PlanetJoe.cs" />
     <Compile Include="PlanetX.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
