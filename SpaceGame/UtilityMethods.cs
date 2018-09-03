@@ -268,6 +268,12 @@ namespace SpaceGame
                 Console.WriteLine($"" +
                     $"\t\t<titan> Titan : {UM.PlanetDistance(currentX, PI.TitanXPosition, currentY, PI.TitanYPosition)} Light years away which will take {UM.PlanetDistance(currentX, PI.TitanXPosition, currentY, PI.TitanYPosition) / playerWarpSpeed} years\n");
 
+            if (UM.FuelCheck(currentX, PI.VormirXPosition, currentY, PI.VormirYPosition, ship, PS, fuel) == "OK")
+
+                Console.WriteLine($"" +
+                    $"\t\t<x> Planet X : {UM.PlanetDistance(currentX, PI.VormirXPosition, currentY, PI.VormirYPosition)} Light years away which will take {UM.PlanetDistance(currentX, PI.VormirXPosition, currentY, PI.VormirYPosition) / playerWarpSpeed} years\n");
+
+
             Console.WriteLine($"" +
                 $"\t\t<return> Return to earth");
             string response = Console.ReadLine();
