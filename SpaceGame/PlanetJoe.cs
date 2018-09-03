@@ -44,10 +44,10 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
-                $"You walk into the shipyard on planet Joe and the quiet bang of the occatioanal hammer on metal\n" +
-                $"or maybe the sound of a drill working here or there. There seems to be salesmen but for the first\n" +
-                $"time in your life you need to track them down. But the upshot is there is champagin and caviar on \n" +
-                $"a serving tray in the corner.\n\n");
+                $"\tYou walk into the shipyard on planet Joe and the quiet bang of the occatioanal hammer on metal\n" +
+                $"\tor maybe the sound of a drill working here or there. There seems to be salesmen but for the first\n" +
+                $"\ttime in your life you need to track them down. But the upshot is there is champagin and caviar on \n" +
+                $"\ta serving tray in the corner.\n\n");
             Console.WriteLine("\t\tWould you like to:\n" +
                 "\t\t  1 Check your ship stats\n" +
                 "\t\t  2 Buy a new Ship\n" +
@@ -66,8 +66,8 @@ namespace SpaceGame
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
                 $"\tYou walk into the Galactic Bank branch of Planet Joe, the area is open and clear, there are\n" +
-                $"stacks of money just lying about. you walk up to the counter and the man behind the counter greets\n" +
-                $"warmly, 'Hello there {PS.NameCall()} are you super rich like me? Let's check...");
+                $"\tstacks of money just lying about. you walk up to the counter and the man behind the counter greets\n" +
+                $"\twarmly, 'Hello there {PS.NameCall()} are you super rich like me? Let's check...");
             UM.BankDisplay(PS);
         }
         public void JoeShop(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, Shop Shop, PlanetInfo PI)
@@ -75,10 +75,10 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
-                $"You walk into the shop, everything in the shop is too expensive for you to purchase. Part of you\n" +
-                $"wonder if you should even be in the same room with it. A shopkeeper dressed all in silks and gold\n" +
-                $"steps out and talks to you, 'Hello there traveler...' he looks over your clothes and then says, \n" +
-                $"'The trading commodities are this way...' He says in a hesitant tone of voice.");
+                $"\tYou walk into the shop, everything in the shop is too expensive for you to purchase. Part of you\n" +
+                $"\twonder if you should even be in the same room with it. A shopkeeper dressed all in silks and gold\n" +
+                $"\tsteps out and talks to you, 'Hello there traveler...' he looks over your clothes and then says, \n" +
+                $"\t'The trading commodities are this way...' He says in a hesitant tone of voice.");
             int response = UM.ShopSelector();
             if (response == 1)
                 JoeBuy(UM, PS, ship, fuel, PI, Shop);

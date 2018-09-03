@@ -52,6 +52,7 @@
     <Compile Include="LandingPage.cs" />
     <Compile Include="M63.cs" />
     <Compile Include="PersonalStatus.cs" />
+    <Compile Include="Picium.cs" />
     <Compile Include="PlanetInfo.cs" />
     <Compile Include="PlanetJoe.cs" />
     <Compile Include="PlanetX.cs" />
