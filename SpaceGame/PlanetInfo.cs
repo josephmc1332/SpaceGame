@@ -73,6 +73,13 @@ namespace SpaceGame
 
             this.TitanNoBalanceShoes = 200;
 
+            //cost on Vormir
+            this.VormirGalacticTVs = 150;
+
+            this.VormirNoBalanceShoes = 300;
+
+            this.VormirGold = 250;
+
 
 
 
@@ -122,6 +129,13 @@ namespace SpaceGame
             double typosition = rnd.Next(6, 12);
             this.TitanYPosition = typosition;
 
+            //Vormir Position
+            double vormirXPosition = rnd.Next(13, 17);
+            this.VormirXPosition = vormirXPosition;
+
+            double vormirYPosition = rnd.Next(2, 10);
+            this.VormirYPosition = vormirYPosition;
+
             
         }
 
@@ -137,6 +151,7 @@ namespace SpaceGame
         public int PlanetXGold      { get; private set; }
         public int PlanetJoeGold    { get; private set; }
         public int TitanGold        { get; private set; }
+        public int VormirGold       { get; private set; }
 
         public int EarthNoBalanceShoes          { get; private set; }
         public int AlphaCentariNoBalanceShoes   { get; private set; }
@@ -145,6 +160,7 @@ namespace SpaceGame
         public int PlanetXNoBalanceShoes        { get; private set; }
         public int PlanetJoeNoBalanceShoes      { get; private set; }
         public int TitanNoBalanceShoes          { get; private set; }
+        public int VormirNoBalanceShoes         { get; private set; }
 
         public int EarthGalacticTVs         { get; private set; }
         public int AlphaCentariGalacticTVs  { get; private set; }
@@ -153,7 +169,7 @@ namespace SpaceGame
         public int PlanetXGalacticTVs       { get; private set; }
         public int PlanetJoeGalacticTVs     { get; private set; }
         public int TitanGalacticTVs         { get; private set; }
-
+        public int VormirGalacticTVs        { get; private set; }
         /// <summary>
         /// planetary positions
         /// </summary>
@@ -171,8 +187,8 @@ namespace SpaceGame
         public double PlanetJoeYPosition    { get; private set; }
         public double TitanXPosition        { get; private set; }
         public double TitanYPosition        { get; private set; }
-
-
+        public double VormirXPosition       { get; private set; }
+        public double VormirYPosition       { get; private set; }
 
 
     }

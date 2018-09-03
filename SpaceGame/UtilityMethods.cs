@@ -71,7 +71,11 @@ namespace SpaceGame
                 $"\tPlanet X:\n" +
                 $"\t\tNo Balance Shoes: {PI.PlanetJoeNoBalanceShoes}\n" +
                 $"\t\tSpace Gold: {PI.PlanetXGold}\n" +
-                $"\t\tGalactic TVs: {PI.PlanetXGalacticTVs}");
+                $"\t\tGalactic TVs: {PI.PlanetXGalacticTVs}\n" +
+                $"\tVormir:\n" +
+                $"\t\tNo Balance Shoes: {PI.VormirNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.VormirGold}\n" +
+                $"\t\tGalactic TVs {PI.VormirGalacticTVs}");
             Console.ReadLine();
         }
 
@@ -211,7 +215,7 @@ namespace SpaceGame
         }
 
         public void PortTravel(double currentX, double destinationX, double currentY, double destinationY, string destination, UtilityMethods UM, PersonalStatus PS, Fuel fuel, Ship ship, PlanetInfo PI, Shop shop, ShipYard SY, LandingPage LP,
-            Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX, Titan Titan)
+            Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir)
         {
             if (UM.FuelCheck(currentX, destinationX, currentY, destinationY, ship, PS, fuel) == "OK")
             {

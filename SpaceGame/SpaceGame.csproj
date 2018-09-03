@@ -62,6 +62,7 @@
     <Compile Include="Shop.cs" />
     <Compile Include="Titan.cs" />
     <Compile Include="UtilityMethods.cs" />
+    <Compile Include="Vormir.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
