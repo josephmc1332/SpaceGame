@@ -73,16 +73,12 @@ namespace SpaceGame
 
             this.TitanNoBalanceShoes = 200;
 
-            //Picium
-            int pshoe = rnd.Next(300, 475);
-            int ptv = rnd.Next(400, 500);
-            int pgold = rnd.Next(300, 700);
+            //cost on Vormir
+            this.VormirGalacticTVs = 150;
 
-            this.PiciumNoBalanaceShoes = pshoe;
+            this.VormirNoBalanceShoes = 300;
 
-            this.PiciumGold = pgold;
-
-            this.PiciumGalacticTVs = ptv;
+            this.VormirGold = 250;
 
 
 
@@ -133,11 +129,12 @@ namespace SpaceGame
             double typosition = rnd.Next(6, 12);
             this.TitanYPosition = typosition;
 
-            double pxposition = rnd.Next(15, 25);
-            this.PiciumXPosition = pxposition;
+            //Vormir Position
+            double vormirXPosition = rnd.Next(13, 17);
+            this.VormirXPosition = vormirXPosition;
 
-            double pyposition = rnd.Next(-7, 3);
-            this.PiciumYPosition = pyposition;
+            double vormirYPosition = rnd.Next(2, 10);
+            this.VormirYPosition = vormirYPosition;
 
             
         }
@@ -154,7 +151,7 @@ namespace SpaceGame
         public int PlanetXGold      { get; private set; }
         public int PlanetJoeGold    { get; private set; }
         public int TitanGold        { get; private set; }
-        public int PiciumGold       { get; private set; }
+        public int VormirGold       { get; private set; }
 
         public int EarthNoBalanceShoes          { get; private set; }
         public int AlphaCentariNoBalanceShoes   { get; private set; }
@@ -163,7 +160,7 @@ namespace SpaceGame
         public int PlanetXNoBalanceShoes        { get; private set; }
         public int PlanetJoeNoBalanceShoes      { get; private set; }
         public int TitanNoBalanceShoes          { get; private set; }
-        public int PiciumNoBalanaceShoes        { get; private set; }
+        public int VormirNoBalanceShoes         { get; private set; }
 
         public int EarthGalacticTVs         { get; private set; }
         public int AlphaCentariGalacticTVs  { get; private set; }
@@ -172,8 +169,7 @@ namespace SpaceGame
         public int PlanetXGalacticTVs       { get; private set; }
         public int PlanetJoeGalacticTVs     { get; private set; }
         public int TitanGalacticTVs         { get; private set; }
-        public int PiciumGalacticTVs        { get; private set; }
-
+        public int VormirGalacticTVs        { get; private set; }
         /// <summary>
         /// planetary positions
         /// </summary>
@@ -191,10 +187,8 @@ namespace SpaceGame
         public double PlanetJoeYPosition    { get; private set; }
         public double TitanXPosition        { get; private set; }
         public double TitanYPosition        { get; private set; }
-        public double PiciumXPosition       { get; private set; }
-        public double PiciumYPosition       { get; private set; }
-
-
+        public double VormirXPosition       { get; private set; }
+        public double VormirYPosition       { get; private set; }
 
 
     }

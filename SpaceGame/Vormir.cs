@@ -6,29 +6,24 @@ using System.Threading.Tasks;
 
 namespace SpaceGame
 {
-    class Earth
+    class Vormir
     {
-        #region Earth Page
 
-        public void EarthPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS,
+        public void VormirPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS,
             UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, 
             AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir)
 
 
         {
-           
+
             //clear up window
             Console.Clear();
 
-            //display menu on earth upon arrival
+            //display menu on Vormir upon arrival
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine("\n\n" +
-                "\t'Welcome to Earth!' earth ambassador Will Smith says dressed in his now \n" +
-                "\ticonic US Air Force pilots uniform'Home planet of us Humans.' He smiles \n" +
-                "\tbroadly stepping to the side and allowing you to pass. As you step by him\n" +
-                "\tthe streets of Merica, the famous capital of Earth, are packed with busy humans\n" +
-                "\tmoving in and out of the buildings. Self driving cars clog the streets and the\n" +
-                "\tside walks are full to the gills with people.\n\n" +
+            Console.WriteLine("Welcome to the desolate planet of Vormir. Our treasures are vast and we are home to the unkown. \n" +
+                "\tMany travel to this destination and few are able to make it out." +
+                "\tIf you are pure of heart then you should have nothing to worry about. \n" +
                 "\t\tWhere would you like to go? \n" +
                 "\t\t  1. Ship Yard \n" +
                 "\t\t  2. Galactic Bank \n" +
@@ -37,19 +32,17 @@ namespace SpaceGame
                 "\t\t  5. Departure Port\n\n" +
                 "\t\t  9. Quit the Game");
 
+
             //send back to check selected option after invalid input
-            SelectEarthOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
-
-
-
+            SelectVormirOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
         }
-        public void SelectEarthOptions(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, 
-            Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, 
-            AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir)
+        public void SelectVormirOptions(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, 
+            Ship ship, PlanetInfo PI, Fuel fuel, Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63, 
+            PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir)
         {
             //convert/parse user input string 
             int response = Convert.ToInt32(Console.ReadLine());
-            
+
             //point of method access after valid user selection
             if (response == 1)
                 ShipYard(UM, PS, ship, fuel, SY);
@@ -58,13 +51,13 @@ namespace SpaceGame
                 Bank(PS, UM, ship, fuel);
 
             if (response == 3)
-                EarthShop(UM, PS, ship, fuel, PI, shop);
+                VormirShop(UM, PS, ship, fuel, PI, shop);
 
-            if (response == 4) 
-                 Market(PS, UM, ship, fuel, PI);
+            if (response == 4)
+                Market(PS, UM, ship, fuel, PI);
 
-            if (response == 5) 
-               EarthPort(ship, UM, PS, fuel, PI, LP, shop, Asgard, M63, Earth, AlphaCentari, SY, GO, PlanetX, Titan, planetJoe, vormir);
+            if (response == 5)
+                VormirPort(ship, UM, PS, fuel, PI, LP, shop, Asgard, M63, Earth, AlphaCentari, SY, GO, PlanetX, Titan, planetJoe, vormir);
 
             if (response == 9)
                 GO.EndScreen(PS, ship);
@@ -107,18 +100,19 @@ namespace SpaceGame
             if (response == 3)
                 return;
         }
-       
-        public void EarthShop(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
+
+        public void VormirShop(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine("\n\n" +
-                "\t'Welcome to my little shop!' The man behind the counter says. His Earth flag bandana, a \n" +
-                "\tmodified version of Old Glory with the stars replaced with a picture of the planet earth, \n" +
-                "\tis made from light enhanced fabric that shines even in the dark. He smiles at you his dirty \n" +
-                "\tblond scruff offsetting his brigthly whitened teeth. 'I've got all the Space Gold and TVs a \n" +
-                "\ttrader like you could ever want, and have you seen these new zero grav shoes? They are all \n" +
-                "\tthe rage out on the larger planets.\n\n");
+            Console.WriteLine("Welcome to the Infinity Shop. My name is Theos, I've owned this place for 3,000yrs. Seen the best of days here on Vormir \n" +
+                "\tand I've seen the worst. Our goods remain throughout all the times. You can feel the history ever time you slip one a pair of our\n" +
+                "\tlegendary NoBalance shoes. What would you like to do?" +
+                "\t\t1. Buy\n" +
+                "\t\t2. Sell\n" +
+                "\t\t3. Get Fuel\n" +
+                "\t\t4. Return");
+               
             int response = UM.ShopSelector();
             if (response == 1)
                 Buy(UM, PS, ship, fuel, PI, Shop);
@@ -136,9 +130,9 @@ namespace SpaceGame
             UM.InventoryDisplay(PS, ship, fuel);
             Console.WriteLine($"\n\n" +
                 $"\tYou have {PS.Cash()} Galactic Credits, what good would you like to buy?\n" +
-                $"\t 1 NoBalanceShoes 80 GC per Unit\n" +
-                $"\t 2 Space Gold 100 GC per Unit\n" +
-                $"\t 3 Galactic TV 120 GC per Unit \n" +
+                $"\t 1 NoBalanceShoes 300 GC per Unit\n" +
+                $"\t 2 Space Gold 250 GC per Unit\n" +
+                $"\t 3 Galactic TV 150 GC per Unit \n" +
                 $"\t 4 Return to Shop");
             int response = Convert.ToInt32(Console.ReadLine());
             //Buy Shoes
@@ -152,7 +146,7 @@ namespace SpaceGame
                 Shop.BuyGold(PI.EarthSpaceGold, PS, UM, ship, fuel);
             }
 
-            if (response ==3)
+            if (response == 3)
             {
                 Shop.BuyTV(PI.EarthGalacticTVs, PS, UM, ship, fuel);
             }
@@ -176,11 +170,11 @@ namespace SpaceGame
                 $"\t  3 Galactic TVs\n" +
                 $"\t  4 or Return to the Shop");
             int response = Convert.ToInt32(Console.ReadLine());
-             if (response == 1)
+            if (response == 1)
             {
                 Shop.SellShoes(PI.EarthNoBalanceShoes, PS, UM, ship, fuel);
             }
-            
+
             if (response == 2)
             {
                 Shop.SellGold(PI.EarthSpaceGold, PS, UM, ship, fuel);
@@ -206,49 +200,47 @@ namespace SpaceGame
                 "\tSpace Gold, it's like the gold everyone knows and loves but shinier and better in every way.\n" +
                 "\tAnd Galactic TVs, TVs so thin that you can't even see them unless you are standing in front of them.\n" +
                 $"\tThe display flashes their market prices. \n\n");
-                UM.MarketDisplay(PI);
+            UM.MarketDisplay(PI);
         }
 
-        public void EarthPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI, LandingPage LP, Shop shop, Asgard Asgard, M63 M63, Earth Earth, AlphaCentari AlphaCentari, ShipYard SY, GameOver GO, PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir)
+        public void VormirPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI, 
+            LandingPage LP, Shop shop, Asgard Asgard, M63 M63, Earth Earth, AlphaCentari AlphaCentari, 
+            ShipYard SY, GameOver GO, PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir)
         {
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
 
-            UM.PortMenu(PI.EarthXPosition, PI.EarthYPosition, UM, PS, ship, fuel, PI);
+            UM.PortMenu(PI.VormirXPosition, PI.VormirYPosition, UM, PS, ship, fuel, PI);
 
             string response = Console.ReadLine();
             if (response == "titan" || response == "Titan")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.TitanXPosition, PI.EarthYPosition, PI.TitanYPosition, "Titan", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.VormirXPosition, PI.TitanXPosition, PI.VormirYPosition, PI.TitanYPosition, "Titan", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
             }
 
             if (response == "centari")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.AlphaCentariXPosition, PI.EarthYPosition, PI.AlphaCentariYPosition, "AlphaCentari", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.VormirXPosition, PI.AlphaCentariXPosition, PI.VormirYPosition, PI.AlphaCentariYPosition, "AlphaCentari", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
             }
             if (response == "m63")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.M63XPosition, PI.EarthYPosition, PI.M63YPosition, "M63", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.VormirXPosition, PI.M63XPosition, PI.VormirYPosition, PI.M63YPosition, "M63", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
             }
             if (response == "asgard")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.AsgardXPosition, PI.EarthYPosition, PI.AsgardYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.VormirXPosition, PI.AsgardXPosition, PI.VormirYPosition, PI.AsgardYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
             }
             if (response == "x")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.PlanetXXPosition, PI.EarthYPosition, PI.PlanetXYPosition, "Planet X", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.VormirXPosition, PI.PlanetXXPosition, PI.VormirYPosition, PI.PlanetXYPosition, "Planet X", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
             }
-            if (response == "titan")
+            if (response == "earth")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.TitanXPosition, PI.EarthYPosition, PI.TitanYPosition, "Titan", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.VormirXPosition, PI.EarthXPosition, PI.VormirYPosition, PI.EarthYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
             }
             if (response == "joe")
             {
-                UM.PortTravel(PI.EarthXPosition, PI.PlanetJoeXPosition, PI.EarthYPosition, PI.PlanetJoeYPosition, "Planet Joe", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
-            }
-            if (response == "vormir")
-            {
-                UM.PortTravel(PI.VormirXPosition, PI.PlanetXXPosition, PI.VormirYPosition, PI.PlanetXYPosition, "Vormir", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.VormirXPosition, PI.PlanetJoeXPosition, PI.VormirYPosition, PI.PlanetJoeYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
             }
             if (response == "return")
             {
@@ -256,6 +248,5 @@ namespace SpaceGame
             }
         }
 
-        #endregion
     }
 }
