@@ -18,18 +18,21 @@ namespace SpaceGame
 
 
 
-
+            Console.Clear();
             //display menu on earth upon arrival
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine("Welcome to Planet X! Not a lot of beings know we exist, but you are lucky to have found our planet." +
-               "\nThere is truly no greater honor than walking the Ruberian Colloseum and feeling the spirits of the elite warriors that have" +
-               "\nbattled to lifes end. We are home to the universe's most lethal gladiators, and our vast wealth and prosperity is proof of that." +
-               "\n1. ShipYard" +
-               "\n2. Galactic Bank" +
-               "\n3. Buy, Sell, Trade" +
-               "\n4. Galactic Market" +
-               "\n5. Departure Port" +
-               "\n9. Quit Game");
+            Console.WriteLine("\n\n" +
+                "\tWelcome to Planet X! Not a lot of beings know we exist, but you are lucky\n" +
+                "\tto have found our planet. There is truly no greater honor than walking the\n" +
+                "\tRuberian Colloseum and feeling the spirits of the elite warriors that have\n" +
+                "\tbattled to lifes end. We are home to the universe's most lethal gladiators, \n" +
+                "\tand our vast wealth and prosperity is proof of that." +
+               "\n\t\t1. ShipYard" +
+               "\n\t\t2. Galactic Bank" +
+               "\n\t\t3. Buy, Sell, Trade" +
+               "\n\t\t4. Galactic Market" +
+               "\n\t\t5. Departure Port" +
+               "\n\t\t9. Quit Game");
 
 
             //send back to check selected option after invalid input
@@ -217,9 +220,9 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
 
-            UM.PortMenu(PI.PlanetXXPosition, PI.PlanetXYPosition, UM, PS, ship, fuel, PI);
+            string response = UM.PortMenu(PI.PlanetXXPosition, PI.PlanetXYPosition, UM, PS, ship, fuel, PI);
 
-            string response = Console.ReadLine();
+            
             if (response == "centari")
             {
                 UM.PortTravel(PI.PlanetXXPosition, PI.AlphaCentariXPosition, PI.PlanetXYPosition, PI.AlphaCentariYPosition, "AlphaCentari", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);

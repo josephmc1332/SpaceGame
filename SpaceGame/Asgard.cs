@@ -183,9 +183,9 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
 
-            UM.PortMenu(PI.AsgardXPosition, PI.AsgardYPosition, UM, PS, ship, fuel, PI);
+            string response = UM.PortMenu(PI.AsgardXPosition, PI.AsgardYPosition, UM, PS, ship, fuel, PI);
 
-            string response = Console.ReadLine();
+            
             if (response == "centari")
             {
                 UM.PortTravel(PI.AsgardXPosition, PI.AlphaCentariXPosition, PI.AsgardYPosition, PI.AlphaCentariYPosition, "AlphaCentari", UM, PS, fuel, ship, PI, Shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);

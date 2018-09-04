@@ -173,9 +173,9 @@ namespace SpaceGame
                 $"\tThis is it, the famous Space Gold space port. It gleams brighter than you ever thought possible,\n" +
                 $"\tso bright in fact that it hurts your eyes a little. But if nothing else you must admit it is one of\n" +
                 $"\tthe most impressive things you've ever seen.\n");
-            UM.PortMenu(PI.PlanetJoeXPosition, PI.PlanetJoeYPosition, UM, PS, ship, fuel, PI);
+            string response = UM.PortMenu(PI.PlanetJoeXPosition, PI.PlanetJoeYPosition, UM, PS, ship, fuel, PI);
 
-            string response = Console.ReadLine();
+           
             if (response == "titan" || response == "Titan")
             {
                 UM.PortTravel(PI.PlanetJoeXPosition, PI.TitanXPosition, PI.PlanetJoeYPosition, PI.TitanYPosition, "Titan", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);

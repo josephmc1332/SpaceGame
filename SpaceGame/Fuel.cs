@@ -30,30 +30,36 @@ namespace SpaceGame
         public void BuyFuel(PersonalStatus PS, Ship ship)
         {
             Console.WriteLine($"Your current fuel level is: {MyCurrentFuel}, fuel costs 5 GC per unit. How much fuel would you like to buy?");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response * 5 > PS.Cash())
+            try
             {
-                Console.WriteLine($"You can't afford that much fuel. You can only afford {PS.Cash() / 5}");
-                Console.ReadLine();
-                BuyFuel(PS, ship);
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response * 5 > PS.Cash())
+                {
+                    Console.WriteLine($"You can't afford that much fuel. You can only afford {PS.Cash() / 5}");
+                    Console.ReadLine();
+                    BuyFuel(PS, ship);
+                }
+                if (response + MyCurrentFuel > ship.ShipFuelMax)
+                {
+                    Console.WriteLine($"You dont have the capacity for that, You are ready have {MyCurrentFuel} and only a max of {ship.ShipFuelMax}");
+                    Console.ReadLine();
+                    BuyFuel(PS, ship);
+                }
+                if (response + MyCurrentFuel <= ship.ShipFuelMax && response * 5 <= PS.Cash())
+                {
+                    MyCurrentFuel += response;
+                    PS.SpendMoney(response * 5);
+                    Console.WriteLine($"You now have {MyCurrentFuel} amount of fuel.\n" +
+                        $"It cost {response * 5} you now have {PS.Cash()}");
+                    return;
+                }
+                else
+                    return;
             }
-            if (response + MyCurrentFuel > ship.ShipFuelMax)
+            catch
             {
-                Console.WriteLine($"You dont have the capacity for that, You are ready have {MyCurrentFuel} and only a max of {ship.ShipFuelMax}");
-                Console.ReadLine();
-                BuyFuel(PS, ship);
-            }
-            if (response + MyCurrentFuel <= ship.ShipFuelMax && response * 5 <= PS.Cash())
-            {
-                MyCurrentFuel += response;
-                PS.SpendMoney(response * 5);
-                Console.WriteLine($"You now have {MyCurrentFuel} amount of fuel.\n" +
-                    $"It cost {response * 5} you now have {PS.Cash()}");
                 return;
             }
-            else
-                return;
-            
                 
         }
 

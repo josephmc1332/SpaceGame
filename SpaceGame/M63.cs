@@ -187,9 +187,9 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
 
-            UM.PortMenu(PI.M63XPosition, PI.M63YPosition, UM, PS, ship, fuel, PI);
+            string response = UM.PortMenu(PI.M63XPosition, PI.M63YPosition, UM, PS, ship, fuel, PI);
 
-            string response = Console.ReadLine();
+            
 
             if (response == "earth")
             {

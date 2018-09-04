@@ -215,9 +215,9 @@ namespace SpaceGame
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
 
-            UM.PortMenu(PI.TitanXPosition, PI.TitanYPosition, UM, PS, ship, fuel, PI);
+            string response = UM.PortMenu(PI.TitanXPosition, PI.TitanYPosition, UM, PS, ship, fuel, PI);
 
-            string response = Console.ReadLine();
+            
             if (response == "earth")
             {
                 UM.PortTravel(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, "Earth", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);

@@ -22,8 +22,15 @@ namespace SpaceGame
             "\t\t 4 Market\n" +
             "\t\t 5 Departure Port\n\n" +
             "\t\t 9 Quit game");
-            int response = Convert.ToInt32(Console.ReadLine());
-            return response;
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                return response;
+            }
+            catch
+            {
+                return 6;
+            }
         }
 
         // this method will stream line all the shipyard menus
@@ -33,8 +40,15 @@ namespace SpaceGame
             "\t\t 1 Check your ship stats\n" +
             "\t\t 2 Buy a new ship\n" +
             "\t\t 3 Return to planetary menu");
-            int response = Convert.ToInt32(Console.ReadLine());
-            return response;
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                return response;
+            }
+            catch
+            {
+                return 3;
+            }
         }
 
         // general display for all bank screens
@@ -183,19 +197,28 @@ namespace SpaceGame
             $"\t\t 2 Sell\n" +
             $"\t\t 3 Buy Fuel\n" +
             $"\t\t 4 Return to planetary menu");
-            int response = Convert.ToInt32(Console.ReadLine());
-            return response;
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                return response;
+            }
+            catch
+            {
+                return 4;
+            }
         }
 
         public void PlanetTravel(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety, Ship ship, PersonalStatus PS, Fuel fuel)
         {
             double distTraveled = (Math.Sqrt(Math.Pow(currentPlanetx - destinationPlanetx, 2) + Math.Pow(currentPlanety - destinationPlanety, 2)));
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
-            double time = playerWarpSpeed / distTraveled;
+            double time = distTraveled /playerWarpSpeed;
             PS.AddTime(time);
-            fuel.MyCurrentFuel -= (int)(distTraveled);
+            fuel.MyCurrentFuel -= ((int)(distTraveled));
             if (PS.TravelAge() > 40.0)
+            {
                 GO.Retire(PS, ship);
+            }
         }
 
         public double PlanetDistance(double currentPlanetx, double destinationPlanetx, double currentPlanety, double destinationPlanety)

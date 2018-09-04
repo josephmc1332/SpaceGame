@@ -20,90 +20,97 @@ namespace SpaceGame
                 $"\t  1 The Interstellar Connex 600 GCs\n" +
                 $"\t  2 The StarWagon 1200GCs");
             //convert response to numeric value of type int
-            int shipUpgrade = Convert.ToInt32(Console.ReadLine());
-            //If buying the interstellar
-            if (shipUpgrade == 1 && PS.Cash() >= 600)
+            try
             {
-                string myShipUpgrade = "The Interstellar Connex";
-                Console.Clear();
-                Console.WriteLine($"You chose the {myShipUpgrade}! That's a great choice. \n" +
-                   $"It has a capacity of {ship.InterstellarConnexCapacity} slots. This is our biggest ship! " +
-                   $"\nWith a max warp speed of" +
-                   $" {ship.InterstellarConnexSpeed}. ");
-                Console.ReadLine();
-                //ask if user is sure of purchase
-                Console.WriteLine("Would you like to complete this purchase? \nyes or no?");
-                //user response 
-                string userShipAnswer = Console.ReadLine();
-                //execute the purchase
-                if (userShipAnswer == "yes")
+                int shipUpgrade = Convert.ToInt32(Console.ReadLine());
+                //If buying the interstellar
+                if (shipUpgrade == 1 && PS.Cash() >= 600)
                 {
-                    ship.ShipSpeed = ship.InterstellarConnexSpeed;
-                    ship.ShipCapacity = ship.InterstellarConnexCapacity;
-                    ship.ShipName = myShipUpgrade;
-                    //subtract credit after purchase
-                    PS.SpendMoney(600);
-                    //display ship bought and remaining credit
-                    Console.WriteLine($"Congratulations on your new ship purchase! " +
-                        $"You now own the {ship.ShipName} and have {PS.Cash()} remaining");
-                    Console.ReadLine();
-                    return;
-                }
-                //stop the purchase
-                else
-                {
-                    return;
-                }
-            }
-            //stop purchase. not enough credits
-            if (shipUpgrade == 1 && PS.Cash() < 600)
-            {
-                Console.WriteLine("You do not have enough credits to complete this purchase!");
-                Console.ReadLine();
-                return;
-
-            }
-            //if buying the starwagon
-            if (shipUpgrade == 2 && PS.Cash() >= 1200)
-            {
-                //initialize ship 
-                string myShipUpgrade = "The StarWagon";
-                Console.Clear();
-                //summary of ship(speed, name, and capacity)
-                Console.WriteLine($"\n\n" +
-                    $"\tYou chose the {myShipUpgrade}! That's a great choice. \n" +
-                    $"\tIt has a capacity of {ship.StarWagonCapacity} slots.\n" +
-                    $"\tWith a max warp speed of {ship.StarWagonSpeed}. This is our fastest ship by far!");
-                //press enter
-                Console.ReadLine();
-                //confirm purchase
-                Console.WriteLine("\n\nWould you like to complete this purchase? \nyes or no?");
-                string userShipAnswer = Console.ReadLine();
-                //after purchase is confirmed subtract credits
-                if (userShipAnswer == "yes")
-                {
-                    ship.ShipName = myShipUpgrade;
-                    ship.ShipCapacity = ship.StarWagonCapacity;
-                    ship.ShipSpeed = ship.StarWagonSpeed;
-                    PS.SpendMoney(1200);
-                    //display ship purchased and remaining credits
+                    string myShipUpgrade = "The Interstellar Connex";
                     Console.Clear();
-                    Console.WriteLine($"Congratulations on your new ship purchase! You now own the {ship.ShipName} " +
-                        $"\nand have {PS.Cash()} credits remaining");
+                    Console.WriteLine($"You chose the {myShipUpgrade}! That's a great choice. \n" +
+                       $"It has a capacity of {ship.InterstellarConnexCapacity} slots. This is our biggest ship! " +
+                       $"\nWith a max warp speed of" +
+                       $" {ship.InterstellarConnexSpeed}. ");
+                    Console.ReadLine();
+                    //ask if user is sure of purchase
+                    Console.WriteLine("Would you like to complete this purchase? \nyes or no?");
+                    //user response 
+                    string userShipAnswer = Console.ReadLine();
+                    //execute the purchase
+                    if (userShipAnswer == "yes")
+                    {
+                        ship.ShipSpeed = ship.InterstellarConnexSpeed;
+                        ship.ShipCapacity = ship.InterstellarConnexCapacity;
+                        ship.ShipName = myShipUpgrade;
+                        //subtract credit after purchase
+                        PS.SpendMoney(600);
+                        //display ship bought and remaining credit
+                        Console.WriteLine($"Congratulations on your new ship purchase! " +
+                            $"You now own the {ship.ShipName} and have {PS.Cash()} remaining");
+                        Console.ReadLine();
+                        return;
+                    }
+                    //stop the purchase
+                    else
+                    {
+                        return;
+                    }
+                }
+                //stop purchase. not enough credits
+                if (shipUpgrade == 1 && PS.Cash() < 600)
+                {
+                    Console.WriteLine("You do not have enough credits to complete this purchase!");
                     Console.ReadLine();
                     return;
+
+                }
+                //if buying the starwagon
+                if (shipUpgrade == 2 && PS.Cash() >= 1200)
+                {
+                    //initialize ship 
+                    string myShipUpgrade = "The StarWagon";
+                    Console.Clear();
+                    //summary of ship(speed, name, and capacity)
+                    Console.WriteLine($"\n\n" +
+                        $"\tYou chose the {myShipUpgrade}! That's a great choice. \n" +
+                        $"\tIt has a capacity of {ship.StarWagonCapacity} slots.\n" +
+                        $"\tWith a max warp speed of {ship.StarWagonSpeed}. This is our fastest ship by far!");
+                    //press enter
+                    Console.ReadLine();
+                    //confirm purchase
+                    Console.WriteLine("\n\nWould you like to complete this purchase? \nyes or no?");
+                    string userShipAnswer = Console.ReadLine();
+                    //after purchase is confirmed subtract credits
+                    if (userShipAnswer == "yes")
+                    {
+                        ship.ShipName = myShipUpgrade;
+                        ship.ShipCapacity = ship.StarWagonCapacity;
+                        ship.ShipSpeed = ship.StarWagonSpeed;
+                        PS.SpendMoney(1200);
+                        //display ship purchased and remaining credits
+                        Console.Clear();
+                        Console.WriteLine($"Congratulations on your new ship purchase! You now own the {ship.ShipName} " +
+                            $"\nand have {PS.Cash()} credits remaining");
+                        Console.ReadLine();
+                        return;
+                    }
+                    //stop purchase
+                    else
+                    {
+                        return;
+                    }
                 }
                 //stop purchase
-                else
+                if (shipUpgrade == 2 && PS.Cash() < 1200)
                 {
+                    Console.WriteLine("You do not have enough credits to complete this purchase!");
+                    Console.ReadLine();
                     return;
                 }
             }
-            //stop purchase
-            if (shipUpgrade == 2 && PS.Cash() < 1200)
+            catch
             {
-                Console.WriteLine("You do not have enough credits to complete this purchase!");
-                Console.ReadLine();
                 return;
             }
         }

@@ -216,9 +216,9 @@ namespace SpaceGame
                 $"\tDukedom of Mercury and the thoughts of your upcoming(hopefully)\n" +
                 $"\tnuptuals drive you forward.");
 
-            UM.PortMenu(PI.AlphaCentariXPosition, PI.AlphaCentariYPosition, UM, PS, ship, fuel, PI);
+            string response = UM.PortMenu(PI.AlphaCentariXPosition, PI.AlphaCentariYPosition, UM, PS, ship, fuel, PI);
 
-            string response = Console.ReadLine();
+            
             if (response == "earth")
             {
                 UM.PortTravel(PI.AlphaCentariXPosition, PI.EarthXPosition, PI.AlphaCentariYPosition, PI.EarthYPosition, "Earth", UM, PS, fuel, ship, PI, Shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
