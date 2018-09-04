@@ -75,7 +75,19 @@ namespace SpaceGame
                 $"\tVormir:\n" +
                 $"\t\tNo Balance Shoes: {PI.VormirNoBalanceShoes}\n" +
                 $"\t\tSpace Gold: {PI.VormirGold}\n" +
-                $"\t\tGalactic TVs {PI.VormirGalacticTVs}");
+                $"\t\tGalactic TVs {PI.VormirGalacticTVs}\n" +
+                $"\tPicium:\n" +
+                $"\t\tNo Balance Shoes: {PI.PiciumNoBalanaceShoes}\n" +
+                $"\t\tSpace Gold: {PI.PiciumGold}\n" +
+                $"\t\tGalactic TVs: {PI.PiciumGalacticTVs}\n" +
+                $"\tTitan:\n" +
+                $"\t\tNo Balance Shoes: {PI.TitanNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.TitanGold}\n" +
+                $"\t\tGalactic TVs: {PI.TitanGalacticTVs}\n" +
+                $"\tPlanet Joe:\n" +
+                $"\t\tNo Balance Shoes: {PI.PlanetJoeNoBalanceShoes}\n" +
+                $"\t\tSpace Gold: {PI.PlanetJoeGold}\n" +
+                $"\t\tGalactic TVs: {PI.PlanetJoeGalacticTVs}\n");
             Console.ReadLine();
         }
 
@@ -215,14 +227,14 @@ namespace SpaceGame
         }
 
         public void PortTravel(double currentX, double destinationX, double currentY, double destinationY, string destination, UtilityMethods UM, PersonalStatus PS, Fuel fuel, Ship ship, PlanetInfo PI, Shop shop, ShipYard SY, LandingPage LP,
-            Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir)
+            Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir, Picium Picium)
         {
             if (UM.FuelCheck(currentX, destinationX, currentY, destinationY, ship, PS, fuel) == "OK")
             {
                 UM.PlanetTravel(currentX, destinationX, currentY, destinationY, ship, PS, fuel);
                 UM.Travel(PS);
                 PS.LocationChanger(destination);
-                LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                LP.LandingPagePicker(LP, shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
             }
             if (UM.FuelCheck(currentX, destinationX, currentY, destinationY, ship, PS, fuel) == "TooFar")
             {
@@ -273,6 +285,10 @@ namespace SpaceGame
                 Console.WriteLine($"" +
                     $"\t\t<x> Planet X : {UM.PlanetDistance(currentX, PI.VormirXPosition, currentY, PI.VormirYPosition)} Light years away which will take {UM.PlanetDistance(currentX, PI.VormirXPosition, currentY, PI.VormirYPosition) / playerWarpSpeed} years\n");
 
+            if (UM.FuelCheck(currentX, PI.PiciumXPosition, currentY, PI.PiciumYPosition, ship, PS, fuel) == "OK")
+
+                Console.WriteLine($"" +
+                     $"\t\t<picium> Picium : {UM.PlanetDistance(currentX, PI.PiciumXPosition, currentY, PI.PiciumYPosition)} Light years away which will take {UM.PlanetDistance(currentX, PI.PiciumXPosition, currentY, PI.PiciumYPosition) / playerWarpSpeed} years\n");
 
             Console.WriteLine($"" +
                 $"\t\t<return> Return to earth");

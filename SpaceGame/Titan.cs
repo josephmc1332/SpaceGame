@@ -10,7 +10,7 @@ namespace SpaceGame
     {
         public void TitanPage(LandingPage LP, Shop Shop, ShipYard SY, GameOver GO, PersonalStatus PS,
            UtilityMethods UM, Ship ship, PlanetInfo PI, Fuel fuel, Asgard asgard, Earth earth, AlphaCentari alpha, M63 m63, 
-           PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir)
+           PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir, Picium picium)
         {
             PS.LocationChanger("Titan");
 
@@ -33,7 +33,7 @@ namespace SpaceGame
             //send back to check selected option after invalid input
             try
             {
-                SelectTitanOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63, PlanetX, Titan, planetJoe, vormir);
+                SelectTitanOptions(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63, PlanetX, Titan, planetJoe, vormir, picium);
             }
 
             //display if invalid input
@@ -43,14 +43,14 @@ namespace SpaceGame
                 Console.ReadLine();
 
                 //recycle to Welcome to planet x after invalid entry  
-                TitanPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63, PlanetX, Titan, planetJoe, vormir);
+                TitanPage(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63, PlanetX, Titan, planetJoe, vormir, picium);
             }
 
         }
 
         public void SelectTitanOptions(LandingPage LP, Shop shop, ShipYard SY, GameOver GO, PersonalStatus PS, UtilityMethods UM, 
             Ship ship, PlanetInfo PI, Fuel fuel, Asgard asgard, Earth earth, AlphaCentari alpha, M63 m63, 
-            PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir)
+            PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir, Picium picium)
         {
             //convert/parse user input string 
             int response = Convert.ToInt32(Console.ReadLine());
@@ -69,7 +69,7 @@ namespace SpaceGame
                 Market(PS, UM, ship, fuel, PI);
 
             if (response == 5)
-                TitanPort(ship, UM, PS, fuel, PI, LP, shop, asgard, m63, earth, alpha, SY, GO, PlanetX, Titan, planetJoe, vormir);
+                TitanPort(ship, UM, PS, fuel, PI, LP, shop, asgard, m63, earth, alpha, SY, GO, PlanetX, Titan, planetJoe, vormir, picium);
 
             if (response == 9)
                 GO.EndScreen(PS, ship);
@@ -78,7 +78,7 @@ namespace SpaceGame
             {
                 //loops back to the beginning of planet x page page
                 Console.WriteLine("invalid entry");
-                TitanPage(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63, PlanetX, Titan, planetJoe, vormir);
+                TitanPage(LP, shop, SY, GO, PS, UM, ship, PI, fuel, asgard, earth, alpha, m63, PlanetX, Titan, planetJoe, vormir, picium);
             }
         }
 
@@ -209,7 +209,7 @@ namespace SpaceGame
 
         public void TitanPort(Ship ship, UtilityMethods UM, PersonalStatus PS, Fuel fuel, PlanetInfo PI, LandingPage LP, 
             Shop shop, Asgard Asgard, M63 M63, Earth Earth, AlphaCentari AlphaCentari, ShipYard SY, GameOver GO, 
-            PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir)
+            PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir, Picium Picium)
         {
             double playerWarpSpeed = (Math.Pow(ship.ShipSpeed, 10 / 3) + Math.Pow(10 - ship.ShipSpeed, -11 / 3));
             Console.Clear();
@@ -220,19 +220,35 @@ namespace SpaceGame
             string response = Console.ReadLine();
             if (response == "earth")
             {
-                UM.PortTravel(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, "Earth", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.TitanXPosition, PI.EarthXPosition, PI.TitanYPosition, PI.EarthYPosition, "Earth", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
             }
             if (response == "centari")
             {
-                UM.PortTravel(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, "AlphaCentari", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.TitanXPosition, PI.AlphaCentariXPosition, PI.TitanYPosition, PI.AlphaCentariYPosition, "AlphaCentari", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
             }
             if (response == "m63")
             {
-                UM.PortTravel(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, "M63", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.TitanXPosition, PI.M63XPosition, PI.TitanYPosition, PI.M63YPosition, "M63", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
             }
             if (response == "asgard")
             {
-                UM.PortTravel(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir);
+                UM.PortTravel(PI.TitanXPosition, PI.AsgardXPosition, PI.TitanYPosition, PI.AsgardYPosition, "Asgard", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
+            }
+            if (response == "vormir")
+            {
+                UM.PortTravel(PI.TitanXPosition, PI.VormirXPosition, PI.TitanYPosition, PI.VormirYPosition, "Vormir", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
+            }
+            if (response == "joe")
+            {
+                UM.PortTravel(PI.TitanXPosition, PI.PlanetJoeXPosition, PI.TitanYPosition, PI.PlanetJoeYPosition, "Planet Joe", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
+            }
+            if (response == "x")
+            {
+                UM.PortTravel(PI.TitanXPosition, PI.PlanetXXPosition, PI.TitanYPosition, PI.PlanetXYPosition, "Planet X", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
+            }
+            if (response == "picium")
+            {
+                UM.PortTravel(PI.TitanXPosition, PI.PiciumXPosition, PI.TitanYPosition, PI.PiciumYPosition, "Picium", UM, PS, fuel, ship, PI, shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
             }
             if (response == "return")
             {
