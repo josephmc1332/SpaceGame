@@ -119,7 +119,8 @@ namespace SpaceGame
 
             Console.Clear();
             UM.InventoryDisplay(PS, ship, fuel);
-            Console.WriteLine("Welcome to Masterons, my name is Liam. What can I get for you today?");
+            Console.WriteLine("Welcome to Masterons, my name is Liam. This is a one of a kind shop we have got here.\n" +
+                "The gym is in the back if you feel like getting a quick pump in between your travels. What can I get for you today?");
             int response = UM.ShopSelector();
             if (response == 1)
                 Buy(UM, PS, ship, fuel, PI, shop);
