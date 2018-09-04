@@ -19,19 +19,27 @@ namespace SpaceGame
                 $"\tplanet's infestructure is underwater. Some people swim places and some people use\n" +
                 $"\tweighted boots to walk on the ground." +
                 $"\t\tWhere would you like to go?\n");
-            int response = UM.MainPageOptions();
-            if (response == 1)
-                PiciumShipyard(UM, PS, ship, fuel, SY);
-            if (response == 2)
-                PiciumBank(UM, PS, ship, fuel);
-            if (response == 3)
-                PiciumShop(UM, PS, ship, fuel, Shop, PI);
-            if (response == 4)
-                PiciumMarket(UM, PS, ship, fuel, PI);
-            if (response == 5)
-                PiciumPort(UM, PS, ship, fuel, PI, Shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, PlanetJoe, Vormir, Picium);
-            if (response == 9)
-                GO.EndScreen(PS, ship);
+            try
+            {
+                int response = UM.MainPageOptions();
+                if (response == 1)
+                    PiciumShipyard(UM, PS, ship, fuel, SY);
+                if (response == 2)
+                    PiciumBank(UM, PS, ship, fuel);
+                if (response == 3)
+                    PiciumShop(UM, PS, ship, fuel, Shop, PI);
+                if (response == 4)
+                    PiciumMarket(UM, PS, ship, fuel, PI);
+                if (response == 5)
+                    PiciumPort(UM, PS, ship, fuel, PI, Shop, SY, LP, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, PlanetJoe, Vormir, Picium);
+                if (response == 9)
+                    GO.EndScreen(PS, ship);
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
+                return;
+            }
         }
         public void PiciumShipyard(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, ShipYard SY)
         {
@@ -45,13 +53,21 @@ namespace SpaceGame
                 "\t\t  1 Check your ship stats\n" +
                 "\t\t  2 Buy a new Ship\n" +
                 "\t\t  3 Return to planetary hub");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
-                SY.ShipCheck(PS, ship, UM, fuel);
-            if (response == 2)
-                SY.PurchaseShip(PS, ship, UM, fuel);
-            if (response == 3)
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response == 1)
+                    SY.ShipCheck(PS, ship, UM, fuel);
+                if (response == 2)
+                    SY.PurchaseShip(PS, ship, UM, fuel);
+                if (response == 3)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
         public void PiciumBank(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
         {
@@ -72,15 +88,23 @@ namespace SpaceGame
                 $"\t'Welcome to my shop!' the owner says to you his words coming to you distorted by the water between\n" +
                 $"Have you ever thought about how weird it is that you can hear all the people here even though you are\n" +
                 $"underwater, weird. Anyway let's buy some stuff.");
-            int response = UM.ShopSelector();
-            if (response == 1)
-                PiciumBuy(UM, PS, ship, fuel, PI, Shop);
-            if (response == 2)
-                PiciumSell(UM, PS, ship, fuel, Shop, PI);
-            if (response == 3)
-                fuel.BuyFuel(PS, ship);
-            if (response == 4)
+            try
+            {
+                int response = UM.ShopSelector();
+                if (response == 1)
+                    PiciumBuy(UM, PS, ship, fuel, PI, Shop);
+                if (response == 2)
+                    PiciumSell(UM, PS, ship, fuel, Shop, PI);
+                if (response == 3)
+                    fuel.BuyFuel(PS, ship);
+                if (response == 4)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
         public void PiciumBuy(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
         {
@@ -92,25 +116,33 @@ namespace SpaceGame
                 $"\t 2 Space Gold 100 GC per Unit\n" +
                 $"\t 3 Galactic TV 120 GC per Unit \n" +
                 $"\t 4 Return to Shop");
-            int response = Convert.ToInt32(Console.ReadLine());
-            //Buy Shoes
-            if (response == 1)
+            try
             {
-                Shop.BuyShoes(PI.PiciumNoBalanaceShoes, PS, UM, ship, fuel);
-            }
-            //Buy Gold
-            if (response == 2)
-            {
-                Shop.BuyGold(PI.PiciumGold, PS, UM, ship, fuel);
-            }
+                int response = Convert.ToInt32(Console.ReadLine());
+                //Buy Shoes
+                if (response == 1)
+                {
+                    Shop.BuyShoes(PI.PiciumNoBalanaceShoes, PS, UM, ship, fuel);
+                }
+                //Buy Gold
+                if (response == 2)
+                {
+                    Shop.BuyGold(PI.PiciumGold, PS, UM, ship, fuel);
+                }
 
-            if (response == 3)
-            {
-                Shop.BuyTV(PI.PiciumGalacticTVs, PS, UM, ship, fuel);
-            }
+                if (response == 3)
+                {
+                    Shop.BuyTV(PI.PiciumGalacticTVs, PS, UM, ship, fuel);
+                }
 
-            if (response == 4)
+                if (response == 4)
+                {
+                    return;
+                }
+            }
+            catch
             {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
         }
@@ -127,22 +159,30 @@ namespace SpaceGame
                 $"\t  2 Space Gold\n" +
                 $"\t  3 Galactic TVs\n" +
                 $"\t  4 or Return to the Shop");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
+            try
             {
-                Shop.SellShoes(PI.PiciumNoBalanaceShoes, PS, UM, ship, fuel);
-            }
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response == 1)
+                {
+                    Shop.SellShoes(PI.PiciumNoBalanaceShoes, PS, UM, ship, fuel);
+                }
 
-            if (response == 2)
-            {
-                Shop.SellGold(PI.PiciumGold, PS, UM, ship, fuel);
+                if (response == 2)
+                {
+                    Shop.SellGold(PI.PiciumGold, PS, UM, ship, fuel);
+                }
+                if (response == 3)
+                {
+                    Shop.SellTV(PI.PiciumGalacticTVs, PS, UM, ship, fuel);
+                }
+                if (response == 4)
+                {
+                    return;
+                }
             }
-            if (response == 3)
+            catch
             {
-                Shop.SellTV(PI.PiciumGalacticTVs, PS, UM, ship, fuel);
-            }
-            if (response == 4)
-            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
         }

@@ -32,25 +32,33 @@ namespace SpaceGame
             PlanetInfo PI, Shop Shop, LandingPage LP, Asgard Asgard, Earth Earth, AlphaCentari AlphaCentari, 
             M63 M63, PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir, Picium Picium)
         {
-            int response = UM.MainPageOptions();
+            try
+            {
+                int response = UM.MainPageOptions();
 
-            if (response == 1)
-                AsgardShipyard(UM, PS, ship, fuel, SY);
+                if (response == 1)
+                    AsgardShipyard(UM, PS, ship, fuel, SY);
 
-            if (response == 2)
-                AsgardBank(UM, PS, ship, fuel);
+                if (response == 2)
+                    AsgardBank(UM, PS, ship, fuel);
 
-            if (response == 3)
-                AsgardShop(UM, PS, ship, fuel, PI, Shop);
+                if (response == 3)
+                    AsgardShop(UM, PS, ship, fuel, PI, Shop);
 
-            if (response == 4)
-                AsgardMarket(UM, PS, ship, fuel, PI);
+                if (response == 4)
+                    AsgardMarket(UM, PS, ship, fuel, PI);
 
-            if (response == 5)
-                AsgardPort(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
+                if (response == 5)
+                    AsgardPort(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
 
-            if (response == 9)
-                GO.EndScreen(PS, ship);
+                if (response == 9)
+                    GO.EndScreen(PS, ship);
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
+                return;
+            }
         }
 
         public void AsgardShipyard(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, ShipYard SY)
@@ -67,13 +75,21 @@ namespace SpaceGame
             $"\t\t1 Check on your ship\n" +
             $"\t\t2 Buy a new ship\n" +
             $"\t\t3 Return to the Planetary hub");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
-                SY.ShipCheck(PS, ship, UM, fuel);
-            if (response == 2)
-                SY.PurchaseShip(PS, ship, UM, fuel);
-            if (response == 3)
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response == 1)
+                    SY.ShipCheck(PS, ship, UM, fuel);
+                if (response == 2)
+                    SY.PurchaseShip(PS, ship, UM, fuel);
+                if (response == 3)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
 
          public void AsgardBank(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
@@ -100,19 +116,27 @@ namespace SpaceGame
             $"\tmarketplace. The vendor you've chosen as your dealer for the items you want is 'Ruslagg God\n" +
             $"\tmerchandise and profit!' it seems everyone on this planet is a God... But his prices seem fair\n" +
             $"\tgood, especially the Space Gold.\n");
-            int response = UM.ShopSelector();
+            try
+            {
+                int response = UM.ShopSelector();
 
-            if (response == 1)
-                AsgardBuy(UM, PS, ship, fuel, PI, Shop);
+                if (response == 1)
+                    AsgardBuy(UM, PS, ship, fuel, PI, Shop);
 
-            if (response == 2)
-                AsgardSell(UM, PS, ship, fuel, PI, Shop);
+                if (response == 2)
+                    AsgardSell(UM, PS, ship, fuel, PI, Shop);
 
-            if (response == 3)
-                fuel.BuyFuel(PS, ship);
+                if (response == 3)
+                    fuel.BuyFuel(PS, ship);
 
-            if (response == 4)
+                if (response == 4)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
 
         public void AsgardBuy(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
@@ -125,15 +149,23 @@ namespace SpaceGame
             $"\t\t 2 Space Gold for {PI.AsgardGold} GC\n" +
             $"\t\t 3 Galactic TVs for {PI.AsgardGalacticTVs} GC\n" +
             $"\t\t 4 Return to the Asgardian Shop");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
-                Shop.BuyShoes(PI.AsgardNoBalanceShoes, PS, UM, ship, fuel);
-            if (response == 2)
-                Shop.BuyGold(PI.AsgardGold, PS, UM, ship, fuel);
-            if (response == 3)
-                Shop.BuyTV(PI.AsgardGalacticTVs, PS, UM, ship, fuel);
-            if (response == 4)
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response == 1)
+                    Shop.BuyShoes(PI.AsgardNoBalanceShoes, PS, UM, ship, fuel);
+                if (response == 2)
+                    Shop.BuyGold(PI.AsgardGold, PS, UM, ship, fuel);
+                if (response == 3)
+                    Shop.BuyTV(PI.AsgardGalacticTVs, PS, UM, ship, fuel);
+                if (response == 4)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
 
         public void AsgardSell(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
@@ -147,15 +179,23 @@ namespace SpaceGame
             $"\t\t 2 Space Gold\n" +
             $"\t\t 3 Galactic TVs\n" +
             $"\t\t 4 Return to the Asgardian Shop");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
-                Shop.SellShoes(PI.AsgardNoBalanceShoes, PS, UM, ship, fuel);
-            if (response == 2)
-                Shop.SellGold(PI.AsgardGold, PS, UM, ship, fuel);
-            if (response == 3)
-                Shop.SellTV(PI.AsgardGalacticTVs, PS, UM, ship, fuel);
-            if (response == 4)
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response == 1)
+                    Shop.SellShoes(PI.AsgardNoBalanceShoes, PS, UM, ship, fuel);
+                if (response == 2)
+                    Shop.SellGold(PI.AsgardGold, PS, UM, ship, fuel);
+                if (response == 3)
+                    Shop.SellTV(PI.AsgardGalacticTVs, PS, UM, ship, fuel);
+                if (response == 4)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
        
         public void AsgardMarket(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI)

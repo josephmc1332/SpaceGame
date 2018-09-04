@@ -51,32 +51,40 @@ namespace SpaceGame
             UtilityMethods UM, PlanetInfo PI, Shop Shop, Fuel fuel, Asgard Asgard, Earth Earth, 
             AlphaCentari AlphaCentari, M63 M63, PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir, Picium Picium)
         {
-            int response = Convert.ToInt32(Console.ReadLine());
-
-
-            //point of method access after valid user selection
-            if (response == 1)
-                M63ShipYard(UM, PS, ship, fuel, SY, LP,Shop, GO, PI);
-
-            if (response == 2)
-                M63Bank(UM, PS, ship, fuel);
-
-            if (response == 3)
-                M63Shop(UM, PS, ship, fuel, PI, Shop);
-
-            if (response == 4)
-                M63Market(PI, PS, UM, ship, fuel);
-
-            if (response == 5)
-                M63Port(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
-
-            if (response == 9)
-                GO.EndScreen(PS, ship);
-
-            else
+            try
             {
-                //loops back to the beginning of earth page
-                Console.WriteLine("invalid entry");
+                int response = Convert.ToInt32(Console.ReadLine());
+
+
+                //point of method access after valid user selection
+                if (response == 1)
+                    M63ShipYard(UM, PS, ship, fuel, SY, LP, Shop, GO, PI);
+
+                if (response == 2)
+                    M63Bank(UM, PS, ship, fuel);
+
+                if (response == 3)
+                    M63Shop(UM, PS, ship, fuel, PI, Shop);
+
+                if (response == 4)
+                    M63Market(PI, PS, UM, ship, fuel);
+
+                if (response == 5)
+                    M63Port(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
+
+                if (response == 9)
+                    GO.EndScreen(PS, ship);
+
+                else
+                {
+                    //loops back to the beginning of earth page
+                    Console.WriteLine("invalid entry");
+                    return;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
         }
@@ -102,15 +110,23 @@ namespace SpaceGame
             Console.WriteLine("\n\n" +
                 "\tYou've arrived at the shop on M63. Niko, the owner welcomes you to look around at all the goods." +
                 "\n\tWe've got the highest quality TV's in the universe!");
-            int response = UM.ShopSelector();
-            if (response == 1)
-                M63Buy(UM, PS, ship, fuel, PI, Shop);
-            if (response == 2)
-                M63Sell(UM, PS, ship, fuel, PI, Shop);
-            if (response == 3)
-                fuel.BuyFuel(PS, ship);
-            if (response == 4)
+            try
+            {
+                int response = UM.ShopSelector();
+                if (response == 1)
+                    M63Buy(UM, PS, ship, fuel, PI, Shop);
+                if (response == 2)
+                    M63Sell(UM, PS, ship, fuel, PI, Shop);
+                if (response == 3)
+                    fuel.BuyFuel(PS, ship);
+                if (response == 4)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
 
         public void M63Buy(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
@@ -123,27 +139,36 @@ namespace SpaceGame
                 $"\t 2 Space Gold {PI.M63SpaceGold} GC per Unit\n" +
                 $"\t 3 Galactic TV {PI.M63GalacticTVs} GC per Unit \n" +
                 $"\t 4 Return to Planetary Menu");
-            int response = Convert.ToInt32(Console.ReadLine());
 
-            //Buy Shoes
-            if (response == 1)
+            try
             {
-                Shop.BuyShoes(PI.M63NoBalanceShoes, PS, UM, ship, fuel);
-               
-            }
-            //Buy Gold
-            if (response == 2)
-            {
-                Shop.BuyGold(PI.M63SpaceGold, PS, UM, ship, fuel);
-            }
+                int response = Convert.ToInt32(Console.ReadLine());
 
-            if (response == 3)
-            {
-                Shop.BuyTV(PI.M63GalacticTVs, PS, UM, ship, fuel);
-            }
+                //Buy Shoes
+                if (response == 1)
+                {
+                    Shop.BuyShoes(PI.M63NoBalanceShoes, PS, UM, ship, fuel);
 
-            if (response == 4)
+                }
+                //Buy Gold
+                if (response == 2)
+                {
+                    Shop.BuyGold(PI.M63SpaceGold, PS, UM, ship, fuel);
+                }
+
+                if (response == 3)
+                {
+                    Shop.BuyTV(PI.M63GalacticTVs, PS, UM, ship, fuel);
+                }
+
+                if (response == 4)
+                {
+                    return;
+                }
+            }
+            catch
             {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
         }
@@ -159,22 +184,30 @@ namespace SpaceGame
                 $"\t 2 Space Gold\n" +
                 $"\t 3 Galactic TVs\n" +
                 $"\t 4 or Return to the Shop");
-            int response = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
 
-            if (response == 1)
-            {
-                Shop.SellShoes(PI.M63NoBalanceShoes, PS, UM, ship, fuel);
+                if (response == 1)
+                {
+                    Shop.SellShoes(PI.M63NoBalanceShoes, PS, UM, ship, fuel);
+                }
+                if (response == 2)
+                {
+                    Shop.SellGold(PI.M63SpaceGold, PS, UM, ship, fuel);
+                }
+                if (response == 3)
+                {
+                    Shop.SellTV(PI.M63GalacticTVs, PS, UM, ship, fuel);
+                }
+                if (response == 4)
+                {
+                    return;
+                }
             }
-            if (response == 2)
+            catch
             {
-                Shop.SellGold(PI.M63SpaceGold, PS, UM, ship, fuel);
-            }
-            if (response == 3)
-            {
-                Shop.SellTV(PI.M63GalacticTVs, PS, UM, ship, fuel);
-            }
-            if (response == 4)
-            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
         }
@@ -241,13 +274,21 @@ namespace SpaceGame
                 "\t\t 1 Check your ship stats\n" +
                 "\t\t 2 Buy a new Ship\n" +
                 "\t\t 3 Return to planetary hub");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
-                SY.ShipCheck(PS, ship, UM, fuel);
-            if (response == 2)
-                SY.PurchaseShip(PS, ship, UM, fuel);
-            if (response == 3)
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response == 1)
+                    SY.ShipCheck(PS, ship, UM, fuel);
+                if (response == 2)
+                    SY.PurchaseShip(PS, ship, UM, fuel);
+                if (response == 3)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
 
         public void M63Market(PlanetInfo PI, PersonalStatus PS, UtilityMethods UM, Ship ship, Fuel fuel)

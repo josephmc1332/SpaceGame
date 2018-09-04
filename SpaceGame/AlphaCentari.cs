@@ -43,29 +43,37 @@ namespace SpaceGame
             Titan Titan, PlanetJoe planetJoe, Vormir vormir, Picium Picium)
         {
 
-            int response = Convert.ToInt32(Console.ReadLine());
-
-            if (response == 1)
-                AlphaYard(UM, PS, ship, fuel, SY, LP, Shop, GO, PI, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
-
-            if (response == 2)
-                AlphaBank(UM, PS, ship, fuel);
-
-            if (response == 3)
-                AlphaShop(UM, PS, ship, fuel, PI, Shop);
-
-            if (response == 4)
-                AlphaMarket(UM, PS, ship, fuel, PI);
-
-            if (response == 5)
-                AlphaCentariPort(ship, PI, PS, fuel, UM, LP, SY, GO, Shop, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
-
-            if (response == 9)
-                GO.EndScreen(PS, ship);
-
-            else
+            try
             {
-                Console.WriteLine("invalid entry");
+                int response = Convert.ToInt32(Console.ReadLine());
+
+                if (response == 1)
+                    AlphaYard(UM, PS, ship, fuel, SY, LP, Shop, GO, PI, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
+
+                if (response == 2)
+                    AlphaBank(UM, PS, ship, fuel);
+
+                if (response == 3)
+                    AlphaShop(UM, PS, ship, fuel, PI, Shop);
+
+                if (response == 4)
+                    AlphaMarket(UM, PS, ship, fuel, PI);
+
+                if (response == 5)
+                    AlphaCentariPort(ship, PI, PS, fuel, UM, LP, SY, GO, Shop, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
+
+                if (response == 9)
+                    GO.EndScreen(PS, ship);
+
+                else
+                {
+                    Console.WriteLine("invalid entry");
+                    return;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
         }
@@ -85,13 +93,21 @@ namespace SpaceGame
                 "\t\t 1 Check your ship stats\n" +
                 "\t\t 2 Buy a new Ship\n" +
                 "\t\t 3 Return to planetary hub");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
-                SY.ShipCheck(PS, ship, UM, fuel);
-            if (response == 2)
-                SY.PurchaseShip(PS, ship, UM, fuel);
-            if (response == 3)
-                LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response == 1)
+                    SY.ShipCheck(PS, ship, UM, fuel);
+                if (response == 2)
+                    SY.PurchaseShip(PS, ship, UM, fuel);
+                if (response == 3)
+                    LP.LandingPagePicker(LP, Shop, SY, GO, PS, UM, ship, PI, fuel, Asgard, Earth, AlphaCentari, M63, PlanetX, Titan, planetJoe, vormir, Picium);
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
+                return;
+            }
         }
 
         public void AlphaShop(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
@@ -101,15 +117,23 @@ namespace SpaceGame
             Console.WriteLine("\n\n" +
                 "\t\tYou arrive at the shop on Alpha Centari. The owner, Brahman welcomes you. 'What's up, \n" +
                 "\t\tmane you know that we have the highest quality gold in the universe!'");
-            int response = UM.ShopSelector();
-            if (response == 1)
-                AlphaBuy(UM, PS, ship, fuel, PI, Shop);
-            if (response == 2)
-                AlphaSell(UM, PS, ship, fuel, PI, Shop);
-            if (response == 3)
-                fuel.BuyFuel(PS, ship);
-            if (response == 4)
+            try
+            {
+                int response = UM.ShopSelector();
+                if (response == 1)
+                    AlphaBuy(UM, PS, ship, fuel, PI, Shop);
+                if (response == 2)
+                    AlphaSell(UM, PS, ship, fuel, PI, Shop);
+                if (response == 3)
+                    fuel.BuyFuel(PS, ship);
+                if (response == 4)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
 
         public void AlphaBank(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel)
@@ -136,25 +160,33 @@ namespace SpaceGame
                 $"\t\t2 Space Gold {PI.AlphaCentariGold} GC per Unit\n" +
                 $"\t\t3 Galactic TV {PI.AlphaCentariGalacticTVs} GC per Unit \n" +
                 $"\t\t4 Return to the Shop");
-            int response = Convert.ToInt32(Console.ReadLine());
-            //Buy Shoes
-            if (response == 1)
+            try
             {
-                Shop.BuyShoes(PI.AlphaCentariNoBalanceShoes, PS, UM, ship, fuel);
-            }
-            //Buy Gold
-            if (response == 2)
-            {
-                Shop.BuyGold(PI.AlphaCentariGold, PS, UM, ship, fuel);
-            }
+                int response = Convert.ToInt32(Console.ReadLine());
+                //Buy Shoes
+                if (response == 1)
+                {
+                    Shop.BuyShoes(PI.AlphaCentariNoBalanceShoes, PS, UM, ship, fuel);
+                }
+                //Buy Gold
+                if (response == 2)
+                {
+                    Shop.BuyGold(PI.AlphaCentariGold, PS, UM, ship, fuel);
+                }
 
-            if (response == 3)
-            {
-                Shop.BuyTV(PI.AlphaCentariGalacticTVs, PS, UM, ship, fuel);
-            }
+                if (response == 3)
+                {
+                    Shop.BuyTV(PI.AlphaCentariGalacticTVs, PS, UM, ship, fuel);
+                }
 
-            if (response == 4)
+                if (response == 4)
+                {
+                    return;
+                }
+            }
+            catch
             {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
         }
@@ -170,22 +202,30 @@ namespace SpaceGame
                 $"\t\t 2 Space Gold\n" +
                 $"\t\t 3 Galactic TVs\n" +
                 $"\t\t 4 or Return to the Shop");
-            int response = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
 
-            if (response == 1)
-            {
-                shop.SellShoes(PI.AlphaCentariNoBalanceShoes, PS, UM, ship, fuel);
+                if (response == 1)
+                {
+                    shop.SellShoes(PI.AlphaCentariNoBalanceShoes, PS, UM, ship, fuel);
+                }
+                if (response == 2)
+                {
+                    shop.SellGold(PI.AlphaCentariGold, PS, UM, ship, fuel);
+                }
+                if (response == 3)
+                {
+                    shop.SellTV(PI.AlphaCentariGalacticTVs, PS, UM, ship, fuel);
+                }
+                if (response == 4)
+                {
+                    return;
+                }
             }
-            if (response == 2)
+            catch
             {
-                shop.SellGold(PI.AlphaCentariGold, PS, UM, ship, fuel);
-            }
-            if (response == 3)
-            {
-                shop.SellTV(PI.AlphaCentariGalacticTVs, PS, UM, ship, fuel);
-            }
-            if (response == 4)
-            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
 

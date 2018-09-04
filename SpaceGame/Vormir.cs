@@ -42,31 +42,39 @@ namespace SpaceGame
             PlanetX PlanetX, Titan Titan, PlanetJoe planetJoe, Vormir vormir, Picium Picium)
         {
             //convert/parse user input string 
-            int response = Convert.ToInt32(Console.ReadLine());
-
-            //point of method access after valid user selection
-            if (response == 1)
-                ShipYard(UM, PS, ship, fuel, SY);
-
-            if (response == 2)
-                Bank(PS, UM, ship, fuel);
-
-            if (response == 3)
-                VormirShop(UM, PS, ship, fuel, PI, shop);
-
-            if (response == 4)
-                Market(PS, UM, ship, fuel, PI);
-
-            if (response == 5)
-                VormirPort(ship, UM, PS, fuel, PI, LP, shop, Asgard, M63, Earth, AlphaCentari, SY, GO, PlanetX, Titan, planetJoe, vormir, Picium);
-
-            if (response == 9)
-                GO.EndScreen(PS, ship);
-
-            else
+            try
             {
-                //loops back to the beginning of earth page
-                Console.WriteLine("invalid entry");
+                int response = Convert.ToInt32(Console.ReadLine());
+
+                //point of method access after valid user selection
+                if (response == 1)
+                    ShipYard(UM, PS, ship, fuel, SY);
+
+                if (response == 2)
+                    Bank(PS, UM, ship, fuel);
+
+                if (response == 3)
+                    VormirShop(UM, PS, ship, fuel, PI, shop);
+
+                if (response == 4)
+                    Market(PS, UM, ship, fuel, PI);
+
+                if (response == 5)
+                    VormirPort(ship, UM, PS, fuel, PI, LP, shop, Asgard, M63, Earth, AlphaCentari, SY, GO, PlanetX, Titan, planetJoe, vormir, Picium);
+
+                if (response == 9)
+                    GO.EndScreen(PS, ship);
+
+                else
+                {
+                    //loops back to the beginning of earth page
+                    Console.WriteLine("invalid entry");
+                    return;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
 
@@ -93,13 +101,21 @@ namespace SpaceGame
                 "\t\t  1 Check your ship stats\n" +
                 "\t\t  2 Buy a new Ship\n" +
                 "\t\t  3 Return to planetary hub");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
-                SY.ShipCheck(PS, ship, UM, fuel);
-            if (response == 2)
-                SY.PurchaseShip(PS, ship, UM, fuel);
-            if (response == 3)
+            try
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response == 1)
+                    SY.ShipCheck(PS, ship, UM, fuel);
+                if (response == 2)
+                    SY.PurchaseShip(PS, ship, UM, fuel);
+                if (response == 3)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
 
         public void VormirShop(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
@@ -113,16 +129,24 @@ namespace SpaceGame
                 "\t\t2. Sell\n" +
                 "\t\t3. Get Fuel\n" +
                 "\t\t4. Return");
-               
-            int response = UM.ShopSelector();
-            if (response == 1)
-                Buy(UM, PS, ship, fuel, PI, Shop);
-            if (response == 2)
-                Sell(UM, PS, ship, fuel, PI, Shop);
-            if (response == 3)
-                fuel.BuyFuel(PS, ship);
-            if (response == 4)
+
+            try
+            {
+                int response = UM.ShopSelector();
+                if (response == 1)
+                    Buy(UM, PS, ship, fuel, PI, Shop);
+                if (response == 2)
+                    Sell(UM, PS, ship, fuel, PI, Shop);
+                if (response == 3)
+                    fuel.BuyFuel(PS, ship);
+                if (response == 4)
+                    return;
+            }
+            catch
+            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
+            }
         }
 
         public void Buy(UtilityMethods UM, PersonalStatus PS, Ship ship, Fuel fuel, PlanetInfo PI, Shop Shop)
@@ -135,25 +159,33 @@ namespace SpaceGame
                 $"\t 2 Space Gold 250 GC per Unit\n" +
                 $"\t 3 Galactic TV 150 GC per Unit \n" +
                 $"\t 4 Return to Shop");
-            int response = Convert.ToInt32(Console.ReadLine());
-            //Buy Shoes
-            if (response == 1)
+            try
             {
-                Shop.BuyShoes(PI.EarthNoBalanceShoes, PS, UM, ship, fuel);
-            }
-            //Buy Gold
-            if (response == 2)
-            {
-                Shop.BuyGold(PI.EarthSpaceGold, PS, UM, ship, fuel);
-            }
+                int response = Convert.ToInt32(Console.ReadLine());
+                //Buy Shoes
+                if (response == 1)
+                {
+                    Shop.BuyShoes(PI.EarthNoBalanceShoes, PS, UM, ship, fuel);
+                }
+                //Buy Gold
+                if (response == 2)
+                {
+                    Shop.BuyGold(PI.EarthSpaceGold, PS, UM, ship, fuel);
+                }
 
-            if (response == 3)
-            {
-                Shop.BuyTV(PI.EarthGalacticTVs, PS, UM, ship, fuel);
-            }
+                if (response == 3)
+                {
+                    Shop.BuyTV(PI.EarthGalacticTVs, PS, UM, ship, fuel);
+                }
 
-            if (response == 4)
+                if (response == 4)
+                {
+                    return;
+                }
+            }
+            catch
             {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
         }
@@ -170,22 +202,30 @@ namespace SpaceGame
                 $"\t  2 Space Gold\n" +
                 $"\t  3 Galactic TVs\n" +
                 $"\t  4 or Return to the Shop");
-            int response = Convert.ToInt32(Console.ReadLine());
-            if (response == 1)
+            try
             {
-                Shop.SellShoes(PI.EarthNoBalanceShoes, PS, UM, ship, fuel);
-            }
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response == 1)
+                {
+                    Shop.SellShoes(PI.EarthNoBalanceShoes, PS, UM, ship, fuel);
+                }
 
-            if (response == 2)
-            {
-                Shop.SellGold(PI.EarthSpaceGold, PS, UM, ship, fuel);
+                if (response == 2)
+                {
+                    Shop.SellGold(PI.EarthSpaceGold, PS, UM, ship, fuel);
+                }
+                if (response == 3)
+                {
+                    Shop.SellTV(PI.EarthGalacticTVs, PS, UM, ship, fuel);
+                }
+                if (response == 4)
+                {
+                    return;
+                }
             }
-            if (response == 3)
+            catch
             {
-                Shop.SellTV(PI.EarthGalacticTVs, PS, UM, ship, fuel);
-            }
-            if (response == 4)
-            {
+                Console.WriteLine("Invalid Entry, try again");
                 return;
             }
 
